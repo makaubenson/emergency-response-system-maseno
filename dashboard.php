@@ -1,5 +1,6 @@
 <?php
 include 'server.php';
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,18 +25,23 @@ include 'server.php';
           <h2 class="login-heading">Maseno E-Help Login</h2>
           <img src="./static/img/logo.png" class="logo" />
         </div>
-        <form class="form-style" method="post" action="server.php">
+        <form class="form-style">
+       
           <div class="form-group">
+          <?php include('errors.php'); ?>
             <label for="exampleInputEmail1" class="form-label"
-              >Registration Number</label
+              >Registration Number
+              <?php echo "Welcome ". "<strong style='color:green;'>".$_SESSION['firstname']." ".$_SESSION['lastname']."</strong>  <br>";  ?>
+              </label
             >
+            
             <input
               type="text"
               class="form-control input-length"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
               placeholder="Registration"
-              name="regno"
+              name="regno" value="<?php $_SESSION['firstname'] ?>"
             />
             <small id="emailHelp" class="form-text text-muted"
               >We'll never share your credentials with anyone else.</small

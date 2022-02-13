@@ -72,4 +72,43 @@ if (isset($_POST['register_btn'])) {
     header('location: index.php');
     }
 }
+
+
+
+// LOGIN USER
+if (isset($_POST['login_btn'])) {
+  $username = $_POST['regno'];
+  $password = $_POST['password'];
+  if (empty($username)) {
+  	array_push($errors, "Username is required");
+  }
+  if (empty($password)) {
+  	array_push($errors, "Password is required");
+  }
+  if (count($errors) == 0) {
+    $encrypted_password = md5($password);
+  	$query = "SELECT * FROM student_details WHERE `regNum`='$username' AND `password`='$encrypted_password'";
+  	$results = mysqli_query($db, $query);
+  	if (mysqli_num_rows($results) == 1) {
+      $row = mysqli_fetch_assoc($results);
+      //row data
+      $regNumber=$row['regNum'];
+      $firstName=$row['firstname'];
+      $lastName=$row['lastname'];
+      $Email=$row['emailaddress'];
+      $Phone=$row['phonenumber'];
+      //sessions
+      $_SESSION['username'] = $regNumber;
+      $_SESSION['firstname'] = $firstName;
+      $_SESSION['lastname'] =$lastName;
+      $_SESSION['emailaddress'] =$Email;
+      $_SESSION['phonenumber'] =$Phone;
+  	  $_SESSION['success'] = "You are now logged in";
+
+  	  header('location: dashboard.php');
+  	}else{
+  		array_push($errors, "Incorrect Username or Password");
+  	}
+  }
+}
 ?>
