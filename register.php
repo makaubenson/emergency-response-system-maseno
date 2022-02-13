@@ -1,3 +1,7 @@
+<?php
+include 'server.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,7 +25,7 @@
           <h2 class="register-heading">Maseno E-Help Register</h2>
           <img src="./static/img/logo.png" class="register-logo" />
         </div>
-        <form class="register-form-style">
+        <form class="register-form-style" method="post" action="server.php">
           <div class="form-group">
             <label for="exampleInputEmail1" class="form-label-register"
               >Registration Number</label
@@ -31,7 +35,33 @@
               class="form-control register-input-length"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
-              placeholder="Registration Number"
+              placeholder="Registration Number"name="regno"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1" class="form-label-register"
+              >First Name</label
+            >
+            <input
+              type="text"
+              class="form-control register-input-length"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              placeholder="First Name" name="firstname"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1" class="form-label-register"
+              >Last Name</label
+            >
+            <input
+              type="text"
+              class="form-control register-input-length"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              placeholder="Last Name" name="lastname"
               required
             />
           </div>
@@ -44,7 +74,7 @@
               class="form-control register-input-length"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
-              placeholder="Email Address"
+              placeholder="Email Address"name="emailaddress"
               required
             />
           </div>
@@ -57,7 +87,7 @@
               class="form-control register-input-length"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
-              placeholder="Phone Number"
+              placeholder="Phone Number"name="phone"
               required
             />
           </div>
@@ -69,7 +99,7 @@
               type="password"
               class="form-control register-input-length"
               id="exampleInputPassword1"
-              placeholder="Password"
+              placeholder="Password"name="password"
               required
             />
           </div>
@@ -81,19 +111,19 @@
               type="password"
               class="form-control register-input-length"
               id="exampleInputPassword1"
-              placeholder="Confirm Password"
+              placeholder="Confirm Password"name="confirmpassword"
               required
             />
           </div>
 
-          <button type="submit" class="btn btn-success register-btn">
+          <button type="submit" name="register_btn" class="btn btn-success register-btn">
             Register
           </button>
           <hr />
           <div class="login-page-section">
             <p>
               Already have an account?
-              <a class="btn btn-primary" href="./index.html">Login Here</a>
+              <a class="btn btn-primary" href="./index.php">Login Here</a>
             </p>
           </div>
         </form>

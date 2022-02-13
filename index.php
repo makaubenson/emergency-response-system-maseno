@@ -55,7 +55,7 @@
           <hr />
           <p>
             Don't have an account?
-            <a class="btn btn-success" href="register.html">Register Here</a>
+            <a class="btn btn-success" href="register.php">Register Here</a>
           </p>
         </form>
       </div>
