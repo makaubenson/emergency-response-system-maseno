@@ -95,3 +95,17 @@ body {
   text-align: center;
 }
 /*End  Register Form */
+/* Dashboard */
+#mynav {
+  margin-bottom: 2% !important;
+}
+.geo-section {
+  margin: 0 auto;
+  width: 70%;
+  margin-bottom: 5%;
+}
+.help {
+  margin: 0 auto;
+  width: 50%;
+  text-align: center;
+}
