@@ -21,6 +21,9 @@ body {
   margin: 0 auto;
   width: 50%;
 }
+.form-label {
+  font-weight: bold;
+}
 .input-length {
   width: 100%;
 }
