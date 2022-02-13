@@ -46,3 +46,49 @@ body {
   height: 100px;
   padding-bottom: 1%;
 }
+/* Register Form */
+.form-label-register {
+  font-weight: bold;
+}
+.form-center-register {
+  width: 50%;
+  border-top: 1px solid #00a7d0;
+  border-bottom: 1px solid #fff;
+  margin: 0 auto;
+  padding-bottom: 2%;
+  margin-top: 6% !important;
+  background-color: #ffff;
+  margin-bottom: 5%;
+}
+#register-form {
+  margin-top: 0%;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+.register-header {
+  text-align: center;
+  background-color: #00a7d0;
+  width: 100%;
+}
+.register-heading {
+  color: #fff;
+}
+.register-logo {
+  width: 100px;
+  height: 100px;
+  padding-bottom: 1%;
+}
+.register-form-style {
+  margin: 0 auto;
+  width: 50%;
+}
+.register-input-length {
+  width: 100%;
+}
+.register-btn {
+  color: #fff !important;
+  width: 100%;
+}
+/*End  Register Form */
