@@ -14,7 +14,7 @@ body {
   border-bottom: 1px solid #fff;
   margin: 0 auto;
   padding-bottom: 2%;
-  margin-top: 10% !important;
+  margin-top: 6% !important;
   background-color: #ffff;
 }
 .form-style {
@@ -29,6 +29,9 @@ body {
 }
 .login-btn {
   width: 100%;
+}
+.register-btn {
+  color: #fff !important;
 }
 .login-header {
   text-align: center;
