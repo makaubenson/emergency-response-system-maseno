@@ -82,7 +82,7 @@ body {
 }
 .register-form-style {
   margin: 0 auto;
-  width: 50%;
+  width: 70%;
 }
 .register-input-length {
   width: 100%;
@@ -90,5 +90,8 @@ body {
 .register-btn {
   color: #fff !important;
   width: 100%;
+}
+.login-page-section {
+  text-align: center;
 }
 /*End  Register Form */
