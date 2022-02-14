@@ -270,3 +270,55 @@ body {
     padding-bottom: 1%;
   }
 }
+@media only screen and (min-width: 912px) and (max-width: 1366px) {
+  .form-center {
+    width: 80%;
+    border-top: 1px solid #00a7d0;
+    border-bottom: 1px solid #fff;
+    margin: 0 auto;
+    padding-bottom: 2%;
+    margin-top: 20% !important;
+    background-color: #ffff;
+  }
+  .form-style {
+    margin: 0 auto;
+    width: 80%;
+  }
+  .form-label {
+    font-weight: 600;
+    font-size: 30px;
+  }
+  .input-length {
+    width: 100%;
+    padding: 3%;
+    font-size: 25px;
+  }
+  .login-btn {
+    width: 100%;
+    font-size: 30px;
+  }
+  .account-p {
+    font-size: 30px;
+    text-align: center;
+  }
+  .reg-btn {
+    font-size: 30px;
+  }
+  /* .register-btn {
+    color: #fff !important;
+  }
+  .login-header {
+    text-align: center;
+    background-color: #00a7d0;
+    width: 100%;
+  } */
+  .login-heading {
+    color: #fff;
+    font-size: 50px;
+  }
+  .logo {
+    width: 150px;
+    height: 150px;
+    padding-bottom: 1%;
+  }
+}
