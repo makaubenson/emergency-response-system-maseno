@@ -24,7 +24,11 @@ include 'server.php';
           <h2 class="login-heading">Maseno E-Help Login</h2>
           <img src="./static/img/logo.png" class="logo" />
         </div>
-        <form class="form-style" method="post" action="server.php">
+        <form class="form-style" method="post" action="" enctype="multipart/form-data" >
+        <?php
+include 'errors.php';
+?>
+
           <div class="form-group">
             <label for="exampleInputEmail1" class="form-label"
               >Registration Number</label
@@ -58,7 +62,7 @@ include 'server.php';
             Sign In
           </button>
           <hr />
-          <p>
+          <p class="account-p">
             Don't have an account?
             <a class="btn btn-success" href="register.php">Register Here</a>
           </p>
@@ -71,5 +75,50 @@ include 'server.php';
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- End Bootstrap 4 scripts-->
+
+    <?php
+    
+    // LOGIN USER
+if (isset($_POST['login_btn'])) {
+  $username = $_POST['regno'];
+  $password = $_POST['password'];
+  if (empty($username)) {
+  	array_push($errors, "Username is required");
+  }
+  if (empty($password)) {
+  	array_push($errors, "Password is required");
+  }
+  if (count($errors) == 0) {
+    $encrypted_password = md5($password);
+  	$query = "SELECT * FROM student_details WHERE `regNum`='$username' AND `password`='$encrypted_password'";
+  	$results = mysqli_query($db, $query);
+  	if (mysqli_num_rows($results) == 1) {
+      $row = mysqli_fetch_assoc($results);
+      //row data
+      $regNumber=$row['regNum'];
+      $firstName=$row['firstname'];
+      $lastName=$row['lastname'];
+      $Email=$row['emailaddress'];
+      $Phone=$row['phonenumber'];
+      //sessions
+      $_SESSION['username'] = $regNumber;
+      $_SESSION['firstname'] = $firstName;
+      $_SESSION['lastname'] =$lastName;
+      $_SESSION['emailaddress'] =$Email;
+      $_SESSION['phonenumber'] =$Phone;
+  	  $_SESSION['success'] = "You are now logged in";
+
+  	  header('location: dashboard.php');
+  	}else{
+  		array_push($errors, "Incorrect Username or Password");
+    //   echo  '<div class="alert alert-danger" role="alert">
+    //   This is a danger alert—check it out!
+    // </div>';
+      // header('location: index.php');
+  	}
+  }
+}
+    
+    ?>
   </body>
 </html>
