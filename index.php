@@ -38,7 +38,7 @@ include 'errors.php';
               class="form-control input-length"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
-              placeholder="Registration"
+              placeholder="Registration Number"
               name="regno"
             />
             <small id="emailHelp" class="form-text text-muted"
@@ -64,7 +64,7 @@ include 'errors.php';
           <hr />
           <p class="account-p">
             Don't have an account?
-            <a class="btn btn-success" href="register.php">Register Here</a>
+            <a class="btn btn-success reg-btn" href="register.php">Register Here</a>
           </p>
         </form>
       </div>
