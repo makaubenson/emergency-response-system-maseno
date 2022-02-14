@@ -110,6 +110,24 @@ body {
   text-align: center;
 }
 /* Responsiveness */
+@media only screen and (min-width: 360px) and (max-width: 740px) {
+  .form-center {
+    width: 95%;
+    border-top: 1px solid #00a7d0;
+    border-bottom: 1px solid #fff;
+    margin: 0 auto;
+    padding-bottom: 2%;
+    margin-top: 23% !important;
+    background-color: #ffff;
+  }
+  .form-style {
+    margin: 0 auto;
+    width: 80%;
+  }
+  .account-p {
+    font-size: 14px;
+  }
+}
 @media only screen and (min-width: 375px) and (max-width: 667px) {
   .form-center {
     width: 95%;
@@ -128,9 +146,28 @@ body {
     font-size: 14px;
   }
 }
+
 @media only screen and (min-width: 414px) and (max-width: 896px) {
   .form-center {
     width: 95%;
+    border-top: 1px solid #00a7d0;
+    border-bottom: 1px solid #fff;
+    margin: 0 auto;
+    padding-bottom: 2%;
+    margin-top: 43% !important;
+    background-color: #ffff;
+  }
+  .form-style {
+    margin: 0 auto;
+    width: 80%;
+  }
+  .account-p {
+    font-size: 14px;
+  }
+}
+@media only screen and (min-width: 820px) and (max-width: 1180px) {
+  .form-center {
+    width: 85%;
     border-top: 1px solid #00a7d0;
     border-bottom: 1px solid #fff;
     margin: 0 auto;
