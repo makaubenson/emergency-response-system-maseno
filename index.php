@@ -18,7 +18,7 @@ include 'server.php';
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
-
+    <link rel="stylesheet" href="./static/css/style.css">
     <title>Maseno | Login</title>
   </head>
   <body>
@@ -86,9 +86,15 @@ include 'server.php';
                 </button>
               </div>
             </div>
+<hr>
+            <!--Register-->
+             <div class="row">
+             <div class="col-sm-12 register-col">
+               <p class="lead">Don't have an account yet? <a href="./register.php" class="btn btn-success">Register Here</a></p>
+             </div>
+            </div>
           </form>
         </div>
-        <div class="col-md-3"></div>
       </div>
     </div>
 
