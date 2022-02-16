@@ -1,3 +1,15 @@
 .register-col {
   text-align: center;
 }
+.login-page {
+  background-color: #ffff;
+  padding-left: 0;
+  padding-right: 0;
+}
+.login-page-header {
+  background-color: #00a7d0;
+}
+.login-form {
+  padding-left: 2%;
+  padding-right: 2%;
+}

@@ -21,12 +21,12 @@ include 'server.php';
     <link rel="stylesheet" href="./static/css/style.css">
     <title>Maseno | Login</title>
   </head>
-  <body>
+  <body style="background-color: #d2d6de;">
     <div class="container">
       <div class="row mt-5">
         <div class="col-md-3"></div>
-        <div class="col-md-6 mt-5">
-          <div class="col-md-12 mb-2" style="background-color: #00a7d0">
+        <div class="col-md-6 mt-5 login-page">
+          <div class="col-md-12 mb-2 login-page-header">
             <h2 class="text-center" style="color: #fff">Maseno E-Help Login</h2>
 
             <div class="row">
@@ -42,7 +42,7 @@ include 'server.php';
               <div class="col-md-3"></div>
             </div>
           </div>
-          <form method="post" action="" enctype="multipart/form-data">
+          <form method="post" action="" enctype="multipart/form-data" class="login-form">
             <div class="form-group row">
               <?php
                 include 'errors.php';
