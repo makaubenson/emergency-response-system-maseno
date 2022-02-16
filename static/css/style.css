@@ -110,6 +110,28 @@ body {
   text-align: center;
 }
 /* Responsiveness */
+@media only screen and (min-width: 280px) and (max-width: 653px) {
+  .form-center {
+    width: 80%;
+    border-top: 1px solid #00a7d0;
+    border-bottom: 1px solid #fff;
+    margin: 0 auto;
+    padding-bottom: 2%;
+    margin-top: 5% !important;
+    background-color: #ffff;
+  }
+  .form-style {
+    margin: 0 auto;
+    width: 80%;
+  }
+  .login-heading {
+    font-size: 25px;
+  }
+  .account-p {
+    font-size: 14px;
+    text-align: center;
+  }
+}
 @media only screen and (min-width: 360px) and (max-width: 740px) {
   .form-center {
     width: 95%;
@@ -147,7 +169,6 @@ body {
     font-size: 14px;
   }
 }
-
 @media only screen and (min-width: 414px) and (max-width: 896px) {
   .form-center {
     width: 95%;
@@ -166,6 +187,7 @@ body {
     font-size: 14px;
   }
 }
+
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
   .form-center {
     width: 80%;
