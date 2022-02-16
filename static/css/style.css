@@ -16,3 +16,7 @@
 .login-page-row {
   margin: 0;
 }
+/* Register page */
+.register-form {
+  background-color: #ffff;
+}
