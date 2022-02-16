@@ -56,7 +56,7 @@ include 'server.php';
                   class="form-control"
                   id="inputEmail3"
                   placeholder="Username"
-                  name="regno"
+                  name="regno" required
                 />
               </div>
             </div>
@@ -70,7 +70,7 @@ include 'server.php';
                   class="form-control"
                   id="inputPassword3"
                   placeholder="Password"
-                  name="password"
+                  name="password" required
                 />
               </div>
             </div>
