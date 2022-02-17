@@ -189,7 +189,7 @@ $getInfo = json_decode($url);
   <div class="alert alert-success" role="alert">
    <span style="color:#e83e8c;font-weight:bold">Help Is On The Way.</span> <br><span class="btn btn-warning">Note: </span> Please Do not move away from this location. A team has been dispatched to help you. Keep Calm!!!
 </div>
-  <p><?php echo "Your Help Code is  ". "<strong style='color:blue;'>".$_SESSION['longitude']." ".$_SESSION['lastname']."</strong>  <br>";  ?> </a></p>
+  <p><?php echo "Your Help Code is  ". "<strong style='color:blue;'>".rand(1,500)."</strong>  <br>";  ?> </a></p>
   
 </div>
 </div>
