@@ -17,6 +17,15 @@
   margin: 0;
 }
 /* Register page */
+.register-page {
+  background-color: #fff;
+  padding-left: 0;
+  padding-right: 0;
+}
+.register-page-header {
+  background-color: #00a7d0;
+}
 .register-form {
-  background-color: #ffff;
+  padding-left: 1%;
+  padding-right: 1%;
 }
