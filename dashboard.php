@@ -175,11 +175,25 @@ $getInfo = json_decode($url);
     
       <input type="text" class="form-control" name="username" value="<?php echo $_SESSION['username'];  ?>">
     </div>
+    <div class="col-sm-4">
+    <input type='text' name='display' value='display' />
+    </div>
   </div>
   <!-- <a href="#" class="btn btn-danger btn-block"  type='submit' name="help-btn">I Need Help</a> -->
   <button type="submit" class="btn btn-danger btn-block" name="help-btn">I Need Help</button>
  
 </form>
+<?php
+     if($_SESSION['username']){ ?>
+      <div class="card">
+  <div class="card-body">
+  <p><?php echo "Welcome  ". "<strong style='color:blue;'>".$_SESSION['firstname']." ".$_SESSION['lastname']."</strong>  <br>";  ?> </a></p>
+  </div>
+</div>
+
+ <?php
+  }
+ ?>
 
       </div>
     </div>

@@ -70,6 +70,9 @@ if (isset($_POST['register_btn'])) {
     $query = "INSERT INTO student_details(`regNum`, `firstname`, `lastname`, `emailaddress`, `phonenumber`, `password`) 
               VALUES('$registrationNumber','$firstName','$lastName','$emailAddress','$phoneNumber','$password')";
     mysqli_query($db, $query);
+
+    $location_query ="INSERT INTO `location`(`helpID`, `ip`, `Latitude`, `Longitude`, `regNum`) VALUES ('0','0','0','0','$registrationNumber')";
+    mysqli_query($db, $location_query);
     header('location: index.php');
     }else{
       header('location: register.php');
@@ -89,13 +92,12 @@ if (empty($ipAddress)) { array_push($errors, "Unable to Track your Ip Address");
 if (empty($Longitude)) { array_push($errors, "Unable to Track your Longitude"); }
 if (empty($Latitude)) { array_push($errors, "Unable to Track your Latitude"); }
 
-
-
+$random_number=  rand(1,1000);
+$new_regno = str_replace( '/', '', $regno);
+$custom_key = $new_regno.$random_number;
 // Finally, register user location
 if (count($errors) == 0) {
-$insert_query ="INSERT INTO `location`(`ip`, `Latitude`, `Longitude`, `regNum`) VALUES ('$ipAddress','$Latitude','$Longitude','$regno')";
-mysqli_query($db,$insert_query);
-$update_query ="UPDATE `location` SET `ip`='$ipAddress',`Latitude`='$Latitude',`Longitude`='$Longitude',`regNum`='$regno' WHERE regNum='$regno'";
+$update_query ="UPDATE `location` SET `helpID`='$custom_key', `ip`='$ipAddress',`Latitude`='$Latitude',`Longitude`='$Longitude',`regNum`='$regno' WHERE regNum='$regno'";
 mysqli_query($db,$update_query);
 header('location: dashboard.php');
 }else{
