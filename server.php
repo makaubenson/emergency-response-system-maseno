@@ -49,6 +49,7 @@ if (isset($_POST['register_btn'])) {
   }
  // first check the database to make sure
   // a user does not already exist with the same username and/or email
+ 
   $user_check_query = "SELECT * FROM student_details WHERE regNum='$registrationNumber' OR emailaddress='$emailAddress' LIMIT 1";
   $result = mysqli_query($db, $user_check_query);
   $user = mysqli_fetch_assoc($result);
@@ -75,7 +76,32 @@ if (isset($_POST['register_btn'])) {
     }
 }
 
+// Update Location Details
+if (isset($_POST['help-btn'])) {
+  // receive all input values from the form
+  $ipAddress= $_POST['ipaddress'];
+  $Longitude=  $_POST['longitude'];
+  $Latitude =  $_POST['latitude'];
+  $regno =  $_POST['username'];
+  // form validation: ensure that the form is correctly filled ...
+// by adding (array_push()) corresponding error unto $errors array
+if (empty($ipAddress)) { array_push($errors, "Unable to Track your Ip Address"); }
+if (empty($Longitude)) { array_push($errors, "Unable to Track your Longitude"); }
+if (empty($Latitude)) { array_push($errors, "Unable to Track your Latitude"); }
 
 
+
+// Finally, register user location
+if (count($errors) == 0) {
+$insert_query ="INSERT INTO `location`(`ip`, `Latitude`, `Longitude`, `regNum`) VALUES ('$ipAddress','$Latitude','$Longitude','$regno')";
+mysqli_query($db,$insert_query);
+$update_query ="UPDATE `location` SET `ip`='$ipAddress',`Latitude`='$Latitude',`Longitude`='$Longitude',`regNum`='$regno' WHERE regNum='$regno'";
+mysqli_query($db,$update_query);
+header('location: dashboard.php');
+}else{
+  header('location: dashboard.php');
+
+  }
+}
 
 ?>

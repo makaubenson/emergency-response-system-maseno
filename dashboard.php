@@ -47,7 +47,7 @@ $getInfo = json_decode($url);
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Dashboard</title>
+    <title>Student Dashboard</title>
     <link rel="icon" href="./static/img/logo.png" type="image/x-icon" />
     <!-- Required meta tags -->
     <meta charset="utf-8" />
@@ -160,29 +160,34 @@ $getInfo = json_decode($url);
       <div class="card-body">
         <h5 class="card-title">Do you need Help?</h5>
         <p class="card-text">Please click the button below to request for help.</p>
-        <form>
+        <form method="post" action="server.php">
   <div class="row">
     <div class="col-sm-4">
       <input type="text" class="form-control" name="ipaddress" value="<?php echo $ip ; ?>">
     </div>
     <div class="col-sm-4">
-      <input type="text" class="form-control" placeholder="Last name"value="<?php echo $getInfo->geoplugin_longitude; ?>">
+      <input type="text" class="form-control" name="longitude" value="<?php echo $getInfo->geoplugin_longitude; ?>">
     </div>
     <div class="col-sm-4">
       <input type="text" class="form-control" name="latitude" value="<?php echo $getInfo->geoplugin_latitude; ?>">
     </div>
+    <div class="col-sm-4">
+    
+      <input type="text" class="form-control" name="username" value="<?php echo $_SESSION['username'];  ?>">
+    </div>
   </div>
-  <a href="#" class="btn btn-danger btn-block">I Need Help <i class="bi bi-telephone-forward-fill"></i></a>
+  <!-- <a href="#" class="btn btn-danger btn-block"  type='submit' name="help-btn">I Need Help</a> -->
+  <button type="submit" class="btn btn-danger btn-block" name="help-btn">I Need Help</button>
+ 
 </form>
-        
+
       </div>
     </div>
   </div>
   <div class="col-sm-4"></div>
 </div>
 
-<!--ionicons-->
-<!-- <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script> -->
+
     <!--Bootstrap 4 scripts-->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
