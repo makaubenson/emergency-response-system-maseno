@@ -184,7 +184,7 @@ $getInfo = json_decode($url);
      if($_SESSION['user']){ ?>
       <div class="card">
   <div class="card-body">
-  <p><?php echo "Welcome  ". "<strong style='color:blue;'>".$_SESSION['firstname']." ".$_SESSION['lastname']."</strong>  <br>";  ?> </a></p>
+  <p><?php echo "Welcome  ". "<strong style='color:blue;'>".$_SESSION['longitude']." ".$_SESSION['lastname']."</strong>  <br>";  ?> </a></p>
   </div>
 </div>
 

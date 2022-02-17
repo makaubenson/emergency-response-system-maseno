@@ -101,31 +101,18 @@ $update_query ="UPDATE `location` SET `helpID`='$custom_key', `ip`='$ipAddress',
 mysqli_query($db,$update_query);
 // header('location: dashboard.php');
 
-}else{
-  // header('location: dashboard.php');
- 
-  }
 
-}
-
-
-$query = "SELECT * FROM location   WHERE `regNum`='$username' AND `password`='$encrypted_password'";
+//Select data from location table
+$query = "SELECT * FROM location   WHERE `regNum`='$regno'";
   	$results = mysqli_query($db, $query);
   	if (mysqli_num_rows($results) == 1) {
       $row = mysqli_fetch_assoc($results);
       //row data
       $regNumber=$row['regNum'];
-      $firstName=$row['firstname'];
-      $lastName=$row['lastname'];
-      $Email=$row['emailaddress'];
-      $Phone=$row['phonenumber'];
+      $long=$row['Longitude'];
       //sessions
-      $_SESSION['username'] = $regNumber;
-      $_SESSION['firstname'] = $firstName;
-      $_SESSION['lastname'] =$lastName;
-      $_SESSION['emailaddress'] =$Email;
-      $_SESSION['phonenumber'] =$Phone;
-  	  $_SESSION['success'] = "You are now logged in";
+      $_SESSION['user'] = $regNumber;
+      $_SESSION['longitude'] = $long;
 
   	  header('location: dashboard.php');
   	}else{
@@ -135,4 +122,13 @@ $query = "SELECT * FROM location   WHERE `regNum`='$username' AND `password`='$e
     // </div>';
       // header('location: index.php');
   	}
+}else{
+  // header('location: dashboard.php');
+ 
+  }
+
+}
+
+
+
 ?>
