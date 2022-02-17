@@ -107,4 +107,32 @@ mysqli_query($db,$update_query);
   }
 
 }
+
+
+$query = "SELECT * FROM location   WHERE `regNum`='$username' AND `password`='$encrypted_password'";
+  	$results = mysqli_query($db, $query);
+  	if (mysqli_num_rows($results) == 1) {
+      $row = mysqli_fetch_assoc($results);
+      //row data
+      $regNumber=$row['regNum'];
+      $firstName=$row['firstname'];
+      $lastName=$row['lastname'];
+      $Email=$row['emailaddress'];
+      $Phone=$row['phonenumber'];
+      //sessions
+      $_SESSION['username'] = $regNumber;
+      $_SESSION['firstname'] = $firstName;
+      $_SESSION['lastname'] =$lastName;
+      $_SESSION['emailaddress'] =$Email;
+      $_SESSION['phonenumber'] =$Phone;
+  	  $_SESSION['success'] = "You are now logged in";
+
+  	  header('location: dashboard.php');
+  	}else{
+  		array_push($errors, "Incorrect Username or Password");
+    //   echo  '<div class="alert alert-danger" role="alert">
+    //   This is a danger alert—check it out!
+    // </div>';
+      // header('location: index.php');
+  	}
 ?>
