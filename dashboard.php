@@ -161,6 +161,7 @@ $getInfo = json_decode($url);
         <h5 class="card-title">Do you need Help?</h5>
         <p class="card-text">Please click the button below to request for help.</p>
         <form method="post" action="server.php">
+          <?php include 'errors.php';?>
   <div class="row">
     <div class="col-sm-4">
       <input type="text" class="form-control" name="ipaddress" value="<?php echo $ip ; ?>">
@@ -172,11 +173,7 @@ $getInfo = json_decode($url);
       <input type="text" class="form-control" name="latitude" value="<?php echo $getInfo->geoplugin_latitude; ?>">
     </div>
     <div class="col-sm-4">
-    
       <input type="text" class="form-control" name="username" value="<?php echo $_SESSION['username'];  ?>">
-    </div>
-    <div class="col-sm-4">
-    <input type='text' name='display' value='display' />
     </div>
   </div>
   <!-- <a href="#" class="btn btn-danger btn-block"  type='submit' name="help-btn">I Need Help</a> -->
@@ -184,10 +181,10 @@ $getInfo = json_decode($url);
  
 </form>
 <?php
-     if($_SESSION['username']){ ?>
+     if($_SESSION['user']){ ?>
       <div class="card">
   <div class="card-body">
-  <p><?php echo "Welcome  ". "<strong style='color:blue;'>".$_SESSION['firstname']." ".$_SESSION['lastname']."</strong>  <br>";  ?> </a></p>
+  <p><?php echo "Welcome  ". "<strong style='color:blue;'>".$_SESSION['primarykey']." ".$_SESSION['lastname']."</strong>  <br>";  ?> </a></p>
   </div>
 </div>
 

@@ -99,11 +99,12 @@ $custom_key = $new_regno.$random_number;
 if (count($errors) == 0) {
 $update_query ="UPDATE `location` SET `helpID`='$custom_key', `ip`='$ipAddress',`Latitude`='$Latitude',`Longitude`='$Longitude',`regNum`='$regno' WHERE regNum='$regno'";
 mysqli_query($db,$update_query);
-header('location: dashboard.php');
+// header('location: dashboard.php');
+
 }else{
-  header('location: dashboard.php');
-
+  // header('location: dashboard.php');
+ 
   }
-}
 
+}
 ?>
