@@ -184,8 +184,12 @@ $getInfo = json_decode($url);
      if($_SESSION['user']){ ?>
       <div class="card">
   <div class="card-body">
-  <p><?php echo "Welcome  ". "<strong style='color:blue;'>".$_SESSION['longitude']." ".$_SESSION['lastname']."</strong>  <br>";  ?> </a></p>
-  </div>
+  <div class="alert alert-success" role="alert">
+   <span style="color:#e83e8c;font-weight:bold">Help Is On The Way.</span> <br><span class="btn btn-warning">Note: </span> Please Do not move away from this location. 
+</div>
+  <p><?php echo "Your Help Code is  ". "<strong style='color:blue;'>".$_SESSION['longitude']." ".$_SESSION['lastname']."</strong>  <br>";  ?> </a></p>
+  
+</div>
 </div>
 
  <?php
