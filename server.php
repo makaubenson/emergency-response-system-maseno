@@ -70,6 +70,8 @@ if (isset($_POST['register_btn'])) {
               VALUES('$registrationNumber','$firstName','$lastName','$emailAddress','$phoneNumber','$password')";
     mysqli_query($db, $query);
     header('location: index.php');
+    }else{
+      header('location: register.php');
     }
 }
 
