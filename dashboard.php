@@ -55,8 +55,8 @@ $getInfo = json_decode($url);
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--Bootstrap 4 CSS-->
-    <!-- <link rel="stylesheet" href="./static/bootstrap4/css/bootstrap.min.css" /> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!--Style Css-->
     <link rel="stylesheet" href="./static/css/style.css" />
@@ -71,10 +71,8 @@ $getInfo = json_decode($url);
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
-      
       <?php
      if($_SESSION['username']){ ?>
-                
       <li class="nav-item active">
       <a class="nav-link" href="logout.php">
       <?php echo "Welcome  ". "<strong style='color:white;'>".$_SESSION['firstname']." ".$_SESSION['lastname']."</strong>  <br>";  ?> </a>
@@ -82,101 +80,113 @@ $getInfo = json_decode($url);
       <li class="nav-item active">
         <a class="nav-link btn btn-danger" href="logout.php">Logout </a>
       </li>
-         <?php 
-  } 
+         <?php
+  }
  ?>
     </ul>
-    
   </div>
 </nav>
-</div>   
+</div>
 
-
-<div class="geo-section" >
-
+<div class="container mt-3" >
 <!--Cards-->
 <div class="row " style="text-align: center;">
 <!--start of one Card -->
 <!-- IP address -->
 <div class="col-xl-4 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Your IP Address</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $ip ; ?></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+    <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                        Your IP Address</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $ip ; ?></div>
+                </div>
+                <div class="col-auto">
+                    <i class="fa-solid fa-wifi fa-2x text-gray-300" style="color:#e83e8c"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
                         <!--end of one Card -->
                         <!--start of one Card -->
 <!-- IP address -->
 <div class="col-xl-4 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Your Longitude</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php  echo $getInfo->geoplugin_longitude;?> </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+  <div class="card border-left-primary shadow h-100 py-2">
+      <div class="card-body">
+          <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                      Your Longitude</div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800"><?php  echo $getInfo->geoplugin_longitude;?> </div>
+              </div>
+              <div class="col-auto">
+                  <i class="fa-solid fa-location-crosshairs fa-2x text-gray-300" style="color:#007bff"></i>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
                         <!--end of one Card -->
                                       <!--start of one Card -->
 <!-- IP address -->
 <div class="col-xl-4 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Your Latitude</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $getInfo->geoplugin_latitude; ?></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--end of one Card -->
-                        <!--end of Cards-->
-                        </div>
-                        </div>
+    <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                        Your Latitude</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $getInfo->geoplugin_latitude; ?></div>
+                </div>
+                <div class="col-auto">
+                    <i class="fa-solid fa-location-dot fa-2x text-gray-300" style="color:#ffaa00"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end of one Card -->
+<!--end of Cards-->
+</div>
+</div>
 
-                        <!--Request Help Section-->
-                        <div class="help">
-<div class="row" >
-  <div class="col-sm-12">
+<!--Request Help Section-->
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4 text-center">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Having a health emergency?</h5>
-        <p class="card-text">Request for help by clicking the button below</p>
-        <a href="#" class="btn btn-primary" >I Need Help</a>
+        <h5 class="card-title">Do you need Help?</h5>
+        <p class="card-text">Please click the button below to request for help.</p>
+        <form>
+  <div class="row">
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="ipaddress" value="<?php echo $ip ; ?>">
+    </div>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" placeholder="Last name"value="<?php echo $getInfo->geoplugin_longitude; ?>">
+    </div>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" name="latitude" value="<?php echo $getInfo->geoplugin_latitude; ?>">
+    </div>
+  </div>
+  <a href="#" class="btn btn-danger btn-block">I Need Help <i class="bi bi-telephone-forward-fill"></i></a>
+</form>
+        
       </div>
     </div>
   </div>
+  <div class="col-sm-4"></div>
 </div>
-                        </div>
-          
-                        
+
+<!--ionicons-->
+<!-- <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script> -->
     <!--Bootstrap 4 scripts-->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <!-- End Bootstrap 4 scripts-->
+<!-- End Bootstrap 4 scripts-->
   </body>
 </html>
