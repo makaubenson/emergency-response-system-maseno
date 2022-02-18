@@ -44,6 +44,7 @@ $getInfo = json_decode($url);
 // echo "</td></tr><tr></table>";
 
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -164,6 +165,9 @@ $getInfo = json_decode($url);
         <form method="post" action="">
           <?php include 'errors.php';?>
   <div class="row">
+  <div class="col-sm-12 pb-2">
+      <input type="text" class="form-control"  name="number" value="<?php echo $ip ; ?>">
+    </div>
     <div class="col-sm-12 pb-2">
       <input type="text" class="form-control"  name="ipaddress" value="<?php echo $ip ; ?>">
     </div>

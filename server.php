@@ -97,7 +97,8 @@ if (count($errors) == 0) {
   $location_query ="INSERT INTO `location`(`helpID`, `ip`, `Latitude`, `Longitude`, `regNum`) VALUES ('$helpCode','$ipAddress','$Latitude','$Longitude','$regno')";
   mysqli_query($db, $location_query);
 
-
+  $status_query ="INSERT INTO `request_status`(`helpID`, `admNo`) VALUES ('$helpCode','$regno')";
+  mysqli_query($db, $status_query);
 //Select data from location table
               $location_Select_query = "SELECT * FROM location   WHERE `regNum`='$regno'";
                   $results = mysqli_query($db, $location_Select_query);
@@ -113,7 +114,7 @@ if (count($errors) == 0) {
                     header('location: dashboard.php');
                   }else{
                     array_push($errors, "Invalid Sessin ID");
-                    header('location: dashboard.php');
+                    // header('location: index.php');
                   }
 }else{
                   header('location: dashboard.php');
