@@ -99,8 +99,8 @@ if (count($errors) == 0) {
 
 
 //Select data from location table
-              $query = "SELECT * FROM location   WHERE `regNum`='$regno'";
-                  $results = mysqli_query($db, $query);
+              $location_Select_query = "SELECT * FROM location   WHERE `regNum`='$regno'";
+                  $results = mysqli_query($db, $location_Select_query);
                   if (mysqli_num_rows($results) == 1) {
                     $row = mysqli_fetch_assoc($results);
                     //row data
@@ -113,7 +113,7 @@ if (count($errors) == 0) {
                     header('location: dashboard.php');
                   }else{
                     array_push($errors, "Invalid Sessin ID");
-                    header('location: index.php');
+                    header('location: dashboard.php');
                   }
 }else{
                   header('location: dashboard.php');
