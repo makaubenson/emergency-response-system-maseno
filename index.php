@@ -19,7 +19,7 @@ include 'server.php';
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./static/css/style.css">
-    <title>Maseno | Login</title>
+    <title>Student | Login</title>
   </head>
   <body style="background-color: #d2d6de;">
     <div class="container">

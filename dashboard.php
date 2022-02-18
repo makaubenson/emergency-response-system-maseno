@@ -76,6 +76,9 @@ $getInfo = json_decode($url);
       <?php
      if($_SESSION['username']){ ?>
       <li class="nav-item active">
+        <a class="nav-link" href="requests.php">Track Requests </a>
+      </li>
+      <li class="nav-item active">
       <a class="nav-link" href="logout.php">
       <?php echo "Welcome  ". "<strong style='color:white;'>".$_SESSION['firstname']." ".$_SESSION['lastname']."</strong>  <br>";  ?> </a>
       </li>
