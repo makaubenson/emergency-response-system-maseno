@@ -136,7 +136,6 @@ if (isset($_POST['login_btn'])) {
   	$results = mysqli_query($db, $query);
   	if (mysqli_num_rows($results) == 1) {
       $row = mysqli_fetch_assoc($results);
-      
       // generate random alphanumeric character
       function random_string($length) {
         $key = '';

@@ -186,53 +186,7 @@ $getInfo = json_decode($url);
 
 
 </form>
-<?php
-// Update Location Details
-if (isset($_POST['help-btn'])) {
-  // receive all input values from the form
-  $ipAddress= $_POST['ipaddress'];
-  $Longitude=  $_POST['longitude'];
-  $Latitude =  $_POST['latitude'];
-  $regno =  $_POST['username'];
-  $helpCode=  $_POST['helpcode'];
-  // form validation: ensure that the form is correctly filled ...
-// by adding (array_push()) corresponding error unto $errors array
-if (empty($ipAddress)) { array_push($errors, "Unable to Track your Ip Address"); }
-if (empty($Longitude)) { array_push($errors, "Unable to Track your Longitude"); }
-if (empty($Latitude)) { array_push($errors, "Unable to Track your Latitude"); }
-if (empty($regno)) { array_push($errors, "Unable to Track your Registration Number"); }
-if (empty($helpCode)) { array_push($errors, "Unable to Track your Help Code"); }
-// Finally, register user location
-if (count($errors) == 0) {
-  $location_query ="INSERT INTO `location`(`helpID`, `ip`, `Latitude`, `Longitude`, `regNum`) VALUES ('$helpCode','$ipAddress','$Latitude','$Longitude','$regno')";
-  mysqli_query($db, $location_query);
-//Select data from location table
-              $query = "SELECT * FROM location   WHERE `regNum`='$regno'";
-                  $results = mysqli_query($db, $query);
-                  if (mysqli_num_rows($results) == 1) {
-                    $row = mysqli_fetch_assoc($results);
-                    //row data
-                    $regNumber=$row['regNum'];
-                    $long=$row['Longitude'];
-                    //sessions
-                    $_SESSION['user'] = $regNumber;
-                    $_SESSION['longitude'] = $long;
 
-                    header('location: dashboard.php');
-                  }else{
-                    array_push($errors, "Invalid Sessin ID");
-
-                    header('location: index.php');
-                  }
-}else{
-                  header('location: dashboard.php');
-                  array_push($errors, "Unable to updated data in the database");
-  }
-
-}
-
-
-?>
 <?php
 
      if($_SESSION['user']){ ?>
