@@ -136,6 +136,18 @@ if (isset($_POST['login_btn'])) {
   	$results = mysqli_query($db, $query);
   	if (mysqli_num_rows($results) == 1) {
       $row = mysqli_fetch_assoc($results);
+      
+      // generate random alphanumeric character
+      function random_string($length) {
+        $key = '';
+        $keys = array_merge(range(0, 9), range('a', 'z'));
+        for ($i = 0; $i < $length; $i++) {
+            $key .= $keys[array_rand($keys)];
+        }
+        return $key;
+    }
+   $helpCode= strtoupper(random_string(6));
+    // end generate random alphanumeric character
       //row data
       $regNumber=$row['regNum'];
       $firstName=$row['firstname'];
@@ -144,6 +156,7 @@ if (isset($_POST['login_btn'])) {
       $Phone=$row['phonenumber'];
       //sessions
       $_SESSION['username'] = $regNumber;
+      $_SESSION['helpcode'] = $helpCode;
       $_SESSION['firstname'] = $firstName;
       $_SESSION['lastname'] =$lastName;
       $_SESSION['emailaddress'] =$Email;

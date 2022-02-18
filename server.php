@@ -70,64 +70,12 @@ if (isset($_POST['register_btn'])) {
     $query = "INSERT INTO student_details(`regNum`, `firstname`, `lastname`, `emailaddress`, `phonenumber`, `password`) 
               VALUES('$registrationNumber','$firstName','$lastName','$emailAddress','$phoneNumber','$password')";
     mysqli_query($db, $query);
-
-    $location_query ="INSERT INTO `location`(`helpID`, `ip`, `Latitude`, `Longitude`, `regNum`) VALUES ('0','0','0','0','$registrationNumber')";
-    mysqli_query($db, $location_query);
     header('location: index.php');
     }else{
       header('location: register.php');
     }
 }
 
-// Update Location Details
-if (isset($_POST['help-btn'])) {
-  // receive all input values from the form
-  $ipAddress= $_POST['ipaddress'];
-  $Longitude=  $_POST['longitude'];
-  $Latitude =  $_POST['latitude'];
-  $regno =  $_POST['username'];
-  // form validation: ensure that the form is correctly filled ...
-// by adding (array_push()) corresponding error unto $errors array
-if (empty($ipAddress)) { array_push($errors, "Unable to Track your Ip Address"); }
-if (empty($Longitude)) { array_push($errors, "Unable to Track your Longitude"); }
-if (empty($Latitude)) { array_push($errors, "Unable to Track your Latitude"); }
-
-$random_number=  rand(1,1000);
-$new_regno = str_replace( '/', '', $regno);
-$custom_key = $new_regno.$random_number;
-// Finally, register user location
-if (count($errors) == 0) {
-$update_query ="UPDATE `location` SET `helpID`='$custom_key', `ip`='$ipAddress',`Latitude`='$Latitude',`Longitude`='$Longitude',`regNum`='$regno' WHERE regNum='$regno'";
-mysqli_query($db,$update_query);
-// header('location: dashboard.php');
-
-
-//Select data from location table
-$query = "SELECT * FROM location   WHERE `regNum`='$regno'";
-  	$results = mysqli_query($db, $query);
-  	if (mysqli_num_rows($results) == 1) {
-      $row = mysqli_fetch_assoc($results);
-      //row data
-      $regNumber=$row['regNum'];
-      $long=$row['Longitude'];
-      //sessions
-      $_SESSION['user'] = $regNumber;
-      $_SESSION['longitude'] = $long;
-
-  	  header('location: dashboard.php');
-  	}else{
-  		array_push($errors, "Incorrect Username or Password");
-    //   echo  '<div class="alert alert-danger" role="alert">
-    //   This is a danger alert—check it out!
-    // </div>';
-      // header('location: index.php');
-  	}
-}else{
-  // header('location: dashboard.php');
- 
-  }
-
-}
 
 
 

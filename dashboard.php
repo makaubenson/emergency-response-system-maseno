@@ -43,6 +43,7 @@ $getInfo = json_decode($url);
 // echo $getInfo->geoplugin_timezone;
 // echo "</td></tr><tr></table>";
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -160,27 +161,80 @@ $getInfo = json_decode($url);
       <div class="card-body">
         <h5 class="card-title">Do you need Help?</h5>
         <p class="card-text">Please click the button below to request for help.</p>
-        <form method="post" action="server.php">
+        <form method="post" action="">
           <?php include 'errors.php';?>
   <div class="row">
-    <div class="col-sm-4">
-      <input type="text" class="form-control" name="ipaddress" value="<?php echo $ip ; ?>">
+    <div class="col-sm-12 pb-2">
+      <input type="text" class="form-control"  name="ipaddress" value="<?php echo $ip ; ?>">
     </div>
-    <div class="col-sm-4">
-      <input type="text" class="form-control" name="longitude" value="<?php echo $getInfo->geoplugin_longitude; ?>">
+    <div class="col-sm-12 pb-2">
+      <input type="text" class="form-control"  name="longitude" value="<?php echo $getInfo->geoplugin_longitude; ?>">
     </div>
-    <div class="col-sm-4">
-      <input type="text" class="form-control" name="latitude" value="<?php echo $getInfo->geoplugin_latitude; ?>">
+    <div class="col-sm-12 pb-2">
+      <input type="text" class="form-control"  name="latitude" value="<?php echo $getInfo->geoplugin_latitude; ?>">
     </div>
-    <div class="col-sm-4">
-      <input type="text" class="form-control" name="username" value="<?php echo $_SESSION['username'];  ?>">
+    <div class="col-sm-12 pb-2">
+      <input type="text" class="form-control"  name="username" value="<?php echo $_SESSION['username'];  ?>">
+    </div>
+    <div class="col-sm-12 pb-2">
+      <input type="text" class="form-control"  name="helpcode" value="<?php echo $_SESSION['helpcode'];  ?>">
     </div>
   </div>
   <!-- <a href="#" class="btn btn-danger btn-block"  type='submit' name="help-btn">I Need Help</a> -->
-  <button type="submit" class="btn btn-danger btn-block" name="help-btn">I Need Help</button>
- 
+  <button type="submit" class="btn btn-danger btn-block mb-2" name="help-btn">I Need Help</button>
+  <!--#############################################-->
+
+
 </form>
 <?php
+// Update Location Details
+if (isset($_POST['help-btn'])) {
+  // receive all input values from the form
+  $ipAddress= $_POST['ipaddress'];
+  $Longitude=  $_POST['longitude'];
+  $Latitude =  $_POST['latitude'];
+  $regno =  $_POST['username'];
+  $helpCode=  $_POST['helpcode'];
+  // form validation: ensure that the form is correctly filled ...
+// by adding (array_push()) corresponding error unto $errors array
+if (empty($ipAddress)) { array_push($errors, "Unable to Track your Ip Address"); }
+if (empty($Longitude)) { array_push($errors, "Unable to Track your Longitude"); }
+if (empty($Latitude)) { array_push($errors, "Unable to Track your Latitude"); }
+if (empty($regno)) { array_push($errors, "Unable to Track your Registration Number"); }
+if (empty($helpCode)) { array_push($errors, "Unable to Track your Help Code"); }
+// Finally, register user location
+if (count($errors) == 0) {
+  $location_query ="INSERT INTO `location`(`helpID`, `ip`, `Latitude`, `Longitude`, `regNum`) VALUES ('$helpCode','$ipAddress','$Latitude','$Longitude','$regno')";
+  mysqli_query($db, $location_query);
+//Select data from location table
+              $query = "SELECT * FROM location   WHERE `regNum`='$regno'";
+                  $results = mysqli_query($db, $query);
+                  if (mysqli_num_rows($results) == 1) {
+                    $row = mysqli_fetch_assoc($results);
+                    //row data
+                    $regNumber=$row['regNum'];
+                    $long=$row['Longitude'];
+                    //sessions
+                    $_SESSION['user'] = $regNumber;
+                    $_SESSION['longitude'] = $long;
+
+                    header('location: dashboard.php');
+                  }else{
+                    array_push($errors, "Invalid Sessin ID");
+
+                    header('location: index.php');
+                  }
+}else{
+                  header('location: dashboard.php');
+                  array_push($errors, "Unable to updated data in the database");
+  }
+
+}
+
+
+?>
+<?php
+
      if($_SESSION['user']){ ?>
      <div class="row">
   <div class="col-sm-12">
@@ -189,7 +243,7 @@ $getInfo = json_decode($url);
   <div class="alert alert-success" role="alert">
    <span style="color:#e83e8c;font-weight:bold">Help Is On The Way.</span> <br><span class="btn btn-warning">Note: </span> Please Do not move away from this location. A team has been dispatched to help you. Keep Calm!!!
 </div>
-  <p><?php echo "Your Help Code is  ". "<strong style='color:blue;'>".rand(1,500)."</strong>  <br>";  ?> </a></p>
+  <p><?php echo "Your Help Code is  ". "<strong style='color:blue;'>". $_SESSION['helpcode']."</strong>  <br>";  ?> </a></p>
   
 </div>
 </div>
@@ -211,5 +265,7 @@ $getInfo = json_decode($url);
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <!-- End Bootstrap 4 scripts-->
+<!-- modal script -->
+<script src="./static/js/app.js"></script>
   </body>
 </html>
