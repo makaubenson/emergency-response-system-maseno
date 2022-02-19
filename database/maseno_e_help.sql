@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 18, 2022 at 06:51 AM
+-- Generation Time: Feb 19, 2022 at 10:37 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -33,16 +33,39 @@ CREATE TABLE `location` (
   `ip` varchar(255) NOT NULL DEFAULT '0',
   `Latitude` varchar(255) NOT NULL DEFAULT '0',
   `Longitude` varchar(255) NOT NULL DEFAULT '0',
-  `regNum` varchar(255) NOT NULL DEFAULT '0'
+  `regNum` varchar(255) NOT NULL DEFAULT '0',
+  `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `location`
 --
 
-INSERT INTO `location` (`helpID`, `ip`, `Latitude`, `Longitude`, `regNum`) VALUES
-('CIT00046019162', '208.98.12.1', '41.8483', '-87.6517', 'CIT/00046/019'),
-('CIT00111019863', '208.98.12.1', '41.8483', '-87.6517', 'CIT/00111/019');
+INSERT INTO `location` (`helpID`, `ip`, `Latitude`, `Longitude`, `regNum`, `timestamp`) VALUES
+('0TBNC3', '208.98.12.1', '41.8483', '-87.6517', 'CIT/00047/019', '2022-02-18 15:28:00'),
+('EG6MIP', '208.98.12.1', '41.8483', '-87.6517', 'CIT/00046/019', '2022-02-18 16:44:03');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `request_status`
+--
+
+CREATE TABLE `request_status` (
+  `id` int(11) NOT NULL,
+  `helpID` varchar(255) NOT NULL,
+  `status` varchar(50) DEFAULT 'Pending',
+  `admNo` varchar(255) NOT NULL,
+  `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `request_status`
+--
+
+INSERT INTO `request_status` (`id`, `helpID`, `status`, `admNo`, `timestamp`) VALUES
+(1, '0TBNC3', 'Pending', 'CIT/00047/019', '2022-02-18 15:28:30'),
+(2, 'EG6MIP', 'Pending', 'CIT/00046/019', '2022-02-18 16:44:03');
 
 -- --------------------------------------------------------
 
@@ -82,10 +105,28 @@ ALTER TABLE `location`
   ADD KEY `regNum` (`regNum`);
 
 --
+-- Indexes for table `request_status`
+--
+ALTER TABLE `request_status`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `helpID` (`helpID`),
+  ADD KEY `admNo` (`admNo`);
+
+--
 -- Indexes for table `student_details`
 --
 ALTER TABLE `student_details`
   ADD PRIMARY KEY (`regNum`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `request_status`
+--
+ALTER TABLE `request_status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -96,6 +137,13 @@ ALTER TABLE `student_details`
 --
 ALTER TABLE `location`
   ADD CONSTRAINT `location_ibfk_1` FOREIGN KEY (`regNum`) REFERENCES `student_details` (`regNum`);
+
+--
+-- Constraints for table `request_status`
+--
+ALTER TABLE `request_status`
+  ADD CONSTRAINT `request_status_ibfk_1` FOREIGN KEY (`helpID`) REFERENCES `location` (`helpID`),
+  ADD CONSTRAINT `request_status_ibfk_2` FOREIGN KEY (`admNo`) REFERENCES `location` (`regNum`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
