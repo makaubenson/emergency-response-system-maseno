@@ -67,9 +67,9 @@ if (isset($_POST['register_btn'])) {
   if (count($errors) == 0) {
     $password = md5($confirmPassword);//encrypt the password before saving in the database
 
-    $query = "INSERT INTO student_details(`regNum`, `firstname`, `lastname`, `emailaddress`, `phonenumber`, `password`) 
+    $register_query = "INSERT INTO student_details(`regNum`, `firstname`, `lastname`, `emailaddress`, `phonenumber`, `password`) 
               VALUES('$registrationNumber','$firstName','$lastName','$emailAddress','$phoneNumber','$password')";
-    mysqli_query($db, $query);
+    mysqli_query($db, $register_query);
     header('location: index.php');
     }else{
       header('location: register.php');

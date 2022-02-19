@@ -132,8 +132,8 @@ if (isset($_POST['login_btn'])) {
   }
   if (count($errors) == 0) {
     $encrypted_password = md5($password);
-  	$query = "SELECT * FROM student_details WHERE `regNum`='$username' AND `password`='$encrypted_password'";
-  	$results = mysqli_query($db, $query);
+  	$login_query = "SELECT * FROM student_details WHERE `regNum`='$username' && `password`='$encrypted_password'";
+  	$results = mysqli_query($db, $login_query);
   	if (mysqli_num_rows($results) == 1) {
       $row = mysqli_fetch_assoc($results);
       // generate random alphanumeric character
@@ -165,10 +165,7 @@ if (isset($_POST['login_btn'])) {
   	  header('location: dashboard.php');
   	}else{
   		array_push($errors, "Incorrect Username or Password");
-    //   echo  '<div class="alert alert-danger" role="alert">
-    //   This is a danger alert—check it out!
-    // </div>';
-      // header('location: index.php');
+      header('location: index.php');
   	}
   }
 }
