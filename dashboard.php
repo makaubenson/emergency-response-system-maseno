@@ -10,7 +10,7 @@ include 'server.php';
 // $userIP = $_SERVER['REMOTE_ADDR'];
  
 //static ip address
-$ip = "208.98.12.1"; 
+$ip = "208.78.12.1"; 
 
 //Get IP Address of User in PHP
 // $ip = $_SERVER['REMOTE_ADDR']; 
@@ -168,11 +168,9 @@ $getInfo = json_decode($url);
         <form method="post" action="">
           <?php include 'errors.php';?>
   <div class="row">
-  <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control" hidden  name="number" value="<?php echo $ip ; ?>">
-    </div>
+  
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control" hidden  name="ipaddress" value="<?php echo $ip ; ?>">
+      <input type="text" class="form-control" hidden name="ipaddress" value="<?php echo $ip ; ?>">
     </div>
     <div class="col-sm-12 pb-1">
       <input type="text" class="form-control" hidden  name="longitude" value="<?php echo $getInfo->geoplugin_longitude; ?>">
@@ -181,10 +179,10 @@ $getInfo = json_decode($url);
       <input type="text" class="form-control" hidden  name="latitude" value="<?php echo $getInfo->geoplugin_latitude; ?>">
     </div>
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control" hidden  name="username" value="<?php echo $_SESSION['username'];  ?>">
+      <input type="text" class="form-control"  hidden name="username" value="<?php echo $_SESSION['username'];  ?>">
     </div>
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control" hidden  name="helpcode" value="<?php echo $_SESSION['helpcode'];  ?>">
+      <input type="text" class="form-control"  hidden name="helpcode" value="<?php echo $_SESSION['helpcode'];  ?>">
     </div>
   </div>
   <!-- <a href="#" class="btn btn-danger btn-block"  type='submit' name="help-btn">I Need Help</a> -->

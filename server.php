@@ -113,7 +113,7 @@ if (count($errors) == 0) {
 
                     header('location: dashboard.php');
                   }else{
-                    array_push($errors, "Invalid Sessin ID");
+                    array_push($errors, "Unable to process your request. Contact The System Administrator");
                     // header('location: index.php');
                   }
 }else{
