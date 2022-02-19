@@ -100,7 +100,7 @@ if (count($errors) == 0) {
   $status_query ="INSERT INTO `request_status`(`helpID`, `admNo`) VALUES ('$helpCode','$regno')";
   mysqli_query($db, $status_query);
 //Select data from location table
-              $location_Select_query = "SELECT * FROM location   WHERE `regNum`='$regno'";
+              $location_Select_query = "SELECT * FROM location   WHERE `helpID`='$helpCode'";
                   $results = mysqli_query($db, $location_Select_query);
                   if (mysqli_num_rows($results) == 1) {
                     $row = mysqli_fetch_assoc($results);
@@ -118,7 +118,7 @@ if (count($errors) == 0) {
                   }
 }else{
                   header('location: dashboard.php');
-                  array_push($errors, "Unable to updated data in the database");
+                  array_push($errors, "Unable to update data in the database");
   }
 
 }
