@@ -45,7 +45,7 @@ include 'server.php';
           </div>
 
 
-          <form method="post" action="" enctype="multipart/form-data" class="login-form">
+          <form method="post" action="server.php" enctype="multipart/form-data" class="login-form">
             <div class="form-group row">
               <?php
                 include 'errors.php';
@@ -118,58 +118,6 @@ include 'server.php';
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
-    <?php
     
-    // LOGIN USER
-if (isset($_POST['login_btn'])) {
-  $username = $_POST['regno'];
-  $password = $_POST['password'];
-  if (empty($username)) {
-  	array_push($errors, "Username is required");
-  }
-  if (empty($password)) {
-  	array_push($errors, "Password is required");
-  }
-  if (count($errors) == 0) {
-    $encrypted_password = md5($password);
-  	$login_query = "SELECT * FROM student_details WHERE `regNum`='$username' && `password`='$encrypted_password'";
-  	$results = mysqli_query($db, $login_query);
-  	if (mysqli_num_rows($results) == 1) {
-      $row = mysqli_fetch_assoc($results);
-      // generate random alphanumeric character
-      function random_string($length) {
-        $key = '';
-        $keys = array_merge(range(0, 9), range('a', 'z'));
-        for ($i = 0; $i < $length; $i++) {
-            $key .= $keys[array_rand($keys)];
-        }
-        return $key;
-    }
-   $helpCode= strtoupper(random_string(6));
-    // end generate random alphanumeric character
-      //row data
-      $regNumber=$row['regNum'];
-      $firstName=$row['firstname'];
-      $lastName=$row['lastname'];
-      $Email=$row['emailaddress'];
-      $Phone=$row['phonenumber'];
-      //sessions
-      $_SESSION['username'] = $regNumber;
-      $_SESSION['helpcode'] = $helpCode;
-      $_SESSION['firstname'] = $firstName;
-      $_SESSION['lastname'] =$lastName;
-      $_SESSION['emailaddress'] =$Email;
-      $_SESSION['phonenumber'] =$Phone;
-  	  $_SESSION['success'] = "You are now logged in";
-
-  	  header('location: dashboard.php');
-  	}else{
-  		array_push($errors, "Incorrect Username or Password");
-      header('location: index.php');
-  	}
-  }
-}
-    
-    ?>
   </body>
 </html>

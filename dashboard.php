@@ -215,7 +215,7 @@ $getInfo = json_decode($url);
       </div>
     </div>
   </div>
-  <div class="col-sm-4"></div>
+  <div class="col-sm-4 mb-5"></div>
 </div>
 
 <!--Start of Tawk.to Script-->
