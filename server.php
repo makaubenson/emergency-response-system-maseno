@@ -9,10 +9,13 @@ session_start();
 try{
   $db = mysqli_connect('localhost', 'benson', 'benson', 'maseno_e_help');
 //    $db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
+//echo 'Database Connected Successfully';
 }
 catch(Exception $e) {
-  echo 'Message: ' .$e->getMessage();
+  // echo 'Message: ' .$e->getMessage();
+  echo 'Database Connection Failed.';
 }
+
 
 //Register User
 // initializing variables
@@ -76,10 +79,19 @@ if (isset($_POST['register_btn'])) {
     }
 }
 //Login User
-
+// generate random alphanumeric character
+    function random_string($length) {
+      $key = '';
+      $keys = array_merge(range(0, 9), range('a', 'z'));
+      for ($i = 0; $i < $length; $i++) {
+          $key .= $keys[array_rand($keys)];
+      }
+      return $key;
+  }
+ $helpCode= strtoupper(random_string(6));
     // LOGIN USER
-if (isset($_POST['admin_login_btn'])) {
-  $username = $_POST['admin_id'];
+if (isset($_POST['login_btn'])) {
+  $username = $_POST['regno'];
   $password = $_POST['password'];
   if (empty($username)) {
   	array_push($errors, "Username is required");

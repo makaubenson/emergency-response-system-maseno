@@ -6,90 +6,21 @@ session_start();
 // error_reporting(E_ALL);
 
 // connect to the database
+// connect to the database
 try{
   $db = mysqli_connect('localhost', 'benson', 'benson', 'maseno_e_help');
 //    $db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
+//echo 'Database Connected Successfully';
 }
 catch(Exception $e) {
-  echo 'Message: ' .$e->getMessage();
+  // echo 'Message: ' .$e->getMessage();
+  echo 'Database Connection Failed.';
 }
 
-//Register User
-// initializing variables
-$registrationNumber="";
-$firstName = "";
-$lastName="";
-$emailAddress="";
-$phoneNumber="";
-$password="";
-$confirmPassword="";
-$errors = array(); 
-
-// REGISTER USER
-if (isset($_POST['register_btn'])) {
-    // receive all input values from the form
-    $registrationNumber= $_POST['regno'];
-    $firstName =  $_POST['firstname'];
-    $lastName =  $_POST['lastname'];
-    $emailAddress =  $_POST['emailaddress'];
-    $phoneNumber =  $_POST['phone'];
-    $password =  $_POST['password'];
-    $confirmPassword =  $_POST['confirmpassword'];
-    // form validation: ensure that the form is correctly filled ...
-  // by adding (array_push()) corresponding error unto $errors array
-  if (empty($firstName)) { array_push($errors, "Firstname is required"); }
-  if (empty($lastName)) { array_push($errors, "LastName is required"); }
-  if (empty($registrationNumber)) { array_push($errors, "Registration Number is required"); }
-  if (empty($emailAddress)) { array_push($errors, "Email Address is required"); }
-  if (empty($phoneNumber)) { array_push($errors, "Phone Number is required"); }
-  if (empty($password)) { array_push($errors, "Password is required"); }
-  if (empty($confirmPassword)) { array_push($errors, "Please Confirm Password"); }
-  if ($password != $confirmPassword) {
-	array_push($errors, "The two passwords do not match");
-  }
- // first check the database to make sure
-  // a user does not already exist with the same username and/or email
- 
-  $user_check_query = "SELECT * FROM student_details WHERE regNum='$registrationNumber' OR emailaddress='$emailAddress' LIMIT 1";
-  $result = mysqli_query($db, $user_check_query);
-  $user = mysqli_fetch_assoc($result);
-
-  if ($user) { // if user exists
-    if ($user['regNum'] === $registrationNumber) {
-      array_push($errors, "Registration number already exists");
-    }
-    if ($user['emailaddress'] === $emailAddress) {
-      array_push($errors, "Email already exists");
-    }
-  }
-
-  // Finally, register user if there are no errors in the form
-  if (count($errors) == 0) {
-    $password = md5($confirmPassword);//encrypt the password before saving in the database
-
-    $register_query = "INSERT INTO student_details(`regNum`, `firstname`, `lastname`, `emailaddress`, `phonenumber`, `password`) 
-              VALUES('$registrationNumber','$firstName','$lastName','$emailAddress','$phoneNumber','$password')";
-    mysqli_query($db, $register_query);
-    header('location: index.php');
-    }else{
-      header('location: register.php');
-    }
-}
-//Login User
-// generate random alphanumeric character
-    function random_string($length) {
-      $key = '';
-      $keys = array_merge(range(0, 9), range('a', 'z'));
-      for ($i = 0; $i < $length; $i++) {
-          $key .= $keys[array_rand($keys)];
-      }
-      return $key;
-  }
- $helpCode= strtoupper(random_string(6));
-    // LOGIN USER
-if (isset($_POST['login_btn'])) {
-  $username = $_POST['regno'];
-  $password = $_POST['password'];
+    // ADMIN USER LOGIN
+if (isset($_POST['admin_login_btn'])) {
+  $username = $_POST['admin_id'];
+  $password = $_POST['admin_password'];
   if (empty($username)) {
   	array_push($errors, "Username is required");
   }
@@ -98,28 +29,27 @@ if (isset($_POST['login_btn'])) {
   }
   if (count($errors) == 0) {
     $encrypted_password = md5($password);
-  	$login_query = "SELECT * FROM student_details WHERE `regNum`='$username' AND `password`='$encrypted_password'";
+  	$login_query = "SELECT * FROM `admin_details` WHERE `admin_id`='$username' AND `admin_password`='$encrypted_password'";
   	$results = mysqli_query($db, $login_query);
   	if (mysqli_num_rows($results) == 1) {
-      
       $row = mysqli_fetch_assoc($results);
-  
     // end generate random alphanumeric character
       //row data
-      $regNumber=$row['regNum'];
-      $firstName=$row['firstname'];
-      $lastName=$row['lastname'];
-      $Email=$row['emailaddress'];
-      $Phone=$row['phonenumber'];
+      $adminID=$row['admin_id'];
+      $adminFname=$row['admin_firstname'];
+      $adminLname=$row['admin_lastname'];
+      $adminMail=$row['admin_email'];
+      $adminPhone=$row['admin_phone'];
+      $adminRank=$row['admin_rank'];
+     
       //sessions
-      $_SESSION['username'] = $regNumber;
-      $_SESSION['helpcode'] = $helpCode;
-      $_SESSION['firstname'] = $firstName;
-      $_SESSION['lastname'] =$lastName;
-      $_SESSION['emailaddress'] =$Email;
-      $_SESSION['phonenumber'] =$Phone;
+      $_SESSION['admin_id'] = $adminID;
+      $_SESSION['admin_firstname'] = $adminFname;
+      $_SESSION['admin_lastname'] = $adminLname;
+      $_SESSION['admin_email'] =$adminMail;
+      $_SESSION['admin_phone'] =$adminPhone;
+      $_SESSION['admin_rank'] =$adminRank;
   	  $_SESSION['success'] = "You are now logged in";
-
   	  header('location: dashboard.php');
   	}else{
   		array_push($errors, "Incorrect Username or Password");
