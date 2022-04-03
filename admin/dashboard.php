@@ -94,17 +94,18 @@ $getInfo = json_decode($url);
 <!--Cards-->
 <div class="row " style="text-align: center;">
 <!--start of one Card -->
+
 <div class="col-xl-3 col-md-6 mb-4 mt-4">
     <div class="card border-left-primary shadow h-100 py-2">
         <div class="card-body">
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        Requests In Queue</div>
+                       <a href="javascript:void(0)"> Requests In Queue </div>
                 </div>
                 <div class="col-auto">
-                    <!-- <i class="fa-solid fa-wifi fa-2x text-gray-300" style="color:#e83e8c"></i> -->
                     <i class="fa-solid fa-arrows-rotate fa-2x"style="color:#e83e8c"></i>
+                  </a>
                 </div>
             </div>
         </div>
@@ -118,10 +119,11 @@ $getInfo = json_decode($url);
           <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                      Requests Being Attended</div>
+                    <a href="javascript:void(0)">Requests Being Attended</div>
               </div>
               <div class="col-auto">
                   <i class="fa-solid fa-truck-medical fa-2x"style="color:#e83e8c"></i>
+              </a>
               </div>
           </div>
       </div>
@@ -135,10 +137,11 @@ $getInfo = json_decode($url);
           <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                      Successful Requests</div>
+                    <a href="javascript:void(0)">Successful Requests</div>
               </div>
               <div class="col-auto">
                   <i class="fa-solid fa-check-double fa-2x"style="color:#e83e8c"></i>
+              </a>
               </div>
           </div>
       </div>
@@ -152,10 +155,11 @@ $getInfo = json_decode($url);
           <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                      Failed Requests</div>
+                    <a href="javascript:void(0)">Failed Requests</div>
               </div>
               <div class="col-auto">
                   <i class="fa-solid fa-triangle-exclamation fa-2x"style="color:#e83e8c"></i>
+              </a>
               </div>
           </div>
       </div>
@@ -174,11 +178,12 @@ $getInfo = json_decode($url);
               <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                          Rescue Teams</div>
+                        <a href="javascript:void(0)"> Rescue Teams</div>
                   </div>
                   <div class="col-auto">
                       <!-- <i class="fa-solid fa-wifi fa-2x text-gray-300" style="color:#e83e8c"></i> -->
                       <i class="fa-solid fa-person fa-2x"style="color:#e83e8c"></i>
+                  </a>
                   </div>
               </div>
           </div>
@@ -192,10 +197,11 @@ $getInfo = json_decode($url);
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        Student Users</div>
+                      <a href="javascript:void(0)"> Student Users</div>
                 </div>
                 <div class="col-auto">
                     <i class="fa-solid fa-users fa-2x"style="color:#e83e8c"></i>
+                </a>
                 </div>
             </div>
         </div>
@@ -209,10 +215,11 @@ $getInfo = json_decode($url);
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        Moderators (Admins)</div>
+                      <a href="javascript:void(0)"> Moderators (Admins)</div>
                 </div>
                 <div class="col-auto">
                     <i class="fa-solid fa-user-ninja fa-2x"style="color:#e83e8c"></i>
+                </a>
                 </div>
             </div>
         </div>
@@ -226,10 +233,12 @@ $getInfo = json_decode($url);
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        Paramedics</div>
+                      <a href="javascript:void(0)"> Paramedics</div>
+                        
                 </div>
                 <div class="col-auto">
                     <i class="fa-solid fa-user-doctor fa-2x"style="color:#e83e8c"></i>
+                </a>
                 </div>
             </div>
         </div>
