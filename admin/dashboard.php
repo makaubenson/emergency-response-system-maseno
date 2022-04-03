@@ -49,13 +49,13 @@ $getInfo = json_decode($url);
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Student Dashboard</title>
+    <title>Admin Dashboard</title>
     <link rel="icon" href="./static/img/logo.png" type="image/x-icon" />
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      content="width=device-width, initial-scale=1, shrink-to-fit=yes"
     />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--Bootstrap 4 CSS-->
@@ -74,13 +74,10 @@ $getInfo = json_decode($url);
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
       <?php
-     if($_SESSION['username']){ ?>
+     if($_SESSION['admin_id']){ ?>
       <li class="nav-item active">
-        <a class="nav-link" href="requests.php">Track Requests </a>
-      </li>
-      <li class="nav-item active">
-      <a class="nav-link" href="logout.php">
-      <?php echo "Welcome  ". "<strong style='color:white;'>".$_SESSION['firstname']." ".$_SESSION['lastname']."</strong>  <br>";  ?> </a>
+      <a class="nav-link" href="javascript:void(0)">
+      <?php echo "Welcome ". "<strong style='color:white;'>".$_SESSION['admin_firstname']." ".$_SESSION['admin_lastname']."</strong>  <br>"."<strong style='color:#21B941;'> ".$_SESSION['admin_rank']."</strong>";  ?> </a>
       </li>
       <li class="nav-item active">
         <a class="nav-link btn btn-danger" href="logout.php">Logout </a>
@@ -97,140 +94,154 @@ $getInfo = json_decode($url);
 <!--Cards-->
 <div class="row " style="text-align: center;">
 <!--start of one Card -->
-<!-- IP address -->
-<div class="col-xl-4 col-md-6 mb-4">
+<div class="col-xl-3 col-md-6 mb-4 mt-4">
     <div class="card border-left-primary shadow h-100 py-2">
         <div class="card-body">
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        Your IP Address</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $ip ; ?></div>
+                        Requests In Queue</div>
                 </div>
                 <div class="col-auto">
-                    <i class="fa-solid fa-wifi fa-2x text-gray-300" style="color:#e83e8c"></i>
+                    <!-- <i class="fa-solid fa-wifi fa-2x text-gray-300" style="color:#e83e8c"></i> -->
+                    <i class="fa-solid fa-arrows-rotate fa-2x"style="color:#e83e8c"></i>
                 </div>
             </div>
         </div>
     </div>
 </div>
-                        <!--end of one Card -->
-                        <!--start of one Card -->
-<!-- IP address -->
-<div class="col-xl-4 col-md-6 mb-4">
+  <!--end of one Card -->
+  <!--start of one Card -->
+<div class="col-xl-3 col-md-6 mb-4 mt-4">
   <div class="card border-left-primary shadow h-100 py-2">
       <div class="card-body">
           <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                      Your Longitude</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800"><?php  echo $getInfo->geoplugin_longitude;?> </div>
+                      Requests Being Attended</div>
               </div>
               <div class="col-auto">
-                  <i class="fa-solid fa-location-crosshairs fa-2x text-gray-300" style="color:#007bff"></i>
+                  <i class="fa-solid fa-truck-medical fa-2x"style="color:#e83e8c"></i>
               </div>
           </div>
       </div>
   </div>
 </div>
-                        <!--end of one Card -->
-                                      <!--start of one Card -->
-<!-- IP address -->
-<div class="col-xl-4 col-md-6 mb-4">
+  <!--end of one Card -->
+  <!--start of one Card -->
+<div class="col-xl-3 col-md-6 mb-4 mt-4">
+  <div class="card border-left-primary shadow h-100 py-2">
+      <div class="card-body">
+          <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                      Successful Requests</div>
+              </div>
+              <div class="col-auto">
+                  <i class="fa-solid fa-check-double fa-2x"style="color:#e83e8c"></i>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!--end of one Card -->
+ <!--start of one Card -->
+<div class="col-xl-3 col-md-6 mb-4 mt-4">
+  <div class="card border-left-primary shadow h-100 py-2">
+      <div class="card-body">
+          <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                  <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                      Failed Requests</div>
+              </div>
+              <div class="col-auto">
+                  <i class="fa-solid fa-triangle-exclamation fa-2x"style="color:#e83e8c"></i>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!--end of one Card -->
+<!--end of Cards-->
+</div>
+
+<!--Second Row-->
+<div class="row " style="text-align: center;">
+  <!--start of one Card -->
+  <div class="col-xl-3 col-md-6 mb-4 mt-4">
+      <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                  <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                          Rescue Teams</div>
+                  </div>
+                  <div class="col-auto">
+                      <!-- <i class="fa-solid fa-wifi fa-2x text-gray-300" style="color:#e83e8c"></i> -->
+                      <i class="fa-solid fa-person fa-2x"style="color:#e83e8c"></i>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+    <!--end of one Card -->
+    <!--start of one Card -->
+  <div class="col-xl-3 col-md-6 mb-4 mt-4">
     <div class="card border-left-primary shadow h-100 py-2">
         <div class="card-body">
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        Your Latitude</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $getInfo->geoplugin_latitude; ?></div>
+                        Student Users</div>
                 </div>
                 <div class="col-auto">
-                    <i class="fa-solid fa-location-dot fa-2x text-gray-300" style="color:#ffaa00"></i>
+                    <i class="fa-solid fa-users fa-2x"style="color:#e83e8c"></i>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!--end of one Card -->
-<!--end of Cards-->
-</div>
-</div>
-
-<!--Request Help Section-->
-<div class="row">
-  <div class="col-sm-4"></div>
-  <div class="col-sm-4 text-center">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Do you need Help?</h5>
-        <p class="card-text">Please click the button below to request for help.</p>
-        <form method="post" action="">
-          <?php include 'errors.php';?>
-  <div class="row">
-  
-    <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control" hidden name="ipaddress" value="<?php echo $ip ; ?>">
-    </div>
-    <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control" hidden  name="longitude" value="<?php echo $getInfo->geoplugin_longitude; ?>">
-    </div>
-    <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control" hidden  name="latitude" value="<?php echo $getInfo->geoplugin_latitude; ?>">
-    </div>
-    <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control"  hidden name="username" value="<?php echo $_SESSION['username'];  ?>">
-    </div>
-    <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control"  hidden name="helpcode" value="<?php echo $_SESSION['helpcode'];  ?>">
+  </div>
+    <!--end of one Card -->
+    <!--start of one Card -->
+  <div class="col-xl-3 col-md-6 mb-4 mt-4">
+    <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                        Moderators (Admins)</div>
+                </div>
+                <div class="col-auto">
+                    <i class="fa-solid fa-user-ninja fa-2x"style="color:#e83e8c"></i>
+                </div>
+            </div>
+        </div>
     </div>
   </div>
-  <!-- <a href="#" class="btn btn-danger btn-block"  type='submit' name="help-btn">I Need Help</a> -->
-  <button type="submit" class="btn btn-danger btn-block mb-2" name="help-btn">I Need Help</button>
-  <!--#############################################-->
-
-
-</form>
-
-<?php
-
-     if($_SESSION['user']){ ?>
-     <div class="row">
-  <div class="col-sm-12">
-      <div class="card">
-  <div class="card-body">
-  <div class="alert alert-success" role="alert">
-   <span style="color:#e83e8c;font-weight:bold">Help Is On The Way.</span> <br><span class="btn btn-warning">Note: </span> Please Do not move away from this location. A team has been dispatched to help you. Keep Calm!!!
-</div>
-  <p><?php echo "Your Help Code is  ". "<strong style='color:blue;'>". $_SESSION['helpcode']."</strong>  <br>";  ?> </a></p>
-  
-</div>
-</div>
-  </div>
-     </div>
- <?php
-  }
- ?>
-
-      </div>
+  <!--end of one Card -->
+   <!--start of one Card -->
+  <div class="col-xl-3 col-md-6 mb-4 mt-4">
+    <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                        Paramedics</div>
+                </div>
+                <div class="col-auto">
+                    <i class="fa-solid fa-user-doctor fa-2x"style="color:#e83e8c"></i>
+                </div>
+            </div>
+        </div>
     </div>
   </div>
-  <div class="col-sm-4 mb-5"></div>
+  <!--end of one Card -->
+  <!--end of Cards-->
+  </div>
 </div>
 
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6210deff1ffac05b1d7aaea6/1fs8ue637';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
+
+
     <!--Bootstrap 4 scripts-->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

@@ -59,51 +59,6 @@ if (isset($_POST['admin_login_btn'])) {
 }
 
 
-// Update Location Details
-if (isset($_POST['help-btn'])) {
-  // receive all input values from the form
-  $ipAddress= $_POST['ipaddress'];
-  $Longitude=  $_POST['longitude'];
-  $Latitude =  $_POST['latitude'];
-  $regno =  $_POST['username'];
-  $helpCode=  $_POST['helpcode'];
-  // form validation: ensure that the form is correctly filled ...
-// by adding (array_push()) corresponding error unto $errors array
-if (empty($ipAddress)) { array_push($errors, "Unable to Track your Ip Address"); }
-if (empty($Longitude)) { array_push($errors, "Unable to Track your Longitude"); }
-if (empty($Latitude)) { array_push($errors, "Unable to Track your Latitude"); }
-if (empty($regno)) { array_push($errors, "Unable to Track your Registration Number"); }
-if (empty($helpCode)) { array_push($errors, "Unable to Track your Help Code"); }
-// Finally, register user location
-if (count($errors) == 0) {
-  $location_query ="INSERT INTO `location`(`helpID`, `ip`, `Latitude`, `Longitude`, `regNum`) VALUES ('$helpCode','$ipAddress','$Latitude','$Longitude','$regno')";
-  mysqli_query($db, $location_query);
-
-  $status_query ="INSERT INTO `request_status`(`helpID`, `admNo`) VALUES ('$helpCode','$regno')";
-  mysqli_query($db, $status_query);
-//Select data from location table
-              $location_Select_query = "SELECT * FROM location   WHERE `helpID`='$helpCode'";
-                  $results = mysqli_query($db, $location_Select_query);
-                  if (mysqli_num_rows($results) == 1) {
-                    $row = mysqli_fetch_assoc($results);
-                    //row data
-                    $regNumber=$row['regNum'];
-                    $long=$row['Longitude'];
-                    //sessions
-                    $_SESSION['user'] = $regNumber;
-                    $_SESSION['longitude'] = $long;
-
-                    header('location: dashboard.php');
-                  }else{
-                    array_push($errors, "Unable to process your request. Contact The System Administrator");
-                    // header('location: index.php');
-                  }
-}else{
-                  header('location: dashboard.php');
-                  array_push($errors, "Unable to update data in the database");
-  }
-
-}
 
 
 ?>
