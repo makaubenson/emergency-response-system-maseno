@@ -76,10 +76,19 @@ if (isset($_POST['register_btn'])) {
     }
 }
 //Login User
-
+// generate random alphanumeric character
+    function random_string($length) {
+      $key = '';
+      $keys = array_merge(range(0, 9), range('a', 'z'));
+      for ($i = 0; $i < $length; $i++) {
+          $key .= $keys[array_rand($keys)];
+      }
+      return $key;
+  }
+ $helpCode= strtoupper(random_string(6));
     // LOGIN USER
-if (isset($_POST['admin_login_btn'])) {
-  $username = $_POST['admin_id'];
+if (isset($_POST['login_btn'])) {
+  $username = $_POST['regno'];
   $password = $_POST['password'];
   if (empty($username)) {
   	array_push($errors, "Username is required");

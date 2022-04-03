@@ -1,14 +1,16 @@
+<?php
+include 'server.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-
-    <link rel="icon" href="./static/images/logo.png" type="image/x-icon" />
+    <link rel="icon" href="./static/img/logo.png" type="image/x-icon" />
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -16,10 +18,84 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="./static/css/admin.css" />
+    <link rel="stylesheet" href="./static/css/style.css">
     <title>Admin | Login</title>
   </head>
-  <body>
+  <body style="background-color: #d2d6de;">
+    <div class="container">
+      <div class="row mt-5 login-page-row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 mt-5 login-page">
+          
+        <div class="col-md-12 mb-2 login-page-header" >
+            <h2 class="text-center" style="color: #fff">Admin Login</h2>
+
+            <div class="row">
+              <div class="col-md-3"></div>
+              <div class="col-md-6 text-center">
+                <img
+                  src="./static/img/logo.png"
+                  class="img-fluid"
+                  height="100"
+                  width="100"
+                />
+              </div>
+              <div class="col-md-3"></div>
+            </div>
+          </div>
+
+
+          <form method="post" action="server.php" enctype="multipart/form-data" class="login-form">
+            <div class="form-group row">
+              <?php
+                include 'errors.php';
+                ?>
+              <label for="inputEmail3" class="col-sm-2 col-form-label"
+                >User ID</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputEmail3"
+                  placeholder="Username"
+                  name="admin_id" required
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputPassword3" class="col-sm-2 col-form-label"
+                >Password</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="inputPassword3"
+                  placeholder="Password"
+                  name="admin_password" required
+                />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <button
+                  type="submit"
+                  name="admin_login_btn"
+                  class="btn btn-primary btn-block"
+                >
+                  Sign in
+                </button>
+              </div>
+            </div>
+
+         
+          </form>
+        </div>
+      </div>
+    </div>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
@@ -37,5 +113,6 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
+    
   </body>
 </html>
