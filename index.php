@@ -102,7 +102,6 @@ include 'server.php';
     </div>
 
     <!-- Optional JavaScript -->
-    <script src="./static/js/sw.js"></script>
     <script src="./static/js/app.js"></script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
