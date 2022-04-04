@@ -46,31 +46,42 @@ include 'header.php';
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Benson Makau</td>
-              <td>0758413462</td>
-              <td>H2WDR1</td>
-              <td>8:00AM</td>
-              <td><button class="btn btn-primary">View</button></td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>Benson Makau</td>
-                <td>0758413462</td>
-                <td>H2WDR1</td>
-                <td>8:00AM</td>
-                <td><button class="btn btn-primary">View</button></td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>Benson Makau</td>
-                <td>0758413462</td>
-                <td>H2WDR1</td>
-                <td>8:00AM</td>
-                <td><button class="btn btn-primary">View</button></td>
-              </tr>
-           
+        
+    <?php
+    if($_SESSION['admin_id']){
+        $data_fetch_query = "SELECT request_status.id, request_status.helpID,request_status.status,request_status.admNo,request_status.timestamp,student_details.regNum,student_details.regNum,student_details.firstname,student_details.lastname,student_details.phonenumber
+        FROM request_status
+        INNER JOIN student_details ON request_status.admNo = student_details.regNum order by request_status.id;";
+        $data_result = mysqli_query($db, $data_fetch_query);
+        if ($data_result->num_rows > 0){
+            while($row = $data_result->fetch_assoc()) {
+
+            $help_code=$row["helpID"];
+            $request_status=$row["status"];
+
+        echo "<tr> <td>" . $row["id"]. "</td>";
+        echo "<td>" .$row["firstname"]. " ".$row["lastname"]. "</td>";
+        echo "<td>" .$row["phonenumber"]."</td>";
+        echo "<td>" .$row["helpID"]."</td>";
+        echo "<td>" .$row["timestamp"]."</td>";
+        echo "<td>
+        
+        <form method ='POST' action=''>
+        <input hidden type='text' name='help_code' value='$help_code'>
+        <input type='submit' value='View' class='btn btn-primary'>
+        </form>
+        </td> </tr>";
+        }
+        
+        }else{
+        echo "<td>"."No Requests Found"."</td>";
+        }
+        
+        } else{
+            echo "<td>"."No Data Found"."</td>";
+        }
+
+?>
           </tbody>
     </table>
   </div>
