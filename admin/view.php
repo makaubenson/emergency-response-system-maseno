@@ -81,14 +81,14 @@ include 'header.php';
         $sql='select team_username from rescue_team ';
         $team_data_results = mysqli_query($db, $sql);
 while ($row=mysqli_fetch_assoc($sql)) {
-  
+
 
   ?>
   <option value='<?php
-   echo htmlentities($row["team_username"]);
+  
    ?>'
   <?php 
-  echo htmlentities($row["team_username"]);
+
   ?>
   </option>
 <?php
