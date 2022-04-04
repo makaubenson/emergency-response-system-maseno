@@ -22,4 +22,10 @@
 
 ![mamp2](https://user-images.githubusercontent.com/59168713/161570340-1b18648d-2d0c-46e8-84f2-7af994a98699.png)
 
+- Click `phpMyadmin`
+
+![db](https://user-images.githubusercontent.com/59168713/161571173-9e570fe2-5e09-4602-98c5-9288ee04204b.png)
+
+
+
 
