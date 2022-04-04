@@ -49,9 +49,11 @@ include 'header.php';
         
     <?php
     if($_SESSION['admin_id']){
-        $data_fetch_query = "SELECT request_status.id, request_status.helpID,request_status.status,request_status.admNo,request_status.timestamp,student_details.regNum,student_details.regNum,student_details.firstname,student_details.lastname,student_details.phonenumber
+        $data_fetch_query = "SELECT request_status.id, request_status.helpID,request_status.status,
+        request_status.admNo,request_status.timestamp,student_details.regNum,student_details.regNum,
+        student_details.firstname,student_details.lastname,student_details.phonenumber
         FROM request_status
-        INNER JOIN student_details ON request_status.admNo = student_details.regNum order by request_status.id;";
+        INNER JOIN student_details ON request_status.admNo = student_details.regNum  WHERE request_status.status ='Pending' order by request_status.id;";
         $data_result = mysqli_query($db, $data_fetch_query);
         if ($data_result->num_rows > 0){
             while($row = $data_result->fetch_assoc()) {
