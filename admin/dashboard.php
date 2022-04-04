@@ -101,7 +101,7 @@ $getInfo = json_decode($url);
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                       <a href="javascript:void(0)"> Requests In Queue </div>
+                       <a href="./inqueue.php"> Requests In Queue </div>
                 </div>
                 <div class="col-auto">
                     <i class="fa-solid fa-arrows-rotate fa-2x"style="color:#e83e8c"></i>
