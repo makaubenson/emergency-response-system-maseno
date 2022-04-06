@@ -33,95 +33,62 @@ include 'header.php';
 </nav>
 </div>
 <div class="container mt-4">
-<div class="table-responsive-lg">
-    <table class="table">
-        <thead>
-            <tr >
-              <th scope="col" class="table-primary">S.NO</th>
-              <th scope="col" class="table-primary">Student Name</th>
-              <th scope="col" class="table-primary">Phone</th>
-              <th scope="col" class="table-primary">Help Code</th>
-              <th scope="col" class="table-primary">Status</th>
-              <th scope="col" class="table-primary">Time of Request</th>
-              <th scope="col" class="table-primary">Rescue Team</th>
+  <form method="post" action="" class="border border-info p-5">
+    <div class="row">
+      <div class="col">
+        <label for="student_name">Student Name</label>
+        <input type="text" class="form-control" readonly placeholder="Enter your Full Name" value="<?php echo $_SESSION['firstname'] .' '.$_SESSION['lastname'] ; ?>" >
+      </div>
+      <div class="col">
+        <label for="student_name">Phone number</label>
+        <input type="text" class="form-control" readonly placeholder="phone" value='<?php echo $_SESSION['phonenumber'];?>'>
+      </div>
+    </div>
+<br>
+    <div class="row">
+      <div class="col">
+        <label for="student_name">Help Code</label>
+        <input type="text" class="form-control"  placeholder="help code" readonly value='<?php echo  $_SESSION['request_helpcode'];?>'>
+      </div>
+      <div class="col">
+        <label for="student_name">Status</label>
+        <input type="text" class="form-control" placeholder="status" readonly value='<?php echo $_SESSION['request_status'] ;?>'>
+      </div>
+    </div>
+<br>
+    <div class="row">
+      <div class="col">
+        <label for="student_name">Time of Request</label>
+        <input type="text" class="form-control" readonly placeholder="Time of request" value='<?php echo $_SESSION['request_time'];?>'>
+      </div>
+      <div class="col">
+        <label for="student_name">Rescue Team</label>
+        <select class="form-control form-control-sm">
+        <option value="">Select Rescue Team</option>
+<?php $sql=mysqli_query($db,
 
-              <th scope="col" class="table-primary">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-        
-    <?php
-    if($_SESSION['admin_id']){
-        $data_fetch_query = "SELECT request_status.id, request_status.helpID,request_status.status,
-        request_status.admNo,request_status.timestamp,student_details.regNum,student_details.regNum,
-        student_details.firstname,student_details.lastname,student_details.phonenumber
-        FROM request_status
-        INNER JOIN student_details ON request_status.admNo = student_details.regNum  WHERE request_status.status ='Pending' order by request_status.id;";
-        $data_result = mysqli_query($db, $data_fetch_query);
-        if ($data_result->num_rows > 0){
-            while($row = $data_result->fetch_assoc()) {
-
-            $help_code=$row["helpID"];
-            $request_status=$row["status"];
-
-        echo "<tr> <td>" . $row["id"]. "</td>";
-        echo "<td>" .$row["firstname"]. " ".$row["lastname"]. "</td>";
-        echo "<td>" .$row["phonenumber"]."</td>";
-        echo "<td>" .$row["helpID"]."</td>";
-        echo "<td>" .$row["status"]."</td>";
-        echo "<td>" .$row["timestamp"]."</td>";
+"select * from rescue_team ");
 
 
-        echo "<td>
-        
-        <form method='POST' action='view.php'>
-        <select name='team_id' class='span12' required='required'>
-        <option selected value=''>Select School</option>
-        <?php 
-        $sql='select team_username from rescue_team ';
-        $team_data_results = mysqli_query($db, $sql);
-while ($row=mysqli_fetch_assoc($sql)) {
 
-
+while ($rw=mysqli_fetch_array($sql)) {
   ?>
-  <option value='<?php
-  
-   ?>'
-  <?php 
-
-  ?>
-  </option>
+  <option value="<?php echo htmlentities($rw['team_name']);?>"><?php echo htmlentities($rw['team_name']);?></option>
 <?php
 }
-?>    
-        </select>
-    </form>
-</td>";
-
-
-
-
-        echo "<td>
-        
-        <form method ='POST' action=''>
-        <input hidden type='text' name='help_code' value='$help_code'>
-        <input type='submit' value='View' class='btn btn-primary'>
-        </form>
-        </td> </tr>";
-        }
-        
-        }else{
-        echo "<td>"."No Requests Found"."</td>";
-        }
-        
-        } else{
-            echo "<td>"."No Data Found"."</td>";
-        }
-
 ?>
-          </tbody>
-    </table>
+        </select>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <button type="submit" class="btn btn-success btn-block">Update</button>
+    </div>
+    <div class="col-md-4"></div>
   </div>
+  </form>
 </div>
 
 

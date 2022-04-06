@@ -32,10 +32,13 @@ include 'header.php';
   </div>
 </nav>
 </div>
-<div class="container mt-4">
+
+  <div class="row m-3">
+    <div class="col-md-7">
 <div class="table-responsive-lg">
     <table class="table">
         <thead>
+          Requests not assigned a response team
             <tr >
               <th scope="col" class="table-primary">S.NO</th>
               <th scope="col" class="table-primary">Student Name</th>
@@ -68,9 +71,9 @@ include 'header.php';
         echo "<td>" .$row["timestamp"]."</td>";
         echo "<td>
         
-        <form method ='POST' action=''>
-        <input hidden type='text' name='help_code' value='$help_code'>
-        <input type='submit' value='View' class='btn btn-primary'>
+        <form method ='POST' action='server.php'>
+        <input  type='text' name='help_code' value='$help_code'>
+        <input type='submit' value='View' name='view-btn' class='btn btn-primary'>
         </form>
         </td> </tr>";
         }
@@ -87,6 +90,66 @@ include 'header.php';
           </tbody>
     </table>
   </div>
+    
+  </div>
+  <div class="col-md-5">
+    <div class="table-responsive-lg">
+        <table class="table">
+            <thead>
+              Requests with response team but not being attended to.
+                <tr >
+                  <th scope="col" class="table-info">S.NO</th>
+                  <th scope="col" class="table-info">Student Name</th>
+                  <th scope="col" class="table-info">Phone</th>
+                  <th scope="col" class="table-info">Help Code</th>
+                  <th scope="col" class="table-info">Time of Request</th>
+                  <th scope="col" class="table-info">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+            
+        <?php
+        if($_SESSION['admin_id']){
+            $data_fetch_query = "SELECT request_status.id, request_status.helpID,request_status.status,
+            request_status.admNo,request_status.timestamp,student_details.regNum,student_details.regNum,
+            student_details.firstname,student_details.lastname,student_details.phonenumber
+            FROM request_status
+            INNER JOIN student_details ON request_status.admNo = student_details.regNum  WHERE request_status.status ='Pending' order by request_status.id;";
+            $data_result = mysqli_query($db, $data_fetch_query);
+            if ($data_result->num_rows > 0){
+                while($row = $data_result->fetch_assoc()) {
+    
+                $help_code=$row["helpID"];
+                $request_status=$row["status"];
+    
+            echo "<tr> <td>" . $row["id"]. "</td>";
+            echo "<td>" .$row["firstname"]. " ".$row["lastname"]. "</td>";
+            echo "<td>" .$row["phonenumber"]."</td>";
+            echo "<td>" .$row["helpID"]."</td>";
+            echo "<td>" .$row["timestamp"]."</td>";
+            echo "<td>
+            
+            <form method ='POST' action=''>
+            <input hidden type='text' name='help_code' value='$help_code'>
+            <input type='submit' value='View' class='btn btn-primary'>
+            </form>
+            </td> </tr>";
+            }
+            
+            }else{
+            echo "<td>"."No Requests Found"."</td>";
+            }
+            
+            } else{
+                echo "<td>"."No Data Found"."</td>";
+            }
+    
+    ?>
+              </tbody>
+        </table>
+      </div>
+        
+      </div>
 </div>
 
 
