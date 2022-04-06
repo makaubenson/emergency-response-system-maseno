@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 04, 2022 at 09:35 AM
+-- Generation Time: Apr 06, 2022 at 07:30 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -154,16 +154,17 @@ CREATE TABLE `rescue_team_tasks` (
   `id` int(10) NOT NULL,
   `task_help_code` varchar(50) NOT NULL,
   `rescue_team_id` varchar(50) NOT NULL,
-  `assigning_admin_id` varchar(50) NOT NULL
+  `assigning_admin_id` varchar(50) NOT NULL,
+  `team_status` varchar(255) NOT NULL DEFAULT 'Unassigned'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `rescue_team_tasks`
 --
 
-INSERT INTO `rescue_team_tasks` (`id`, `task_help_code`, `rescue_team_id`, `assigning_admin_id`) VALUES
-(1, '0TBNC3', 'TM01', 'MSU/00046/022'),
-(2, 'EG6MIP', 'TM02', 'MSU/00050/022');
+INSERT INTO `rescue_team_tasks` (`id`, `task_help_code`, `rescue_team_id`, `assigning_admin_id`, `team_status`) VALUES
+(1, '0TBNC3', 'TM01', 'MSU/00046/022', 'Responding'),
+(2, 'EG6MIP', 'TM02', 'MSU/00050/022', 'Assigned');
 
 -- --------------------------------------------------------
 
