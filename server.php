@@ -149,19 +149,16 @@ if (empty($regno)) { array_push($errors, "Unable to Track your Registration Numb
 if (empty($helpCode)) { array_push($errors, "Unable to Track your Help Code"); }
 // Finally, register user location
 if (count($errors) == 0) {
-  $location_query ="INSERT INTO `location`(`helpID`, `ip`, `Latitude`, `Longitude`, `regNum`) VALUES ('$helpCode','$ipAddress','$Latitude','$Longitude','$regno')";
-  mysqli_query($db, $location_query);
-
-  $status_query ="INSERT INTO `request_status`(`helpID`, `admNo`) VALUES ('$helpCode','$regno')";
+  $status_query ="INSERT INTO `request_status`(`helpID`, `admNo`,`ip_address`, `request_latitude`, `request_longitude`) VALUES ('$helpCode','$regno','$ipAddress','$Latitude','$Longitude')";
   mysqli_query($db, $status_query);
 //Select data from location table
-              $location_Select_query = "SELECT * FROM location   WHERE `helpID`='$helpCode'";
+              $location_Select_query = "SELECT * FROM request_status WHERE `helpID`='$helpCode'";
                   $results = mysqli_query($db, $location_Select_query);
                   if (mysqli_num_rows($results) == 1) {
                     $row = mysqli_fetch_assoc($results);
                     //row data
-                    $regNumber=$row['regNum'];
-                    $long=$row['Longitude'];
+                    $regNumber=$row['admNo'];
+                    $long=$row['request_longitude'];
                     //sessions
                     $_SESSION['user'] = $regNumber;
                     $_SESSION['longitude'] = $long;
@@ -169,7 +166,7 @@ if (count($errors) == 0) {
                     header('location: dashboard.php');
                   }else{
                     array_push($errors, "Unable to process your request. Contact The System Administrator");
-                    // header('location: index.php');
+                    header('location: dashboard.php');
                   }
 }else{
                   header('location: dashboard.php');

@@ -33,7 +33,7 @@ include 'header.php';
 </nav>
 </div>
 <div class="container mt-4">
-  <form method="post" action="" class="border border-info p-5">
+  <form method="post" action="server.php" class="border border-info p-5">
     <div class="row">
       <div class="col">
         <label for="student_name">Student Name</label>
@@ -63,26 +63,13 @@ include 'header.php';
       </div>
       <div class="col">
         <label for="student_name">Rescue Team</label>
-        <select class="form-control form-control-sm">
+        <select class="form-control form-control-sm" name='team'>
         <option value="">Select Rescue Team</option>
-<?php $sql=mysqli_query($db,
+<?php $sql=mysqli_query($db,"select * FROM rescue_team");
 
-"select rescue_team_tasks.task_help_code, rescue_team_tasks.rescue_team_id,rescue_team_tasks.team_status,
-request_status.helpID, request_status.status,request_status.admNo,request_status.timestamp,
-rescue_team.team_name,rescue_team.team_id,rescue_team.team_username
-from rescue_team_tasks
-INNER JOIN request_status 
-ON request_status.helpID = rescue_team_tasks.task_help_code
-INNER JOIN rescue_team
-ON rescue_team.team_id = rescue_team_tasks.rescue_team_id
-where request_status.status ='Pending' AND rescue_team_tasks.team_status='Assigned'
- ");
-
-
-
-while ($rw=mysqli_fetch_array($sql)) {
+while ($row=mysqli_fetch_array($sql)) {
   ?>
-  <option value="<?php echo htmlentities($rw['team_name']);?>"><?php echo htmlentities($rw['team_name']);?></option>
+  <option value="<?php echo htmlentities($row['team_id']);?>"><?php echo htmlentities($row['team_name']);?></option>
 <?php
 }
 ?>
@@ -93,7 +80,7 @@ while ($rw=mysqli_fetch_array($sql)) {
     <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
-      <button type="submit" class="btn btn-success btn-block">Update</button>
+      <button type="submit" name='update-team-btn'class="btn btn-success btn-block">Update</button>
     </div>
     <div class="col-md-4"></div>
   </div>
