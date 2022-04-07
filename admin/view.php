@@ -67,7 +67,16 @@ include 'header.php';
         <option value="">Select Rescue Team</option>
 <?php $sql=mysqli_query($db,
 
-"select * from rescue_team ");
+"select rescue_team_tasks.task_help_code, rescue_team_tasks.rescue_team_id,rescue_team_tasks.team_status,
+request_status.helpID, request_status.status,request_status.admNo,request_status.timestamp,
+rescue_team.team_name,rescue_team.team_id,rescue_team.team_username
+from rescue_team_tasks
+INNER JOIN request_status 
+ON request_status.helpID = rescue_team_tasks.task_help_code
+INNER JOIN rescue_team
+ON rescue_team.team_id = rescue_team_tasks.rescue_team_id
+where request_status.status ='Pending' AND rescue_team_tasks.team_status='Assigned'
+ ");
 
 
 
