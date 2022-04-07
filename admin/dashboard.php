@@ -152,24 +152,7 @@ $getInfo = json_decode($url);
       </div>
   </div>
     <!--end of one Card -->
-    <!--start of one Card -->
-  <div class="col-xl-3 col-md-6 mb-4 mt-4">
-    <div class="card border-left-primary shadow h-100 py-2">
-        <div class="card-body">
-            <div class="row no-gutters align-items-center">
-                <div class="col mr-2">
-                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                      <a href="javascript:void(0)"> Student Users</div>
-                </div>
-                <div class="col-auto">
-                    <i class="fa-solid fa-users fa-2x"style="color:#e83e8c"></i>
-                </a>
-                </div>
-            </div>
-        </div>
-    </div>
-  </div>
-    <!--end of one Card -->
+
     <!--start of one Card -->
   <div class="col-xl-3 col-md-6 mb-4 mt-4">
     <div class="card border-left-primary shadow h-100 py-2">
