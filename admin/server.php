@@ -369,39 +369,39 @@ if (isset($_POST['reassign-team-btn'])) {
 
       // Editing Admin Details
   if (isset($_POST['edit-team-btn'])) {
-    $admin_id = $_POST['adminID'];
-    if (empty($admin_id)) {
+    $mod_Id = $_POST['moderator_unique_id'];
+    if (empty($mod_Id )) {
       array_push($errors, "No Admin ID was selected");
     }
   
     if (count($errors) == 0) {
-      $fetch_query = "SELECT * FROM admin_details WHERE admin_id = '$admin_id'";
-      $fetch_results = mysqli_query($db, $fetch_query);
-      if (mysqli_num_rows($fetch_results) == 1) {
-        $row = mysqli_fetch_assoc($fetch_results);
+      $admin_fetch_query = "SELECT * FROM admin_details WHERE admin_id = '$mod_Id'";
+      $admin_fetch_results = mysqli_query($db, $admin_fetch_query);
+      if (mysqli_num_rows($admin_fetch_results) == 1) {
+        $row = mysqli_fetch_assoc($admin_fetch_results);
       // end generate random alphanumeric character
         //row data
-        $team_id=$row['team_id'];
-        $team_username=$row['team_username'];
-        $team_name=$row['team_name'];
-        $team_phonenumber=$row['team_phone'];
-        $team_email=$row['team_email'];
-        $team_login_pass = $row['team_password'];
-        $time_of_reg=$row['registration_timestamp'];
+        $admin_id=$row['admin_id'];
+        $admin_fname=$row['admin_firstname'];
+        $admin_lname=$row['admin_lastname'];
+        $admin_email=$row['admin_email'];
+        $admin_phone=$row['admin_phone'];
+        $admin_rank = $row['admin_rank'];
+        $admin_pass=$row['admin_password'];
 
         //sessions
-        $_SESSION['rescue_team_id'] = $team_id;
-        $_SESSION['team_username'] =$team_username;
-        $_SESSION['team_name'] =  $team_name;
-        $_SESSION['team_phone'] =$team_phonenumber;
-        $_SESSION['team_email'] =$team_email;
-        $_SESSION['team_password'] =$team_login_pass;
-        $_SESSION['registration_timestamp'] =$time_of_reg;
+        $_SESSION['admin_id'] = $admin_id;
+        $_SESSION['admin_firstname'] =$admin_fname;
+        $_SESSION['admin_lastname'] =$admin_lname;
+        $_SESSION['admin_email'] =$admin_email;
+        $_SESSION['admin_phone'] =$admin_phone;
+        $_SESSION['admin_rank'] =$admin_rank;
+        $_SESSION['admin_password'] =$admin_pass;
 
-        header('location: team_view.php');
+        header('location: admin_view.php');
       }else{
-        array_push($errors, "Unable to fetch data");
-        header('location: team.php');
+        array_push($errors, "Unable to edit data");
+        header('location: moderators.php');
       }
     }
   }

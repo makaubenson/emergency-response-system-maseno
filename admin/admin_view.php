@@ -13,34 +13,34 @@ include 'errors.php';
 ?>
     <div class="row">
       <div class="col">
-        <label for="student_name">Team ID</label>
-        <input type="text" class="form-control" name='teamid' readonly placeholder="Enter team ID" value="<?php echo $_SESSION['rescue_team_id']  ; ?>" >
+        <label for="student_name">Admin ID</label>
+        <input type="text" class="form-control" name='adminid' readonly placeholder="Enter admin ID" value="<?php echo $_SESSION['mod_id']; ?>" >
       </div>
       <div class="col">
-        <label for="student_name">Team Name</label>
-        <input type="text" class="form-control" name='teamName'  placeholder="team name" value='<?php echo $_SESSION['team_name'];?>'>
+        <label for="student_name">Admin Name</label>
+        <input type="text" class="form-control" name='adminName'  placeholder="admin name" value='<?php echo $_SESSION['admin_firstname'].' '.$_SESSION['admin_lastname'];?>'>
       </div>
     </div>
 <br>
     <div class="row">
       <div class="col">
-        <label for="student_name">Team Username</label>
-        <input type="text" class="form-control" name='team_username' placeholder="username"  value='<?php echo  $_SESSION['team_username'] ;?>'>
+        <label for="student_name">Email Address</label>
+        <input type="text" class="form-control" name='admin_mail' placeholder="mail"  value='<?php echo  $_SESSION['admin_email'] ;?>'>
       </div>
       <div class="col">
         <label for="student_name">Phone Number</label>
-        <input type="text" class="form-control" name='team_phone' placeholder="phone"  value='<?php echo $_SESSION['team_phone'] ;?>'>
+        <input type="text" class="form-control" name='admin_phone' placeholder="phone"  value='<?php echo $_SESSION['admin_phone'] ;?>'>
       </div>
     </div>
 <br>
 <div class="row">
   <div class="col">
-    <label for="student_name">Email Address</label>
-    <input type="text" class="form-control" name='team_email' placeholder="email"  value='<?php echo $_SESSION['team_email'];?>'>
+    <label for="student_name">Admin Rank</label>
+    <input type="text" class="form-control" name='admin_rank' placeholder="rank"  value='<?php echo  $_SESSION['admin_rank'];?>'>
   </div>
   <div class="col">
         <label for="student_name">Password</label>
-        <input type="text" class="form-control" name='team_password' placeholder="Password" value='<?php echo $_SESSION['team_password'];?>'>
+        <input type="text" class="form-control" name='admin_password' placeholder="admPassword" value='<?php echo $_SESSION['admin_password'];?>'>
       </div>
 </div>
 

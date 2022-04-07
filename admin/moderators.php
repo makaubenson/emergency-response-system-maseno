@@ -52,7 +52,7 @@ include 'server.php';
         echo "<td>
         
         <form method ='POST' action='server.php'>
-        <input  type='text'   name='adminID' value='$admin_ID'>
+        <input  type='text'   name='moderator_unique_id' value='$admin_ID'>
         <input type='submit' value='Edit' name='edit-admin-btn' class='btn btn-success'>
         <input type='submit' value='Delete' name='delete-admin-btn' class='btn btn-danger'>
         </form>
