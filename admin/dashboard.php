@@ -99,7 +99,7 @@ $getInfo = json_decode($url);
           <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                    <a href="javascript:void(0)">Successful Requests</div>
+                    <a href="./successful.php">Successful Requests</div>
               </div>
               <div class="col-auto">
                   <i class="fa-solid fa-check-double fa-2x"style="color:#e83e8c"></i>

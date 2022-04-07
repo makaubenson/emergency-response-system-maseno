@@ -107,7 +107,7 @@ include 'server.php';
             
             <form method ='POST' action='server.php'>
             <input hidden type='text' name='help_code_2' value='$help_code'>
-            <input type='submit' name='reassign-btn' value='Re-assign Team' class='btn btn-success'>
+            <input type='submit' name='reassign-btn' value='Change Team' class='btn btn-success'>
             </form>
             </td> </tr>";
             }
