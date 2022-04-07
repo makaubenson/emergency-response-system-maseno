@@ -102,7 +102,7 @@ include 'header.php';
                   <th scope="col" class="table-danger">Student Name</th>
                   <th scope="col" class="table-danger">Help Code</th>
                   <th scope="col" class="table-danger">Team Assigned</th>
-                  <th scope="col" class="table-danger">Time of Request</th>
+                  <th scope="col" class="table-danger">Time of Assignment</th>
                   <th scope="col" class="table-danger">Action</th>
                 </tr>
               </thead>
@@ -128,7 +128,7 @@ include 'header.php';
             echo "<tr> <td>" .$row["firstname"]. " ".$row["lastname"]. "</td>";
             echo "<td>" .$row["helpID"]."</td>";
             echo "<td>" .$row["rescue_team_id"]."</td>";
-            echo "<td>" .$row["timestamp"]."</td>";
+            echo "<td>" .$row["assignment_time"]."</td>";
             echo "<td>
             
             <form method ='POST' action=''>
