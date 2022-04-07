@@ -42,8 +42,9 @@ include 'server.php';
         echo "<td>
         
         <form method ='POST' action='server.php'>
-        <input  type='text'  hidden name='teamID' value='$team_ID'>
-        <input type='submit' value='View' name='view-team-btn' class='btn btn-primary'>
+        <input  type='text' hidden  name='teamID' value='$team_ID'>
+        <input type='submit' value='Edit' name='edit-team-btn' class='btn btn-success'>
+        <input type='submit' value='Delete' name='delete-team-btn' class='btn btn-danger'>
         </form>
         </td> </tr>";
         }

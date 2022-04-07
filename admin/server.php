@@ -270,7 +270,7 @@ if (isset($_POST['reassign-team-btn'])) {
       }
     }
   // Viewing teams
-  if (isset($_POST['view-team-btn'])) {
+  if (isset($_POST['edit-team-btn'])) {
     $rescue_team_id = $_POST['teamID'];
  
     if (empty($rescue_team_id)) {
@@ -347,5 +347,23 @@ if (isset($_POST['reassign-team-btn'])) {
         header('location: team.php');
       }
     }
-  
+    // Deleting Team Details
+    if (isset($_POST['delete-team-btn'])) {
+      $rescue_team_id = $_POST['teamID'];
+   
+   //Validating Input Values
+      if (empty($rescue_team_id)) {
+        array_push($errors, "No Team ID was selected");
+      }
+         
+      if (count($errors) == 0) {
+
+        $delete_team_query = "DELETE FROM `rescue_team` WHERE team_id='$rescue_team_id' ";
+        $fetch_results = mysqli_query($db, $delete_team_query);
+          header('location: team.php');
+        }else{
+          array_push($errors, "Unable to fetch delete data");
+          header('location: team.php');
+        }
+      }
 ?>
