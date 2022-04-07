@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 07, 2022 at 05:15 AM
+-- Generation Time: Apr 07, 2022 at 03:23 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -147,7 +147,7 @@ CREATE TABLE `rescue_team_tasks` (
 INSERT INTO `rescue_team_tasks` (`id`, `task_help_code`, `rescue_team_id`, `assigning_admin_id`, `team_status`, `assignment_time`) VALUES
 (1, '0TBNC3', 'TM01', 'MSU/00046/022', 'Responding', '2022-02-18 15:29:18'),
 (2, 'EG6MIP', 'TM02', 'MSU/00050/022', 'Assigned', '2022-04-07 08:12:18'),
-(3, '5BA7HT', 'TM03', 'MSU/00046/022', 'Assigned', '2022-04-07 05:44:23');
+(3, '5BA7HT', 'TM02', 'MSU/00050/022', 'Assigned', '2022-04-07 05:44:23');
 
 -- --------------------------------------------------------
 
