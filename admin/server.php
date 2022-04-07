@@ -222,6 +222,52 @@ if (isset($_POST['reassign-team-btn'])) {
       header('location: inqueue.php');
     }
   }
+    // Viewing Requests Being Responded to.
+    if (isset($_POST['view-requests-being-attended-btn'])) {
+      $request_helpcode = $_POST['help_code'];
+   
+      if (empty($request_helpcode)) {
+        array_push($errors, "This request lacks a help code");
+      }
+    
+      if (count($errors) == 0) {
+        $fetch_query = "SELECT request_status.helpID,request_status.status,
+        request_status.admNo,request_status.timestamp,
+        student_details.regNum,student_details.firstname,student_details.lastname,student_details.phonenumber, rescue_team_tasks.task_help_code,rescue_team_tasks.rescue_team_id
+        FROM request_status
+        INNER JOIN student_details ON request_status.admNo = student_details.regNum
+        INNER JOIN rescue_team_tasks ON request_status.helpID = rescue_team_tasks.task_help_code
+        WHERE request_status.helpID = '$request_helpcode'";
+        
+    
+        $fetch_results = mysqli_query($db, $fetch_query);
+        if (mysqli_num_rows($fetch_results) == 1) {
+          $row = mysqli_fetch_assoc($fetch_results);
+        // end generate random alphanumeric character
+          //row data
+          $student_fname=$row['firstname'];
+          $student_lname=$row['lastname'];
+          $student_phone=$row['phonenumber'];
+          $request_helpcode=$row['helpID'];
+          $request_status=$row['status'];
+          $team_id = $row['rescue_team_id'];
+          $request_time=$row['timestamp'];
 
+          //sessions
+          $_SESSION['firstname'] = $student_fname;
+          $_SESSION['lastname'] =$student_lname;
+          $_SESSION['phonenumber'] = $student_phone;
+          $_SESSION['request_helpcode'] =$request_helpcode;
+          $_SESSION['teamID'] = $team_id;
+          $_SESSION['request_status'] =$request_status;
+          $_SESSION['request_time'] =$request_time;
+
+          header('location: responding.php');
+        }else{
+          array_push($errors, "Unable to fetch data");
+          header('location: inqueue.php');
+        }
+      }
+    }
 
 ?>
