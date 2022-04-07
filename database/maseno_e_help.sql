@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 06, 2022 at 07:30 PM
+-- Generation Time: Apr 07, 2022 at 05:15 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -51,35 +51,15 @@ INSERT INTO `admin_details` (`id`, `admin_id`, `admin_firstname`, `admin_lastnam
 -- --------------------------------------------------------
 
 --
--- Table structure for table `location`
---
-
-CREATE TABLE `location` (
-  `id` int(10) NOT NULL,
-  `helpID` varchar(50) NOT NULL,
-  `ip` varchar(255) NOT NULL DEFAULT '0',
-  `Latitude` varchar(255) NOT NULL DEFAULT '0',
-  `Longitude` varchar(255) NOT NULL DEFAULT '0',
-  `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `location`
---
-
-INSERT INTO `location` (`id`, `helpID`, `ip`, `Latitude`, `Longitude`, `timestamp`) VALUES
-(1, '0TBNC3', '208.98.12.1', '41.8483', '-87.6517', '2022-02-18 15:28:00'),
-(2, 'EG6MIP', '208.98.12.1', '41.8483', '-87.6517', '2022-02-19 13:54:32');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `request_status`
 --
 
 CREATE TABLE `request_status` (
   `id` int(11) NOT NULL,
   `helpID` varchar(50) NOT NULL,
+  `ip_address` varchar(100) NOT NULL,
+  `request_latitude` varchar(50) NOT NULL,
+  `request_longitude` varchar(50) NOT NULL,
   `status` varchar(50) DEFAULT 'Pending',
   `admNo` varchar(255) NOT NULL,
   `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -89,9 +69,10 @@ CREATE TABLE `request_status` (
 -- Dumping data for table `request_status`
 --
 
-INSERT INTO `request_status` (`id`, `helpID`, `status`, `admNo`, `timestamp`) VALUES
-(1, '0TBNC3', 'Pending', 'CIT/00047/019', '2022-02-18 15:28:30'),
-(2, 'EG6MIP', 'Pending', 'CIT/00046/019', '2022-02-18 16:44:03');
+INSERT INTO `request_status` (`id`, `helpID`, `ip_address`, `request_latitude`, `request_longitude`, `status`, `admNo`, `timestamp`) VALUES
+(1, '0TBNC3', '208.98.12.1', '41.8483', '-87.6517', 'Pending', 'CIT/00047/019', '2022-02-18 15:28:30'),
+(3, '5BA7HT', '17.5.7.8', '37.751', '-97.822', 'Assigned', 'CIT/00047/019', '2022-04-07 05:44:19'),
+(2, 'EG6MIP', '208.98.12.1', '41.8483', '-87.6517', 'Pending', 'CIT/00046/019', '2022-02-17 16:44:03');
 
 -- --------------------------------------------------------
 
@@ -155,16 +136,18 @@ CREATE TABLE `rescue_team_tasks` (
   `task_help_code` varchar(50) NOT NULL,
   `rescue_team_id` varchar(50) NOT NULL,
   `assigning_admin_id` varchar(50) NOT NULL,
-  `team_status` varchar(255) NOT NULL DEFAULT 'Unassigned'
+  `team_status` varchar(255) NOT NULL DEFAULT 'Unassigned',
+  `assignment_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `rescue_team_tasks`
 --
 
-INSERT INTO `rescue_team_tasks` (`id`, `task_help_code`, `rescue_team_id`, `assigning_admin_id`, `team_status`) VALUES
-(1, '0TBNC3', 'TM01', 'MSU/00046/022', 'Responding'),
-(2, 'EG6MIP', 'TM02', 'MSU/00050/022', 'Assigned');
+INSERT INTO `rescue_team_tasks` (`id`, `task_help_code`, `rescue_team_id`, `assigning_admin_id`, `team_status`, `assignment_time`) VALUES
+(1, '0TBNC3', 'TM01', 'MSU/00046/022', 'Responding', '2022-02-18 15:29:18'),
+(2, 'EG6MIP', 'TM02', 'MSU/00050/022', 'Assigned', '2022-04-07 08:12:18'),
+(3, '5BA7HT', 'TM03', 'MSU/00046/022', 'Assigned', '2022-04-07 05:44:23');
 
 -- --------------------------------------------------------
 
@@ -228,13 +211,6 @@ ALTER TABLE `admin_details`
   ADD UNIQUE KEY `uniq` (`id`);
 
 --
--- Indexes for table `location`
---
-ALTER TABLE `location`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `helpID` (`helpID`);
-
---
 -- Indexes for table `request_status`
 --
 ALTER TABLE `request_status`
@@ -290,16 +266,10 @@ ALTER TABLE `admin_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `location`
---
-ALTER TABLE `location`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `request_status`
 --
 ALTER TABLE `request_status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `rescue_team`
@@ -317,7 +287,7 @@ ALTER TABLE `rescue_team_members`
 -- AUTO_INCREMENT for table `rescue_team_tasks`
 --
 ALTER TABLE `rescue_team_tasks`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `role_details`
@@ -328,12 +298,6 @@ ALTER TABLE `role_details`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `location`
---
-ALTER TABLE `location`
-  ADD CONSTRAINT `help_code` FOREIGN KEY (`helpID`) REFERENCES `request_status` (`helpID`);
 
 --
 -- Constraints for table `request_status`
