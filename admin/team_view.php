@@ -14,7 +14,7 @@ include 'errors.php';
     <div class="row">
       <div class="col">
         <label for="student_name">Team ID</label>
-        <input type="text" class="form-control" name='teamid'  placeholder="Enter team ID" value="<?php echo $_SESSION['rescue_team_id']  ; ?>" >
+        <input type="text" class="form-control" name='teamid' readonly placeholder="Enter team ID" value="<?php echo $_SESSION['rescue_team_id']  ; ?>" >
       </div>
       <div class="col">
         <label for="student_name">Team Name</label>
@@ -39,8 +39,8 @@ include 'errors.php';
     <input type="text" class="form-control" name='team_email' placeholder="email"  value='<?php echo $_SESSION['team_email'];?>'>
   </div>
   <div class="col">
-        <label for="student_name">Time of Registration</label>
-        <input type="text" class="form-control" name='time_of_reg' readonly placeholder="Time of Registration" value='<?php echo $_SESSION['registration_timestamp'];?>'>
+        <label for="student_name">Password</label>
+        <input type="text" class="form-control" name='team_password' placeholder="Password" value='<?php echo $_SESSION['team_password'];?>'>
       </div>
 </div>
 
@@ -48,7 +48,7 @@ include 'errors.php';
     <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
-      <button type="submit" name='update-team-btn'class="btn btn-warning btn-block">Update team details</button>
+      <button type="submit" name='update-team-details'class="btn btn-warning btn-block">Update team details</button>
     </div>
     <div class="col-md-4"></div>
   </div>

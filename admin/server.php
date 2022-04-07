@@ -311,44 +311,41 @@ if (isset($_POST['reassign-team-btn'])) {
     }
   }
   // Updating Team Details
-  if (isset($_POST['view-team-btn'])) {
-    $rescue_team_id = $_POST['teamID'];
- 
+  if (isset($_POST['update-team-details'])) {
+    $rescue_team_id = $_POST['teamid'];
+    $rescue_team_name = $_POST['teamName'];
+    $rescue_team_username = $_POST['team_username'];
+    $rescue_team_phone = $_POST['team_phone'];
+    $rescue_team_email = $_POST['team_email'];
+    $rescue_team_password = $_POST['team_password'];
+ //Validating Input Values
     if (empty($rescue_team_id)) {
       array_push($errors, "No Team ID was selected");
     }
+    if (empty($rescue_team_name)) {
+      array_push($errors, "Team name is missing");
+    }
+    if (empty($rescue_team_username)) {
+      array_push($errors, "Team username is missing");
+    }
+    if (empty($rescue_team_phone)) {
+      array_push($errors, "Team phone number is missing");
+    }
+    if (empty($rescue_team_email)) {
+      array_push($errors, "Team email is missing");
+    }
   
     if (count($errors) == 0) {
-      $fetch_query = "SELECT * FROM rescue_team WHERE team_id = '$rescue_team_id'";
-      
-  
-      $fetch_results = mysqli_query($db, $fetch_query);
-      if (mysqli_num_rows($fetch_results) == 1) {
-        $row = mysqli_fetch_assoc($fetch_results);
-      // end generate random alphanumeric character
-        //row data
-        $team_id=$row['team_id'];
-        $team_username=$row['team_username'];
-        $team_name=$row['team_name'];
-        $team_phonenumber=$row['team_phone'];
-        $team_email=$row['team_email'];
-        $team_login_pass = $row['team_password'];
-        $time_of_reg=$row['registration_timestamp'];
-
-        //sessions
-        $_SESSION['rescue_team_id'] = $team_id;
-        $_SESSION['team_username'] =$team_username;
-        $_SESSION['team_name'] =  $team_name;
-        $_SESSION['team_phone'] =$team_phonenumber;
-        $_SESSION['team_email'] =$team_email;
-        $_SESSION['team_password'] =$team_login_pass;
-        $_SESSION['registration_timestamp'] =$time_of_reg;
-
-        header('location: team_view.php');
+      $encrypted_pass = md5($rescue_team_password);
+      $update_team_query = "UPDATE `rescue_team` SET `team_id`='$rescue_team_id',
+      `team_username`='$rescue_team_username',`team_name`='$rescue_team_name',`team_phone`='$rescue_team_phone',
+      `team_email`='$rescue_team_email',`team_password`='$encrypted_pass' WHERE team_id='$rescue_team_id' ";
+      $fetch_results = mysqli_query($db, $update_team_query);
+        header('location: team.php');
       }else{
         array_push($errors, "Unable to fetch data");
         header('location: team.php');
       }
     }
-  }
+  
 ?>

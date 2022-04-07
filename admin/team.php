@@ -42,7 +42,7 @@ include 'server.php';
         echo "<td>
         
         <form method ='POST' action='server.php'>
-        <input  type='text'  name='teamID' value='$team_ID'>
+        <input  type='text'  hidden name='teamID' value='$team_ID'>
         <input type='submit' value='View' name='view-team-btn' class='btn btn-primary'>
         </form>
         </td> </tr>";
