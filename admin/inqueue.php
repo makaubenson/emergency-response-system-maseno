@@ -132,7 +132,7 @@ include 'header.php';
             echo "<td>
             
             <form method ='POST' action='server.php'>
-            <input type='text' name='help_code_2' value='$help_code'>
+            <input hidden type='text' name='help_code_2' value='$help_code'>
             <input type='submit' name='reassign-btn' value='Re-assign Team' class='btn btn-success'>
             </form>
             </td> </tr>";

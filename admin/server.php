@@ -192,6 +192,36 @@ if (isset($_POST['reassign-btn'])) {
   }
 
 }
+// Update Rescue Team Assignment
+if (isset($_POST['reassign-team-btn'])) {
+  $selected_team_id = $_POST['rescue_team_id'];
+  $request_code = $_POST['student_helpcode'];
+  $moderator_id = $_POST['admin_id'];
+  $moderator_name = $_POST['admin_name'];
+
+  if (empty($selected_team_id)) {
+    array_push($errors, "No team was selected");
+  }
+  if (empty($request_code)) {
+    array_push($errors, "No request code was selected");
+  }
+  if (empty($moderator_id)) {
+    array_push($errors, "Moderator ID is missing");
+  }
+  if (empty($moderator_name)) {
+    array_push($errors, "Moderator name is missing");
+  }
+ 
+  if (count($errors) == 0) {
+    $update_query = "UPDATE `rescue_team_tasks` SET `rescue_team_id`='$selected_team_id',`assigning_admin_id`='$moderator_id' WHERE task_help_code = '$request_code' ";
+    $update_results = mysqli_query($db,$update_query);
+
+      header('location: inqueue.php');
+    }else{
+      array_push($errors, "Unable to fetch data");
+      header('location: inqueue.php');
+    }
+  }
 
 
 ?>

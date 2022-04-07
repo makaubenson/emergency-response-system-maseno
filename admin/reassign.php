@@ -77,7 +77,7 @@ include 'errors.php';
       </div>
       <div class="col">
         <label for="student_name">Rescue Team</label>
-        <select class="form-control form-control-sm" name='team'>
+        <select class="form-control form-control-sm" name='rescue_team_id'>
         <option value="">Select Rescue Team</option>
 <?php $sql=mysqli_query($db,"select * FROM rescue_team");
 
@@ -94,7 +94,7 @@ while ($row=mysqli_fetch_array($sql)) {
     <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
-      <button type="submit" name='update-team-btn'class="btn btn-success btn-block">Update</button>
+      <button type="submit" name='reassign-team-btn' class="btn btn-info btn-block">Update Team Details</button>
     </div>
     <div class="col-md-4"></div>
   </div>
