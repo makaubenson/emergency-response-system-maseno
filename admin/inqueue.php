@@ -131,9 +131,9 @@ include 'header.php';
             echo "<td>" .$row["assignment_time"]."</td>";
             echo "<td>
             
-            <form method ='POST' action=''>
-            <input hidden type='text' name='help_code' value='$help_code'>
-            <input type='submit' value='View' class='btn btn-primary'>
+            <form method ='POST' action='server.php'>
+            <input type='text' name='help_code_2' value='$help_code'>
+            <input type='submit' name='reassign-btn' value='Re-assign Team' class='btn btn-success'>
             </form>
             </td> </tr>";
             }

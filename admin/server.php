@@ -147,7 +147,51 @@ if (isset($_POST['admin_login_btn'])) {
         }
       }
     
+// Rescue Team Re-Assignment
+if (isset($_POST['reassign-btn'])) {
+  $request_help_code = $_POST['help_code_2'];
+  
+  if (empty($request_help_code)) {
+    array_push($errors, "Help code is missing");
+  }
 
+  if (count($errors) == 0) {
+    //Select Data from DB
+    $select_query = "SELECT request_status.*, rescue_team_tasks.*, student_details.*
+    FROM request_status 
+    INNER JOIN rescue_team_tasks ON request_status.helpID = rescue_team_tasks.task_help_code
+    INNER JOIN student_details ON request_status.admNo = student_details.regNum
+    WHERE request_status.helpID = '$request_help_code'";
+  
+
+  $fetch_results = mysqli_query($db, $select_query);
+        if (mysqli_num_rows($fetch_results) == 1) {
+          $row = mysqli_fetch_assoc($fetch_results);
+        // end generate random alphanumeric character
+          //row data
+          $student_fname=$row['firstname'];
+          $student_lname=$row['lastname'];
+          $student_phone=$row['phonenumber'];
+          $request_helpcode=$row['helpID'];
+          $team_status=$row['team_status'];
+          $team_assignment_time=$row['assignment_time'];
+
+          //sessions
+          $_SESSION['fname'] = $student_fname;
+          $_SESSION['lname'] =$student_lname;
+          $_SESSION['phone'] = $student_phone;
+          $_SESSION['helpID'] =$request_helpcode;
+          $_SESSION['team_status'] =$team_status;
+          $_SESSION['team_assignment_time'] =$team_assignment_time;
+
+          header('location: reassign.php');
+    }else{
+      array_push($errors, "Unable to fetch data");
+      header('location: inqueue.php');
+    }
+  }
+
+}
 
 
 ?>
