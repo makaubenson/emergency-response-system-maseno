@@ -117,7 +117,7 @@ $getInfo = json_decode($url);
           <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                    <a href="javascript:void(0)">Failed Requests</div>
+                    <a href="./failed.php">Failed Requests</div>
               </div>
               <div class="col-auto">
                   <i class="fa-solid fa-triangle-exclamation fa-2x"style="color:#e83e8c"></i>

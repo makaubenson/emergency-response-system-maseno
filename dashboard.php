@@ -10,7 +10,7 @@ include 'server.php';
 // $userIP = $_SERVER['REMOTE_ADDR'];
  
 //static ip address
-$ip = "172.15.7.28"; 
+$ip = "165.105.70.4"; 
 
 //Get IP Address of User in PHP
 // $ip = $_SERVER['REMOTE_ADDR']; 
