@@ -99,22 +99,24 @@ include 'header.php';
               Requests assigned response team but not being attended to.
                 <tr >
                   <!-- <th scope="col" class="table-info">S.NO</th> -->
-                  <th scope="col" class="table-info">Student Name</th>
-                  <th scope="col" class="table-info">Phone</th>
-                  <th scope="col" class="table-info">Help Code</th>
-                  <th scope="col" class="table-info">Time of Request</th>
-                  <th scope="col" class="table-info">Action</th>
+                  <th scope="col" class="table-danger">Student Name</th>
+                  <th scope="col" class="table-danger">Help Code</th>
+                  <th scope="col" class="table-danger">Team Assigned</th>
+                  <th scope="col" class="table-danger">Time of Request</th>
+                  <th scope="col" class="table-danger">Action</th>
                 </tr>
               </thead>
               <tbody>
             
         <?php
         if($_SESSION['admin_id']){
-            $data_fetch_query = "SELECT request_status.id, request_status.helpID,request_status.status,
-            request_status.admNo,request_status.timestamp,student_details.regNum,student_details.regNum,
-            student_details.firstname,student_details.lastname,student_details.phonenumber
-            FROM request_status
-            INNER JOIN student_details ON request_status.admNo = student_details.regNum  WHERE request_status.status ='Assigned' order by request_status.timestamp DESC;";
+          $data_fetch_query = "SELECT request_status.id, request_status.helpID,request_status.status,
+          request_status.admNo,request_status.timestamp,student_details.regNum,student_details.regNum,
+          student_details.firstname,student_details.lastname,student_details.phonenumber, rescue_team_tasks.*
+          FROM request_status
+          INNER JOIN student_details ON request_status.admNo = student_details.regNum
+          INNER JOIN rescue_team_tasks ON request_status.helpID = rescue_team_tasks.task_help_code
+          WHERE request_status.status ='Assigned' order by request_status.timestamp DESC;";
             $data_result = mysqli_query($db, $data_fetch_query);
             if ($data_result->num_rows > 0){
                 while($row = $data_result->fetch_assoc()) {
@@ -124,8 +126,8 @@ include 'header.php';
     
           
             echo "<tr> <td>" .$row["firstname"]. " ".$row["lastname"]. "</td>";
-            echo "<td>" .$row["phonenumber"]."</td>";
             echo "<td>" .$row["helpID"]."</td>";
+            echo "<td>" .$row["rescue_team_id"]."</td>";
             echo "<td>" .$row["timestamp"]."</td>";
             echo "<td>
             
@@ -137,7 +139,7 @@ include 'header.php';
             }
             
             }else{
-            echo "<td>"."No Requests Found"."</td>";
+            echo "<td>"."No Data is available"."</td>";
             }
             
             } else{
