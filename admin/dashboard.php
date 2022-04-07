@@ -140,7 +140,7 @@ $getInfo = json_decode($url);
               <div class="row no-gutters align-items-center">
                   <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                        <a href="javascript:void(0)"> Rescue Teams</div>
+                        <a href="./team.php"> Rescue Teams</div>
                   </div>
                   <div class="col-auto">
                       <!-- <i class="fa-solid fa-wifi fa-2x text-gray-300" style="color:#e83e8c"></i> -->
