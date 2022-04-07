@@ -366,4 +366,43 @@ if (isset($_POST['reassign-team-btn'])) {
           header('location: team.php');
         }
       }
+
+      // Editing Admin Details
+  if (isset($_POST['edit-team-btn'])) {
+    $admin_id = $_POST['adminID'];
+    if (empty($admin_id)) {
+      array_push($errors, "No Admin ID was selected");
+    }
+  
+    if (count($errors) == 0) {
+      $fetch_query = "SELECT * FROM admin_details WHERE admin_id = '$admin_id'";
+      $fetch_results = mysqli_query($db, $fetch_query);
+      if (mysqli_num_rows($fetch_results) == 1) {
+        $row = mysqli_fetch_assoc($fetch_results);
+      // end generate random alphanumeric character
+        //row data
+        $team_id=$row['team_id'];
+        $team_username=$row['team_username'];
+        $team_name=$row['team_name'];
+        $team_phonenumber=$row['team_phone'];
+        $team_email=$row['team_email'];
+        $team_login_pass = $row['team_password'];
+        $time_of_reg=$row['registration_timestamp'];
+
+        //sessions
+        $_SESSION['rescue_team_id'] = $team_id;
+        $_SESSION['team_username'] =$team_username;
+        $_SESSION['team_name'] =  $team_name;
+        $_SESSION['team_phone'] =$team_phonenumber;
+        $_SESSION['team_email'] =$team_email;
+        $_SESSION['team_password'] =$team_login_pass;
+        $_SESSION['registration_timestamp'] =$time_of_reg;
+
+        header('location: team_view.php');
+      }else{
+        array_push($errors, "Unable to fetch data");
+        header('location: team.php');
+      }
+    }
+  }
 ?>
