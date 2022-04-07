@@ -48,47 +48,9 @@ $getInfo = json_decode($url);
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Admin Dashboard</title>
-    <link rel="icon" href="./static/img/logo.png" type="image/x-icon" />
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=yes"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!--Bootstrap 4 CSS-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!--Style Css-->
-    <link rel="stylesheet" href="./static/css/style.css" />
-  </head>
+  <?php include './includes/header.php'; ?>
   <body>
-    <div class="container-fluid" id="mynav">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Dashboard</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
-      <?php
-     if($_SESSION['admin_id']){ ?>
-      <li class="nav-item active">
-      <a class="nav-link" href="javascript:void(0)">
-      <?php echo "Welcome ". "<strong style='color:white;'>".$_SESSION['admin_firstname']." ".$_SESSION['admin_lastname']."</strong>  <br>"."<strong style='color:#21B941;'> ".$_SESSION['admin_rank']."</strong>";  ?> </a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link btn btn-danger" href="logout.php">Logout </a>
-      </li>
-         <?php
-  }
- ?>
-    </ul>
-  </div>
-</nav>
-</div>
+  <?php include './includes/navbar.php'; ?>
 
 <div class="container mt-3" >
 <!--Cards-->
