@@ -40,7 +40,7 @@ include 'header.php';
         <thead>
           Requests not assigned a response team
             <tr >
-              <th scope="col" class="table-primary">S.NO</th>
+              <!-- <th scope="col" class="table-primary">S.NO</th> -->
               <th scope="col" class="table-primary">Student Name</th>
               <th scope="col" class="table-primary">Phone</th>
               <th scope="col" class="table-primary">Help Code</th>
@@ -56,7 +56,7 @@ include 'header.php';
         request_status.admNo,request_status.timestamp,student_details.regNum,student_details.regNum,
         student_details.firstname,student_details.lastname,student_details.phonenumber
         FROM request_status
-        INNER JOIN student_details ON request_status.admNo = student_details.regNum  WHERE request_status.status ='Pending' order by request_status.id;";
+        INNER JOIN student_details ON request_status.admNo = student_details.regNum  WHERE request_status.status ='Pending' order by request_status.timestamp DESC;";
         $data_result = mysqli_query($db, $data_fetch_query);
         if ($data_result->num_rows > 0){
             while($row = $data_result->fetch_assoc()) {
@@ -64,15 +64,15 @@ include 'header.php';
             $help_code=$row["helpID"];
             $request_status=$row["status"];
 
-        echo "<tr> <td>" . $row["id"]. "</td>";
-        echo "<td>" .$row["firstname"]. " ".$row["lastname"]. "</td>";
+       
+        echo "<tr> <td>" .$row["firstname"]. " ".$row["lastname"]. "</td>";
         echo "<td>" .$row["phonenumber"]."</td>";
         echo "<td>" .$row["helpID"]."</td>";
         echo "<td>" .$row["timestamp"]."</td>";
         echo "<td>
         
         <form method ='POST' action='server.php'>
-        <input  type='text' name='help_code' value='$help_code'>
+        <input  type='text' hidden name='help_code' value='$help_code'>
         <input type='submit' value='View' name='view-btn' class='btn btn-primary'>
         </form>
         </td> </tr>";
@@ -96,9 +96,9 @@ include 'header.php';
     <div class="table-responsive-lg">
         <table class="table">
             <thead>
-              Requests with response team but not being attended to.
+              Requests assigned response team but not being attended to.
                 <tr >
-                  <th scope="col" class="table-info">S.NO</th>
+                  <!-- <th scope="col" class="table-info">S.NO</th> -->
                   <th scope="col" class="table-info">Student Name</th>
                   <th scope="col" class="table-info">Phone</th>
                   <th scope="col" class="table-info">Help Code</th>
@@ -114,7 +114,7 @@ include 'header.php';
             request_status.admNo,request_status.timestamp,student_details.regNum,student_details.regNum,
             student_details.firstname,student_details.lastname,student_details.phonenumber
             FROM request_status
-            INNER JOIN student_details ON request_status.admNo = student_details.regNum  WHERE request_status.status ='Pending' order by request_status.id;";
+            INNER JOIN student_details ON request_status.admNo = student_details.regNum  WHERE request_status.status ='Assigned' order by request_status.timestamp DESC;";
             $data_result = mysqli_query($db, $data_fetch_query);
             if ($data_result->num_rows > 0){
                 while($row = $data_result->fetch_assoc()) {
@@ -122,8 +122,8 @@ include 'header.php';
                 $help_code=$row["helpID"];
                 $request_status=$row["status"];
     
-            echo "<tr> <td>" . $row["id"]. "</td>";
-            echo "<td>" .$row["firstname"]. " ".$row["lastname"]. "</td>";
+          
+            echo "<tr> <td>" .$row["firstname"]. " ".$row["lastname"]. "</td>";
             echo "<td>" .$row["phonenumber"]."</td>";
             echo "<td>" .$row["helpID"]."</td>";
             echo "<td>" .$row["timestamp"]."</td>";

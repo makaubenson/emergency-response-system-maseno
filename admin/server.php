@@ -68,11 +68,9 @@ if (isset($_POST['admin_login_btn'])) {
     
       if (count($errors) == 0) {
         $fetch_query = "SELECT request_status.helpID,request_status.status,
-        request_status.admNo,request_status.timestamp,rescue_team_tasks.task_help_code,
-        rescue_team_tasks.rescue_team_id,rescue_team_tasks.team_status,student_details.regNum, 
-        student_details.firstname,student_details.lastname,student_details.phonenumber
+        request_status.admNo,request_status.timestamp,
+        student_details.regNum,student_details.firstname,student_details.lastname,student_details.phonenumber
         FROM request_status
-        INNER JOIN rescue_team_tasks ON request_status.helpID = rescue_team_tasks.task_help_code  
         INNER JOIN student_details ON request_status.admNo = student_details.regNum
         WHERE request_status.helpID = '$request_helpcode'";
         
@@ -107,43 +105,48 @@ if (isset($_POST['admin_login_btn'])) {
 
     // Rescue Team Assignment
     if (isset($_POST['update-team-btn'])) {
+      $student_name = $_POST['studentName'];
+      $student_phonenumber = $_POST['student_phone'];
+      $request_helpcode = $_POST['student_helpcode'];
+      $student_status = $_POST['student_status'];
+      $request_time = $_POST['time_of_request'];
+      $moderator_id = $_POST['admin_id'];
+      $moderator_name = $_POST['admin_name'];
       $selected_team_id = $_POST['team'];
-   
+
+      if (empty($student_name)) {
+        array_push($errors, "Student name is required");
+      }
+      if (empty($student_phonenumber)) {
+        array_push($errors, "Student phone number is required");
+      }
+      if (empty($request_helpcode)) {
+        array_push($errors, "Student help code is required");
+      }
+      if (empty($student_status)) {
+        array_push($errors, "Student status is required");
+      }
+      if (empty($request_time)) {
+        array_push($errors, "Request time is required");
+      }      
       if (empty($selected_team_id)) {
         array_push($errors, "No team was selected");
       }
-    
+
       if (count($errors) == 0) {
-        $update_team_query = "";
+        $insert_query = "INSERT INTO `rescue_team_tasks`(`task_help_code`,`assigning_admin_id`,
+         `team_status`,`rescue_team_id`)
+         VALUES ('$request_helpcode','$moderator_id','Assigned','$selected_team_id')";
         
-    
-        $fetch_results = mysqli_query($db, $fetch_query);
-        if (mysqli_num_rows($fetch_results) == 1) {
-          $row = mysqli_fetch_assoc($fetch_results);
-        // end generate random alphanumeric character
-          //row data
-          $student_fname=$row['firstname'];
-          $student_lname=$row['lastname'];
-          $student_phone=$row['phonenumber'];
-          $request_helpcode=$row['helpID'];
-          $request_status=$row['status'];
-          $request_time=$row['timestamp'];
+        $fetch_results = mysqli_query($db, $insert_query);
 
-          //sessions
-          $_SESSION['firstname'] = $student_fname;
-          $_SESSION['lastname'] =$student_lname;
-          $_SESSION['phonenumber'] = $student_phone;
-          $_SESSION['request_helpcode'] =$request_helpcode;
-          $_SESSION['request_status'] =$request_status;
-          $_SESSION['request_time'] =$request_time;
-
-          header('location: view.php');
+          header('location: inqueue.php');
         }else{
           array_push($errors, "Unable to fetch data");
-          header('location: inqueue.php');
+          header('location: view.php');
         }
       }
-    }
+    
 
 
 

@@ -37,29 +37,40 @@ include 'header.php';
     <div class="row">
       <div class="col">
         <label for="student_name">Student Name</label>
-        <input type="text" class="form-control" readonly placeholder="Enter your Full Name" value="<?php echo $_SESSION['firstname'] .' '.$_SESSION['lastname'] ; ?>" >
+        <input type="text" class="form-control" name='studentName' readonly placeholder="Enter your Full Name" value="<?php echo $_SESSION['firstname'] .' '.$_SESSION['lastname'] ; ?>" >
       </div>
       <div class="col">
         <label for="student_name">Phone number</label>
-        <input type="text" class="form-control" readonly placeholder="phone" value='<?php echo $_SESSION['phonenumber'];?>'>
+        <input type="text" class="form-control" name='student_phone' readonly placeholder="phone" value='<?php echo $_SESSION['phonenumber'];?>'>
       </div>
     </div>
 <br>
     <div class="row">
       <div class="col">
         <label for="student_name">Help Code</label>
-        <input type="text" class="form-control"  placeholder="help code" readonly value='<?php echo  $_SESSION['request_helpcode'];?>'>
+        <input type="text" class="form-control" name='student_helpcode' placeholder="help code" readonly value='<?php echo  $_SESSION['request_helpcode'];?>'>
       </div>
       <div class="col">
         <label for="student_name">Status</label>
-        <input type="text" class="form-control" placeholder="status" readonly value='<?php echo $_SESSION['request_status'] ;?>'>
+        <input type="text" class="form-control" name='student_status' placeholder="status" readonly value='<?php echo $_SESSION['request_status'] ;?>'>
       </div>
     </div>
+<br>
+<div class="row">
+  <div class="col">
+    <label for="student_name">Moderator ID</label>
+    <input type="text" class="form-control" name='admin_id' placeholder="help code" readonly value='<?php echo $_SESSION['admin_id'];?>'>
+  </div>
+  <div class="col">
+    <label for="student_name">Moderator Name</label>
+    <input type="text" class="form-control" name='admin_name' placeholder="status" readonly value='<?php echo $_SESSION['admin_firstname'].' '.$_SESSION['admin_lastname'] ;?>'>
+  </div>
+</div>
 <br>
     <div class="row">
       <div class="col">
         <label for="student_name">Time of Request</label>
-        <input type="text" class="form-control" readonly placeholder="Time of request" value='<?php echo $_SESSION['request_time'];?>'>
+        <input type="text" class="form-control" name='time_of_request'readonly placeholder="Time of request" value='<?php echo $_SESSION['request_time'];?>'>
       </div>
       <div class="col">
         <label for="student_name">Rescue Team</label>
