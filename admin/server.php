@@ -312,7 +312,7 @@ if (isset($_POST['reassign-team-btn'])) {
   }
   // Updating Team Details
   if (isset($_POST['update-team-details'])) {
-    $rescue_team_id = $_POST['teamid'];
+    $rescue_team_id = $_POST['team_identifier'];
     $rescue_team_name = $_POST['teamName'];
     $rescue_team_username = $_POST['team_username'];
     $rescue_team_phone = $_POST['team_phone'];
@@ -336,15 +336,16 @@ if (isset($_POST['reassign-team-btn'])) {
     }
   
     if (count($errors) == 0) {
-     
       $update_team_query = "UPDATE `rescue_team` SET `team_id`='$rescue_team_id',
-      `team_username`='$rescue_team_username',`team_name`='$rescue_team_name',`team_phone`='$rescue_team_phone',
-      `team_email`='$rescue_team_email', WHERE team_id='$rescue_team_id' ";
+      `team_username`='$rescue_team_username',`team_name`='$rescue_team_name',
+      `team_phone`='$rescue_team_phone',
+      `team_email`='$rescue_team_email' WHERE team_id='$rescue_team_id' ";
       $fetch_results = mysqli_query($db, $update_team_query);
         header('location: team.php');
       }else{
         array_push($errors, "Unable to fetch data");
-        header('location: team.php');
+        echo 'This operation failed terribly';
+        // header('location: team.php');
       }
     }
     // Deleting Team Details

@@ -14,7 +14,7 @@ include 'errors.php';
     <div class="row">
       <div class="col">
         <label for="student_name">Team ID</label>
-        <input type="text" class="form-control" name='teamid' readonly placeholder="Enter team ID" value="<?php echo $_SESSION['rescue_team_id']  ; ?>" >
+        <input type="text" class="form-control" name='team_identifier' readonly placeholder="Enter team ID" value="<?php echo $_SESSION['rescue_team_id']  ; ?>" >
       </div>
       <div class="col">
         <label for="student_name">Team Name</label>
