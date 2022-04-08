@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 08, 2022 at 10:18 AM
+-- Generation Time: Apr 08, 2022 at 01:37 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -115,17 +115,24 @@ CREATE TABLE `rescue_team_members` (
   `email` varchar(50) NOT NULL,
   `phone` int(15) NOT NULL,
   `role_id` varchar(50) NOT NULL,
-  `rescue_team_id` varchar(50) NOT NULL
+  `rescue_team_id` varchar(50) NOT NULL,
+  `time_of_registration` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `rescue_team_members`
 --
 
-INSERT INTO `rescue_team_members` (`id`, `fname`, `lname`, `email`, `phone`, `role_id`, `rescue_team_id`) VALUES
-(1, 'Thomas', 'Kimeu', 'kimeuthomas@gmail.com', 712579874, 'MSU/001A/022', 'TM01'),
-(2, 'David ', 'Philip', 'philipdavid26@gmail.com', 765248545, 'MSU/001B/022', 'TM02'),
-(3, 'Duncan', 'Ondieki', 'ondiekiduncan@gmail.com', 779854258, 'MSU/001C/022', 'TM03');
+INSERT INTO `rescue_team_members` (`id`, `fname`, `lname`, `email`, `phone`, `role_id`, `rescue_team_id`, `time_of_registration`) VALUES
+(1, 'Thomas', 'Kimeu', 'kimeuthomas@gmail.com', 712579874, 'MSU/001A/022', 'TM01', '2022-04-08 15:10:41'),
+(2, 'David ', 'Philip', 'philipdavid26@gmail.com', 765248545, 'MSU/001B/022', 'TM02', '2022-04-08 15:10:41'),
+(3, 'Duncan', 'Ondieki', 'ondiekiduncan@gmail.com', 779854258, 'MSU/001C/022', 'TM03', '2022-04-08 15:10:41'),
+(4, 'Mwanzia', 'Kimani', 'kimanimwanzia20@gmail.com', 789542658, 'MSU/001A/022', 'TM02', '2022-04-08 16:03:35'),
+(11, 'James', 'Patrick', 'patrickjames21@gmail.com', 745987456, 'MSU/001A/022', 'TM03', '2022-04-08 16:04:43'),
+(12, 'Caroline', 'Murathe', 'murathercarol@gmail.com', 766879853, 'MSU/001B/022', 'TM01', '2022-04-08 16:06:59'),
+(13, 'Jane', 'Odongo', 'odongojane25@gmail.com', 745783258, 'MSU/001B/022', 'TM03', '2022-04-08 16:07:53'),
+(14, 'Mutia', 'Kioko', 'mutiakioko@gmai.com', 798959863, 'MSU/001C/022', 'TM01', '2022-04-08 16:09:32'),
+(15, 'Angela', 'Mutuku', 'mutukuangie@gmail.com', 725627894, 'MSU/001C/022', 'TM02', '2022-04-08 16:10:31');
 
 -- --------------------------------------------------------
 
@@ -201,6 +208,8 @@ INSERT INTO `student_details` (`regNum`, `firstname`, `lastname`, `emailaddress`
 ('CIT/00045/019', 'Alex', 'Karanja', 'karanjaalex@gmail.com', '0797457895', '81dc9bdb52d04dc20036dbd8313ed055', '2022-02-13 13:58:55'),
 ('CIT/00046/019', 'Benson', 'Makau', 'bensonmakau2000@gmail.com', '0758413462', '8821fe54f8b9828c97081d56666b6cc9', '2022-02-13 13:47:06'),
 ('CIT/00047/019', 'James', 'Bondo', 'bondojames@gmail.com', '0784564524', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-02-17 14:18:57'),
+('CIT/000500/019', 'Alex', 'Kioko', 'kiokoaleki25@gmail.com', '0712357895', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-08 13:54:08'),
+('CIT/00100/019', 'Grace', 'Kimanthi', 'graciekim@gmail.com', '0798589746', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-08 13:53:16'),
 ('CIT/00111/019', 'Stephen', 'Mwau', 'mwausteve@gmail.com', '0712452586', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-02-17 17:49:31'),
 ('CIT/00222/019', 'Lisper', 'Ndegwa', 'lisperd@gmail.com', '0745142542', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-02-19 14:01:30');
 
@@ -235,8 +244,8 @@ ALTER TABLE `rescue_team`
 --
 ALTER TABLE `rescue_team_members`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `rescue_team_id` (`rescue_team_id`),
-  ADD KEY `role_id` (`role_id`);
+  ADD KEY `role_id` (`role_id`),
+  ADD KEY `rescue_team_id` (`rescue_team_id`) USING BTREE;
 
 --
 -- Indexes for table `rescue_team_tasks`
@@ -280,13 +289,13 @@ ALTER TABLE `request_status`
 -- AUTO_INCREMENT for table `rescue_team`
 --
 ALTER TABLE `rescue_team`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `rescue_team_members`
 --
 ALTER TABLE `rescue_team_members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `rescue_team_tasks`

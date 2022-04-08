@@ -30,7 +30,9 @@
       <li class="nav-item">
         <a class="nav-link active" href="paramedics.php">Paramedics</a>
       </li>
-     
+      <li class="nav-item">
+        <a class="nav-link active" href="drivers.php">Drivers</a>
+      </li>
       <li class="nav-item active">
       <a class="nav-link" href="javascript:void(0)">
       <?php echo "Welcome ". "<strong style='color:white;'>".$_SESSION['admin_firstname']." ".$_SESSION['admin_lastname'];  ?> </a>
