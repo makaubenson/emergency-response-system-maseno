@@ -9,9 +9,29 @@
     <ul class="navbar-nav ml-auto">
       <?php
      if($_SESSION['admin_id']){ ?>
+    
+     <li class="nav-item">
+        <a class="nav-link active" href="inqueue.php">In-Queue</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="successful.php">Successful</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="failed.php">Failed</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="team.php">Rescue Team</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="moderators.php">Moderators</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="paramedics.php">Paramedics</a>
+      </li>
+     
       <li class="nav-item active">
       <a class="nav-link" href="javascript:void(0)">
-      <?php echo "Welcome ". "<strong style='color:white;'>".$_SESSION['admin_firstname']." ".$_SESSION['admin_lastname']."</strong>  <br>"."<strong style='color:#21B941;'> ".$_SESSION['admin_rank']."</strong>";  ?> </a>
+      <?php echo "Welcome ". "<strong style='color:white;'>".$_SESSION['admin_firstname']." ".$_SESSION['admin_lastname'];  ?> </a>
       </li>
       <li class="nav-item active">
         <a class="nav-link btn btn-danger" href="logout.php">Logout </a>

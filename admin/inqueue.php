@@ -10,7 +10,7 @@ include 'server.php';
   <div class="row m-3">
     <div class="col-md-7">
 <div class="table-responsive-lg">
-    <table class="table">
+    <table class="table" style='color:black'>
         <thead>
           Requests not assigned a response team
             <tr >
@@ -39,7 +39,7 @@ include 'server.php';
             $request_status=$row["status"];
 
        
-        echo "<tr> <td>" .$row["firstname"]. " ".$row["lastname"]. "</td>";
+        echo "<tr style='font-weight:normal'> <td>" .$row["firstname"]. " ".$row["lastname"]. "</td>";
         echo "<td>" .$row["phonenumber"]."</td>";
         echo "<td>" .$row["helpID"]."</td>";
         echo "<td>" .$row["timestamp"]."</td>";
@@ -68,7 +68,7 @@ include 'server.php';
   </div>
   <div class="col-md-5">
     <div class="table-responsive-lg">
-        <table class="table">
+        <table class="table" style='color:black'>
             <thead>
               Requests assigned response team but not being attended to.
                 <tr >
@@ -99,7 +99,7 @@ include 'server.php';
                 $request_status=$row["status"];
     
           
-            echo "<tr> <td>" .$row["firstname"]. " ".$row["lastname"]. "</td>";
+            echo "<tr style='font-weight:normal'> <td>" .$row["firstname"]. " ".$row["lastname"]. "</td>";
             echo "<td>" .$row["helpID"]."</td>";
             echo "<td>" .$row["rescue_team_id"]."</td>";
             echo "<td>" .$row["assignment_time"]."</td>";
