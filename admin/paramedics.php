@@ -12,41 +12,33 @@ include 'server.php';
 <div class="table-responsive-lg">
     <table class="table">
         <thead>
-          Rescue Teams
+         Paramedics
             <tr >
               <th scope="col" class="table-primary">S.NO</th>
-              <th scope="col" class="table-primary">Team ID</th>
-              <th scope="col" class="table-primary">Team Name</th>
-              <th scope="col" class="table-primary">Team Username</th>
+              <th scope="col" class="table-primary">First Name</th>
+              <th scope="col" class="table-primary">Last Name</th>
+              <th scope="col" class="table-primary">Email Address</th>
               <th scope="col" class="table-primary">Phone Number</th>
-              <th scope="col" class="table-primary">Team Email</th>
-              <th scope="col" class="table-primary">Action</th>
+              <th scope="col" class="table-primary">Team ID</th>
+             
             </tr>
           </thead>
           <tbody>
         
     <?php
     if($_SESSION['admin_id']){
-        $data_fetch_query = "SELECT * FROM `rescue_team`";
+        $data_fetch_query = "SELECT * FROM `rescue_team_members`";
         $data_result = mysqli_query($db, $data_fetch_query);
         if ($data_result->num_rows > 0){
             while($row = $data_result->fetch_assoc()) {
-                $team_ID = $row['team_id'];
+                $role_id = $row['role_id'];
 
         echo "<tr> <td>" .$row["id"].  "</td>";
-        echo "<td>" .$row["team_id"]."</td>";
-        echo "<td>" .$row["team_name"]."</td>";
-        echo "<td>" .$row["team_username"]."</td>";
-        echo "<td>" .$row["team_phone"]."</td>";
-        echo "<td>" .$row["team_email"]."</td>";
-        echo "<td>
-        
-        <form method ='POST' action='server.php'>
-        <input  type='text' hidden  name='teamID' value='$team_ID'>
-        <input type='submit' value='Edit' name='edit-team-btn' class='btn btn-success'>
-        <input type='submit' value='Delete' name='delete-team-btn' class='btn btn-danger'>
-        </form>
-        </td> </tr>";
+        echo "<td>" .$row["fname"]."</td>";
+        echo "<td>" .$row["lname"]."</td>";
+        echo "<td>" .$row["email"]."</td>";
+        echo "<td>" .$row["phone"]."</td>";
+        echo "<td>".$row["rescue_team_id"]."</td> </tr>";
         }
         
         }else{
