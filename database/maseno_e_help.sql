@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 07, 2022 at 03:23 PM
+-- Generation Time: Apr 08, 2022 at 10:18 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -70,9 +70,11 @@ CREATE TABLE `request_status` (
 --
 
 INSERT INTO `request_status` (`id`, `helpID`, `ip_address`, `request_latitude`, `request_longitude`, `status`, `admNo`, `timestamp`) VALUES
-(1, '0TBNC3', '208.98.12.1', '41.8483', '-87.6517', 'Pending', 'CIT/00047/019', '2022-02-18 15:28:30'),
+(1, '0TBNC3', '208.98.12.1', '41.8483', '-87.6517', 'Responding', 'CIT/00047/019', '2022-02-18 15:28:30'),
 (3, '5BA7HT', '17.5.7.8', '37.751', '-97.822', 'Assigned', 'CIT/00047/019', '2022-04-07 05:44:19'),
-(2, 'EG6MIP', '208.98.12.1', '41.8483', '-87.6517', 'Pending', 'CIT/00046/019', '2022-02-17 16:44:03');
+(2, 'EG6MIP', '208.98.12.1', '41.8483', '-87.6517', 'Pending', 'CIT/00046/019', '2022-02-17 16:44:03'),
+(5, 'FBYW47', '165.105.70.4', '37.751', '-97.822', 'Failed', 'CIT/00111/019', '2022-04-07 20:31:04'),
+(4, 'ZYV24Y', '172.15.7.28', '38.5753', '-90.2651', 'Successful', 'ALI/00184/019', '2022-04-07 20:21:49');
 
 -- --------------------------------------------------------
 
@@ -97,7 +99,7 @@ CREATE TABLE `rescue_team` (
 
 INSERT INTO `rescue_team` (`id`, `team_id`, `team_username`, `team_name`, `team_phone`, `team_email`, `team_password`, `registration_timestamp`) VALUES
 (1, 'TM01', 'hydro/022', 'Team Hydro', 786378542, 'letsgo@gmail.com', '904fa0d9bfac311f6f5f7166d993ca5f', '2022-04-04 11:21:26'),
-(2, 'TM02', 'cuty/022', 'Team Cuty', 742975635, 'cuty@gmail.com', 'e90e4df7e2325ba6b79a01234b3b9c36', '2022-04-04 11:21:26'),
+(2, 'TM02', 'cuty/022', 'Team Cuty', 742975635, 'cuty@gmail.com', 'f1504a2f3174405760bdee1ac788cfac', '2022-04-04 11:21:26'),
 (3, 'TM03', 'shifty/022', 'Team Shifty', 759753362, 'shifty@gmail.com', '74f8c415e92197643bc697238b0a6685', '2022-04-04 11:22:37');
 
 -- --------------------------------------------------------
@@ -147,7 +149,9 @@ CREATE TABLE `rescue_team_tasks` (
 INSERT INTO `rescue_team_tasks` (`id`, `task_help_code`, `rescue_team_id`, `assigning_admin_id`, `team_status`, `assignment_time`) VALUES
 (1, '0TBNC3', 'TM01', 'MSU/00046/022', 'Responding', '2022-02-18 15:29:18'),
 (2, 'EG6MIP', 'TM02', 'MSU/00050/022', 'Assigned', '2022-04-07 08:12:18'),
-(3, '5BA7HT', 'TM02', 'MSU/00050/022', 'Assigned', '2022-04-07 05:44:23');
+(3, '5BA7HT', 'TM02', 'MSU/00050/022', 'Assigned', '2022-04-07 05:44:23'),
+(5, 'ZYV24Y', 'TM01', 'MSU/00050/022', 'Successful', '2022-04-07 20:22:04'),
+(6, 'FBYW47', 'TM02', 'MSU/00050/022', 'Failed', '2022-04-07 20:31:49');
 
 -- --------------------------------------------------------
 
@@ -192,6 +196,7 @@ CREATE TABLE `student_details` (
 --
 
 INSERT INTO `student_details` (`regNum`, `firstname`, `lastname`, `emailaddress`, `phonenumber`, `password`, `date`) VALUES
+('ALI/00184/019', 'Mwendwa', 'Mutisya', 'mwendwabenson@gmail.com', '0798951230', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-07 20:20:46'),
 ('APS/00220/019', 'Faith', 'Wavinya', 'wavinyafaith12@gmail.com', '0778985898', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-02-19 17:51:49'),
 ('CIT/00045/019', 'Alex', 'Karanja', 'karanjaalex@gmail.com', '0797457895', '81dc9bdb52d04dc20036dbd8313ed055', '2022-02-13 13:58:55'),
 ('CIT/00046/019', 'Benson', 'Makau', 'bensonmakau2000@gmail.com', '0758413462', '8821fe54f8b9828c97081d56666b6cc9', '2022-02-13 13:47:06'),
@@ -263,13 +268,13 @@ ALTER TABLE `student_details`
 -- AUTO_INCREMENT for table `admin_details`
 --
 ALTER TABLE `admin_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `request_status`
 --
 ALTER TABLE `request_status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `rescue_team`
@@ -287,7 +292,7 @@ ALTER TABLE `rescue_team_members`
 -- AUTO_INCREMENT for table `rescue_team_tasks`
 --
 ALTER TABLE `rescue_team_tasks`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `role_details`

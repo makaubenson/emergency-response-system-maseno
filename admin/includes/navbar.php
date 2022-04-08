@@ -9,7 +9,9 @@
     <ul class="navbar-nav ml-auto">
       <?php
      if($_SESSION['admin_id']){ ?>
-    
+    <li class="nav-item">
+        <a class="nav-link active" href="dashboard.php">Home</a>
+      </li>
      <li class="nav-item">
         <a class="nav-link active" href="inqueue.php">In-Queue</a>
       </li>
