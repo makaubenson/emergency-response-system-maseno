@@ -12,7 +12,9 @@ include 'server.php';
 <div class="table-responsive-lg">
     <table class="table" style='color:black'>
         <thead>
+          <p  style='color:blue; font-weight:normal'>
           Requests not assigned a response team
+</p>
             <tr >
               <!-- <th scope="col" class="table-primary">S.NO</th> -->
               <th scope="col" class="table-primary">Student Name</th>
@@ -70,7 +72,9 @@ include 'server.php';
     <div class="table-responsive-lg">
         <table class="table" style='color:black'>
             <thead>
+              <p style='color:black; font-weight:normal'>
               Requests assigned response team but not being attended to.
+      </p>
                 <tr >
                   <!-- <th scope="col" class="table-info">S.NO</th> -->
                   <th scope="col" class="table-danger">Student Name</th>

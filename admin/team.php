@@ -23,7 +23,8 @@ include 'server.php';
 
     <table class="table" style='color:black; font-weight:normal'>
         <thead>
-          Rescue Teams
+          <h6  class='mt-3' style='color:blue; font-weight:normal'>
+          Rescue Teams </h6>
             <tr >
               <th scope="col" class="table-primary">S.NO</th>
               <th scope="col" class="table-primary">Team ID</th>

@@ -12,7 +12,8 @@ include 'server.php';
 <div class="table-responsive-lg">
     <table class="table" style='color:black; font-weight:normal'>
         <thead>
-          Successful Responses
+          <h6  style='color:blue; font-weight:normal'>
+          Successful Responses</h6>
             <tr >
               <!-- <th scope="col" class="table-primary">S.NO</th> -->
               <th scope="col" class="table-primary">Student Name</th>
