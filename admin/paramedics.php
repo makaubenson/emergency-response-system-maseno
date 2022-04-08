@@ -8,13 +8,14 @@ include 'server.php';
     <?php include './includes/navbar.php'; ?>
 
   <div class="row m-3">
-    <div class="col-md-12">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
 <div class="table-responsive-lg">
     <table class="table">
         <thead>
          Paramedics
             <tr >
-              <th scope="col" class="table-primary">S.NO</th>
+              <!-- <th scope="col" class="table-primary">S.NO</th> -->
               <th scope="col" class="table-primary">First Name</th>
               <th scope="col" class="table-primary">Last Name</th>
               <th scope="col" class="table-primary">Email Address</th>
@@ -27,14 +28,13 @@ include 'server.php';
         
     <?php
     if($_SESSION['admin_id']){
-        $data_fetch_query = "SELECT * FROM `rescue_team_members`";
+        $data_fetch_query = "SELECT * FROM `rescue_team_members` WHERE role_id='MSU/001B/022'";
         $data_result = mysqli_query($db, $data_fetch_query);
         if ($data_result->num_rows > 0){
             while($row = $data_result->fetch_assoc()) {
                 $role_id = $row['role_id'];
 
-        echo "<tr> <td>" .$row["id"].  "</td>";
-        echo "<td>" .$row["fname"]."</td>";
+        echo "<tr> <td>" .$row["fname"].  "</td>";
         echo "<td>" .$row["lname"]."</td>";
         echo "<td>" .$row["email"]."</td>";
         echo "<td>" .$row["phone"]."</td>";
@@ -55,7 +55,7 @@ include 'server.php';
   </div>
     
   </div>
-
+<div class="col-md-3"></div>
 </div>
 
 
