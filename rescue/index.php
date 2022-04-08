@@ -13,7 +13,7 @@ include './components/header.php';
         <div class="col-md-6 mt-5 login-page">
           
         <div class="col-md-12 mb-2 login-page-header" >
-            <h2 class="text-center" style="color: #fff">Maseno E-Help Login</h2>
+            <h2 class="text-center" style="color: #fff">Rescue Team Login</h2>
 
             <div class="row">
               <div class="col-md-3"></div>
@@ -36,7 +36,7 @@ include './components/header.php';
                 include 'errors.php';
                 ?>
               <label for="inputEmail3" class="col-sm-2 col-form-label"
-                >Username</label
+                >User ID</label
               >
               <div class="col-sm-10">
                 <input
@@ -70,24 +70,11 @@ include './components/header.php';
                   name="login_btn"
                   class="btn btn-primary btn-block"
                 >
-                  Sign in
+                  Sign In
                 </button>
               </div>
             </div>
-<!-- <hr>
-           
-             <div class="row">
-             <div class="col-sm-12 register-col">
-               <p class="lead">Don't have an account yet? <a href="./register.php" class="btn btn-success">Register Here</a></p>
-             </div>
-            </div> -->
-            <hr>
-            <!--Register-->
-             <div class="row">
-             <div class="col-sm-12 register-col">
-               <p class="lead"> <a href="./rescue/index.php" class="btn btn-success">Rescue Team Login</a></p>
-             </div>
-            </div>
+
           </form>
         </div>
       </div>
