@@ -19,7 +19,7 @@ catch(Exception $e) {
 
     // ADMIN USER LOGIN
 if (isset($_POST['admin_login_btn'])) {
-  $username = $_POST['admin_id'];
+  $username = strtoupper($_POST['admin_id']);
   $password = $_POST['admin_password'];
   if (empty($username)) {
   	array_push($errors, "Username is required");

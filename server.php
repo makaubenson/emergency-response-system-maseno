@@ -31,7 +31,7 @@ $errors = array();
 // REGISTER USER
 if (isset($_POST['register_btn'])) {
     // receive all input values from the form
-    $registrationNumber= $_POST['regno'];
+    $registrationNumber=strtoupper($_POST['regno']);
     $firstName =  $_POST['firstname'];
     $lastName =  $_POST['lastname'];
     $emailAddress =  $_POST['emailaddress'];
@@ -91,7 +91,7 @@ if (isset($_POST['register_btn'])) {
  $helpCode= strtoupper(random_string(6));
     // LOGIN USER
 if (isset($_POST['login_btn'])) {
-  $username = $_POST['regno'];
+  $username = strtoupper($_POST['regno']);
   $password = $_POST['password'];
   if (empty($username)) {
   	array_push($errors, "Username is required");
