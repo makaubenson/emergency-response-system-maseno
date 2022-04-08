@@ -15,7 +15,7 @@ include 'server.php';
   <button class='btn btn-primary' onclick="window.location.href='add_team.php'">Add New Team</button>
   </div>
   <div class="col-md-4">
-  <button class='btn btn-success' onclick="window.location.href='add_team.php'">Add Team Member</button>
+  <button class='btn btn-success' onclick="window.location.href='add_member.php'">Add Team Member</button>
   </div>
   <div class="col-md-4">
   </div>
