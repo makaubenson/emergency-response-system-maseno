@@ -504,4 +504,49 @@ if (count($errors) == 0) {
     header('location: add_team.php');
   }
 }
+
+    // Register Rescue Team Member
+    if (isset($_POST['register_team_member'])) {
+      // receive all input values from the form
+      $member_firstname=$_POST['member_fname'];
+      $member_lastname=$_POST['member_lname'];
+      $member_email=$_POST['member_email'];
+      $member_phone=$_POST['member_phone']; 
+      $member_role = $_POST['member_role'];
+      $member_team = $_POST['member_team'];
+
+      // form validation: ensure that the form is correctly filled ...
+    // by adding (array_push()) corresponding error unto $errors array
+    if (empty($member_firstname)) { array_push($errors, "First Name is required"); }
+    if (empty($member_lastname)) { array_push($errors, "Last Name is required"); }
+    if (empty($member_email)) { array_push($errors, "Email is required"); }
+    if (empty($member_phone)) { array_push($errors, "Phone Number is required"); }
+    if (empty($member_role)) { array_push($errors, "Role is required"); }
+    if (empty($member_team)) { array_push($errors, "Team is required"); }
+   
+    // first check the database to make sure
+    // a team member does not already exist with the same username and/or email
+    
+    $member_check_query = "SELECT * FROM `rescue_team_members` WHERE email='$member_email'  LIMIT 1";
+    $result = mysqli_query($db, $member_check_query);
+    $member = mysqli_fetch_assoc($result);
+    
+    if ($member) { // if member exists
+      if ($member['email'] === $member_email) {
+        array_push($errors, "User already exists");
+      }
+    }
+    // Finally, register team member if there are no errors in the form
+    if (count($errors) == 0) {
+      $member_register_query = "INSERT INTO `rescue_team_members`(`fname`, `lname`, `email`, `phone`,
+       `role_id`, `rescue_team_id`)
+       VALUES ('$member_firstname','$member_lastname','$member_email','$member_phone',
+       '$member_role','$member_team')";
+     $member_results= mysqli_query($db, $member_register_query);
+      header('location: team.php');
+     
+      }else{
+        header('location: add_member.php');
+      }
+    }
 ?>

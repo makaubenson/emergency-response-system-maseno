@@ -32,7 +32,6 @@ include 'server.php';
           <form
             method="post"
             action="server.php"
-            enctype="multipart/form-data"
             class="register-form"style='color:black; font-weight:normal'
           >
           <?php
@@ -40,45 +39,30 @@ include 'server.php';
           ?>
             <div class="form-group row">
               <label for="inputEmail3" class="col-sm-2 col-form-label"
-                >Team ID</label
+                >First Name</label
               >
               <div class="col-sm-10">
                 <input
                   type="text"
                   class="form-control"
                   id="inputEmail3"
-                  placeholder="Team ID"
-                  name="team_id"
+                  placeholder="First Name"
+                  name="member_fname"
                   required
                 />
               </div>
             </div>
             <div class="form-group row">
               <label for="inputEmail3" class="col-sm-2 col-form-label"
-                >Team Name</label
+                >Last Name</label
               >
               <div class="col-sm-10">
                 <input
                   type="text"
                   class="form-control"
                   id="inputEmail3"
-                  placeholder="Team Name"
-                  name="team_name"
-                  required
-                />
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-2 col-form-label"
-                >Username</label
-              >
-              <div class="col-sm-10">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="inputEmail3"
-                  placeholder="Username"
-                  name="team_username"
+                  placeholder="Last Name"
+                  name="member_lname"
                   required
                 />
               </div>
@@ -93,7 +77,7 @@ include 'server.php';
                   class="form-control"
                   id="inputEmail3"
                   placeholder="Email Address"
-                  name="team_email"
+                  name="member_email"
                   required
                 />
               </div>
@@ -108,58 +92,59 @@ include 'server.php';
                   class="form-control"
                   id="inputEmail3"
                   placeholder="Phone Number"
-                  name="team_phone"
+                  name="member_phone"
                   required
                 />
               </div>
             </div>
-            
-
             <div class="form-group row">
-              <label for="inputPassword3" class="col-sm-2 col-form-label"
-                >Password</label
+              <label for="inputEmail3" class="col-sm-2 col-form-label"
+                >Role</label
               >
               <div class="col-sm-10">
-                <input
-                  type="password"
-                  class="form-control"
-                  id="inputPassword3"
-                  placeholder="Password"
-                  name="team_password1"
-                  required
-                />
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputPassword3" class="col-sm-2 col-form-label"
-                >Confirm Password</label
-              >
-              <div class="col-sm-10">
-                <input
-                  type="password"
-                  class="form-control"
-                  id="inputPassword3"
-                  placeholder="Confirm Password"
+              <select name="member_role" class="form-control form-control-sm" required="required">
+<option value="">Select Role</option>
+<?php $sql=mysqli_query($db,"select * from role_details ");
+while ($rw=mysqli_fetch_array($sql)) {
+  ?>
+  <option value="<?php echo htmlentities($rw['role_id']);?>"><?php echo htmlentities($rw['role_name']);?></option>
+<?php
+}
+?>
+</select>
+    </div>
+</div>
 
-                  name="team_password2"
-                  required
-                />
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-sm-2"></div>
-              <div class="col-sm-10">
-                <button
-                  type="submit"
-                  class="btn btn-success btn-block"
-                  name="register_team_btn"
-                > Register Team
-                </button>
-              </div>
-            </div>
+<div class="form-group row">
+    <label for="inputEmail3" class="col-sm-2 col-form-label"
+    >Team </label>
+    <div class="col-sm-10">
+    <select name="member_team" class="form-control form-control-sm" required="required">
+<option value="">Select Team</option>
+<?php $sql=mysqli_query($db,"select * from rescue_team ");
+while ($rw=mysqli_fetch_array($sql)) {
+?>
+<option value="<?php echo htmlentities($rw['team_id']);?>"><?php echo htmlentities($rw['team_name']);?></option>
+<?php
+}
+?>
+</select>
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-10">
+    <button
+        type="submit"
+        class="btn btn-success btn-block"
+        name="register_team_member"
+    > Register Team Member
+    </button>
+    </div>
+</div>
 
       
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
