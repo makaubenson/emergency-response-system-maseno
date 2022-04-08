@@ -5,7 +5,31 @@ include 'server.php';
 <html lang="en">
 <?php include './includes/header.php'; ?>
   <body>
-    <?php include './includes/navbar.php'; ?>
+  <div class="container-fluid" id="mynav">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="./dashboard.php">Dashboard</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <?php
+     if($_SESSION['admin_rank'] = 'super_admin'){ ?>
+      <li class="nav-item active">
+      <a class="nav-link" href="javascript:void(0)">
+      <?php echo "Welcome ". "<strong style='color:white;'>".$_SESSION['super_admin_firstname']." ".$_SESSION['admin_lastname']."</strong>  <br>"."<strong style='color:#21B941;'> ".$_SESSION['admin_rank']."</strong>";  ?> </a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link btn btn-danger" href="logout.php">Logout </a>
+      </li>
+         <?php
+  }
+ ?>
+    </ul>
+  </div>
+</nav>
+</div>
 <div class="container mt-4">
   <form method="post" action="server.php" class="border border-info p-5">
 <?php
@@ -18,14 +42,14 @@ include 'errors.php';
       </div>
       <div class="col">
         <label for="student_name">Firstname</label>
-        <input type="text" class="form-control" name='adminName'  placeholder="admin name" value='<?php echo $_SESSION['admin_firstname'];?>'>
+        <input type="text" class="form-control" name='adminfname'  placeholder="admin name" value='<?php echo $_SESSION['admin_firstname'];?>'>
       </div>
     </div>
 <br>
 <div class="row">
       <div class="col">
         <label for="student_name">Lastname</label>
-        <input type="text" class="form-control" name='lastname'  placeholder="Enter admin ID" value="<?php echo $_SESSION['admin_lastname']; ?>" >
+        <input type="text" class="form-control" name='adminlname'  placeholder="Enter admin ID" value="<?php echo $_SESSION['admin_lastname']; ?>" >
       </div>
       <div class="col">
         <label for="student_name">Time of Registration</label>
@@ -40,18 +64,18 @@ include 'errors.php';
       </div>
       <div class="col">
         <label for="student_name">Phone Number</label>
-        <input type="text" class="form-control" name='admin_phone' placeholder="phone"  value='<?php echo  $_SESSION['admin_phone'] ;?>'>
+        <input type="text" class="form-control" name='adminPhone' placeholder="phone"  value='<?php echo  $_SESSION['admin_phone'] ;?>'>
       </div>
     </div>
 <br>
 <div class="row">
   <div class="col">
     <label for="student_name">Admin Rank</label>
-    <input type="text" class="form-control" name='admin_rank' placeholder="rank"  value='<?php echo $_SESSION['admin_rank'];?>'>
+    <input type="text" class="form-control" name='adminRank' placeholder="rank"  value='<?php echo $_SESSION['admin_rank'];?>'>
   </div>
   <div class="col">
         <label for="student_name">Password</label>
-        <input type="text" class="form-control" name='admin_password' placeholder="admPassword" value='<?php echo $_SESSION['admin_pass'];?>'>
+        <input type="text" class="form-control" name='adminPass' readonly placeholder="admPassword" value='<?php echo $_SESSION['admin_pass'];?>'>
       </div>
 </div>
 
@@ -59,7 +83,7 @@ include 'errors.php';
     <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
-      <button type="submit" name='update-team-details'class="btn btn-warning btn-block">Update team details</button>
+      <button type="submit" name='update-admin-btn'class="btn btn-warning btn-block">Update admin details</button>
     </div>
     <div class="col-md-4"></div>
   </div>

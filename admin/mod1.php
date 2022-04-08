@@ -71,7 +71,7 @@ include 'server.php';
 
         echo "<td>
         <input  type='text'  hidden name='admin_unique_id' value='$admin_ID'>
-        <input type='submit' value='Update' name='edit-admin-btn' class='btn btn-primary'>
+        <input type='submit' value='Edit' name='edit-admin-btn' class='btn btn-success'>
         <input type='submit' value='Delete' name='delete-admin-btn' class='btn btn-danger'>
  </form>
         </td> </tr>";
