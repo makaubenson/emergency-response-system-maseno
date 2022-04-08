@@ -785,4 +785,61 @@ $row = mysqli_fetch_assoc($result);
   }
 }
 
+// Update Nurse Details
+if (isset($_POST['update-driver-details'])) {
+
+  $driver_fname = $_POST['driver_fname'];
+  $driver_lname = $_POST['driver_lname'];
+  $driver_emailAddress = $_POST['driver_email'];
+  $driver_phoneNum= $_POST['driver_phone'];
+  $driver_member_id= $_POST['driver_member_id'];
+  $driver_team_id= $_POST['driver_team_id'];
+
+  if (empty($driver_fname)) {
+  	array_push($errors, "Driver First Name is required");
+  }
+  if (empty($driver_lname)) {
+  	array_push($errors, "Driver Last Name is required");
+  }
+  if (empty($driver_emailAddress)) {
+  	array_push($errors, "Driver Email is required");
+  }
+  if (empty($driver_phoneNum)) {
+  	array_push($errors, "Driver phone number is required");
+  }
+  if (empty($driver_member_id)) {
+  	array_push($errors, "Driver role ID is required");
+  }
+  if (empty($driver_team_id)) {
+  	array_push($errors, "Driver team ID is required");
+  }
+
+  if (count($errors) == 0) {
+
+  	$driver_data_update_query = "UPDATE `rescue_team_members` SET `fname`='$driver_fname',`lname`='$driver_lname',`email`='$driver_emailAddress',`phone`='$driver_phoneNum',`rescue_team_id`='$driver_team_id'
+    WHERE member_id= '$driver_member_id' ";
+  	$results = mysqli_query($db, $driver_data_update_query);
+  	  header('location: drivers.php');
+  	}else{
+  		array_push($errors, "Unable to push updates");
+      header('location: driver_view.php');
+  	}
+  }
+   // Delete Driver Details
+   if (isset($_POST['delete-driver-btn'])) {
+    $driver_member_id = $_POST['driver_member_id'];
+    
+    if (empty($driver_member_id)) {
+      array_push($errors, "Driver Member ID is required");
+    }
+    if (count($errors) == 0) {
+        $driver_data_delete_query = "DELETE FROM `rescue_team_members` WHERE member_id='$driver_member_id' ";
+        $results = mysqli_query($db, $driver_data_delete_query);
+          header('location: drivers.php');
+        }else{
+          array_push($errors, "Unable to delete record");
+          header('location: drivers.php');
+        }
+    }
+
 ?>

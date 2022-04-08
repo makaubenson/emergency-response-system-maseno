@@ -47,7 +47,7 @@ include 'server.php';
       echo "<td>
         
       <form method ='POST' action='server.php'>
-      <input  type='text'  name='driver_member_id' value='$driver_member_id'>
+      <input  type='text' hidden name='driver_member_id' value='$driver_member_id'>
       <input type='submit' value='Edit' name='edit-driver-btn' class='btn btn-success'>
       <input type='submit' value='Delete' name='delete-driver-btn' class='btn btn-danger'>
       </form>
