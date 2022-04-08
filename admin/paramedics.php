@@ -11,7 +11,7 @@ include 'server.php';
     <div class="col-md-3"></div>
     <div class="col-md-6">
 <div class="table-responsive-lg">
-    <table class="table">
+    <table class="table" style='color:black; font-weight:normal'>
         <thead>
          Paramedics
             <tr >

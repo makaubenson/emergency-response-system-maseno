@@ -10,7 +10,7 @@ include 'server.php';
   <div class="row m-3">
     <div class="col-md-12">
 <div class="table-responsive-lg">
-    <table class="table">
+    <table class="table" style='color:black; font-weight:normal'>
         <thead>
           Rescue Teams
             <tr >

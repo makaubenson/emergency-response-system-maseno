@@ -317,7 +317,7 @@ if (isset($_POST['reassign-team-btn'])) {
     $rescue_team_username = $_POST['team_username'];
     $rescue_team_phone = $_POST['team_phone'];
     $rescue_team_email = $_POST['team_email'];
-    $rescue_team_password = $_POST['team_password'];
+    // $rescue_team_password = $_POST['team_password'];
  //Validating Input Values
     if (empty($rescue_team_id)) {
       array_push($errors, "No Team ID was selected");
@@ -336,10 +336,10 @@ if (isset($_POST['reassign-team-btn'])) {
     }
   
     if (count($errors) == 0) {
-      $encrypted_pass = md5($rescue_team_password);
+     
       $update_team_query = "UPDATE `rescue_team` SET `team_id`='$rescue_team_id',
       `team_username`='$rescue_team_username',`team_name`='$rescue_team_name',`team_phone`='$rescue_team_phone',
-      `team_email`='$rescue_team_email',`team_password`='$encrypted_pass' WHERE team_id='$rescue_team_id' ";
+      `team_email`='$rescue_team_email', WHERE team_id='$rescue_team_id' ";
       $fetch_results = mysqli_query($db, $update_team_query);
         header('location: team.php');
       }else{
