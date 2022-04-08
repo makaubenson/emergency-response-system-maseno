@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 08, 2022 at 01:37 PM
+-- Generation Time: Apr 08, 2022 at 06:06 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -109,7 +109,8 @@ INSERT INTO `rescue_team` (`id`, `team_id`, `team_username`, `team_name`, `team_
 --
 
 CREATE TABLE `rescue_team_members` (
-  `id` int(11) NOT NULL,
+  `id` int(20) NOT NULL,
+  `member_id` varchar(50) NOT NULL,
   `fname` varchar(255) NOT NULL,
   `lname` varchar(255) NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -123,16 +124,16 @@ CREATE TABLE `rescue_team_members` (
 -- Dumping data for table `rescue_team_members`
 --
 
-INSERT INTO `rescue_team_members` (`id`, `fname`, `lname`, `email`, `phone`, `role_id`, `rescue_team_id`, `time_of_registration`) VALUES
-(1, 'Thomas', 'Kimeu', 'kimeuthomas@gmail.com', 712579874, 'MSU/001A/022', 'TM01', '2022-04-08 15:10:41'),
-(2, 'David ', 'Philip', 'philipdavid26@gmail.com', 765248545, 'MSU/001B/022', 'TM02', '2022-04-08 15:10:41'),
-(3, 'Duncan', 'Ondieki', 'ondiekiduncan@gmail.com', 779854258, 'MSU/001C/022', 'TM03', '2022-04-08 15:10:41'),
-(4, 'Mwanzia', 'Kimani', 'kimanimwanzia20@gmail.com', 789542658, 'MSU/001A/022', 'TM02', '2022-04-08 16:03:35'),
-(11, 'James', 'Patrick', 'patrickjames21@gmail.com', 745987456, 'MSU/001A/022', 'TM03', '2022-04-08 16:04:43'),
-(12, 'Caroline', 'Murathe', 'murathercarol@gmail.com', 766879853, 'MSU/001B/022', 'TM01', '2022-04-08 16:06:59'),
-(13, 'Jane', 'Odongo', 'odongojane25@gmail.com', 745783258, 'MSU/001B/022', 'TM03', '2022-04-08 16:07:53'),
-(14, 'Mutia', 'Kioko', 'mutiakioko@gmai.com', 798959863, 'MSU/001C/022', 'TM01', '2022-04-08 16:09:32'),
-(15, 'Angela', 'Mutuku', 'mutukuangie@gmail.com', 725627894, 'MSU/001C/022', 'TM02', '2022-04-08 16:10:31');
+INSERT INTO `rescue_team_members` (`id`, `member_id`, `fname`, `lname`, `email`, `phone`, `role_id`, `rescue_team_id`, `time_of_registration`) VALUES
+(1, 'MB01', 'Thomas', 'Kimeu', 'kimeuthomas@gmail.com', 712579874, 'MSU/001A/022', 'TM01', '2022-04-08 15:10:41'),
+(2, 'MB02', 'David', 'Philip', 'davidphilip@gmail.com', 765248545, 'MSU/001B/022', 'TM02', '2022-04-08 15:10:41'),
+(3, 'MB03', 'Duncan', 'Ondieki', 'ondiekiduncan@gmail.com', 779854258, 'MSU/001C/022', 'TM03', '2022-04-08 15:10:41'),
+(4, 'MB04', 'Mwanzia', 'Kimani', 'kimanimwanzia20@gmail.com', 789542658, 'MSU/001A/022', 'TM02', '2022-04-08 16:03:35'),
+(5, 'MB05', 'James', 'Patrick', 'patrickjames21@gmail.com', 745987456, 'MSU/001A/022', 'TM03', '2022-04-08 16:04:43'),
+(6, 'MB06', 'Caroline', 'Murathe', 'murathercarol@gmail.com', 766879853, 'MSU/001B/022', 'TM01', '2022-04-08 16:06:59'),
+(7, 'MB07', 'Jane', 'Odongo', 'odongojane25@gmail.com', 745783258, 'MSU/001B/022', 'TM03', '2022-04-08 16:07:53'),
+(8, 'MB08', 'Mutia', 'Kioko', 'mutiakioko@gmai.com', 798959863, 'MSU/001C/022', 'TM01', '2022-04-08 16:09:32'),
+(9, 'MB09', 'Angela', 'Mutuku', 'mutukuangie@gmail.com', 725627894, 'MSU/001C/022', 'TM02', '2022-04-08 16:10:31');
 
 -- --------------------------------------------------------
 
@@ -243,9 +244,10 @@ ALTER TABLE `rescue_team`
 -- Indexes for table `rescue_team_members`
 --
 ALTER TABLE `rescue_team_members`
-  ADD PRIMARY KEY (`id`),
+  ADD PRIMARY KEY (`member_id`),
   ADD KEY `role_id` (`role_id`),
-  ADD KEY `rescue_team_id` (`rescue_team_id`) USING BTREE;
+  ADD KEY `rescue_team_id` (`rescue_team_id`) USING BTREE,
+  ADD KEY `member_sno` (`id`);
 
 --
 -- Indexes for table `rescue_team_tasks`
@@ -295,7 +297,7 @@ ALTER TABLE `rescue_team`
 -- AUTO_INCREMENT for table `rescue_team_members`
 --
 ALTER TABLE `rescue_team_members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `rescue_team_tasks`
