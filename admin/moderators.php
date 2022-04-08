@@ -81,17 +81,18 @@ include 'server.php';
         echo "<td>"."No Requests Found"."</td>";
         }
         
-        } elseif ($_SESSION['admin_id'] && $_SESSION['admin_rank'] =='admin') {
+        } elseif ($_SESSION['admin_id']) {
             $data_fetch_query = "SELECT * FROM `admin_details`";
         $data_result = mysqli_query($db, $data_fetch_query);
         if ($data_result->num_rows > 0){
             while($row = $data_result->fetch_assoc()) {
-                $team_ID = $row['team_id'];
+            
                
 
         echo "<tr> <td>" .$row["id"].  "</td>";
         echo "<td>" .$row["admin_id"]."</td>";
-        echo "<td>" .$row["admin_firstname"]." ".$row["admin_lastname"]."</td>";
+        echo "<td>" .$row["admin_firstname"]."</td>";
+        echo "<td>" .$row["admin_lastname"]."</td>";
         echo "<td>" .$row["admin_email"]."</td>";
         echo "<td>" .$row["admin_phone"]."</td>";
         echo "<td>" .$row["admin_rank"]."</td> </tr>";
