@@ -8,19 +8,20 @@ include 'server.php';
     <?php include './includes/navbar.php'; ?>
 
   <div class="row m-3">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
+    <div class="col-md-2"></div>
+    <div class="col-md-7">
 <div class="table-responsive-lg">
     <table class="table mt-3" style='color:black; font-weight:normal'>
         <thead>
          <h3 style='color:blue'>Paramedics</h3>
             <tr >
-              <!-- <th scope="col" class="table-primary">S.NO</th> -->
+              <th scope="col" class="table-primary">Member ID</th>
               <th scope="col" class="table-primary">First Name</th>
               <th scope="col" class="table-primary">Last Name</th>
               <th scope="col" class="table-primary">Email Address</th>
               <th scope="col" class="table-primary">Phone Number</th>
               <th scope="col" class="table-primary">Team ID</th>
+              <th scope="col" class="table-primary">Action</th>
              
             </tr>
           </thead>
@@ -33,12 +34,23 @@ include 'server.php';
         if ($data_result->num_rows > 0){
             while($row = $data_result->fetch_assoc()) {
                 $role_id = $row['role_id'];
+                $user_email = $row["email"];
+                $member_id = $row["member_id"];
 
-        echo "<tr> <td>" .$row["fname"].  "</td>";
+        echo "<tr> <td>" .$row["member_id"].  "</td>";
+        echo "<td>" .$row["fname"]."</td>";
         echo "<td>" .$row["lname"]."</td>";
         echo "<td>" .$row["email"]."</td>";
         echo "<td>" .$row["phone"]."</td>";
-        echo "<td>".$row["rescue_team_id"]."</td> </tr>";
+        echo "<td>" .$row["rescue_team_id"]."</td>";
+        echo "<td>
+        
+        <form method ='POST' action='server.php'>
+        <input  type='text' hidden name='member_id' value='$member_id'>
+        <input type='submit' value='Edit' name='edit-paramedic-btn' class='btn btn-success'>
+        <input type='submit' value='Delete' name='delete-paramedic-btn' class='btn btn-danger'>
+        </form>
+        </td> </tr>";
         }
         
         }else{
@@ -55,23 +67,24 @@ include 'server.php';
   </div>
     
   </div>
-<div class="col-md-3"></div>
+<div class="col-md-2"></div>
 </div>
 
 <div class="row m-3">
-  <div class="col-md-3"></div>
-  <div class="col-md-6">
+  <div class="col-md-2"></div>
+  <div class="col-md-7">
 <div class="table-responsive-lg">
   <table class="table mt-3" style='color:black; font-weight:normal'>
       <thead>
        <h3 style='color:blue'>Nurses</h3>
           <tr >
-            <!-- <th scope="col" class="table-primary">S.NO</th> -->
+            <th scope="col" class="table-primary">Member ID</th>
             <th scope="col" class="table-primary">First Name</th>
             <th scope="col" class="table-primary">Last Name</th>
             <th scope="col" class="table-primary">Email Address</th>
             <th scope="col" class="table-primary">Phone Number</th>
             <th scope="col" class="table-primary">Team ID</th>
+            <th scope="col" class="table-primary">Action</th>
            
           </tr>
         </thead>
@@ -84,12 +97,23 @@ include 'server.php';
       if ($data_result->num_rows > 0){
           while($row = $data_result->fetch_assoc()) {
               $role_id = $row['role_id'];
+              $user_email = $row["email"];
+              $member_id = $row["member_id"];
 
-      echo "<tr> <td>" .$row["fname"].  "</td>";
+      echo "<tr> <td>" .$row["member_id"].  "</td>";
+      echo "<td>" .$row["fname"]."</td>";
       echo "<td>" .$row["lname"]."</td>";
       echo "<td>" .$row["email"]."</td>";
       echo "<td>" .$row["phone"]."</td>";
-      echo "<td>".$row["rescue_team_id"]."</td> </tr>";
+      echo "<td>" .$row["rescue_team_id"]."</td>";
+      echo "<td>
+        
+        <form method ='POST' action='server.php'>
+        <input  type='text' hidden name='nurse_member_id' value='$member_id'>
+        <input type='submit' value='Edit' name='edit-nurse-btn' class='btn btn-success'>
+        <input type='submit' value='Delete' name='delete-nurse-btn' class='btn btn-danger'>
+        </form>
+        </td> </tr>";
       }
       
       }else{
@@ -106,7 +130,7 @@ include 'server.php';
 </div>
   
 </div>
-<div class="col-md-3"></div>
+<div class="col-md-2"></div>
 </div>
 
 

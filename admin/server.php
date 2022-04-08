@@ -514,6 +514,7 @@ if (count($errors) == 0) {
       $member_phone=$_POST['member_phone']; 
       $member_role = $_POST['member_role'];
       $member_team = $_POST['member_team'];
+      $member_id = $_POST['member_id'];
 
       // form validation: ensure that the form is correctly filled ...
     // by adding (array_push()) corresponding error unto $errors array
@@ -523,24 +524,26 @@ if (count($errors) == 0) {
     if (empty($member_phone)) { array_push($errors, "Phone Number is required"); }
     if (empty($member_role)) { array_push($errors, "Role is required"); }
     if (empty($member_team)) { array_push($errors, "Team is required"); }
+    if (empty($member_id)) { array_push($errors, "Member ID is required"); }
+
    
     // first check the database to make sure
     // a team member does not already exist with the same username and/or email
     
-    $member_check_query = "SELECT * FROM `rescue_team_members` WHERE email='$member_email'  LIMIT 1";
+    $member_check_query = "SELECT * FROM `rescue_team_members` WHERE member_id='$member_id'  LIMIT 1";
     $result = mysqli_query($db, $member_check_query);
     $member = mysqli_fetch_assoc($result);
     
     if ($member) { // if member exists
-      if ($member['email'] === $member_email) {
+      if ($member['member_id'] === $member_id) {
         array_push($errors, "User already exists");
       }
     }
     // Finally, register team member if there are no errors in the form
     if (count($errors) == 0) {
-      $member_register_query = "INSERT INTO `rescue_team_members`(`fname`, `lname`, `email`, `phone`,
+      $member_register_query = "INSERT INTO `rescue_team_members`(`member_id`,`fname`, `lname`, `email`, `phone`,
        `role_id`, `rescue_team_id`)
-       VALUES ('$member_firstname','$member_lastname','$member_email','$member_phone',
+       VALUES ('$member_id','$member_firstname','$member_lastname','$member_email','$member_phone',
        '$member_role','$member_team')";
      $member_results= mysqli_query($db, $member_register_query);
       header('location: team.php');
@@ -548,5 +551,197 @@ if (count($errors) == 0) {
       }else{
         header('location: add_member.php');
       }
+    }
+
+    // Edit Paramedic Details
+    if (isset($_POST['edit-paramedic-btn'])) {
+      // receive all input values from the form
+      $member_ID=$_POST['member_id'];
+      
+      // form validation: ensure that the form is correctly filled ...
+    // by adding (array_push()) corresponding error unto $errors array
+    if (empty($member_ID)) { array_push($errors, "Member ID is required"); }
+    if (count($errors) == 0) {
+    
+    $paramedic_check_query = "SELECT * FROM `rescue_team_members` WHERE member_id='$member_ID'  LIMIT 1";
+    $result = mysqli_query($db, $paramedic_check_query);
+    $row = mysqli_fetch_assoc($result);
+   
+      //row data
+      $paramedic_member_id=$row['member_id'];
+      $paramedic_fname=$row['fname'];
+      $paramedic_lname=$row['lname'];
+      $paramedic_mail=$row['email'];
+      $paramedic_phone=$row['phone'];
+      $paramedic_role_id=$row['role_id'];
+      $paramedic_team_id=$row['rescue_team_id'];
+
+      //Create Sessions
+      $_SESSION['member_id'] = $paramedic_member_id;
+      $_SESSION['fname'] = $paramedic_fname;
+      $_SESSION['lname'] =$paramedic_lname;
+      $_SESSION['email'] = $paramedic_mail;
+      $_SESSION['phone'] =$paramedic_phone;
+      $_SESSION['role_id'] =$paramedic_role_id;
+      $_SESSION['rescue_team_id'] =$paramedic_team_id;
+     
+      header('location: paramedic_view.php');
+      }else{
+        header('location: paramedics.php');
+      }
+    }
+
+
+// Update Paramedic Details
+if (isset($_POST['update-paramedic-details'])) {
+
+  $fname = $_POST['paramedic_fname'];
+  $lname = $_POST['paramedic_lname'];
+  $emailAddress = $_POST['paramedic_email'];
+  $phoneNum= $_POST['paramedic_phone'];
+  $param_member_id= $_POST['paramedic_member_id'];
+  $team_id= $_POST['paramedic_team_id'];
+
+  if (empty($fname)) {
+  	array_push($errors, "Paramedic First Name is required");
+  }
+  if (empty($lname)) {
+  	array_push($errors, "Paramedic Last Name is required");
+  }
+  if (empty($emailAddress)) {
+  	array_push($errors, "Paramedic Email is required");
+  }
+  if (empty($phoneNum)) {
+  	array_push($errors, "Paramedic phone number is required");
+  }
+  if (empty($param_member_id)) {
+  	array_push($errors, "Paramedic role ID is required");
+  }
+  if (empty($team_id)) {
+  	array_push($errors, "Paramedic team ID is required");
+  }
+
+  if (count($errors) == 0) {
+
+  	$paramedic_data_update_query = "UPDATE `rescue_team_members` SET `fname`='$fname',`lname`='$lname',`email`='$emailAddress',`phone`='$phoneNum',`rescue_team_id`='$team_id'
+    WHERE member_id= '$param_member_id' ";
+  	$results = mysqli_query($db, $paramedic_data_update_query);
+  	  header('location: paramedics.php');
+  	}else{
+  		array_push($errors, "Unable to push updates");
+      header('location: paramedic_view.php');
+  	}
+  }
+  // Delete Paramedic Details
+if (isset($_POST['delete-paramedic-btn'])) {
+$member_id = $_POST['member_id'];
+
+if (empty($member_id)) {
+  array_push($errors, "Paramedic Member ID is required");
+}
+if (count($errors) == 0) {
+  	$paramedic_data_delete_query = "DELETE FROM `rescue_team_members` WHERE member_id='$member_id ' ";
+  	$results = mysqli_query($db, $paramedic_data_delete_query);
+  	  header('location: paramedics.php');
+  	}else{
+  		array_push($errors, "Unable to push updates");
+      header('location: paramedics.php');
+  	}
+}
+
+// Edit Nurse Details
+if (isset($_POST['edit-nurse-btn'])) {
+  // receive all input values from the form
+  $nurse_member_ID=$_POST['nurse_member_id'];
+  
+  // form validation: ensure that the form is correctly filled ...
+// by adding (array_push()) corresponding error unto $errors array
+if (empty($nurse_member_ID)) { array_push($errors, "Member ID is required"); }
+
+if (count($errors) == 0) {
+
+$nurse_check_query = "SELECT * FROM `rescue_team_members` WHERE member_id='$nurse_member_ID'  LIMIT 1";
+$result = mysqli_query($db, $nurse_check_query);
+$row = mysqli_fetch_assoc($result);
+
+  //row data
+  $nurse_member_id=$row['member_id'];
+  $nurse_fname=$row['fname'];
+  $nurse_lname=$row['lname'];
+  $nurse_mail=$row['email'];
+  $nurse_phone=$row['phone'];
+  $nurse_role_id=$row['role_id'];
+  $nurse_team_id=$row['rescue_team_id'];
+
+  //Create Sessions
+  $_SESSION['nurse_member_id'] = $nurse_member_id;
+  $_SESSION['nurse_fname'] = $nurse_fname;
+  $_SESSION['nurse_lname'] =$nurse_lname;
+  $_SESSION['nurse_email'] = $nurse_mail;
+  $_SESSION['nurse_phone'] =$nurse_phone;
+  $_SESSION['nurse_role_id'] =$nurse_role_id;
+  $_SESSION['nurse_rescue_team_id'] =$nurse_team_id;
+ 
+  header('location: nurse_view.php');
+  }else{
+    header('location: paramedics.php');
+  }
+}
+
+// Update Nurse Details
+if (isset($_POST['update-nurse-details'])) {
+
+  $nurse_fname = $_POST['nurse_fname'];
+  $nurse_lname = $_POST['nurse_lname'];
+  $nurse_emailAddress = $_POST['nurse_email'];
+  $nurse_phoneNum= $_POST['nurse_phone'];
+  $nurse_member_id= $_POST['nurse_member_id'];
+  $nurse_team_id= $_POST['nurse_team_id'];
+
+  if (empty($nurse_fname)) {
+  	array_push($errors, "Nurse First Name is required");
+  }
+  if (empty($nurse_lname)) {
+  	array_push($errors, "Nurse Last Name is required");
+  }
+  if (empty($nurse_emailAddress)) {
+  	array_push($errors, "Nurse Email is required");
+  }
+  if (empty($nurse_phoneNum)) {
+  	array_push($errors, "Nurse phone number is required");
+  }
+  if (empty($nurse_member_id)) {
+  	array_push($errors, "Nurse role ID is required");
+  }
+  if (empty($nurse_team_id)) {
+  	array_push($errors, "Nurse team ID is required");
+  }
+
+  if (count($errors) == 0) {
+
+  	$nurse_data_update_query = "UPDATE `rescue_team_members` SET `fname`='$nurse_fname',`lname`='$nurse_lname',`email`='$nurse_emailAddress',`phone`='$nurse_phoneNum',`rescue_team_id`='$nurse_team_id'
+    WHERE member_id= '$nurse_member_id' ";
+  	$results = mysqli_query($db, $nurse_data_update_query);
+  	  header('location: paramedics.php');
+  	}else{
+  		array_push($errors, "Unable to push updates");
+      header('location: nurse_view.php');
+  	}
+  }
+  // Delete Nurse Details
+  if (isset($_POST['delete-nurse-btn'])) {
+    $nurse_member_id = $_POST['nurse_member_id'];
+    
+    if (empty($nurse_member_id)) {
+      array_push($errors, "Nurse Member ID is required");
+    }
+    if (count($errors) == 0) {
+        $nurse_data_delete_query = "DELETE FROM `rescue_team_members` WHERE member_id='$nurse_member_id' ";
+        $results = mysqli_query($db, $nurse_data_delete_query);
+          header('location: paramedics.php');
+        }else{
+          array_push($errors, "Unable to delete record");
+          header('location: paramedics.php');
+        }
     }
 ?>

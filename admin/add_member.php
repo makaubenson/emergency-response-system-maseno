@@ -99,6 +99,21 @@ include 'server.php';
             </div>
             <div class="form-group row">
               <label for="inputEmail3" class="col-sm-2 col-form-label"
+                >Member ID</label
+              >
+              <div class="col-sm-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputEmail3"
+                  placeholder="Member ID"
+                  name="member_id"
+                  required
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputEmail3" class="col-sm-2 col-form-label"
                 >Role</label
               >
               <div class="col-sm-10">
