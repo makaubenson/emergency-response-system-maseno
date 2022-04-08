@@ -367,55 +367,15 @@ if (isset($_POST['reassign-team-btn'])) {
         }
       }
 
-      // Editing Admin Details
-if (isset($_POST['edit-admin-btn'])) {
-  $moderator_ID = $_POST['moderator_unique_id'];
 
-  if (empty($moderator_ID)) {
-  	array_push($errors, "Moderator ID is required");
-  }
-
-  if (count($errors) == 0) {
-  	$admin_data_fectch_query = "SELECT * FROM `admin_details` WHERE `admin_id`='$moderator_ID' ";
-  	$results = mysqli_query($db, $admin_data_fectch_query);
-  	if (mysqli_num_rows($results) == 1) {
-      $row = mysqli_fetch_assoc($results);
-    // end generate random alphanumeric character
-      //row data
-      $adminID=$row['admin_id'];
-      $adminFname=$row['admin_firstname'];
-      $adminLname=$row['admin_lastname'];
-      $adminMail=$row['admin_email'];
-      $adminPhone=$row['admin_phone'];
-      $adminRank=$row['admin_rank'];
-      $adminPass=$row['admin_password'];
-      $regDate=$row['registration_timestamp'];
-     
-      //sessions
-      $_SESSION['admin_id'] = $adminID;
-      $_SESSION['admin_firstname'] = $adminFname;
-      $_SESSION['admin_lastname'] = $adminLname;
-      $_SESSION['admin_email'] =$adminMail;
-      $_SESSION['admin_phone'] =$adminPhone;
-      $_SESSION['admin_rank'] =$adminRank;
-      $_SESSION['admin_pass'] = $adminPass;
-      $_SESSION['registration_timestamp'] =  $regDate;
-
-  	  header('location: admin_view.php');
-  	}else{
-  		array_push($errors, "Incorrect Username or Password");
-      header('location: index.php');
-  	}
-  }
-}
 // Update Admin Details
-if (isset($_POST['update-admin-btn'])) {
-  $moderator_ID = $_POST['adminid'];
-  $moderator_fname = $_POST['adminfname'];
-  $moderator_lname = $_POST['adminlname'];
-  $moderator_emailAdd= $_POST['admin_mail'];
-  $moderator_phone= $_POST['adminPhone'];
-  $moderator_rank= $_POST['adminRank'];
+if (isset($_POST['edit-admin-btn'])) {
+  $moderator_ID = $_POST['admin_unique_id'];
+  $moderator_fname = $_POST['admin_unique_fname'];
+  $moderator_lname = $_POST['admin_unique_lname'];
+  $moderator_emailAdd= $_POST['admin_unique_mail'];
+  $moderator_phone= $_POST['admin_unique_phone'];
+  $moderator_rank= $_POST['admin_unique_rank'];
   // $moderator_password= $_POST['adminPass'];
 
   if (empty($moderator_ID)) {
@@ -442,11 +402,9 @@ if (isset($_POST['update-admin-btn'])) {
 
   if (count($errors) == 0) {
 
-  	$admin_data_update_query = "UPDATE `admin_details` SET `admin_id`='$moderator_ID',`admin_firstname`='$moderator_fname',`admin_lastname`='$moderator_lname',`admin_email`='$moderator_emailAdd',`admin_phone`='$moderator_phone',`admin_rank`='$moderator_rank',
-    ' WHERE admin_id='$moderator_ID' ";
+  	$admin_data_update_query = "UPDATE `admin_details` SET `admin_id`='$moderator_ID',`admin_firstname`='$moderator_fname',`admin_lastname`='$moderator_lname',`admin_email`='$moderator_emailAdd',`admin_phone`='$moderator_phone',`admin_rank`='$moderator_rank'
+    WHERE admin_id='$moderator_ID' ";
   	$results = mysqli_query($db, $admin_data_update_query);
-  
-
   	  header('location: moderators.php');
   	}else{
   		array_push($errors, "Unable to push updates");
@@ -454,5 +412,45 @@ if (isset($_POST['update-admin-btn'])) {
   	}
   }
   // Deleting Admin Details
-
+  if (isset($_POST['delete-admin-btn'])) {
+    $moderator_ID = $_POST['admin_unique_id'];
+    $moderator_fname = $_POST['admin_unique_fname'];
+    $moderator_lname = $_POST['admin_unique_lname'];
+    $moderator_emailAdd= $_POST['admin_unique_mail'];
+    $moderator_phone= $_POST['admin_unique_phone'];
+    $moderator_rank= $_POST['admin_unique_rank'];
+    // $moderator_password= $_POST['adminPass'];
+  
+    if (empty($moderator_ID)) {
+      array_push($errors, "Moderator ID is required");
+    }
+    if (empty($moderator_fname)) {
+      array_push($errors, "Moderator First Name is required");
+    }
+    if (empty($moderator_lname)) {
+      array_push($errors, "Moderator Last Name is required");
+    }
+    if (empty($moderator_emailAdd)) {
+      array_push($errors, "Moderator Email Address is required");
+    }
+    if (empty($moderator_phone)) {
+      array_push($errors, "Moderator Phone Number is required");
+    }
+    if (empty($moderator_rank)) {
+      array_push($errors, "Moderator Rank is required");
+    }   
+    // if (empty($moderator_password)) {
+    // 	array_push($errors, "Moderator Password is required");
+    // }
+  
+    if (count($errors) == 0) {
+  
+      $admin_data_delete_query = "DELETE FROM `admin_details` WHERE admin_id='$moderator_ID' ";
+        $delete_results = mysqli_query($db, $admin_data_delete_query);
+        header('location: moderators.php');
+      }else{
+        array_push($errors, "Unable to push updates");
+        header('location: moderators.php');
+      }
+    }
 ?>
