@@ -368,41 +368,45 @@ if (isset($_POST['reassign-team-btn'])) {
       }
 
       // Editing Admin Details
-  if (isset($_POST['edit-team-btn'])) {
-    $mod_Id = $_POST['moderator_unique_id'];
-    if (empty($mod_Id )) {
-      array_push($errors, "No Admin ID was selected");
-    }
-  
-    if (count($errors) == 0) {
-      $admin_fetch_query = "SELECT * FROM admin_details WHERE admin_id = '$mod_Id'";
-      $admin_fetch_results = mysqli_query($db, $admin_fetch_query);
-      if (mysqli_num_rows($admin_fetch_results) == 1) {
-        $row = mysqli_fetch_assoc($admin_fetch_results);
-      // end generate random alphanumeric character
-        //row data
-        $admin_id=$row['admin_id'];
-        $admin_fname=$row['admin_firstname'];
-        $admin_lname=$row['admin_lastname'];
-        $admin_email=$row['admin_email'];
-        $admin_phone=$row['admin_phone'];
-        $admin_rank = $row['admin_rank'];
-        $admin_pass=$row['admin_password'];
+if (isset($_POST['edit-admin-btn'])) {
+  $moderator_ID = $_POST['moderator_unique_id'];
 
-        //sessions
-        $_SESSION['admin_id'] = $admin_id;
-        $_SESSION['admin_firstname'] =$admin_fname;
-        $_SESSION['admin_lastname'] =$admin_lname;
-        $_SESSION['admin_email'] =$admin_email;
-        $_SESSION['admin_phone'] =$admin_phone;
-        $_SESSION['admin_rank'] =$admin_rank;
-        $_SESSION['admin_password'] =$admin_pass;
-
-        header('location: admin_view.php');
-      }else{
-        array_push($errors, "Unable to edit data");
-        header('location: moderators.php');
-      }
-    }
+  if (empty($moderator_ID)) {
+  	array_push($errors, "Moderator ID is required");
   }
+
+  if (count($errors) == 0) {
+  	$admin_data_fectch_query = "SELECT * FROM `admin_details` WHERE `admin_id`='$moderator_ID' ";
+  	$results = mysqli_query($db, $admin_data_fectch_query);
+  	if (mysqli_num_rows($results) == 1) {
+      $row = mysqli_fetch_assoc($results);
+    // end generate random alphanumeric character
+      //row data
+      $adminID=$row['admin_id'];
+      $adminFname=$row['admin_firstname'];
+      $adminLname=$row['admin_lastname'];
+      $adminMail=$row['admin_email'];
+      $adminPhone=$row['admin_phone'];
+      $adminRank=$row['admin_rank'];
+      $adminPass=$row['admin_password'];
+      $regDate=$row['registration_timestamp'];
+     
+      //sessions
+      $_SESSION['admin_id'] = $adminID;
+      $_SESSION['admin_firstname'] = $adminFname;
+      $_SESSION['admin_lastname'] = $adminLname;
+      $_SESSION['admin_email'] =$adminMail;
+      $_SESSION['admin_phone'] =$adminPhone;
+      $_SESSION['admin_rank'] =$adminRank;
+      $_SESSION['admin_pass'] = $adminPass;
+      $_SESSION['registration_timestamp'] =  $regDate;
+
+  	  header('location: admin_view.php');
+  	}else{
+  		array_push($errors, "Incorrect Username or Password");
+      header('location: index.php');
+  	}
+  }
+}
+
 ?>
