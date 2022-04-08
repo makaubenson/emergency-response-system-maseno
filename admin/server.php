@@ -744,4 +744,45 @@ if (isset($_POST['update-nurse-details'])) {
           header('location: paramedics.php');
         }
     }
+
+
+// Edit Driver Details
+if (isset($_POST['edit-driver-btn'])) {
+  // receive all input values from the form
+  $driver_member_ID=$_POST['driver_member_id'];
+  
+  // form validation: ensure that the form is correctly filled ...
+// by adding (array_push()) corresponding error unto $errors array
+if (empty($driver_member_ID)) { array_push($errors, "Driver Member ID is required"); }
+
+if (count($errors) == 0) {
+
+$driver_check_query = "SELECT * FROM `rescue_team_members` WHERE member_id='$driver_member_ID'  LIMIT 1";
+$result = mysqli_query($db, $driver_check_query);
+$row = mysqli_fetch_assoc($result);
+
+  //row data
+  $driver_member_id=$row['member_id'];
+  $driver_fname=$row['fname'];
+  $driver_lname=$row['lname'];
+  $driver_mail=$row['email'];
+  $driver_phone=$row['phone'];
+  $driver_role_id=$row['role_id'];
+  $driver_team_id=$row['rescue_team_id'];
+
+  //Create Sessions
+  $_SESSION['driver_member_id'] = $driver_member_id;
+  $_SESSION['driver_fname'] = $driver_fname;
+  $_SESSION['driver_lname'] =$driver_lname;
+  $_SESSION['driver_email'] = $driver_mail;
+  $_SESSION['driver_phone'] =$driver_phone;
+  $_SESSION['driver_role_id'] =$driver_role_id;
+  $_SESSION['driver_rescue_team_id'] =$driver_team_id;
+ 
+  header('location: driver_view.php');
+  }else{
+    header('location: paramedics.php');
+  }
+}
+
 ?>
