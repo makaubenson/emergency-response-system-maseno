@@ -10,6 +10,17 @@ include 'server.php';
   <div class="row m-3">
     <div class="col-md-12">
 <div class="table-responsive-lg">
+<div class="row">
+  <div class="col-md-4">
+  <button class='btn btn-primary' onclick="window.location.href='add_team.php'">Add New Team</button>
+  </div>
+  <div class="col-md-4">
+  <button class='btn btn-success' onclick="window.location.href='add_team.php'">Add Team Member</button>
+  </div>
+  <div class="col-md-4">
+  </div>
+</div>
+
     <table class="table" style='color:black; font-weight:normal'>
         <thead>
           Rescue Teams
@@ -59,7 +70,9 @@ include 'server.php';
 
 ?>
           </tbody>
+          
     </table>
+ 
   </div>
     
   </div>

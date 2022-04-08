@@ -453,4 +453,54 @@ if (isset($_POST['edit-admin-btn'])) {
         header('location: moderators.php');
       }
     }
+
+    // Register Rescue Team
+if (isset($_POST['register_team_btn'])) {
+  // receive all input values from the form
+  $team_ID=strtoupper($_POST['team_id']);
+  $teamName =  $_POST['team_name'];
+  $team_Username =  $_POST['team_username'];
+  $team_Email =  $_POST['team_email'];
+  $team_Number =  $_POST['team_phone'];
+  $password =  $_POST['team_password1'];
+  $confirmPassword =  $_POST['team_password2'];
+  // form validation: ensure that the form is correctly filled ...
+// by adding (array_push()) corresponding error unto $errors array
+if (empty($team_ID)) { array_push($errors, "Team ID is required"); }
+if (empty($teamName)) { array_push($errors, "Team Name is required"); }
+if (empty($team_Username)) { array_push($errors, "Team Username is required"); }
+if (empty($team_Email)) { array_push($errors, "Team Email is required"); }
+if (empty($team_Number)) { array_push($errors, "Team Phone Number is required"); }
+if (empty($password)) { array_push($errors, "Password is required"); }
+if (empty($confirmPassword)) { array_push($errors, "Confirm password is required"); }
+if ($password != $confirmPassword) {
+  array_push($errors, "The two passwords do not match");
+}
+// first check the database to make sure
+// a team does not already exist with the same username and/or email
+
+$team_check_query = "SELECT * FROM `rescue_team` WHERE team_id='$team_ID' OR team_email='$team_Email' LIMIT 1";
+$result = mysqli_query($db, $team_check_query);
+$user = mysqli_fetch_assoc($result);
+
+if ($user) { // if team exists
+  if ($user['team_id'] === $team_ID) {
+    array_push($errors, "Team ID already exists");
+  }
+  if ($user['team_email'] === $team_Email) {
+    array_push($errors, "Email already exists");
+  }
+}
+// Finally, register team if there are no errors in the form
+if (count($errors) == 0) {
+  $encrypted_team_password = md5($confirmPassword);//encrypt the password before saving in the database
+
+  $team_register_query = "INSERT INTO `rescue_team`(`team_id`, `team_username`, `team_name`, `team_phone`, `team_email`, `team_password`)
+  VALUES ('$team_ID','$team_Username','$teamName','$team_Number','$team_Email','$encrypted_team_password')";
+  mysqli_query($db, $team_register_query);
+  header('location: team.php');
+  }else{
+    header('location: add_team.php');
+  }
+}
 ?>
