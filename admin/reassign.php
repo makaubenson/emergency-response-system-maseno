@@ -7,7 +7,7 @@ include 'server.php';
   <body>
     <?php include './includes/navbar.php'; ?>
 <div class="container mt-4">
-  <form method="post" action="server.php" class="border border-info p-5">
+  <form method="post" action="server.php" class="border border-info p-5" style='color:black; font-weight:normal'>
 <?php
 include 'errors.php';
 ?>
