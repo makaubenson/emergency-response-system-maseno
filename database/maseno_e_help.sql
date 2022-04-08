@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 08, 2022 at 06:06 PM
+-- Generation Time: Apr 08, 2022 at 08:32 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -98,9 +98,9 @@ CREATE TABLE `rescue_team` (
 --
 
 INSERT INTO `rescue_team` (`id`, `team_id`, `team_username`, `team_name`, `team_phone`, `team_email`, `team_password`, `registration_timestamp`) VALUES
-(1, 'TM01', 'hydro/022', 'Team Hydro', 786378542, 'letsgo@gmail.com', '904fa0d9bfac311f6f5f7166d993ca5f', '2022-04-04 11:21:26'),
-(2, 'TM02', 'cuty/022', 'Team Cuty', 742975635, 'cuty@gmail.com', 'f1504a2f3174405760bdee1ac788cfac', '2022-04-04 11:21:26'),
-(3, 'TM03', 'shifty/022', 'Team Shifty', 759753362, 'shifty@gmail.com', '74f8c415e92197643bc697238b0a6685', '2022-04-04 11:22:37');
+(1, 'TM01', 'HYDRO/022', 'Team Hydro', 786378542, 'letsgo@gmail.com', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-04 11:21:26'),
+(2, 'TM02', 'CUTY/022', 'Team Cuty', 742975635, 'cuty@gmail.com', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-04 11:21:26'),
+(3, 'TM03', 'SHIFTY/022', 'Team Shifty', 759753362, 'shifty@gmail.com', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-04 11:22:37');
 
 -- --------------------------------------------------------
 
