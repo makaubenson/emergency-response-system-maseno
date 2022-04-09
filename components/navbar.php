@@ -9,11 +9,14 @@
     <ul class="navbar-nav ml-auto">
       <?php
      if($_SESSION['username']){ ?>
-      <li class="nav-item active">
-        <a class="nav-link" href="requests.php">Track Requests </a>
+     <li class="nav-item active">
+        <a class="nav-link" href="dashboard.php">Home </a>
       </li>
       <li class="nav-item active">
-      <a class="nav-link" href="logout.php">
+        <a class="nav-link" href="track.php">Track Requests </a>
+      </li>
+      <li class="nav-item active">
+      <a class="nav-link" href="javascript:void(0)">
       <?php echo "Welcome  ". "<strong style='color:white;'>".$_SESSION['firstname']." ".$_SESSION['lastname']."</strong>  <br>";  ?> </a>
       </li>
       <li class="nav-item active">
