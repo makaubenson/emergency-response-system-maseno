@@ -14,5 +14,5 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./static/css/style.css">
-    <title>Student | Login</title>
+    <title>Rescue Team</title>
   </head>

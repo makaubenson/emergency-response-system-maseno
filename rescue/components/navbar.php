@@ -8,13 +8,13 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
       <?php
-     if($_SESSION['username']){ ?>
+     if($_SESSION['team_id']){ ?>
       <li class="nav-item active">
-        <a class="nav-link" href="requests.php">Track Requests </a>
+        <a class="nav-link" href="javascript:void(0)">Complete </a>
       </li>
       <li class="nav-item active">
       <a class="nav-link" href="logout.php">
-      <?php echo "Welcome  ". "<strong style='color:white;'>".$_SESSION['firstname']." ".$_SESSION['lastname']."</strong>  <br>";  ?> </a>
+      <?php echo "Welcome  ". "<strong style='color:white;'>". $_SESSION['team_name']."</strong>  <br>";  ?> </a>
       </li>
       <li class="nav-item active">
         <a class="nav-link btn btn-danger" href="logout.php">Logout </a>

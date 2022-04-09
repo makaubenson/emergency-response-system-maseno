@@ -30,7 +30,7 @@ include './components/header.php';
           </div>
 
 
-          <form method="post" action="server.php" enctype="multipart/form-data" class="login-form">
+          <form method="post" action="server.php" class="login-form">
             <div class="form-group row">
               <?php
                 include 'errors.php';

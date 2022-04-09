@@ -17,82 +17,10 @@ catch(Exception $e) {
 }
 
 
-//Register User
-// initializing variables
-$registrationNumber="";
-$firstName = "";
-$lastName="";
-$emailAddress="";
-$phoneNumber="";
-$password="";
-$confirmPassword="";
-$errors = array(); 
-
-// REGISTER USER
-if (isset($_POST['register_btn'])) {
-    // receive all input values from the form
-    $registrationNumber=strtoupper($_POST['regno']);
-    $firstName =  $_POST['firstname'];
-    $lastName =  $_POST['lastname'];
-    $emailAddress =  $_POST['emailaddress'];
-    $phoneNumber =  $_POST['phone'];
-    $password =  $_POST['password'];
-    $confirmPassword =  $_POST['confirmpassword'];
-    // form validation: ensure that the form is correctly filled ...
-  // by adding (array_push()) corresponding error unto $errors array
-  if (empty($firstName)) { array_push($errors, "Firstname is required"); }
-  if (empty($lastName)) { array_push($errors, "LastName is required"); }
-  if (empty($registrationNumber)) { array_push($errors, "Registration Number is required"); }
-  if (empty($emailAddress)) { array_push($errors, "Email Address is required"); }
-  if (empty($phoneNumber)) { array_push($errors, "Phone Number is required"); }
-  if (empty($password)) { array_push($errors, "Password is required"); }
-  if (empty($confirmPassword)) { array_push($errors, "Please Confirm Password"); }
-  if ($password != $confirmPassword) {
-	array_push($errors, "The two passwords do not match");
-  }
- // first check the database to make sure
-  // a user does not already exist with the same username and/or email
- 
-  $user_check_query = "SELECT * FROM student_details WHERE regNum='$registrationNumber' OR emailaddress='$emailAddress' LIMIT 1";
-  $result = mysqli_query($db, $user_check_query);
-  $user = mysqli_fetch_assoc($result);
-
-  if ($user) { // if user exists
-    if ($user['regNum'] === $registrationNumber) {
-      array_push($errors, "Registration number already exists");
-    }
-    if ($user['emailaddress'] === $emailAddress) {
-      array_push($errors, "Email already exists");
-    }
-  }
-
-  // Finally, register user if there are no errors in the form
-  if (count($errors) == 0) {
-    $password = md5($confirmPassword);//encrypt the password before saving in the database
-
-    $register_query = "INSERT INTO student_details(`regNum`, `firstname`, `lastname`, `emailaddress`, `phonenumber`, `password`) 
-              VALUES('$registrationNumber','$firstName','$lastName','$emailAddress','$phoneNumber','$password')";
-    mysqli_query($db, $register_query);
-    header('location: index.php');
-    }else{
-      header('location: register.php');
-    }
-}
-//Login User
-// generate random alphanumeric character
-    function random_string($length) {
-      $key = '';
-      $keys = array_merge(range(0, 9), range('a', 'z'));
-      for ($i = 0; $i < $length; $i++) {
-          $key .= $keys[array_rand($keys)];
-      }
-      return $key;
-  }
- $helpCode= strtoupper(random_string(6));
-    // LOGIN USER
-if (isset($_POST['login_btn'])) {
-  $username = strtoupper($_POST['regno']);
-  $password = $_POST['password'];
+// Rescue Team Login
+if (isset($_POST['rescue_login_btn'])) {
+  $username = strtoupper($_POST['rescue_user_id']);
+  $password = $_POST['rescue_password'];
   if (empty($username)) {
   	array_push($errors, "Username is required");
   }
@@ -101,26 +29,24 @@ if (isset($_POST['login_btn'])) {
   }
   if (count($errors) == 0) {
     $encrypted_password = md5($password);
-  	$login_query = "SELECT * FROM student_details WHERE `regNum`='$username' AND `password`='$encrypted_password'";
-  	$results = mysqli_query($db, $login_query);
+  	$rescue_login_query = "SELECT * FROM  rescue_team WHERE `team_username`='$username' AND `team_password`='$encrypted_password'";
+  	$results = mysqli_query($db, $rescue_login_query);
   	if (mysqli_num_rows($results) == 1) {
-      
-      $row = mysqli_fetch_assoc($results);
+    $row = mysqli_fetch_assoc($results);
   
     // end generate random alphanumeric character
       //row data
-      $regNumber=$row['regNum'];
-      $firstName=$row['firstname'];
-      $lastName=$row['lastname'];
-      $Email=$row['emailaddress'];
-      $Phone=$row['phonenumber'];
+      $team_ID=$row['team_id'];
+      $team_username=$row['team_username'];
+      $team_Name=$row['team_name'];
+      $team_Phone=$row['team_phone'];
+      $team_Email=$row['team_email'];
       //sessions
-      $_SESSION['username'] = $regNumber;
-      $_SESSION['helpcode'] = $helpCode;
-      $_SESSION['firstname'] = $firstName;
-      $_SESSION['lastname'] =$lastName;
-      $_SESSION['emailaddress'] =$Email;
-      $_SESSION['phonenumber'] =$Phone;
+      $_SESSION['team_id'] = $team_ID;
+      $_SESSION['team_username'] = $team_username;
+      $_SESSION['team_name'] = $team_Name;
+      $_SESSION['team_phone'] =$team_Phone;
+      $_SESSION['team_email'] =$team_Email;
   	  $_SESSION['success'] = "You are now logged in";
 
   	  header('location: dashboard.php');
@@ -131,49 +57,84 @@ if (isset($_POST['login_btn'])) {
   }
 }
 
+// Responding
+if (isset($_POST['respond-btn'])) {
+  $task_code = $_POST['task_code'];
+  $student_reg = $_POST['student_reg'];
+  $ip_add= $_POST['rescue_ip'];
+  $long = $_POST['rescue_longitude'];
+  $lat = $_POST['rescue_latitude'];
 
-// Update Location Details
-if (isset($_POST['help-btn'])) {
-  // receive all input values from the form
-  $ipAddress= $_POST['ipaddress'];
-  $Longitude=  $_POST['longitude'];
-  $Latitude =  $_POST['latitude'];
-  $regno =  $_POST['username'];
-  $helpCode=  $_POST['helpcode'];
-  // form validation: ensure that the form is correctly filled ...
-// by adding (array_push()) corresponding error unto $errors array
-if (empty($ipAddress)) { array_push($errors, "Unable to Track your Ip Address"); }
-if (empty($Longitude)) { array_push($errors, "Unable to Track your Longitude"); }
-if (empty($Latitude)) { array_push($errors, "Unable to Track your Latitude"); }
-if (empty($regno)) { array_push($errors, "Unable to Track your Registration Number"); }
-if (empty($helpCode)) { array_push($errors, "Unable to Track your Help Code"); }
-// Finally, register user location
-if (count($errors) == 0) {
-  $status_query ="INSERT INTO `request_status`(`helpID`, `admNo`,`ip_address`, `request_latitude`, `request_longitude`) VALUES ('$helpCode','$regno','$ipAddress','$Latitude','$Longitude')";
-  mysqli_query($db, $status_query);
-//Select data from location table
-              $location_Select_query = "SELECT * FROM request_status WHERE `helpID`='$helpCode'";
-                  $results = mysqli_query($db, $location_Select_query);
-                  if (mysqli_num_rows($results) == 1) {
-                    $row = mysqli_fetch_assoc($results);
-                    //row data
-                    $regNumber=$row['admNo'];
-                    $long=$row['request_longitude'];
-                    //sessions
-                    $_SESSION['user'] = $regNumber;
-                    $_SESSION['longitude'] = $long;
-
-                    header('location: dashboard.php');
-                  }else{
-                    array_push($errors, "Unable to process your request. Contact The System Administrator");
-                    header('location: dashboard.php');
-                  }
-}else{
-                  header('location: dashboard.php');
-                  array_push($errors, "Unable to update data in the database");
+  if (empty($task_code)) {
+  	array_push($errors, "Help ID is required");
+  }
+  if (empty($student_reg)) {
+  	array_push($errors, "Student ADM No. is required");
+  }
+  if (empty($ip_add)) {
+  	array_push($errors, "Ip address is required");
+  }
+  if (empty($long)) {
+  	array_push($errors, "Longitude is required");
+  }
+  if (empty($lat)) {
+  	array_push($errors, "Latitude is required");
   }
 
+  if (count($errors) == 0) {
+    //Update request_status and  rescue_team_tasks tables to assign 'Responding' to the status of the specific helpCode
+$request_update_query = "UPDATE `request_status` SET `status`='Responding' WHERE helpID='$task_code' AND admNo='$student_reg'";
+$update_results = mysqli_query($db, $request_update_query);
+
+$task_update_query = "UPDATE `rescue_team_tasks` SET `team_status`='Responding',ip_address='$ip_add',longitude='$long',latitude='$lat' WHERE task_help_code ='$task_code' ";
+$task_update_results = mysqli_query($db, $task_update_query);
+
+$rescue_select_query = "SELECT * FROM `request_status` WHERE helpID ='$task_code' AND admNo='$student_reg' ";
+$select_results = mysqli_query($db, $rescue_select_query);
+if (mysqli_num_rows($select_results) == 1) {
+$row = mysqli_fetch_assoc($select_results);
+  
+    // end generate random alphanumeric character
+      //row data
+      $help_id=$row['helpID'];
+      $ip_address=$row['ip_address'];
+      $latitude=$row['request_latitude'];
+      $longitude=$row['request_longitude'];
+      $request_status=$row['status'];
+      $student_adm=$row['admNo'];
+      $time_of_request=$row['timestamp'];
+      //sessions
+      $_SESSION['helpID'] = $help_id;
+      $_SESSION['ip_address'] =$ip_address;
+      $_SESSION['request_latitude'] = $latitude;
+      $_SESSION['request_longitude'] =$longitude;
+      $_SESSION['status'] =$request_status;
+      $_SESSION['admNo'] =$student_adm;
+      $_SESSION['timestamp'] =$time_of_request;
 }
 
+ $task_select_query = "SELECT * FROM `rescue_team_tasks` WHERE task_help_code ='$task_code'";
+$task_select_results = mysqli_query($db, $task_select_query);
+if (mysqli_num_rows($task_select_results) == 1) {
+$rw = mysqli_fetch_assoc($task_select_results);
+  
+    // end generate random alphanumeric character
+      $ipAddress=$rw['ip_address'];
+      $lat=$rw['latitude'];
+      $long=$rw['longitude'];
+    
+      //sessions
+      $_SESSION['ipaddress'] =$ipAddress;
+      $_SESSION['rescue_lat'] = $lat;
+      $_SESSION['rescue_long'] =$long;
+ 
+  	  header('location: task_view.php');
+  	}else{
+  		array_push($errors, "Unable to make updates");
+      header('location: dashboard.php');
+  	
+  }
+  }
+}
 
 ?>
