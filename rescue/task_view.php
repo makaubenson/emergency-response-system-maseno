@@ -32,11 +32,11 @@ include 'errors.php';
     <div class="row">
       <div class="col">
         <label for="student_name">Latitude</label>
-        <input type="text" class="form-control" name='latitude' readonly placeholder="Latitude"  value='<?php echo  $_SESSION['request_latitude'];?>'>
+        <input type="text" class="form-control" name='task_latitude' readonly placeholder="Latitude"  value='<?php echo  $_SESSION['request_latitude'];?>'>
       </div>
       <div class="col">
         <label for="student_name">Longitude</label>
-        <input type="text" class="form-control" name='longitude' readonly placeholder="Longitude"  value='<?php echo $_SESSION['request_longitude'];?>'>
+        <input type="text" class="form-control" name='task_longitude' readonly placeholder="Longitude"  value='<?php echo $_SESSION['request_longitude'];?>'>
       </div>
     </div>
 <br>

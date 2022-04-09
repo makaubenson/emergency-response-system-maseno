@@ -136,5 +136,24 @@ $rw = mysqli_fetch_assoc($task_select_results);
   }
   }
 }
+// Viewing Map
+if (isset($_POST['view-map-btn'])) {
+  $lat = $_POST['task_latitude'];
+  $long = $_POST['task_longitude'];
+
+  if (empty($lat)) {
+  	array_push($errors, "Latitude is required");
+  }
+  if (empty($long)) {
+  	array_push($errors, "Longitude is required");
+  }
+
+  if (count($errors) == 0) {
+  	  header('location: map.php');
+  	}else{
+  		array_push($errors, "Unable to view map");
+      header('location: task_view.php');
+  }
+  }
 
 ?>

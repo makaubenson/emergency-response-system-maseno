@@ -7,13 +7,9 @@ include 'server.php';
   <body>
     <?php include './components/navbar.php'; ?>
 
-<form method='post'>
-    <p>
-        <input type="text" name="address" id="Enter Address">
-    </p>
-</form>
-
-
+<div class="container mt-5">
+<iframe width='100%' height='500' src='https://maps.google.com/maps?q=<?php echo  $_SESSION['request_latitude'];?>, <?php echo $_SESSION['request_longitude'];?>&output=embed'></iframe>
+</div>
 
     <script src='./static/js/app.js'></script>
   </body>
