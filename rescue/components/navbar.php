@@ -13,10 +13,10 @@
         <a class="nav-link" href="dashboard.php">Home </a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="complete.php">Complete </a>
+        <a class="nav-link" href="complete.php">Succesful Tasks</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="failed.php">Failed </a>
+        <a class="nav-link" href="failed.php">Failed Tasks</a>
       </li>
       <li class="nav-item active">
       <a class="nav-link" href="javascript:void(0)">
