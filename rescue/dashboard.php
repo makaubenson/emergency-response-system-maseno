@@ -10,10 +10,10 @@ include 'server.php';
 // $userIP = $_SERVER['REMOTE_ADDR'];
  
 //static ip address
-$ip = "165.105.70.4"; 
+//$ip = "165.105.70.4"; 
 
 //Get IP Address of User in PHP
-// $ip = $_SERVER['REMOTE_ADDR']; 
+ $ip = $_SERVER['REMOTE_ADDR']; 
 
 //call api
 $url = file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip);

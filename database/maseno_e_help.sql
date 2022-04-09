@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 08, 2022 at 08:32 PM
+-- Generation Time: Apr 09, 2022 at 08:06 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -70,9 +70,9 @@ CREATE TABLE `request_status` (
 --
 
 INSERT INTO `request_status` (`id`, `helpID`, `ip_address`, `request_latitude`, `request_longitude`, `status`, `admNo`, `timestamp`) VALUES
-(1, '0TBNC3', '208.98.12.1', '41.8483', '-87.6517', 'Responding', 'CIT/00047/019', '2022-02-18 15:28:30'),
-(3, '5BA7HT', '17.5.7.8', '37.751', '-97.822', 'Assigned', 'CIT/00047/019', '2022-04-07 05:44:19'),
-(2, 'EG6MIP', '208.98.12.1', '41.8483', '-87.6517', 'Pending', 'CIT/00046/019', '2022-02-17 16:44:03'),
+(1, '0TBNC3', '208.98.12.1', '41.8483', '-87.6517', 'Assigned', 'CIT/00047/019', '2022-02-18 15:28:30'),
+(3, '5BA7HT', '17.5.7.8', '37.751', '-97.822', 'Responding', 'CIT/00047/019', '2022-04-07 05:44:19'),
+(2, 'EG6MIP', '208.98.12.1', '41.8483', '-87.6517', 'Assigned', 'CIT/00046/019', '2022-02-17 16:44:03'),
 (5, 'FBYW47', '165.105.70.4', '37.751', '-97.822', 'Failed', 'CIT/00111/019', '2022-04-07 20:31:04'),
 (4, 'ZYV24Y', '172.15.7.28', '38.5753', '-90.2651', 'Successful', 'ALI/00184/019', '2022-04-07 20:21:49');
 
@@ -147,19 +147,22 @@ CREATE TABLE `rescue_team_tasks` (
   `rescue_team_id` varchar(50) NOT NULL,
   `assigning_admin_id` varchar(50) NOT NULL,
   `team_status` varchar(255) NOT NULL DEFAULT 'Unassigned',
-  `assignment_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `assignment_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ip_address` varchar(50) NOT NULL DEFAULT '0.0.0.0',
+  `latitude` varchar(20) NOT NULL DEFAULT '0.0',
+  `longitude` varchar(20) NOT NULL DEFAULT '0.0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `rescue_team_tasks`
 --
 
-INSERT INTO `rescue_team_tasks` (`id`, `task_help_code`, `rescue_team_id`, `assigning_admin_id`, `team_status`, `assignment_time`) VALUES
-(1, '0TBNC3', 'TM01', 'MSU/00046/022', 'Responding', '2022-02-18 15:29:18'),
-(2, 'EG6MIP', 'TM02', 'MSU/00050/022', 'Assigned', '2022-04-07 08:12:18'),
-(3, '5BA7HT', 'TM02', 'MSU/00050/022', 'Assigned', '2022-04-07 05:44:23'),
-(5, 'ZYV24Y', 'TM01', 'MSU/00050/022', 'Successful', '2022-04-07 20:22:04'),
-(6, 'FBYW47', 'TM02', 'MSU/00050/022', 'Failed', '2022-04-07 20:31:49');
+INSERT INTO `rescue_team_tasks` (`id`, `task_help_code`, `rescue_team_id`, `assigning_admin_id`, `team_status`, `assignment_time`, `ip_address`, `latitude`, `longitude`) VALUES
+(1, '0TBNC3', 'TM01', 'MSU/00046/022', 'Assigned', '2022-02-18 15:29:18', '0.0.0.0', '0.0', '0.0'),
+(2, 'EG6MIP', 'TM02', 'MSU/00050/022', 'Assigned', '2022-04-07 08:12:18', '0.0.0.0', '0.0', '0.0'),
+(3, '5BA7HT', 'TM02', 'MSU/00050/022', 'Responding', '2022-04-07 05:44:23', '165.105.70.4', '37.751', '-97.822'),
+(5, 'ZYV24Y', 'TM01', 'MSU/00050/022', 'Successful', '2022-04-07 20:22:04', '0.0.0.0', '0.0', '0.0'),
+(6, 'FBYW47', 'TM02', 'MSU/00050/022', 'Failed', '2022-04-07 20:31:49', '0.0.0.0', '0.0', '0.0');
 
 -- --------------------------------------------------------
 
@@ -279,7 +282,7 @@ ALTER TABLE `student_details`
 -- AUTO_INCREMENT for table `admin_details`
 --
 ALTER TABLE `admin_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `request_status`
@@ -291,13 +294,13 @@ ALTER TABLE `request_status`
 -- AUTO_INCREMENT for table `rescue_team`
 --
 ALTER TABLE `rescue_team`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `rescue_team_members`
 --
 ALTER TABLE `rescue_team_members`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `rescue_team_tasks`
