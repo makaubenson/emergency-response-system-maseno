@@ -60,17 +60,17 @@ include './components/header.php';
   <?php
   include 'errors.php';
   ?>
-  <caption>List of Tasks assigned to <?php  echo  $_SESSION['team_name']; ?></caption>
+  <caption>List of Tasks that Failed and were assigned to <?php  echo  $_SESSION['team_name']; ?></caption>
   <thead>
-      <h3>Assigned Tasks</h3>
+      <h3>Failed Tasks</h3>
     <tr class='bg-primary'>
       <th scope="col">Help Code</th>
       <th scope="col">Registration Number</th>
       <th scope="col">Student Name</th>
       <th scope="col">Request Status</th>
       <th scope="col">Time of Request</th>
-      <th scope="col">Team Status </th>
-      <th scope="col">Action</th>
+      <th scope="col">Request Status </th>
+
     </tr>
   </thead>
   <tbody>
@@ -84,7 +84,7 @@ include './components/header.php';
              FROM ((request_status
              INNER JOIN student_details ON request_status.admNo = student_details.regNum)
              INNER JOIN  rescue_team_tasks ON request_status.helpID =  rescue_team_tasks.task_help_code)
-             WHERE rescue_team_tasks.rescue_team_id = '".$_SESSION['team_id']."' AND rescue_team_tasks.team_status ='Assigned' ORDER BY timestamp ASC ";
+             WHERE rescue_team_tasks.rescue_team_id = '".$_SESSION['team_id']."' AND rescue_team_tasks.team_status ='Failed' ORDER BY timestamp ASC ";
              
             $data_result = mysqli_query($db, $data_fetch_query);
             if ($data_result->num_rows > 0){
@@ -97,21 +97,8 @@ include './components/header.php';
             echo "<td>" .$row["firstname"]."</td>";
             echo "<td>" .$row["status"]."</td>";
             echo "<td>" .$row["timestamp"]."</td>";
-            echo "<td>" .$row["team_status"]."</td>";
+            echo "<td>" .$row["team_status"]."</td> </tr>";
          
-            echo "<td>
-            
-            <form method ='POST' action='server.php'>
-            <input  type='text' hidden name='task_code' value='$task_code'>
-            <input  type='text' hidden name='rescue_ip' value='$getInfo->geoplugin_request'>
-            <input  type='text'  hidden name='rescue_latitude' value='$getInfo->geoplugin_latitude'>
-            <input  type='text' hidden  name='rescue_longitude' value='$getInfo->geoplugin_longitude'>
-          
-                <input  type='text'  hidden name='student_reg' value='$student_reg'>
-            <input type='submit' value='Respond' name='respond-btn' class='btn btn-primary'>
-         
-            </form>
-            </td> </tr>";
             }
             
             }else{
