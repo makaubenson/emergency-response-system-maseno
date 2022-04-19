@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.5
+-- version 4.9.7
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 09, 2022 at 08:06 PM
--- Server version: 5.7.24
--- PHP Version: 7.4.1
+-- Generation Time: Apr 19, 2022 at 12:46 PM
+-- Server version: 10.3.34-MariaDB
+-- PHP Version: 7.4.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `maseno_e_help`
+-- Database: `blinxcok_maseno_e_help`
 --
 
 -- --------------------------------------------------------
@@ -37,7 +37,7 @@ CREATE TABLE `admin_details` (
   `admin_phone` varchar(15) NOT NULL,
   `admin_rank` varchar(20) NOT NULL,
   `admin_password` varchar(255) NOT NULL,
-  `registration_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `registration_timestamp` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -62,7 +62,7 @@ CREATE TABLE `request_status` (
   `request_longitude` varchar(50) NOT NULL,
   `status` varchar(50) DEFAULT 'Pending',
   `admNo` varchar(255) NOT NULL,
-  `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `timestamp` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -70,11 +70,7 @@ CREATE TABLE `request_status` (
 --
 
 INSERT INTO `request_status` (`id`, `helpID`, `ip_address`, `request_latitude`, `request_longitude`, `status`, `admNo`, `timestamp`) VALUES
-(1, '0TBNC3', '208.98.12.1', '41.8483', '-87.6517', 'Assigned', 'CIT/00047/019', '2022-02-18 15:28:30'),
-(3, '5BA7HT', '17.5.7.8', '37.751', '-97.822', 'Responding', 'CIT/00047/019', '2022-04-07 05:44:19'),
-(2, 'EG6MIP', '208.98.12.1', '41.8483', '-87.6517', 'Assigned', 'CIT/00046/019', '2022-02-17 16:44:03'),
-(5, 'FBYW47', '165.105.70.4', '37.751', '-97.822', 'Failed', 'CIT/00111/019', '2022-04-07 20:31:04'),
-(4, 'ZYV24Y', '172.15.7.28', '38.5753', '-90.2651', 'Successful', 'ALI/00184/019', '2022-04-07 20:21:49');
+(6, '351FDF', '197.156.137.185', '-1.2841', '36.8155', 'Responding', 'CIT/00046/019', '2022-04-19 12:20:09');
 
 -- --------------------------------------------------------
 
@@ -90,7 +86,7 @@ CREATE TABLE `rescue_team` (
   `team_phone` int(15) NOT NULL,
   `team_email` varchar(50) NOT NULL,
   `team_password` varchar(255) NOT NULL,
-  `registration_timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `registration_timestamp` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -117,7 +113,7 @@ CREATE TABLE `rescue_team_members` (
   `phone` int(15) NOT NULL,
   `role_id` varchar(50) NOT NULL,
   `rescue_team_id` varchar(50) NOT NULL,
-  `time_of_registration` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `time_of_registration` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -147,7 +143,7 @@ CREATE TABLE `rescue_team_tasks` (
   `rescue_team_id` varchar(50) NOT NULL,
   `assigning_admin_id` varchar(50) NOT NULL,
   `team_status` varchar(255) NOT NULL DEFAULT 'Unassigned',
-  `assignment_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `assignment_time` datetime NOT NULL DEFAULT current_timestamp(),
   `ip_address` varchar(50) NOT NULL DEFAULT '0.0.0.0',
   `latitude` varchar(20) NOT NULL DEFAULT '0.0',
   `longitude` varchar(20) NOT NULL DEFAULT '0.0'
@@ -158,11 +154,7 @@ CREATE TABLE `rescue_team_tasks` (
 --
 
 INSERT INTO `rescue_team_tasks` (`id`, `task_help_code`, `rescue_team_id`, `assigning_admin_id`, `team_status`, `assignment_time`, `ip_address`, `latitude`, `longitude`) VALUES
-(1, '0TBNC3', 'TM01', 'MSU/00046/022', 'Assigned', '2022-02-18 15:29:18', '0.0.0.0', '0.0', '0.0'),
-(2, 'EG6MIP', 'TM02', 'MSU/00050/022', 'Assigned', '2022-04-07 08:12:18', '0.0.0.0', '0.0', '0.0'),
-(3, '5BA7HT', 'TM02', 'MSU/00050/022', 'Responding', '2022-04-07 05:44:23', '165.105.70.4', '37.751', '-97.822'),
-(5, 'ZYV24Y', 'TM01', 'MSU/00050/022', 'Successful', '2022-04-07 20:22:04', '0.0.0.0', '0.0', '0.0'),
-(6, 'FBYW47', 'TM02', 'MSU/00050/022', 'Failed', '2022-04-07 20:31:49', '0.0.0.0', '0.0', '0.0');
+(7, '351FDF', 'TM02', 'MSU/00046/022', 'Responding', '2022-04-19 12:21:22', '197.156.137.185', '-1.2841', '36.8155');
 
 -- --------------------------------------------------------
 
@@ -199,7 +191,7 @@ CREATE TABLE `student_details` (
   `emailaddress` varchar(255) NOT NULL,
   `phonenumber` varchar(15) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -207,15 +199,7 @@ CREATE TABLE `student_details` (
 --
 
 INSERT INTO `student_details` (`regNum`, `firstname`, `lastname`, `emailaddress`, `phonenumber`, `password`, `date`) VALUES
-('ALI/00184/019', 'Mwendwa', 'Mutisya', 'mwendwabenson@gmail.com', '0798951230', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-07 20:20:46'),
-('APS/00220/019', 'Faith', 'Wavinya', 'wavinyafaith12@gmail.com', '0778985898', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-02-19 17:51:49'),
-('CIT/00045/019', 'Alex', 'Karanja', 'karanjaalex@gmail.com', '0797457895', '81dc9bdb52d04dc20036dbd8313ed055', '2022-02-13 13:58:55'),
-('CIT/00046/019', 'Benson', 'Makau', 'bensonmakau2000@gmail.com', '0758413462', '8821fe54f8b9828c97081d56666b6cc9', '2022-02-13 13:47:06'),
-('CIT/00047/019', 'James', 'Bondo', 'bondojames@gmail.com', '0784564524', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-02-17 14:18:57'),
-('CIT/000500/019', 'Alex', 'Kioko', 'kiokoaleki25@gmail.com', '0712357895', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-08 13:54:08'),
-('CIT/00100/019', 'Grace', 'Kimanthi', 'graciekim@gmail.com', '0798589746', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-08 13:53:16'),
-('CIT/00111/019', 'Stephen', 'Mwau', 'mwausteve@gmail.com', '0712452586', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-02-17 17:49:31'),
-('CIT/00222/019', 'Lisper', 'Ndegwa', 'lisperd@gmail.com', '0745142542', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-02-19 14:01:30');
+('CIT/00046/019', 'Benson', 'Makau', 'bensonmakau2000@gmail.com', '0758413462', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 12:19:40');
 
 --
 -- Indexes for dumped tables
@@ -288,7 +272,7 @@ ALTER TABLE `admin_details`
 -- AUTO_INCREMENT for table `request_status`
 --
 ALTER TABLE `request_status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `rescue_team`
@@ -306,7 +290,7 @@ ALTER TABLE `rescue_team_members`
 -- AUTO_INCREMENT for table `rescue_team_tasks`
 --
 ALTER TABLE `rescue_team_tasks`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `role_details`

@@ -137,9 +137,10 @@ if (isset($_POST['admin_login_btn'])) {
         $insert_query = "INSERT INTO `rescue_team_tasks`(`task_help_code`,`assigning_admin_id`,
          `team_status`,`rescue_team_id`)
          VALUES ('$request_helpcode','$moderator_id','Assigned','$selected_team_id')";
-        
         $fetch_results = mysqli_query($db, $insert_query);
 
+        $status_update_query ="UPDATE `request_status` SET `status`='Assigned' WHERE `helpID` = '$request_helpcode'  ";
+        $request_update_results = mysqli_query($db, $status_update_query);
           header('location: inqueue.php');
         }else{
           array_push($errors, "Unable to fetch data");
