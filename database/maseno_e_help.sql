@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 19, 2022 at 12:46 PM
+-- Generation Time: Apr 19, 2022 at 06:41 PM
 -- Server version: 10.3.34-MariaDB
 -- PHP Version: 7.4.28
 
@@ -55,7 +55,7 @@ INSERT INTO `admin_details` (`id`, `admin_id`, `admin_firstname`, `admin_lastnam
 --
 
 CREATE TABLE `request_status` (
-  `id` int(11) NOT NULL,
+  `id` int(20) NOT NULL,
   `helpID` varchar(50) NOT NULL,
   `ip_address` varchar(100) NOT NULL,
   `request_latitude` varchar(50) NOT NULL,
@@ -70,7 +70,8 @@ CREATE TABLE `request_status` (
 --
 
 INSERT INTO `request_status` (`id`, `helpID`, `ip_address`, `request_latitude`, `request_longitude`, `status`, `admNo`, `timestamp`) VALUES
-(6, '351FDF', '197.156.137.185', '-1.2841', '36.8155', 'Responding', 'CIT/00046/019', '2022-04-19 12:20:09');
+(1, '351FDF', '197.156.137.185', '-1.2841', '36.8155', 'Responding', 'CIT/00046/019', '2022-04-19 12:20:09'),
+(2, 'AKRI5E', '41.81.44.207', '-1.2841', '36.8155', 'Pending', 'CIM/00016/020', '2022-04-19 18:32:50');
 
 -- --------------------------------------------------------
 
@@ -154,7 +155,7 @@ CREATE TABLE `rescue_team_tasks` (
 --
 
 INSERT INTO `rescue_team_tasks` (`id`, `task_help_code`, `rescue_team_id`, `assigning_admin_id`, `team_status`, `assignment_time`, `ip_address`, `latitude`, `longitude`) VALUES
-(7, '351FDF', 'TM02', 'MSU/00046/022', 'Responding', '2022-04-19 12:21:22', '197.156.137.185', '-1.2841', '36.8155');
+(9, '351FDF', 'TM02', 'MSU/00046/022', 'Responding', '2022-04-19 12:53:12', '197.156.137.185', '-1.2841', '36.8155');
 
 -- --------------------------------------------------------
 
@@ -185,6 +186,7 @@ INSERT INTO `role_details` (`id`, `role_id`, `role_name`, `role_description`) VA
 --
 
 CREATE TABLE `student_details` (
+  `id` int(20) NOT NULL,
   `regNum` varchar(255) NOT NULL,
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
@@ -198,8 +200,33 @@ CREATE TABLE `student_details` (
 -- Dumping data for table `student_details`
 --
 
-INSERT INTO `student_details` (`regNum`, `firstname`, `lastname`, `emailaddress`, `phonenumber`, `password`, `date`) VALUES
-('CIT/00046/019', 'Benson', 'Makau', 'bensonmakau2000@gmail.com', '0758413462', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 12:19:40');
+INSERT INTO `student_details` (`id`, `regNum`, `firstname`, `lastname`, `emailaddress`, `phonenumber`, `password`, `date`) VALUES
+(2, 'CCS/00002/019', 'Lydia', 'Muthoni', 'muthonird987@gmail.com', '0732749587', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 17:35:48'),
+(15, 'CCS/00100/019', 'Steve', 'Harley', 'harleysteve01@gmail.com', '0778945289', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 17:52:19'),
+(3, 'CCS/00263/020', 'Janet', 'Kimutai', 'kimutaijanet54@gmail.com', '0762897525', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 17:33:47'),
+(14, 'CCS/00336/019', 'Mutua', 'Benson', 'mutuaben46@gmail.com', '0765856589', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 17:50:33'),
+(4, 'CCS/00352/020', 'Cliff', 'Ombeta', 'ombetaclifford90@gmail.com', '0765248796', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 17:31:55'),
+(23, 'CCT/00008/019', 'Wabuti', 'Douglas', 'knillahwabuti@gmail.com', '0789526528', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 18:15:04'),
+(22, 'CCT/00032/019', 'Omwanda', 'Clinton', 'clintonomwanda@gmail.com', '0796878595', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 18:13:55'),
+(19, 'CCT/00046/021', 'Daphne', 'Ruth', 'daphneruth304@gmail.com', '0795857963', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 18:03:31'),
+(21, 'CCT/00050/019', 'KIbet', 'Farouk', 'faroukkibet45@gmail.com', '0796328578', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 18:13:11'),
+(25, 'CCT/00056/020', 'James', 'Ouma', 'oumajames36@gmail.com', '0796859685', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 18:16:47'),
+(26, 'CIM/00016/020', 'Alex', 'Kaari', 'mutwirialex935@gmail.com', '0113219783', '22a10b04a781fc0575f18870fa6f9f1c', '2022-04-19 18:32:15'),
+(1, 'CIM/00020/019', 'Mutuku', 'Mutheu', 'mutheumutuku23@gmail.com', '0765987425', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 17:27:32'),
+(5, 'CIM/00046/019', 'Martin', 'Wambora', 'wamboramartin23@gmail.com', '0125468975', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 17:21:17'),
+(13, 'CIM/00048/020', 'Richard', 'Kimutao', 'kimutaorichy34@gmail.com', '0732856274', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 17:43:56'),
+(11, 'CIM/00050/019', 'Kilonzo', 'Mutua', 'mutuakilonzo@gmail.com', '0712524689', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 17:20:07'),
+(6, 'CIM/00111/019', 'Jennifer', 'Martin', 'martinjenny45@gmail.com', '0762759814', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 17:29:34'),
+(17, 'CIS/00027/021', 'Wambora', 'Joyce', 'joycewambora@gmail.com', '0796857542', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 17:57:05'),
+(16, 'CIS/00256/019', 'Robert', 'Njoroge', 'njorogerobert99@gmail.com', '0752639885', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 17:54:30'),
+(18, 'CIS/00257/019', 'Kevin', 'Muthoka', 'muthokakevin56@gmail.com', '0796748574', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 18:00:12'),
+(20, 'CIS/00998/019', 'Diana', 'Ndinda', 'ndindadiana27@gmail.com', '0732967432', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 18:06:15'),
+(7, 'CIT/00046/019', 'Benson', 'Makau', 'bensonmakau2000@gmail.com', '0758413462', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 12:19:40'),
+(8, 'CIT/00047/019', 'Charles', 'Kariuko', 'kariukicharles@gmail.com', '0769879425', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 17:15:49'),
+(9, 'CIT/00048/019', 'Grace', 'Kimanthi', 'kimanthigrace02@gmail.com', '0745986589', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 17:17:15'),
+(10, 'CIT/00049/019', 'Lydia', 'Odongo', 'odongolydia23@gmail.com', '0749898952', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 17:18:41'),
+(12, 'CIT/00111/019', 'Stephen', 'Mwau', 'mwausteve@gmail.com', '0741528596', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 17:25:55'),
+(24, 'CIT/00178/019', 'Alexander', 'Karanja', 'karanjaalex23@gmail.com', '0796857485', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-19 18:15:57');
 
 --
 -- Indexes for dumped tables
@@ -217,8 +244,8 @@ ALTER TABLE `admin_details`
 --
 ALTER TABLE `request_status`
   ADD PRIMARY KEY (`helpID`),
-  ADD UNIQUE KEY `id` (`id`),
-  ADD KEY `admNo` (`admNo`);
+  ADD KEY `admNo` (`admNo`),
+  ADD KEY `id` (`id`);
 
 --
 -- Indexes for table `rescue_team`
@@ -256,7 +283,8 @@ ALTER TABLE `role_details`
 -- Indexes for table `student_details`
 --
 ALTER TABLE `student_details`
-  ADD PRIMARY KEY (`regNum`);
+  ADD PRIMARY KEY (`regNum`),
+  ADD KEY `id` (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -272,7 +300,7 @@ ALTER TABLE `admin_details`
 -- AUTO_INCREMENT for table `request_status`
 --
 ALTER TABLE `request_status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `rescue_team`
@@ -290,13 +318,19 @@ ALTER TABLE `rescue_team_members`
 -- AUTO_INCREMENT for table `rescue_team_tasks`
 --
 ALTER TABLE `rescue_team_tasks`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `role_details`
 --
 ALTER TABLE `role_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `student_details`
+--
+ALTER TABLE `student_details`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Constraints for dumped tables
