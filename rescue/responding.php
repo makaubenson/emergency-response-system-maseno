@@ -25,6 +25,7 @@ include './components/header.php';
       <th scope="col">Student Name</th>
       <th scope="col">Request Status</th>
       <th scope="col">Time of Request</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -38,20 +39,40 @@ include './components/header.php';
              FROM ((request_status
              INNER JOIN student_details ON request_status.admNo = student_details.regNum)
              INNER JOIN  rescue_team_tasks ON request_status.helpID =  rescue_team_tasks.task_help_code)
-             WHERE rescue_team_tasks.rescue_team_id = '".$_SESSION['team_id']."' AND rescue_team_tasks.team_status ='Successful' ORDER BY timestamp ASC ";
+             WHERE rescue_team_tasks.rescue_team_id = '".$_SESSION['team_id']."' AND rescue_team_tasks.team_status ='Responding' ORDER BY timestamp ASC ";
              
             $data_result = mysqli_query($db, $data_fetch_query);
             if ($data_result->num_rows > 0){
                 while($row = $data_result->fetch_assoc()) {
                   $student_reg = $row["regNum"];
                   $task_code = $row["helpID"];
+                  $fname = $row["firstname"];
+                  $lname = $row["lastname"];
+                  $rstatus = $row["status"];
+                  $time = $row["timestamp"];
+                 
              
             echo "<tr> <td>" .$row["helpID"].  "</td>";
             echo "<td>" .$row["regNum"]."</td>";
-            echo "<td>" .$row["firstname"]."</td>";
+            echo "<td>" .$row["firstname"]." ".$row["lastname"]."</td>";
             echo "<td>" .$row["status"]."</td>";
             echo "<td>" .$row["timestamp"]."</td>";
-            echo "<td>" .$row["team_status"]."</td> </tr>";
+            echo "<td>
+            
+            <form method ='POST' action='server.php'>
+            <input  type='text'hidden  name='task_code' value='$task_code'>
+            <input  type='text' hidden  name='student_reg' value='$student_reg'>
+            <input  type='text' hidden  name='fname' value=' $fname'>
+            <input  type='text' hidden  name='lname' value=' $lname'>
+            <input  type='text' hidden  name='rstatus' value='$rstatus'>
+            <input  type='text' hidden  name='r_timestamp' value='$time'>
+    
+            <input type='submit' value='View Task' name='view-task-btn' class='btn btn-warning'>
+            <input type='submit' value='Successful' name='view-task-btn' class='btn btn-success'>
+            <input type='submit' value='Failed' name='view-task-btn' class='btn btn-danger'>
+         
+            </form>
+            </td> </tr>";
          
             }
             

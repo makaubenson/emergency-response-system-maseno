@@ -14,7 +14,7 @@ include 'errors.php';
 <div class="row">
   <div class="col-md-4"></div>
   <div class="col-md-4">
-    <h3 style="font-weight: bold;color: blue;text-align: center;">Task Details</h3>
+    <h3 style="font-weight: bold;color: blue;text-align: center;">Request Details</h3>
   </div>
   <div class="col-md-4"></div>
 </div>
@@ -46,28 +46,39 @@ include 'errors.php';
     <input type="text" class="form-control" name='task_status' readonly placeholder="Task Status"  value='<?php echo $_SESSION['status'];?>'>
   </div>
   <div class="col">
-        <label for="student_reg">Reg NUmber</label>
+        <label for="student_reg">Registration Number</label>
         <input type="text" readonly class="form-control" name='reg_num' readonly placeholder="REG Number" value='<?php echo $_SESSION['admNo'];?>'>
       </div>
 </div>
 <br>
 <div class="row">
   <div class="col">
-    <label for="student_name">Rescue Team Longitude</label>
-    <input type="text" class="form-control" name='rescue_long' readonly placeholder="Rescue Longitude"  value='<?php echo $_SESSION['rescue_long'];?>'>
+    <label hidden for="student_name">Rescue Team Longitude</label>
+    <input hidden type="text" class="form-control" name='rescue_long' readonly placeholder="Rescue Longitude"  value='<?php echo $_SESSION['rescue_long'];?>'>
   </div>
   <div class="col">
-        <label for="student_reg">Rescue Team Latitude</label>
-        <input type="text" readonly class="form-control" name='rescue_lat' readonly placeholder="Rescue Latitude" value='<?php echo  $_SESSION['rescue_lat'];?>'>
+        <label hidden for="student_reg">Rescue Team Latitude</label>
+        <input hidden type="text" readonly class="form-control" name='rescue_lat' readonly placeholder="Rescue Latitude" value='<?php echo  $_SESSION['rescue_lat'];?>'>
       </div>
 </div>
 <br>
     <div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-      <button type="submit" name='view-map-btn'class="btn btn-success btn-block">View Map</button>
+    <div class="col-md-3"></div>
+    <div class="col-md-3 m-1">
+      <?php
+      if($_SESSION['active']){
+        echo '<button type="submit" disabled name="request_respond_btn" class="btn btn-primary btn-block">Responding...</button>';
+      }else{
+        echo '<button type="submit" name="request_respond_btn" class="btn btn-success btn-block">Responding... </button>';
+      }
+      ?>
+     
+      
     </div>
-    <div class="col-md-4"></div>
+    <div class="col-md-3">
+    <button type="submit" name='view-map-btn'class="btn btn-warning btn-block">View Map</button>
+    </div>
+    <div class="col-md-3"></div>
   </div>
   </form>
 </div>

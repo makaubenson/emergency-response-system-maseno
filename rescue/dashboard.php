@@ -103,10 +103,8 @@ include './components/header.php';
             <input  type='text' hidden name='rescue_ip' value='$getInfo->geoplugin_request'>
             <input  type='text' hidden  name='rescue_latitude' value='$getInfo->geoplugin_latitude'>
             <input  type='text' hidden  name='rescue_longitude' value='$getInfo->geoplugin_longitude'>
-          
-                <input  type='text'  hidden name='student_reg' value='$student_reg'>
-                <input type='submit' value='View' name='view-task-btn' class='btn btn-success'>
-            <input type='submit' value='Respond' name='respond-btn' class='btn btn-primary'>
+            <input  type='text'  hidden name='student_reg' value='$student_reg'>
+            <input type='submit' value='View Task' name='view-task-btn' class='btn btn-success'>
          
             </form>
             </td> </tr>";

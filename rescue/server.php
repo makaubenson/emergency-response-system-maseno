@@ -58,8 +58,8 @@ if (isset($_POST['rescue_login_btn'])) {
   }
 }
 
-// Responding
-if (isset($_POST['respond-btn'])) {
+// Viewing task
+if (isset($_POST['view-task-btn'])) {
   $task_code = $_POST['task_code'];
   $student_reg = $_POST['student_reg'];
   $ip_add= $_POST['rescue_ip'];
@@ -83,13 +83,6 @@ if (isset($_POST['respond-btn'])) {
   }
 
   if (count($errors) == 0) {
-    //Update request_status and  rescue_team_tasks tables to assign 'Responding' to the status of the specific helpCode
-$request_update_query = "UPDATE `request_status` SET `status`='Responding' WHERE helpID='$task_code' AND admNo='$student_reg'";
-$update_results = mysqli_query($db, $request_update_query);
-
-$task_update_query = "UPDATE `rescue_team_tasks` SET `team_status`='Responding',ip_address='$ip_add',longitude='$long',latitude='$lat' WHERE task_help_code ='$task_code' ";
-$task_update_results = mysqli_query($db, $task_update_query);
-
 $rescue_select_query = "SELECT * FROM `request_status` WHERE helpID ='$task_code' AND admNo='$student_reg' ";
 $select_results = mysqli_query($db, $rescue_select_query);
 if (mysqli_num_rows($select_results) == 1) {
@@ -112,6 +105,11 @@ $row = mysqli_fetch_assoc($select_results);
       $_SESSION['status'] =$request_status;
       $_SESSION['admNo'] =$student_adm;
       $_SESSION['timestamp'] =$time_of_request;
+      if($request_status = 'Responding'){
+        $_SESSION['active'] = true;
+      }else{
+        $_SESSION['active'] = false;
+      }
 }
 
  $task_select_query = "SELECT * FROM `rescue_team_tasks` WHERE task_help_code ='$task_code'";
@@ -137,6 +135,59 @@ $rw = mysqli_fetch_assoc($task_select_results);
   }
   }
 }
+// Responding To Task
+if (isset($_POST['request_respond_btn'])) {
+ $request_code = $_POST['task_code'];
+ $request_IP = $_POST['ip_addres'];
+ $request_Latitude = $_POST['task_latitude'];
+ $request_Longitude = $_POST['task_longitude'];
+ $request_status = $_POST['task_status'];
+ $student_adm = $_POST['reg_num'];
+ $rescue_team_longitude = $_POST['rescue_long'];
+ $rescue_team_latitude = $_POST['rescue_lat'];
+
+  if (empty($request_code)) {
+  	array_push($errors, "Help Code is required");
+  }
+  if (empty($request_IP)) {
+  	array_push($errors, "Ip Address is required");
+  }
+  if (empty($request_Latitude)) {
+  	array_push($errors, "User Latitude is required");
+  }
+  if (empty($request_Longitude)) {
+  	array_push($errors, "User Longitude is required");
+  }
+  if (empty($request_status)) {
+  	array_push($errors, "Request Status is required");
+  }
+  if (empty($student_adm)) {
+  	array_push($errors, "Student ADM is required");
+  }
+  if (empty($rescue_team_longitude)) {
+  	array_push($errors, "Rescue Team Longitude is required");
+  }
+  if (empty($rescue_team_latitude)) {
+  	array_push($errors, "Rescue Team Latitude is required");
+  }
+
+  if (count($errors) == 0) {
+  	$status_update_query = "UPDATE `rescue_team_tasks` SET `team_status`='Responding' WHERE task_help_code ='$request_code' ";
+  	$results = mysqli_query($db,$status_update_query);
+    $update_status_query = "UPDATE `request_status` SET `status`='Responding' WHERE helpID='$request_code'";
+      $update_results = mysqli_query($db,$update_status_query);
+  	if (mysqli_num_rows($results) == 1) {
+    $row = mysqli_fetch_assoc($results);
+//update second table
+      
+
+  	  header('location: task_view.php');
+  	}else{
+  		array_push($errors, "Unable to make updates");
+      header('location: task_view.php');
+  	}
+  }
+}
 // Viewing Map
 if (isset($_POST['view-map-btn'])) {
   $lat = $_POST['task_latitude'];
@@ -156,5 +207,25 @@ if (isset($_POST['view-map-btn'])) {
       header('location: task_view.php');
   }
   }
+if (isset($_POST['view-map-btn'])) {
+  $lat = $_POST['task_latitude'];
+  $long = $_POST['task_longitude'];
 
+  if (empty($lat)) {
+  	array_push($errors, "Latitude is required");
+  }
+  if (empty($long)) {
+  	array_push($errors, "Longitude is required");
+  }
+
+  if (count($errors) == 0) {
+  	  header('location: map.php');
+  	}else{
+  		array_push($errors, "Unable to view map");
+      header('location: task_view.php');
+  }
+  }
+
+
+    
 ?>
