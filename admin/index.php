@@ -26,9 +26,9 @@ include 'server.php';
 
                 <form method="post" action="server.php" enctype="multipart/form-data" class="login-form">
                     <div class="form-group row">
-                        <?php
-include 'errors.php';
-?>
+                    <?php
+            include 'errors.php';
+            ?>
                         <label for="inputEmail3" class="col-sm-2 col-form-label">User ID</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="inputEmail3" placeholder="Username"

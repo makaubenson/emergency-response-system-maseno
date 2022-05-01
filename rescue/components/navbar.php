@@ -13,6 +13,9 @@
         <a class="nav-link" href="dashboard.php">Home </a>
       </li>
       <li class="nav-item active">
+        <a class="nav-link" href="responding.php">Responding</a>
+      </li>
+      <li class="nav-item active">
         <a class="nav-link" href="complete.php">Succesful Tasks</a>
       </li>
       <li class="nav-item active">

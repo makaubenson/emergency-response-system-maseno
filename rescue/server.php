@@ -9,7 +9,8 @@ session_start();
 try{
   $db = mysqli_connect('localhost', 'benson', 'benson', 'maseno_e_help');
 //    $db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
-//echo 'Database Connected Successfully';
+
+
 }
 catch(Exception $e) {
   // echo 'Message: ' .$e->getMessage();

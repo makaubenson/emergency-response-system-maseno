@@ -52,21 +52,21 @@ include './components/header.php';
                             </button>
                         </div>
                     </div>
-                    <!-- <hr>
+                    <hr>
            
              <div class="row">
              <div class="col-sm-12 register-col">
                <p class="lead">Don't have an account yet? <a href="./register.php" class="btn btn-success">Register Here</a></p>
              </div>
-            </div> -->
-                    <hr>
+            </div>
+                    <!-- <hr> -->
                     <!--Register-->
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-sm-12 register-col">
                             <p class="lead"> <a href="./rescue/index.php" class="btn btn-success">Rescue Team Login</a>
                             </p>
                         </div>
-                    </div>
+                    </div> -->
                 </form>
             </div>
         </div>
