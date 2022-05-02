@@ -8,7 +8,8 @@ include 'server.php';
     <?php include './includes/navbar.php'; ?>
 
   <div class="row m-3">
-    <div class="col-md-12">
+  <div class="col-md-1"></div>
+    <div class="col-md-10">
 <div class="table-responsive-lg">
     <table class="table" style='color:black; font-weight:normal'>
         <thead>
@@ -65,7 +66,7 @@ include 'server.php';
   </div>
     
   </div>
-
+  <div class="col-md-1"></div>
 </div>
 
 
