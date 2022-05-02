@@ -60,7 +60,7 @@ include './components/header.php';
   <?php
   include 'errors.php';
   ?>
-  <caption>List of Successful Tasks assigned to <?php  echo  $_SESSION['team_name']; ?></caption>
+  <caption>List of Successful Tasks handled by <?php  echo  $_SESSION['team_name']; ?></caption>
   <thead>
       <h3>Successful Tasks</h3>
     <tr class='bg-primary'>
@@ -69,7 +69,6 @@ include './components/header.php';
       <th scope="col">Student Name</th>
       <th scope="col">Request Status</th>
       <th scope="col">Time of Request</th>
-      <th scope="col">Request Status </th>
 
     </tr>
   </thead>
@@ -94,10 +93,9 @@ include './components/header.php';
              
             echo "<tr> <td>" .$row["helpID"].  "</td>";
             echo "<td>" .$row["regNum"]."</td>";
-            echo "<td>" .$row["firstname"]."</td>";
+            echo "<td>" .$row["firstname"]." ".$row["lastname"]. "</td>";
             echo "<td>" .$row["status"]."</td>";
-            echo "<td>" .$row["timestamp"]."</td>";
-            echo "<td>" .$row["team_status"]."</td> </tr>";
+            echo "<td>" .$row["timestamp"]."</td> </tr>";
          
             }
             

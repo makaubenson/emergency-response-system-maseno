@@ -227,6 +227,27 @@ if (isset($_POST['view-map-btn'])) {
   }
   }
 
+// Updating Successful Requests.
+if (isset($_POST['success-task-btn'])) {
+$help_code = $_POST['task_code'];
+
+  if (empty($help_code)) {
+  	array_push($errors, "Help Code is required");
+  }
+  if (count($errors) == 0) {
+
+    $status_update_query ="UPDATE `request_status` SET `status`='Successful' WHERE `helpID`= '$help_code'";
+    $status_results = mysqli_query($db,$status_update_query);
+
+    $update_query ="UPDATE `rescue_team_tasks` SET `team_status`='Successful' WHERE `task_help_code`='$help_code'";
+    $results_update = mysqli_query($db, $update_query);
+
+  	  header('location: dashboard.php');
+  	}else{
+  		array_push($errors, "Unable to Push Updates");
+      header('location: responding.php');
+  }
+  }
 
     
 ?>
