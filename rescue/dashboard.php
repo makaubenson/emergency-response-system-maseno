@@ -91,13 +91,10 @@ include './components/header.php';
              
             echo "<tr> <td>" .$row["helpID"].  "</td>";
             echo "<td>" .$row["regNum"]."</td>";
-            echo "<td>" .$row["firstname"]."</td>";
+            echo "<td>" .$row["firstname"]." ".$row["lastname"]."</td>";
             echo "<td>" .$row["status"]."</td>";
-            echo "<td>" .$row["timestamp"]."</td>";
-           
-         
+            echo "<td>" .$row["timestamp"]."</td>";    
             echo "<td>
-            
             <form method ='POST' action='server.php'>
             <input  type='text' hidden name='task_code' value='$task_code'>
             <input  type='text' hidden name='rescue_ip' value='$getInfo->geoplugin_request'>

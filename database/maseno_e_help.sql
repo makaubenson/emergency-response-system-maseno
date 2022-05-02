@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.7
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 01, 2022 at 11:42 AM
--- Server version: 10.3.34-MariaDB
--- PHP Version: 7.4.29
+-- Generation Time: May 02, 2022 at 02:38 AM
+-- Server version: 5.7.24
+-- PHP Version: 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `blinxcok_maseno_e_help`
+-- Database: `maseno_e_help`
 --
 
 -- --------------------------------------------------------
@@ -37,7 +37,7 @@ CREATE TABLE `admin_details` (
   `admin_phone` varchar(15) NOT NULL,
   `admin_rank` varchar(20) NOT NULL,
   `admin_password` varchar(255) NOT NULL,
-  `registration_timestamp` timestamp NOT NULL DEFAULT current_timestamp()
+  `registration_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -62,7 +62,7 @@ CREATE TABLE `request_status` (
   `request_longitude` varchar(50) NOT NULL,
   `status` varchar(50) DEFAULT 'Pending',
   `admNo` varchar(255) NOT NULL,
-  `timestamp` datetime NOT NULL DEFAULT current_timestamp()
+  `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -72,12 +72,12 @@ CREATE TABLE `request_status` (
 INSERT INTO `request_status` (`id`, `helpID`, `ip_address`, `request_latitude`, `request_longitude`, `status`, `admNo`, `timestamp`) VALUES
 (9, '0LDRDB', '41.81.171.77', '-1.2841', '36.8155', 'Pending', 'CUT/00040/019', '2022-04-19 19:15:27'),
 (8, '2DLI48', '197.156.190.186', '-1.2841', '36.8155', 'Pending', 'BEC|00848|019', '2022-04-19 19:08:40'),
-(1, '351FDF', '197.156.137.185', '-1.2841', '36.8155', 'Responding', 'CIT/00046/019', '2022-04-19 12:20:09'),
+(1, '351FDF', '197.156.137.185', '-1.2841', '36.8155', 'Successful', 'CIT/00046/019', '2022-04-19 12:20:09'),
 (3, '3AUGSD', '102.167.58.253', '-1.2841', '36.8155', 'Pending', 'CIT/00111/019', '2022-04-19 18:49:41'),
-(30, '5CLE12', '154.122.252.23', '-1.2841', '36.8155', 'Responding', 'CIT/00047/019', '2022-04-25 12:16:13'),
-(16, '5RIU55', '105.161.33.170', '1', '38', 'Responding', 'CCT/00046/020', '2022-04-20 15:51:30'),
+(30, '5CLE12', '154.122.252.23', '-1.2841', '36.8155', 'Assigned', 'CIT/00047/019', '2022-04-25 12:16:13'),
+(16, '5RIU55', '105.161.33.170', '1', '38', 'Assigned', 'CCT/00046/020', '2022-04-20 15:51:30'),
 (17, '6FI032', '197.156.137.180', '-1.2841', '36.8155', 'Pending', 'CCS/00001/020', '2022-04-20 16:43:01'),
-(6, '99GTG1', '197.156.140.198', '-1.2841', '36.8155', 'Responding', 'CIT/00005/019', '2022-04-19 18:58:23'),
+(6, '99GTG1', '197.156.140.198', '-1.2841', '36.8155', 'Assigned', 'CIT/00005/019', '2022-04-19 18:58:23'),
 (2, 'AKRI5E', '41.81.44.207', '-1.2841', '36.8155', 'Pending', 'CIM/00016/020', '2022-04-19 18:32:50'),
 (29, 'ASI847', '102.23.98.19', '10', '8', 'Pending', 'BBA/00132/020', '2022-04-23 09:50:06'),
 (12, 'E95V9Y', '154.153.124.38', '-1.2841', '36.8155', 'Assigned', 'CIT/00248/019', '2022-04-20 00:24:08'),
@@ -86,7 +86,7 @@ INSERT INTO `request_status` (`id`, `helpID`, `ip_address`, `request_latitude`, 
 (4, 'K73CWE', '196.108.146.82', '1', '38', 'Pending', 'CIT/00064/020', '2022-04-19 18:57:21'),
 (23, 'OFVPFE', '102.23.98.20', '10', '8', 'Assigned', 'CIM/00193/019', '2022-04-21 08:56:02'),
 (5, 'QE8KWM', '41.90.216.250', '-1.2841', '36.8155', 'Assigned', 'ALI/00278/019', '2022-04-19 18:58:12'),
-(24, 'QRGET6', '102.166.105.89', '-1.2841', '36.8155', 'Responding', 'BAF/00086/020', '2022-04-21 17:23:24'),
+(24, 'QRGET6', '102.166.105.89', '-1.2841', '36.8155', 'Assigned', 'BAF/00086/020', '2022-04-21 17:23:24'),
 (15, 'RYUL9X', '154.122.73.6', '1', '38', 'Pending', 'HHR/00135/019', '2022-04-20 15:19:42'),
 (13, 'WR4Z8Y', '105.161.154.97', '1', '38', 'Pending', 'ESC/00018/020', '2022-04-20 06:58:10'),
 (14, 'WZT3RU', '105.160.12.176', '-1.2841', '36.8155', 'Pending', 'SBH/00543/023', '2022-04-20 15:12:54');
@@ -105,7 +105,7 @@ CREATE TABLE `rescue_team` (
   `team_phone` int(15) NOT NULL,
   `team_email` varchar(50) NOT NULL,
   `team_password` varchar(255) NOT NULL,
-  `registration_timestamp` datetime NOT NULL DEFAULT current_timestamp()
+  `registration_timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -132,7 +132,7 @@ CREATE TABLE `rescue_team_members` (
   `phone` int(15) NOT NULL,
   `role_id` varchar(50) NOT NULL,
   `rescue_team_id` varchar(50) NOT NULL,
-  `time_of_registration` datetime NOT NULL DEFAULT current_timestamp()
+  `time_of_registration` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -162,25 +162,25 @@ CREATE TABLE `rescue_team_tasks` (
   `rescue_team_id` varchar(50) NOT NULL,
   `assigning_admin_id` varchar(50) NOT NULL,
   `team_status` varchar(255) NOT NULL DEFAULT 'Unassigned',
-  `assignment_time` datetime NOT NULL DEFAULT current_timestamp(),
+  `assignment_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ip_address` varchar(50) NOT NULL DEFAULT '0.0.0.0',
   `latitude` varchar(20) NOT NULL DEFAULT '0.0',
   `longitude` varchar(20) NOT NULL DEFAULT '0.0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data for table `rescue_team_tasks`
 --
 
 INSERT INTO `rescue_team_tasks` (`id`, `task_help_code`, `rescue_team_id`, `assigning_admin_id`, `team_status`, `assignment_time`, `ip_address`, `latitude`, `longitude`) VALUES
-(9, '351FDF', 'TM02', 'MSU/00046/022', 'Responding', '2022-04-19 12:53:12', '197.156.137.185', '-1.2841', '36.8155'),
-(10, '99GTG1', 'TM03', 'MSU/00046/022', 'Responding', '2022-04-19 20:44:29', '197.156.137.156', '-1.2841', '36.8155'),
-(11, 'QE8KWM', 'TM01', 'MSU/00046/022', 'Assigned', '2022-04-19 21:11:08', '0.0.0.0', '0.0', '0.0'),
-(12, '5RIU55', 'TM01', 'MSU/00046/022', 'Responding', '2022-04-20 15:54:31', '197.156.137.174', '-1.2841', '36.8155'),
-(13, 'E95V9Y', 'TM03', 'MSU/00046/022', 'Assigned', '2022-04-25 07:21:55', '0.0.0.0', '0.0', '0.0'),
-(14, 'QRGET6', 'TM02', 'MSU/00046/022', 'Responding', '2022-04-25 07:22:03', '102.167.135.236', '-1.2841', '36.8155'),
-(15, 'OFVPFE', 'TM01', 'MSU/00046/022', 'Assigned', '2022-04-25 07:22:16', '0.0.0.0', '0.0', '0.0'),
-(16, '5CLE12', 'TM02', 'MSU/00046/022', 'Responding', '2022-04-25 12:18:37', '154.122.252.23', '-1.2841', '36.8155');
+(1, '351FDF', 'TM02', 'MSU/00046/022', 'Successful', '2022-04-19 12:53:12', '165.105.70.4', '37.751', '-97.822'),
+(2, '99GTG1', 'TM03', 'MSU/00046/022', 'Assigned', '2022-04-19 20:44:29', '197.156.137.156', '-1.2841', '36.8155'),
+(3, 'QE8KWM', 'TM01', 'MSU/00046/022', 'Assigned', '2022-04-19 21:11:08', '0.0.0.0', '0.0', '0.0'),
+(4, '5RIU55', 'TM01', 'MSU/00046/022', 'Assigned', '2022-04-20 15:54:31', '197.156.137.174', '-1.2841', '36.8155'),
+(5, 'E95V9Y', 'TM03', 'MSU/00046/022', 'Assigned', '2022-04-25 07:21:55', '0.0.0.0', '0.0', '0.0'),
+(6, 'QRGET6', 'TM02', 'MSU/00046/022', 'Assigned', '2022-04-25 07:22:03', '102.167.135.236', '-1.2841', '36.8155'),
+(7, 'OFVPFE', 'TM01', 'MSU/00046/022', 'Assigned', '2022-04-25 07:22:16', '0.0.0.0', '0.0', '0.0'),
+(8, '5CLE12', 'TM02', 'MSU/00046/022', 'Assigned', '2022-04-25 12:18:37', '154.122.252.23', '-1.2841', '36.8155');
 
 -- --------------------------------------------------------
 
@@ -218,7 +218,7 @@ CREATE TABLE `student_details` (
   `emailaddress` varchar(255) NOT NULL,
   `phonenumber` varchar(15) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `date` datetime NOT NULL DEFAULT current_timestamp()
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -365,7 +365,7 @@ ALTER TABLE `rescue_team_members`
 -- AUTO_INCREMENT for table `rescue_team_tasks`
 --
 ALTER TABLE `rescue_team_tasks`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `role_details`

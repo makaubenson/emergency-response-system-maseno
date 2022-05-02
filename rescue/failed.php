@@ -1,48 +1,5 @@
 <?php
 include 'server.php';
-// Get Location from IP Address using PHP
-// Use the IP Geolocation API to get the user’s location from IP using PHP.
-
-// Call API via HTTP GET request using cURL in PHP.
-// Convert API JSON response to array using json_decode() function.
-// Retrieve IP data from API response.
-// IP address 
-// $userIP = $_SERVER['REMOTE_ADDR'];
- 
-//static ip address
-$ip = "165.105.70.4"; 
-
-//Get IP Address of User in PHP
-// $ip = $_SERVER['REMOTE_ADDR']; 
-
-//call api
-$url = file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip);
-
-//decode json data
-$getInfo = json_decode($url); 
-
-// print_r($getInfo);
-    
-//print the array to see the fields if you wish.
-
-// echo "<table border='1' width='50%' align='center'><tr><td>COUNTRY:</td><td>";
-// echo $getInfo->geoplugin_countryName;
-// echo "</td></tr><tr><td>CITY:</td><td>";
-// echo $getInfo->geoplugin_city;
-// echo "</td></tr><tr><td>STATE OR REGION:</td><td>";
-// echo $getInfo->geoplugin_region;
-// echo "</td></tr><tr><td>IP ADDRESS:</td><td>";
-// echo $getInfo->geoplugin_request;
-// echo "</td></tr><tr><td>COUNTRY CODE:</td><td>";
-// echo $getInfo->geoplugin_countryCode;
-// echo "</td></tr><tr><td>LATITUTE:</td><td>";
-// echo $getInfo->geoplugin_latitude;
-// echo "</td></tr><tr><td>LONGITUDE:</td><td>";
-// echo $getInfo->geoplugin_longitude;
-// echo "</td></tr><tr><td>TIMEZONE:</td><td>";
-// echo $getInfo->geoplugin_timezone;
-// echo "</td></tr><tr></table>";
-
 ?>
 
 
@@ -69,7 +26,7 @@ include './components/header.php';
       <th scope="col">Student Name</th>
       <th scope="col">Request Status</th>
       <th scope="col">Time of Request</th>
-      <th scope="col">Request Status </th>
+
 
     </tr>
   </thead>
@@ -94,10 +51,9 @@ include './components/header.php';
              
             echo "<tr> <td>" .$row["helpID"].  "</td>";
             echo "<td>" .$row["regNum"]."</td>";
-            echo "<td>" .$row["firstname"]."</td>";
+            echo "<td>" .$row["firstname"]." ".$row["lastname"]."</td>";
             echo "<td>" .$row["status"]."</td>";
-            echo "<td>" .$row["timestamp"]."</td>";
-            echo "<td>" .$row["team_status"]."</td> </tr>";
+            echo "<td>" .$row["timestamp"]."</td> </tr>";
          
             }
             

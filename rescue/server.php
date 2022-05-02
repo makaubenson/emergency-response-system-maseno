@@ -248,6 +248,26 @@ $help_code = $_POST['task_code'];
       header('location: responding.php');
   }
   }
-
+// Updating Failed Requests
+if (isset($_POST['failed-task-btn'])) {
+  $help_code = $_POST['task_code'];
+  
+    if (empty($help_code)) {
+      array_push($errors, "Help Code is required");
+    }
+    if (count($errors) == 0) {
+  
+      $failed_update_query ="UPDATE `request_status` SET `status`='Failed' WHERE `helpID`= '$help_code'";
+      $result = mysqli_query($db,$failed_update_query);
+  
+      $failed_query ="UPDATE `rescue_team_tasks` SET `team_status`='Failed' WHERE `task_help_code`='$help_code'";
+      $failed_result = mysqli_query($db, $failed_query);
+  
+        header('location: dashboard.php');
+      }else{
+        array_push($errors, "Unable to Push Updates");
+        header('location: responding.php');
+    }
+    }
     
 ?>

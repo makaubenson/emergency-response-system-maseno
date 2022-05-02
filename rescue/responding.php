@@ -69,7 +69,7 @@ include './components/header.php';
     
             <input type='submit' value='View Task' name='view-task-btn' class='btn btn-warning'>
             <input type='submit' value='Successful' name='success-task-btn' class='btn btn-success'>
-            <input type='submit' value='Failed' name='view-task-btn' class='btn btn-danger'>
+            <input type='submit' value='Failed' name='failed-task-btn' class='btn btn-danger'>
          
             </form>
             </td> </tr>";
