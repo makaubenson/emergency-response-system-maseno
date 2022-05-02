@@ -69,7 +69,7 @@ include 'errors.php';
       if($_SESSION['active']){
         echo '<button type="submit" disabled name="request_respond_btn" class="btn btn-primary btn-block">Responding...</button>';
       }else{
-        echo '<button type="submit" name="request_respond_btn" class="btn btn-success btn-block">Responding... </button>';
+        echo '<button type="submit" name="request_respond_btn" class="btn btn-success btn-block">Respond To Task </button>';
       }
       ?>
      

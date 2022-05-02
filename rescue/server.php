@@ -95,6 +95,11 @@ $row = mysqli_fetch_assoc($select_results);
       $latitude=$row['request_latitude'];
       $longitude=$row['request_longitude'];
       $request_status=$row['status'];
+       if($request_status == 'Responding'){
+        $_SESSION['active'] = true;
+      }else{
+        $_SESSION['active'] = false;
+      }
       $student_adm=$row['admNo'];
       $time_of_request=$row['timestamp'];
       //sessions
@@ -105,11 +110,7 @@ $row = mysqli_fetch_assoc($select_results);
       $_SESSION['status'] =$request_status;
       $_SESSION['admNo'] =$student_adm;
       $_SESSION['timestamp'] =$time_of_request;
-      if($request_status = 'Responding'){
-        $_SESSION['active'] = true;
-      }else{
-        $_SESSION['active'] = false;
-      }
+     
 }
 
  $task_select_query = "SELECT * FROM `rescue_team_tasks` WHERE task_help_code ='$task_code'";
