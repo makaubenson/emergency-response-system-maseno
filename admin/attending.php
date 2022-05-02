@@ -8,11 +8,14 @@ include 'server.php';
     <?php include './includes/navbar.php'; ?>
 
   <div class="row m-3">
-    <div class="col-md-12">
+
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
 <div class="table-responsive-lg">
-    <table class="table">
+<table class="table" style='color:black; font-weight:normal'>
         <thead>
-          Requests being responded to.
+        <h6  style='color:blue; font-weight:normal'>Requests being responded to.</h6>
+          
             <tr >
               <!-- <th scope="col" class="table-primary">S.NO</th> -->
               <th scope="col" class="table-primary">Student Name</th>
@@ -66,7 +69,7 @@ include 'server.php';
   </div>
     
   </div>
-
+  <div class="col-md-1"></div>
 </div>
 
 
