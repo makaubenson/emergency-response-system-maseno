@@ -161,7 +161,7 @@ include './components/header.php';
               <div class="col-sm-12 login-col">
                 <p class="lead">
                   Already have an account ?
-                  <a href="./index.php" class="btn btn-primary">Login Here</a>
+                  <a href="./index.php" class="btn btn-primary ">Login Here</a>
                 </p>
               </div>
             </div>
