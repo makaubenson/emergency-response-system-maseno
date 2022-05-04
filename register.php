@@ -13,7 +13,7 @@ include './components/header.php';
         <div class="col-md-6 mt-5 register-page">
           <div class="col-md-12 mb-2 register-page-header">
             <h2 class="text-center" style="color: #fff">
-              Maseno E-Help Register
+              Maseno E-Health Student Registration Form
             </h2>
 
             <div class="row">
@@ -36,25 +36,25 @@ include './components/header.php';
             class="register-form"
           >
             <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-2 col-form-label"
+              <label for="inputEmail3" class="col-sm-3 col-form-label"
                 >Username</label
               >
-              <div class="col-sm-10">
+              <div class="col-sm-7">
                 <input
                   type="text"
                   class="form-control"
                   id="inputEmail3"
-                  placeholder="Registration Number"
+                  placeholder="e.g BA/00020/012"
                   name="regno"
                   required
                 />
               </div>
             </div>
             <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-2 col-form-label"
+              <label for="inputEmail3" class="col-sm-3 col-form-label"
                 >First Name</label
               >
-              <div class="col-sm-10">
+              <div class="col-sm-7">
                 <input
                   type="text"
                   class="form-control"
@@ -66,10 +66,10 @@ include './components/header.php';
               </div>
             </div>
             <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-2 col-form-label"
+              <label for="inputEmail3" class="col-sm-3 col-form-label"
                 >Last name</label
               >
-              <div class="col-sm-10">
+              <div class="col-sm-7">
                 <input
                   type="text"
                   class="form-control"
@@ -81,10 +81,10 @@ include './components/header.php';
               </div>
             </div>
             <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-2 col-form-label"
+              <label for="inputEmail3" class="col-sm-3 col-form-label"
                 >Email</label
               >
-              <div class="col-sm-10">
+              <div class="col-sm-7">
                 <input
                   type="email"
                   class="form-control"
@@ -96,15 +96,15 @@ include './components/header.php';
               </div>
             </div>
             <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-2 col-form-label"
+              <label for="inputEmail3" class="col-sm-3 col-form-label"
                 >Phone</label
               >
-              <div class="col-sm-10">
+              <div class="col-sm-7">
                 <input
                   type="number"
                   class="form-control"
                   id="inputEmail3"
-                  placeholder="Phone Number"
+                  placeholder="071234...."
                   name="phone"
                   required
                 />
@@ -112,10 +112,10 @@ include './components/header.php';
             </div>
 
             <div class="form-group row">
-              <label for="inputPassword3" class="col-sm-2 col-form-label"
+              <label for="inputPassword3" class="col-sm-3 col-form-label"
                 >Password</label
               >
-              <div class="col-sm-10">
+              <div class="col-sm-7">
                 <input
                   type="password"
                   class="form-control"
@@ -127,15 +127,15 @@ include './components/header.php';
               </div>
             </div>
             <div class="form-group row">
-              <label for="inputPassword3" class="col-sm-2 col-form-label"
+              <label for="inputPassword3" class="col-sm-3 col-form-label pr-0"
                 >Confirm Password</label
               >
-              <div class="col-sm-10">
+              <div class="col-sm-7">
                 <input
                   type="password"
                   class="form-control"
                   id="inputPassword3"
-                  placeholder="Password"
+                  placeholder="Confirm Password"
 
                   name="confirmpassword"
                   required
@@ -143,8 +143,8 @@ include './components/header.php';
               </div>
             </div>
             <div class="form-group row">
-              <div class="col-sm-2"></div>
-              <div class="col-sm-10">
+              <div class="col-sm-3"></div>
+              <div class="col-sm-7">
                 <button
                   type="submit"
                   class="btn btn-outline-success btn-block"
@@ -161,7 +161,7 @@ include './components/header.php';
               <div class="col-sm-12 login-col">
                 <p class="lead">
                   Already have an account ?
-                  <a href="./index.php" class="btn btn-success">Login Here</a>
+                  <a href="./index.php" class="btn btn-primary">Login Here</a>
                 </p>
               </div>
             </div>
