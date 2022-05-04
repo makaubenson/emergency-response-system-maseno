@@ -216,7 +216,11 @@ if (isset($_POST['reassign-team-btn'])) {
   if (count($errors) == 0) {
     $update_query = "UPDATE `rescue_team_tasks` SET `rescue_team_id`='$selected_team_id',`assigning_admin_id`='$moderator_id' WHERE task_help_code = '$request_code' ";
     $update_results = mysqli_query($db,$update_query);
+    
 
+
+
+    
       header('location: inqueue.php');
     }else{
       array_push($errors, "Unable to fetch data");

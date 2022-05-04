@@ -9,8 +9,8 @@ include './components/header.php';
   <body style="background-color: #d2d6de">
     <div class="container register-page-section">
       <div class="row mt-2 register-page-row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8 mt-5 register-page">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 mt-5 register-page">
           <div class="col-md-12 mb-2 register-page-header">
             <h2 class="text-center" style="color: #fff">
               Maseno E-Help Register
@@ -167,7 +167,7 @@ include './components/header.php';
             </div>
           </form>
         </div>
-        <div class="col-md-2"></div>
+        <div class="col-md-3"></div>
       </div>
     </div>
 
