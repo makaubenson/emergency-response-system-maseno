@@ -80,6 +80,7 @@ if (isset($_POST['register_btn'])) {
       header('location: register.php');
     }
 }
+
 //Login User
 // generate random alphanumeric character
     function random_string($length) {
@@ -180,6 +181,7 @@ if (count($errors) == 0) {
   }
 
 }
+
 
 
 ?>

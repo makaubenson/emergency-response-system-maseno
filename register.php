@@ -46,7 +46,7 @@ include './components/header.php';
                 <input
                   type="text"
                   class="form-control"
-                  id="inputEmail3"
+                  id="inputEmail4"
                   placeholder="e.g BA/00020/012"
                   name="regno"
                   required
@@ -54,7 +54,7 @@ include './components/header.php';
               </div>
             </div>
             <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label"
+              <label for="inputEmail5" class="col-sm-3 col-form-label"
                 >First Name</label
               >
               <div class="col-sm-7">
@@ -69,14 +69,14 @@ include './components/header.php';
               </div>
             </div>
             <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label"
+              <label for="inputEmail6" class="col-sm-3 col-form-label"
                 >Last name</label
               >
               <div class="col-sm-7">
                 <input
                   type="text"
                   class="form-control"
-                  id="inputEmail3"
+                  id="inputEmail7"
                   placeholder="Last Name"
                   name="lastname"
                   required
@@ -84,14 +84,14 @@ include './components/header.php';
               </div>
             </div>
             <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label"
+              <label for="inputEmail8" class="col-sm-3 col-form-label"
                 >Email</label
               >
               <div class="col-sm-7">
                 <input
                   type="email"
                   class="form-control"
-                  id="inputEmail3"
+                  id="inputEmail9"
                   placeholder="Email Address"
                   name="emailaddress"
                   required
@@ -99,14 +99,14 @@ include './components/header.php';
               </div>
             </div>
             <div class="form-group row">
-              <label for="inputEmail3" class="col-sm-3 col-form-label"
+              <label for="inputEmail10" class="col-sm-3 col-form-label"
                 >Phone</label
               >
               <div class="col-sm-7">
                 <input
                   type="number"
                   class="form-control"
-                  id="inputEmail3"
+                  id="inputEmail11"
                   placeholder="071234...."
                   name="phone"
                   required
@@ -114,7 +114,7 @@ include './components/header.php';
               </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row ">
               <label for="inputPassword3" class="col-sm-3 col-form-label"
                 >Password</label
               >
@@ -122,12 +122,15 @@ include './components/header.php';
                 <input
                   type="password"
                   class="form-control"
-                  id="inputPassword3"
+                  id="txtPassword"
+                  onkeyup="CheckPasswordStrength(this.value)"
                   placeholder="Password"
                   name="password"
                   required
                 />
+         
               </div>
+              <span id="password_strength"></span>
             </div>
             <div class="form-group row">
               <label for="inputPassword3" class="col-sm-3 col-form-label pr-0"
@@ -137,21 +140,24 @@ include './components/header.php';
                 <input
                   type="password"
                   class="form-control"
-                  id="inputPassword3"
+                  id="txtPassword2"
                   placeholder="Confirm Password"
-
+                  onkeyup="CheckPasswordStrength2(this.value)"
                   name="confirmpassword"
                   required
                 />
               </div>
+              <span id="password_strength_confirm"></span>
             </div>
+            
             <div class="form-group row">
               <div class="col-sm-3"></div>
               <div class="col-sm-7">
                 <button
                   type="submit"
-                  class="btn btn-outline-success btn-block"
+                  class="btn btn-success btn-block"
                   name="register_btn"
+                  id="regBtn"
                 >
                   Register
                 </button>
@@ -175,6 +181,159 @@ include './components/header.php';
     </div>
 
     <!-- Optional JavaScript -->
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function(event) {
+        event.preventDefault;
+        document.getElementById("regBtn").classList.add('disabled');
+  });
+  function CheckPasswordStrength(password) {
+   let password_strength = document.getElementById("password_strength");
+
+
+    //TextBox left blank.
+    if (password.length == 0) {
+      password_strength.innerHTML = "";
+      return;
+    }
+
+    //Regular Expressions.
+    let regex = new Array();
+    regex.push("[A-Z]"); //Uppercase Alphabet.
+    regex.push("[a-z]"); //Lowercase Alphabet.
+    regex.push("[0-9]"); //Digit.
+    regex.push("[$@$!%*#?&]"); //Special Character.
+
+    let passed = 0;
+
+    //Validate for each Regular Expression.
+    for (let i = 0; i < regex.length; i++) {
+      if (new RegExp(regex[i]).test(password)) {
+        passed++;
+      }
+    }
+
+    //Validate for length of Password.
+    if (passed > 2 && password.length > 8) {
+      passed++;
+    }
+
+    //Display status.
+    let color = "";
+    let strength = "";
+    switch (passed) {
+      case 0:
+      case 1:
+        strength = "Weak";
+        color = "red";
+        break;
+      case 2:
+        strength = "Good";
+        color = "darkorange";
+        break;
+      case 3:
+      case 4:
+        strength = "Strong";
+        color = "green";
+        break;
+      case 5:
+        strength = "Very Strong";
+        color = "darkgreen";
+        break;
+    }
+    password_strength.innerHTML = strength;
+    password_strength.style.color = color;
+
+    if(strength != 'Very Strong'){
+      document.getElementById("regBtn").classList.add('disabled');
+    }if (strength == 'Very Strong') {
+      document.getElementById("regBtn").classList.remove('disabled');
+    }
+  }
+  // second password Input
+  function CheckPasswordStrength2(password) {
+   let password_strength_2 = document.getElementById("password_strength_confirm");
+
+
+    //TextBox left blank.
+    if (password.length == 0) {
+      password_strength_2.innerHTML = "";
+      return;
+    }
+
+    //Regular Expressions.
+    let regex = new Array();
+    regex.push("[A-Z]"); //Uppercase Alphabet.
+    regex.push("[a-z]"); //Lowercase Alphabet.
+    regex.push("[0-9]"); //Digit.
+    regex.push("[$@$!%*#?&]"); //Special Character.
+
+    let passed = 0;
+
+    //Validate for each Regular Expression.
+    for (let i = 0; i < regex.length; i++) {
+      if (new RegExp(regex[i]).test(password)) {
+        passed++;
+      }
+    }
+
+    //Validate for length of Password.
+    if (passed > 2 && password.length > 8) {
+      passed++;
+    }
+
+    //Display status.
+    let color = "";
+    let strength = "";
+    switch (passed) {
+      case 0:
+      case 1:
+        strength = "Weak";
+        color = "red";
+        break;
+      case 2:
+        strength = "Good";
+        color = "darkorange";
+        break;
+      case 3:
+      case 4:
+        strength = "Strong";
+        color = "green";
+        break;
+      case 5:
+        strength = "Very Strong";
+        color = "darkgreen";
+        break;
+    }
+    password_strength_2.innerHTML = strength;
+    password_strength_2.style.color = color;
+
+    if(strength != 'Very Strong'){
+      document.getElementById("regBtn").classList.add('disabled');
+    }if (strength == 'Very Strong') {
+      document.getElementById("regBtn").classList.remove('disabled');
+    }
+
+
+  }
+
+document.getElementById('regBtn').addEventListener('click',function(e){
+  e.preventDefault();
+let pass1 = document.getElementById('txtPassword').value;
+let pass2 = document.getElementById('txtPassword2').value;
+
+if(pass1 !== pass2){
+  Toastify({
+
+text: "This is a toast",
+
+duration: 300000
+
+}).showToast();
+}
+
+});
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

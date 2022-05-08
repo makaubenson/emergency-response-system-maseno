@@ -13,7 +13,8 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./static/css/style.css">
-    <link href="../toastr/build/toastr.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
-    <script defer src="../toastr/toastr.js"></script>
+
+
   
