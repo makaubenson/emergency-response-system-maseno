@@ -36,3 +36,6 @@
 .login-col {
   text-align: center;
 }
+.results {
+  display: none !important;
+}
