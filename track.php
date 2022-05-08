@@ -66,12 +66,11 @@ include './components/header.php';
     ?>
 
 
-<div class="container mt-4" id="responsecontainer">
-
-<div class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-3"></div>
-  <div class="col-md-6">
+<div class="container mt-4">
+<div class="row border border-white">
+  <div class="col-md-4"></div>
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
   <form class="form-inline my-2 my-lg-0" method="POST" action="">
 <input class="form-control mr-sm-2" type="search" name='searched_help_code' placeholder="Enter Help Code" aria-label="Search">
 
@@ -79,6 +78,7 @@ include './components/header.php';
 </form>
   </div>
 </div>
+
 <div class="row m-2">
 
   <div class="col-md-12">
@@ -110,7 +110,7 @@ include './components/header.php';
         <?php
         if($_SESSION['username']){
             $reg_num = $_SESSION['username'];
-            $data_fetch_query = "SELECT * FROM `request_status` WHERE admNo='$reg_num' order by timestamp DESC LIMIT 10";
+            $data_fetch_query = "SELECT * FROM `request_status` WHERE admNo='$reg_num' order by timestamp DESC LIMIT 15";
              
             $data_result = mysqli_query($db, $data_fetch_query);
             if ($data_result->num_rows > 0){
