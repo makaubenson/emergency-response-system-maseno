@@ -225,15 +225,9 @@ include './components/header.php';
   <div class="col-sm-4 mb-5"></div>
 </div>
 <!-- Footer -->
-<footer class="page-footer font-small blue">
-
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© <span id="year">2050</span> Copyright:
-    <a href="https://maseno.ac.ke"> Maseno University</a>
-  </div>
-  <!-- Copyright -->
-
-</footer>
+<?php
+include './components/footer.php';
+?>
 <!-- Footer -->
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
