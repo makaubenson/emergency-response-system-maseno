@@ -38,7 +38,7 @@ include './components/header.php';
         <?php
         if($_SESSION['username']){
             $reg_num = $_SESSION['username'];
-            $data_fetch_query = "SELECT * FROM `request_status` WHERE admNo='$reg_num' order by timestamp DESC";
+            $data_fetch_query = "SELECT * FROM `request_status` WHERE admNo='$reg_num' order by timestamp DESC LIMIT 10";
              
             $data_result = mysqli_query($db, $data_fetch_query);
             if ($data_result->num_rows > 0){
