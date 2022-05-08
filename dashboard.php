@@ -66,7 +66,7 @@ include './components/header.php';
           role="alert"
           id="alert-section" style="text-align: center"
         >
-          <span class="btn btn-danger"style="font-weight:bold"> WARNING!</span> Please <strong>DO NOT</strong> request for Emergency Response if you do not have the need, else YOU will be answerable to the <strong style="color:red">Displinary Committee</strong>.
+          <span class="btn btn-danger"style="font-weight:bold"> WARNING!</span> Please <strong>DO NOT</strong> request for Emergency Response if you do not have the need, else YOU will be answerable to the <strong style="color:red">Senate</strong>.
          
           
           <button

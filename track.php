@@ -92,10 +92,10 @@ include './components/header.php';
   <?php
   include 'errors.php';
   ?>
-  <caption>List of requests made by <?php  echo  $_SESSION['firstname'].' '. $_SESSION['lastname']; ?></caption>
+  <caption>List of emergency requests made by <?php  echo  $_SESSION['firstname'].' '. $_SESSION['lastname']; ?></caption>
 
   <thead>
-      <h3>Requests</h3>
+      <h3>Emergency Requests</h3>
       
     <tr class='bg-primary'>
       <th scope="col">Help Code</th>
