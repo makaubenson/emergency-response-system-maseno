@@ -14,5 +14,8 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="./static/css/style.css">
+    <link href="../toastr/build/toastr.css" rel="stylesheet"/>
+
+    <script defer src="../toastr/toastr.js"></script>
     <title>Student | Home</title>
   </head>

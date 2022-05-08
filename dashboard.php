@@ -57,9 +57,27 @@ include './components/header.php';
     ?>
 
 <div class="container mt-3" >
+<div
+          class="alert alert-warning alert-dismissible fade show font-14"
+          role="alert"
+          id="alert-section" style="text-align: center"
+        >
+          <span class="btn btn-danger"style="font-weight:bold"> WARNING!</span> Please <strong>DO NOT</strong> request for Emergency Response if you do not have the need, else YOU will be answerable to the <strong style="color:red">Displinary Committee</strong>.
+         
+          
+          <button
+            type="button"
+            class="close"
+            data-dismiss="alert"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
 <!--Cards-->
 <div class="row " style="text-align: center;">
 <!--start of one Card -->
+
 <!-- IP address -->
 <div class="col-xl-4 col-md-6 mb-4">
     <div class="card border-left-primary shadow h-100 py-2">
@@ -127,8 +145,8 @@ include './components/header.php';
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Do you need Help?</h5>
-        <p class="card-text">Please click the button below to request for help.</p>
-        <form method="post" action="">
+        <p class="card-text">Please fill the form below and submit.</p>
+        <form method="post" action="server.php">
           <?php include 'errors.php';?>
   <div class="row">
   
@@ -147,8 +165,30 @@ include './components/header.php';
     <div class="col-sm-12 pb-1">
       <input type="text" class="form-control"  hidden name="helpcode" value="<?php echo $_SESSION['helpcode'];  ?>">
     </div>
+
+
+   <div class="col-md-12">
+   <div class="form-row">
+   <div class="form-group col-md-12">
+      <label for="inputEmergency">Type of Emergency</label>
+      <select id="inputState" name="emergency_type" required class="form-control">
+        <option value="">Choose...</option>
+        <option value="sickness">Sickness</option>
+        <option value="accident">Accident / Injury</option>
+        <option value="fire">Fire</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
+   <div class="form-group col-md-12">
+   <label for="inputAddress2">Description</label>
+    <textarea type="text"  name="emergency_description"class="form-control" id="inputAddress2" placeholder="Optional: A Short Description of What Happened"></textarea>
+    
+    </div>
   </div>
-  <!-- <a href="#" class="btn btn-danger btn-block"  type='submit' name="help-btn">I Need Help</a> -->
+   </div>
+
+  </div>
+  
   <button type="submit" class="btn btn-danger btn-block mb-2" name="help-btn">I Need Help</button>
   <!--#############################################-->
 

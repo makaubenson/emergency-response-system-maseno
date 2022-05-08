@@ -140,6 +140,8 @@ if (isset($_POST['help-btn'])) {
   $Latitude =  $_POST['latitude'];
   $regno =  $_POST['username'];
   $helpCode=  $_POST['helpcode'];
+  $type_emergency=  $_POST['emergency_type'];
+  $emergency_description=  $_POST['emergency_description'];
   // form validation: ensure that the form is correctly filled ...
 // by adding (array_push()) corresponding error unto $errors array
 if (empty($ipAddress)) { array_push($errors, "Unable to Track your Ip Address"); }
@@ -147,6 +149,7 @@ if (empty($Longitude)) { array_push($errors, "Unable to Track your Longitude"); 
 if (empty($Latitude)) { array_push($errors, "Unable to Track your Latitude"); }
 if (empty($regno)) { array_push($errors, "Unable to Track your Registration Number"); }
 if (empty($helpCode)) { array_push($errors, "Unable to Track your Help Code"); }
+if (empty($type_emergency)) { array_push($errors, "Please Select the Type of Emergency"); }
 // Finally, register user location
 if (count($errors) == 0) {
   $status_query ="INSERT INTO `request_status`(`helpID`, `admNo`,`ip_address`, `request_latitude`, `request_longitude`) VALUES ('$helpCode','$regno','$ipAddress','$Latitude','$Longitude')";
