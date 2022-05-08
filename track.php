@@ -5,9 +5,12 @@ include 'server.php';
 
 <!DOCTYPE html>
 <html lang="en">
-<?php
+<head>
+  <title>Student | Tracking</title>
+  <?php
 include './components/header.php';
 ?>
+  </head>
   <body>
     <?php
     include './components/navbar.php';
@@ -35,7 +38,7 @@ include './components/header.php';
         <?php
         if($_SESSION['username']){
             $reg_num = $_SESSION['username'];
-            $data_fetch_query = "SELECT * FROM `request_status` WHERE admNo='$reg_num'";
+            $data_fetch_query = "SELECT * FROM `request_status` WHERE admNo='$reg_num' order by timestamp DESC";
              
             $data_result = mysqli_query($db, $data_fetch_query);
             if ($data_result->num_rows > 0){

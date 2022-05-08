@@ -3,9 +3,12 @@ include 'server.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php
+<head>
+  <title>Student | Registration</title>
+  <?php
 include './components/header.php';
 ?>
+  </head>
   <body style="background-color: #d2d6de">
     <div class="container register-page-section">
       <div class="row mt-2 register-page-row">

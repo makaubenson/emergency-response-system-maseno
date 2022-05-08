@@ -1,4 +1,3 @@
-<head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta
@@ -17,5 +16,4 @@
     <link href="../toastr/build/toastr.css" rel="stylesheet"/>
 
     <script defer src="../toastr/toastr.js"></script>
-    <title>Student | Home</title>
-  </head>
+  

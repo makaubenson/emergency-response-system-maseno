@@ -48,9 +48,13 @@ $getInfo = json_decode($url);
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php
+  <head>
+  <title>Student | Dashboard</title>
+  <?php
 include './components/header.php';
 ?>
+  </head>
+
   <body>
     <?php
     include './components/navbar.php';

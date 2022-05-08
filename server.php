@@ -152,7 +152,8 @@ if (empty($helpCode)) { array_push($errors, "Unable to Track your Help Code"); }
 if (empty($type_emergency)) { array_push($errors, "Please Select the Type of Emergency"); }
 // Finally, register user location
 if (count($errors) == 0) {
-  $status_query ="INSERT INTO `request_status`(`helpID`, `admNo`,`ip_address`, `request_latitude`, `request_longitude`) VALUES ('$helpCode','$regno','$ipAddress','$Latitude','$Longitude')";
+  $status_query ="INSERT INTO `request_status`(`helpID`, `admNo`,`ip_address`, `request_latitude`, `request_longitude`,`emergency_type`, `emergency_description`) 
+  VALUES ('$helpCode','$regno','$ipAddress','$Latitude','$Longitude','$type_emergency','$emergency_description')";
   mysqli_query($db, $status_query);
 //Select data from location table
               $location_Select_query = "SELECT * FROM request_status WHERE `helpID`='$helpCode'";
