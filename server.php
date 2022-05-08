@@ -32,6 +32,7 @@ $errors = array();
 if (isset($_POST['register_btn'])) {
     // receive all input values from the form
     $registrationNumber=strtoupper($_POST['regno']);
+    $string = str_replace( '', ' &amp; ', $string );
     $firstName =  $_POST['firstname'];
     $lastName =  $_POST['lastname'];
     $emailAddress =  $_POST['emailaddress'];
@@ -52,7 +53,8 @@ if (isset($_POST['register_btn'])) {
   }
  // first check the database to make sure
   // a user does not already exist with the same username and/or email
- 
+ $registrationNumber= preg_replace('~[\@!`%&().;:*?"<>|]~', '/',  $registrationNumber);
+
   $user_check_query = "SELECT * FROM student_details WHERE regNum='$registrationNumber' OR emailaddress='$emailAddress' LIMIT 1";
   $result = mysqli_query($db, $user_check_query);
   $user = mysqli_fetch_assoc($result);
