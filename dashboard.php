@@ -224,7 +224,17 @@ include './components/header.php';
   </div>
   <div class="col-sm-4 mb-5"></div>
 </div>
+<!-- Footer -->
+<footer class="page-footer font-small blue">
 
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© <span id="year">2050</span> Copyright:
+    <a href="https://maseno.ac.ke"> Maseno University</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -238,12 +248,13 @@ s0.parentNode.insertBefore(s1,s0);
 })();
 </script>
 <!--End of Tawk.to Script-->
+<script src="./static/js/app.js"></script>
     <!--Bootstrap 4 scripts-->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <!-- End Bootstrap 4 scripts-->
 <!-- modal script -->
-<script src="./static/js/app.js"></script>
+
   </body>
 </html>
