@@ -199,17 +199,18 @@ function send_password_reset($student_fname,$student_lname,$student_mail,$token)
   //Create an instance; passing `true` enables exceptions
  $mail = new PHPMailer(true);
   //Server settings
-  // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+  $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
   $mail->isSMTP();                                            //Send using SMTP
   $mail->Host       = 'smtp.gmail.com';           //Set the SMTP server to send through
   $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
   $mail->Username   = 'blinxmail@gmail.com';                     //SMTP username
   $mail->Password   = 'developer_blinx@0046';                  //SMTP password
-  $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-  $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+  $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
+  $mail->Port       = 456;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
+  $student_name =  $student_fname . " ". $student_lname;
   //Recipients
-  $mail->setFrom('bensonmakau2000@gmail.com', $student_fname . " ". $student_lname);
+  $mail->setFrom('bensonmakau2000@gmail.com', $student_name);
   $mail->addAddress($student_mail);               //Name is optional
   // $mail->addReplyTo('info@example.com', 'Information');
   // $mail->addCC('cc@example.com');
@@ -220,7 +221,7 @@ function send_password_reset($student_fname,$student_lname,$student_mail,$token)
   $mail->isHTML(true);                                  //Set email format to HTML
   $mail->Subject = 'Reset Password Notification';
 
-  // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
 $email_template = "
 <h2>Hello ✋</h2>
 <h3> You are receiving this email because we received a password reset request for your account.</h3>
@@ -228,13 +229,14 @@ $email_template = "
 <a href='http://localhost/maseno-E-help/password-change.php?token=$token&email=$student_mail'>Click Here</a>
 ";
   $mail->Body    = $email_template;
+    // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
   $mail->send();
 }
 
 //Password Reset for Student
 if(isset($_POST['password_reset_btn'])){
-  $student_username = mysqli_real_escape_string($db,$_POST['student_username']);
-  $student_email = mysqli_real_escape_string($db,$_POST['student_email']);
+  $student_username = $_POST['student_username'];
+  $student_email = $_POST['student_email'];
 $token = md5(rand());//generating token
 
 //check if Student email already exists

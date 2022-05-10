@@ -16,7 +16,7 @@ include './components/header.php';
        <div class="col-md-3"></div>
        <div class="col-md-6">
        <div class="alert alert-warning mt-3" role="alert" style="text-align: center;">
-  ⚠ Please use the email address used to register you account.
+  ⚠ Please use the credentials used to register you account.
 </div>
        </div>
        <div class="col-md-3"></div>
@@ -40,14 +40,14 @@ include './components/header.php';
                 </div>
 
 
-                <form method="post" action="server.php" enctype="multipart/form-data" class="login-form">
+                <form method="POST" action="server.php" enctype="multipart/form-data" class="login-form">
                 <?php
                 include 'errors.php';
                 ?>
                  <div class="form-group row">      
                         <label for="inputEmail3" class="col-sm-3 col-form-label">Username</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="inputEmail3" placeholder="Enter your Username" name="student_username"
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="e.g BA/0001/014" name="student_username"
                                 required />
                         </div>
                     </div>

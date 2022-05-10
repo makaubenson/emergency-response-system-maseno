@@ -4,7 +4,7 @@ include 'server.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Student | Login</title>
+  <title>Password Update</title>
   <?php
 include './components/header.php';
 ?>
