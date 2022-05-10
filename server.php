@@ -288,7 +288,13 @@ if(isset($_POST['update_password_btn'])){
   if ($password1 != $password2) {
 	array_push($errors, "The two passwords do not match");
   }
-  if (count($errors) == 0) {}
+  if (count($errors) == 0) {
+    $password = md5($password2);//encrypt the password before saving in the database
+    $password_update = "UPDATE `student_details` SET `password`='$password' WHERE emailaddress = ' $email_address' ";
+    $results = mysqli_query($db, $password_update);
+    header("Location: password-change.php");
+  }
 
 }
+
 ?>
