@@ -4,7 +4,7 @@ include 'server.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Student | Login</title>
+  <title>Password Reset</title>
   <?php
 include './components/header.php';
 ?>
@@ -18,7 +18,7 @@ include './components/header.php';
             <div class="col-md-6 mt-5 login-page">
 
                 <div class="col-md-12 mb-2 login-page-header">
-                    <h2 class="text-center" style="color: #fff">Maseno University Emergency System</h2>
+                    <h2 class="text-center" style="color: #fff">Password Reset</h2>
 
                     <div class="row">
                         <div class="col-md-3"></div>
@@ -35,31 +35,25 @@ include './components/header.php';
                         <?php
             include 'errors.php';
             ?>
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">Username</label>
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputEmail3" placeholder="e.g BA/00025/013" name="regno"
+                            <input type="email" class="form-control" id="inputEmail3" placeholder="Enter your Email Address" name="regno"
                                 required />
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control" id="inputPassword3" placeholder="Password"
-                                name="password" required />
-                        </div>
-                    </div>
+              
 
                     <div class="form-group row">
-                    <div class="col-sm-4">
-                            <a name="forgot_password_btn" class="btn btn-warning btn-block p-2" href="./forgot-password.php">
-                               Forgot Password ?
-                            </a>
+                    <div class="col-sm-3">
+                          
                         </div>
-                        <div class="col-sm-4"></div>
-                        <div class="col-sm-4">
-                            <button type="submit" name="login_btn" class="btn btn-primary btn-block p-2">
-                              <strong>  Sign In</strong>
+                        <div class="col-sm-6">
+                        <button type="submit" name="password_reset_btn" class="btn btn-info btn-block p-2">
+                              <strong> Reset Password</strong>
                             </button>
+                        </div>
+                        <div class="col-sm-3">
+                          
                         </div>
                     </div>
                     <hr>

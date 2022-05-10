@@ -117,6 +117,8 @@ if (isset($_POST['login_btn'])) {
       $lastName=$row['lastname'];
       $Email=$row['emailaddress'];
       $Phone=$row['phonenumber'];
+    
+
       //sessions
       $_SESSION['username'] = $regNumber;
       $_SESSION['helpcode'] = $helpCode;
@@ -124,8 +126,10 @@ if (isset($_POST['login_btn'])) {
       $_SESSION['lastname'] =$lastName;
       $_SESSION['emailaddress'] =$Email;
       $_SESSION['phonenumber'] =$Phone;
+    
   	  $_SESSION['success'] = "You are now logged in";
 
+  
   	  header('location: dashboard.php');
   	}else{
   		array_push($errors, "Incorrect Username or Password");
