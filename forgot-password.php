@@ -23,7 +23,17 @@ include './components/header.php';
    </div>
   
         <div class="row mt-1 login-page-row"> 
-      
+        <?php
+if(isset($_SESSION['status']))
+{
+    ?>
+    <div class="alert alert-success">
+        <h5><?= $_SESSION['status']; ?></h5>
+    </div>
+    <?php
+    unset($_SESSION['status']);
+}
+?>
             <div class="col-md-3"></div>
             <div class="col-md-6 mt-1 login-page">
        

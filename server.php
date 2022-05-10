@@ -223,10 +223,12 @@ function send_password_reset($student_fname,$student_lname,$student_mail,$token)
 
 
 $email_template = "
+
 <h2>Hello ✋</h2>
 <h3> You are receiving this email because we received a password reset request for your account.</h3>
 <br/><br/>
 <a href='http://localhost/maseno-E-help/password-change.php?token=$token&email=$student_mail'>Click Here</a>
+
 ";
   $mail->Body    = $email_template;
     // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
@@ -273,5 +275,20 @@ exit(0);
   exit(0);
 }
 }
+//Update Password After Reset
+if(isset($_POST['update_password_btn'])){
+  $email_address = $_POST['student_mail'];
+  $password1 = $_POST['student_pass1'];
+  $password2 = $_POST['student_pass2'];
 
+
+  if (empty($email_address)) { array_push($errors, "Email Address is required"); }
+  if (empty($password1)) { array_push($errors, "Password is required"); }
+  if (empty($password2)) { array_push($errors, "Confirm Password is required"); }
+  if ($password1 != $password2) {
+	array_push($errors, "The two passwords do not match");
+  }
+  if (count($errors) == 0) {}
+
+}
 ?>

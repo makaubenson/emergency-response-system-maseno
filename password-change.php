@@ -16,7 +16,17 @@ include './components/header.php';
         <div class="row mt-5 login-page-row">
             <div class="col-md-3"></div>
             <div class="col-md-6 mt-5 login-page">
-
+                <?php
+                    if(isset($_SESSION['status']))
+                        {
+                            ?>
+                                <div class="alert alert-success">
+                                    <h5><?= $_SESSION['status']; ?></h5>
+                                </div>
+                            <?php
+                                unset($_SESSION['status']);
+                        }
+                ?>
                 <div class="col-md-12 mb-2 login-page-header">
                     <h2 class="text-center" style="color: #fff">Change Password</h2>
 
