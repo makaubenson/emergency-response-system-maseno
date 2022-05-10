@@ -5,6 +5,14 @@ session_start();
 // ini_set('display_startup_errors', '1');
 // error_reporting(E_ALL);
 
+//############## MAILING ################///
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+//Load Composer's autoloader
+require 'vendor/autoload.php';
+//##############################///
 // connect to the database
 try{
    $db = mysqli_connect('localhost', 'benson', 'benson', 'maseno_e_help');
@@ -186,6 +194,82 @@ if (count($errors) == 0) {
 
 }
 
+//function to reset password
+function send_password_reset($student_fname,$student_lname,$student_mail,$token){
+  //Create an instance; passing `true` enables exceptions
+ $mail = new PHPMailer(true);
+  //Server settings
+  // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+  $mail->isSMTP();                                            //Send using SMTP
+  $mail->Host       = 'smtp.gmail.com';           //Set the SMTP server to send through
+  $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+  $mail->Username   = 'blinxmail@gmail.com';                     //SMTP username
+  $mail->Password   = 'developer_blinx@0046';                  //SMTP password
+  $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+  $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
+  //Recipients
+  $mail->setFrom('bensonmakau2000@gmail.com', $student_fname . " ". $student_lname);
+  $mail->addAddress($student_mail);               //Name is optional
+  // $mail->addReplyTo('info@example.com', 'Information');
+  // $mail->addCC('cc@example.com');
+  // $mail->addBCC('bcc@example.com');
+
+
+  //Content
+  $mail->isHTML(true);                                  //Set email format to HTML
+  $mail->Subject = 'Reset Password Notification';
+
+  // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+$email_template = "
+<h2>Hello ✋</h2>
+<h3> You are receiving this email because we received a password reset request for your account.</h3>
+<br/><br/>
+<a href='http://localhost/maseno-E-help/password-change.php?token=$token&email=$student_mail'>Click Here</a>
+";
+  $mail->Body    = $email_template;
+  $mail->send();
+}
+
+//Password Reset for Student
+if(isset($_POST['password_reset_btn'])){
+  $student_username = mysqli_real_escape_string($db,$_POST['student_username']);
+  $student_email = mysqli_real_escape_string($db,$_POST['student_email']);
+$token = md5(rand());//generating token
+
+//check if Student email already exists
+$check_email = "SELECT * FROM student_details WHERE emailaddress = '$student_email' AND regNum ='$student_username' LIMIT 1 ";
+$mail_results = mysqli_query($db, $check_email);
+
+if(mysqli_num_rows($mail_results) > 0){
+$row = mysqli_fetch_array($mail_results);
+$student_adm = $row['regNum'];
+$student_fname = $row['firstname'];
+$student_lname = $row['lastname'];
+$student_mail = $row['emailaddress'];
+$student_phone = $row['phonenumber'];
+$student_password = $row['password'];
+
+//Update Password Reset Token
+$update_token = "UPDATE student_details SET password_reset_token = '$token' WHERE emailaddress ='$student_mail' AND regNum ='$student_adm' LIMIT 1";
+$token_update_result = mysqli_query($db,$update_token);
+
+if($token_update_result){
+send_password_reset($student_fname,$student_lname,$student_mail,$token);
+$_SESSION['email_status'] = 'A password reset link has been emailed to you.';
+header("Location: forgot-password.php");
+exit(0);
+}else{
+  $_SESSION['email_status'] = 'Something Went Wrong. Try Again!';
+  header("Location: forgot-password.php");
+  exit(0);
+}
+
+}else{
+  $_SESSION['email_status'] = 'The credentials you entered are invalid!';
+  header("Location: forgot-password.php");
+  exit(0);
+}
+}
 
 ?>
