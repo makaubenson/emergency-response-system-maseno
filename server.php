@@ -199,18 +199,20 @@ function send_password_reset($student_fname,$student_lname,$student_mail,$token)
   //Create an instance; passing `true` enables exceptions
  $mail = new PHPMailer(true);
   //Server settings
-  $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+  $mail->SMTPDebug = 1;                      //Enable verbose debug output SMTP::DEBUG_SERVER
   $mail->isSMTP();                                            //Send using SMTP
   $mail->Host       = 'smtp.gmail.com';           //Set the SMTP server to send through
   $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
   $mail->Username   = 'blinxmail@gmail.com';                     //SMTP username
   $mail->Password   = 'developer_blinx@0046';                  //SMTP password
-  $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
-  $mail->Port       = 456;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+  $mail->SMTPSecure = 'SSL';                                //Enable implicit TLS encryption
+  $mail->Port       = 465;  //465                                  //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
   $student_name =  $student_fname . " ". $student_lname;
   //Recipients
-  $mail->setFrom('bensonmakau2000@gmail.com', $student_name);
+  $mail->setFrom('blinxcorporation@gmail.com');
+  $mail->FromName = $student_name;
+
   $mail->addAddress($student_mail);               //Name is optional
   // $mail->addReplyTo('info@example.com', 'Information');
   // $mail->addCC('cc@example.com');
@@ -233,6 +235,8 @@ $email_template = "
   $mail->Body    = $email_template;
     // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
   $mail->send();
+
+
 }
 
 //Password Reset for Student
@@ -296,5 +300,6 @@ if(isset($_POST['update_password_btn'])){
   }
 
 }
+//15
 
 ?>
