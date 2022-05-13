@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 11, 2022 at 10:34 AM
+-- Generation Time: May 13, 2022 at 03:26 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -276,7 +276,7 @@ INSERT INTO `student_details` (`id`, `regNum`, `firstname`, `lastname`, `emailad
 (31, 'CIT/00005/019', 'Faith', 'Chepkoech', 'daktari76@gmail.com', '0768024466', 'ce046d35155801bdf544e6dbd0de10ad', NULL, '2022-04-19 18:57:39'),
 (28, 'CIT/00006/019', 'Obonyo', 'Odhiambo', 'n.obonyo@yahoo.com', '0722488828', '1c67de5e4c059c9374062f0f3950c26c', NULL, '2022-04-19 18:51:06'),
 (35, 'CIT/00012/019', 'Lisper', 'Ndegwa', 'lisperndegwa03@gmail.com', '0752337676', '3d69708ee30384a14d0e1d7ffa1a104a', NULL, '2022-04-19 19:29:41'),
-(7, 'CIT/00046/019', 'Benson', 'Makau', 'bensonmakau2000@gmail.com', '0758413462', 'ebcfd5a11d7cf5ba89f838fc766be7a4', 'c0f1238696668a8fb6fec543e3e31e93', '2022-04-19 12:19:40'),
+(7, 'CIT/00046/019', 'Benson', 'Makau', 'bensonmakau2000@gmail.com', '0758413462', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '12a9b22abfadec3e6102576c8b125967', '2022-04-19 12:19:40'),
 (8, 'CIT/00047/019', 'Charles', 'Kariuko', 'kariukicharles@gmail.com', '0769879425', 'ebcfd5a11d7cf5ba89f838fc766be7a4', NULL, '2022-04-19 17:15:49'),
 (9, 'CIT/00048/019', 'Grace', 'Kimanthi', 'kimanthigrace02@gmail.com', '0745986589', 'ebcfd5a11d7cf5ba89f838fc766be7a4', NULL, '2022-04-19 17:17:15'),
 (10, 'CIT/00049/019', 'Lydia', 'Odongo', 'odongolydia23@gmail.com', '0749898952', 'ebcfd5a11d7cf5ba89f838fc766be7a4', NULL, '2022-04-19 17:18:41'),
