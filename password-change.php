@@ -1,5 +1,8 @@
 <?php
 include 'server.php';
+$url = $_SERVER["QUERY_STRING"];
+
+$parts = explode('.',$url);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +55,7 @@ include './components/header.php';
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-4 col-form-label">New Password</label>
+                        <label for="inputEmail3" class="col-sm-4 col-form-label">New <?php echo $parts ; ?> Password</label>
                         <div class="col-sm-8">
                             <input type="password" class="form-control" id="inputEmail3" placeholder="New Password" name="student_pass1"
                                 required />

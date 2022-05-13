@@ -196,6 +196,8 @@ if (count($errors) == 0) {
 
 //function to reset password
 function send_password_reset($student_fname,$student_lname,$student_mail,$token){
+  $token_key = 'token';
+  $encrypted_token_key = sha1($token_key);
   //Create an instance; passing `true` enables exceptions
   $mail = new PHPMailer(true);
   //Server settings
@@ -229,7 +231,7 @@ $email_template = "
 <body style='background:rgb(216, 210, 210);'>
 <h2 style='color:black;'>Hello, $student_name </h2>
 <h3> You are receiving this email because we received a password reset request for your account.</h3>
-<h3>If you are the one who initiated this process please <a href='http://localhost/maseno-E-help/password-change.php?token=$token' style='font-weight:bold;'>Click Here</a> to RESET your password, else IGNORE this Email.</h3>
+<h3>If you are the one who initiated this process please <a href='http://localhost/maseno-E-help/password-change.php?$encrypted_token_key=$token' style='font-weight:bold;'>Click Here</a> to RESET your password, else IGNORE this Email.</h3>
 <br>
 <img src='https://www.maseno.ac.ke/sites/default/files/Maseno-logo_v5.png' alt=''>
 </body>
