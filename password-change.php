@@ -45,9 +45,9 @@ include './components/header.php';
             include 'errors.php';
             ?>
                 <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-4 col-form-label">Email Address</label>
+                        <label for="inputEmail3" hidden class="col-sm-4 col-form-label">Email Address</label>
                         <div class="col-sm-8">
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="Email Address" name="student_mail"
+                            <input type="email" hidden class="form-control" id="inputEmail3" placeholder="Email Address" name="student_mail"
                                 required />
                         </div>
                     </div>

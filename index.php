@@ -51,7 +51,7 @@ include './components/header.php';
 
                     <div class="form-group row">
                     <div class="col-sm-4">
-                            <a name="forgot_password_btn" class="btn btn-warning btn-block p-2" href="./forgot-password.php">
+                            <a name="forgot_password_btn" class="btn btn-warning btn-block p-2" href="forgot-password.php">
                                Forgot Password ?
                             </a>
                         </div>

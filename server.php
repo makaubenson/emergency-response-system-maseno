@@ -16,7 +16,7 @@ require 'vendor/autoload.php';
 // connect to the database
 try{
    $db = mysqli_connect('localhost', 'benson', 'benson', 'maseno_e_help');
-   // $db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
+  //  $db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
 //echo 'Database Connected Successfully';
 }
 catch(Exception $e) {
@@ -197,16 +197,16 @@ if (count($errors) == 0) {
 //function to reset password
 function send_password_reset($student_fname,$student_lname,$student_mail,$token){
   //Create an instance; passing `true` enables exceptions
- $mail = new PHPMailer(true);
+  $mail = new PHPMailer(true);
   //Server settings
-  $mail->SMTPDebug = 1;                      //Enable verbose debug output SMTP::DEBUG_SERVER
-  $mail->isSMTP();                                            //Send using SMTP
-  $mail->Host       = 'smtp.gmail.com';           //Set the SMTP server to send through
-  $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-  $mail->Username   = 'blinxmail@gmail.com';                     //SMTP username
-  $mail->Password   = 'developer_blinx@0046';                  //SMTP password
-  $mail->SMTPSecure = 'SSL';                                //Enable implicit TLS encryption
-  $mail->Port       = 465;  //465                                  //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+  $mail->SMTPDebug = 1;                                //Enable verbose debug output SMTP::DEBUG_SERVER
+  $mail->isSMTP();                                    //Send using SMTP
+  $mail->Host       = 'mail.blinx.co.ke';            //Set the SMTP server to send through
+  $mail->SMTPAuth   = true;                         //Enable SMTP authentication
+  $mail->Username   = 'info@blinx.co.ke';          //SMTP username
+  $mail->Password   = 'Katumo@4211';              //SMTP password
+  $mail->SMTPSecure = 'ssl';                     //Enable implicit TLS encryption
+  $mail->Port       = 465;  //465               //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
   $student_name =  $student_fname . " ". $student_lname;
   //Recipients
@@ -225,11 +225,15 @@ function send_password_reset($student_fname,$student_lname,$student_mail,$token)
 
 
 $email_template = "
-
-<h2>Hello ✋</h2>
+<html>
+<body style='background:rgb(216, 210, 210);'>
+<h2 style='color:black;'>Hello, $student_name </h2>
 <h3> You are receiving this email because we received a password reset request for your account.</h3>
-<br/><br/>
-<a href='http://localhost/maseno-E-help/password-change.php?token=$token&email=$student_mail'>Click Here</a>
+<h3>If you are the one who initiated this process please <a href='http://localhost/maseno-E-help/password-change.php?token=$token' style='font-weight:bold;'>Click Here</a> to RESET your password, else IGNORE this Email.</h3>
+<br>
+<img src='https://www.maseno.ac.ke/sites/default/files/Maseno-logo_v5.png' alt=''>
+</body>
+</html>
 
 ";
   $mail->Body    = $email_template;

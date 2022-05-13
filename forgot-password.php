@@ -50,7 +50,7 @@ if(isset($_SESSION['status']))
                 </div>
 
 
-                <form method="POST" action="server.php" enctype="multipart/form-data" class="login-form">
+                <form method="POST" action="server.php" class="login-form">
                 <?php
                 include 'errors.php';
                 ?>
@@ -70,7 +70,7 @@ if(isset($_SESSION['status']))
                     </div>
               
 
-                    <div class="form-group row">
+                    <div class="form-group row"> 
                     <div class="col-sm-3">  
                         </div>
                         <div class="col-sm-6">
