@@ -35,23 +35,23 @@ include './components/header.php';
                         <?php
             include 'errors.php';
             ?>
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">Username</label>
-                        <div class="col-sm-10">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">Username</label>
+                        <div class="col-sm-9">
                             <input type="text" class="form-control" id="inputEmail3" placeholder="e.g BA/00025/013" name="regno"
                                 required />
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-                        <div class="col-sm-10">
+                        <label for="inputPassword3" class="col-sm-3 col-form-label">Password</label>
+                        <div class="col-sm-9">
                             <input type="password" class="form-control" id="inputPassword3" placeholder="Password"
                                 name="password" required />
                         </div>
                     </div>
 
                     <div class="form-group row">
-                    <div class="col-sm-4">
-                            <a name="forgot_password_btn" class="btn btn-warning btn-block p-2" href="forgot-password.php">
+                    <div class="col-sm-4 mb-2">
+                            <a name="forgot_password_btn" class="btn-block p-2 text-success" href="forgot-password.php" style="text-decoration:none ;">
                                Forgot Password ?
                             </a>
                         </div>
@@ -62,7 +62,7 @@ include './components/header.php';
                             </button>
                         </div>
                     </div>
-                    <hr>
+                 
            
              <!-- <div class="row">
              <div class="col-sm-12 register-col">

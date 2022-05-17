@@ -1,12 +1,14 @@
 <?php
 include 'server.php';
-
+$username = $_SESSION['username'];
+$request_helpcode = $_SESSION['helpcode'];
 // Get Location from IP Address using PHP
 // Use the IP Geolocation API to get the user’s location from IP using PHP.
 
 // Call API via HTTP GET request using cURL in PHP.
 // Convert API JSON response to array using json_decode() function.
 // Retrieve IP data from API response.
+
 // IP address 
 // $userIP = $_SERVER['REMOTE_ADDR'];
  
@@ -141,16 +143,16 @@ include './components/header.php';
       <input type="text" class="form-control" hidden name="ipaddress" value="<?php echo $ip ; ?>">
     </div>
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control" hidden  name="longitude" value="<?php echo $getInfo->geoplugin_longitude; ?>">
+      <input type="text" class="form-control student-longitude" hidden  name="longitude" value="0">
     </div>
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control" hidden  name="latitude" value="<?php echo $getInfo->geoplugin_latitude; ?>">
+      <input type="text" class="form-control student-latitude"  hidden name="latitude" value="0">
     </div>
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control"  hidden name="username" value="<?php echo $_SESSION['username'];  ?>">
+      <input type="text" class="form-control" hidden  name="username" value="<?php echo $username;  ?>">
     </div>
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control"  hidden name="helpcode" value="<?php echo $_SESSION['helpcode'];  ?>">
+      <input type="text" class="form-control"  hidden name="helpcode" value="<?php echo $request_helpcode;  ?>">
     </div>
 
 
@@ -176,7 +178,7 @@ include './components/header.php';
 
   </div>
   
-  <button type="submit" class="btn btn-danger btn-block mb-2" name="help-btn">I Need Help</button>
+  <button type="submit" class="btn btn-danger btn-block mb-2" id="help-btn" name="help-btn">I Need Help</button>
   <!--#############################################-->
 
 

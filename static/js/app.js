@@ -1,5 +1,8 @@
 document.getElementById("year").innerHTML = new Date().getFullYear();
-let userLocation = {};
+let userLocation = {
+  lng: 0,
+  lat: 0,
+};
 
 function getCurrentLocationHandler(e) {
   if (navigator && navigator.geolocation) {
@@ -58,14 +61,29 @@ document.addEventListener("DOMContentLoaded", function (event) {
       userLocation.lat;
     student_longitude = document.getElementById("js-longitude").innerHTML =
       userLocation.lng;
-  } else if (
-    typeof student_latitude == "undefined" &&
-    typeof student_longitude == "undefined"
-  ) {
-    student_latitude = document.getElementById("js-latitude").innerHTML = 0;
-    student_longitude = document.getElementById("js-longitude").innerHTML = 0;
+    document.querySelector(".student-longitude").value = userLocation.lng;
+    document.querySelector(".student-latitude").value = userLocation.lat;
   } else {
     student_latitude = document.getElementById("js-latitude").innerHTML = 0;
     student_longitude = document.getElementById("js-longitude").innerHTML = 0;
   }
+
+  const helpBtn = document.getElementById("help-btn");
+  // console.log(helpBtn);
+  helpBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    let longitude = document.querySelector(".student-longitude").value;
+    let latitude = document.querySelector(".student-latitude").value;
+    console.log(longitude, latitude);
+    if (longitude == 0 && latitude == 0) {
+      Toastify({
+        text: "⚠ Failed to fetch your location. Please reload the page and try again.",
+        duration: 6000,
+        className: "warning",
+        style: {
+          background: "#ffc107",
+        },
+      }).showToast();
+    }
+  });
 });
