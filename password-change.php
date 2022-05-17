@@ -1,8 +1,10 @@
 <?php
 include 'server.php';
 $url = $_SERVER["QUERY_STRING"];
+// $secret_key = '140f93a730af6b87a1a413b61ca01213';//md5(masenouniversity);
+$token_value= htmlspecialchars($_GET["token"]);
 
-$parts = explode('.',$url);
+$tk = $_SESSION['toke_val'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,19 +45,19 @@ include './components/header.php';
                 </div>
 
 
-                <form method="post" action="server.php" enctype="multipart/form-data" class="login-form">
+                <form method="post" action="server.php" class="login-form">
                 <?php
             include 'errors.php';
             ?>
-                <div class="form-group row">
-                        <label for="inputEmail3" hidden class="col-sm-4 col-form-label">Email Address</label>
+                <!-- <div class="form-group row">
+                        <label for="inputEmail3" hidden class="col-sm-4 col-form-label">Reset Token</label>
                         <div class="col-sm-8">
-                            <input type="email" hidden class="form-control" id="inputEmail3" placeholder="Email Address" name="student_mail"
-                                required />
+                            <input type="text" hidden value="" class="form-control" id="inputEmail3" placeholder="Email Address" name="reset_token"
+                                readonly required />
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group row">
-                        <label for="inputEmail3" class="col-sm-4 col-form-label">New <?php echo $parts ; ?> Password</label>
+                        <label for="inputEmail3" class="col-sm-4 col-form-label">New Password</label>
                         <div class="col-sm-8">
                             <input type="password" class="form-control" id="inputEmail3" placeholder="New Password" name="student_pass1"
                                 required />

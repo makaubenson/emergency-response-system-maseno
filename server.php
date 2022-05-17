@@ -16,8 +16,8 @@ require 'vendor/autoload.php';
 //##############################///
 // connect to the database
 try{
-  //  $db = mysqli_connect('localhost', 'benson', 'benson', 'maseno_e_help');
-   $db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
+   $db = mysqli_connect('localhost', 'benson', 'benson', 'maseno_e_help');
+  //  $db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
 //echo 'Database Connected Successfully';
 }
 catch(Exception $e) {
@@ -226,13 +226,14 @@ function send_password_reset($student_fname,$student_lname,$student_mail,$token)
   $mail->isHTML(true);                                  //Set email format to HTML
   $mail->Subject = 'Reset Password Notification';
 
-
+  // <h3>If you are the one who initiated this process please <a href='http://localhost/maseno-E-help/password-change.php?token=$token' style='font-weight:bold;'>Click Here</a> to RESET your password, else IGNORE this Email.</h3>
 $email_template = "
 <html>
 <body style='background:rgb(216, 210, 210);'>
 <h2 style='color:black;'>Hello, $student_name </h2>
 <h3> You are receiving this email because we received a password reset request for your account.</h3>
 <h3>If you are the one who initiated this process please <a href='http://localhost/maseno-E-help/password-change.php?token=$token' style='font-weight:bold;'>Click Here</a> to RESET your password, else IGNORE this Email.</h3>
+
 <br>
 <img src='https://www.maseno.ac.ke/sites/default/files/Maseno-logo_v5.png' alt=''>
 </body>
@@ -249,8 +250,10 @@ $email_template = "
 if(isset($_POST['password_reset_btn'])){
   $student_username = $_POST['student_username'];
   $student_email = strtolower($_POST['student_email']);
-$token = sha1($student_email);//generating token
 
+$token = sha1($student_email);//generating token
+$_SESSION['toke_val'] = $token;
+$token_value = $_SESSION['toke_val'];
 //check if Student email already exists
 $check_email = "SELECT * FROM student_details WHERE emailaddress = '$student_email' AND regNum ='$student_username' LIMIT 1 ";
 $mail_results = mysqli_query($db, $check_email);
@@ -287,26 +290,28 @@ exit(0);
 
 }
 //Update Password After Reset
-// if(isset($_POST['update_password_btn'])){
-//   $email_address = $_POST['student_mail'];
-//   $password1 = $_POST['student_pass1'];
-//   $password2 = $_POST['student_pass2'];
+if(isset($_POST['update_password_btn'])){
+  $password1 = $_POST['student_pass1'];
+  $password2 = $_POST['student_pass2'];
 
+  if (empty($password1)) { array_push($errors, "Password is required"); }
+  if (empty($password2)) { array_push($errors, "Confirm Password is required"); }
+  if ($password1 != $password2) {
+	array_push($errors, "The two passwords do not match");
+  }
+  if (count($errors) == 0) {
+    $password = md5($password2);//encrypt the password before saving in the database
+    $password_update = "UPDATE `student_details` SET `password`='$password' WHERE password_reset_token = '$token' ";
+    $results = mysqli_query($db, $password_update);
+    header("Location: index.php");
+  }else{
+    echo '<script>
+   alert("Unable to Change Password. Please Contact the System Administrator!");
+    </script>';
+    header('Location: forgot-password.php');
+  }
 
-//   if (empty($email_address)) { array_push($errors, "Email Address is required"); }
-//   if (empty($password1)) { array_push($errors, "Password is required"); }
-//   if (empty($password2)) { array_push($errors, "Confirm Password is required"); }
-//   if ($password1 != $password2) {
-// 	array_push($errors, "The two passwords do not match");
-//   }
-//   if (count($errors) == 0) {
-//     $password = md5($password2);//encrypt the password before saving in the database
-//     $password_update = "UPDATE `student_details` SET `password`='$password' WHERE emailaddress = ' $email_address' ";
-//     $results = mysqli_query($db, $password_update);
-//     header("Location: password-change.php");
-//   }
-
-// }
-//15
+}
+// 15
 ob_end_flush();
 ?>

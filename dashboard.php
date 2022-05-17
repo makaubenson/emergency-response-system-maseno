@@ -22,28 +22,6 @@ $url = file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip);
 //decode json data
 $getInfo = json_decode($url); 
 
-// print_r($getInfo);
-    
-//print the array to see the fields if you wish.
-
-// echo "<table border='1' width='50%' align='center'><tr><td>COUNTRY:</td><td>";
-// echo $getInfo->geoplugin_countryName;
-// echo "</td></tr><tr><td>CITY:</td><td>";
-// echo $getInfo->geoplugin_city;
-// echo "</td></tr><tr><td>STATE OR REGION:</td><td>";
-// echo $getInfo->geoplugin_region;
-// echo "</td></tr><tr><td>IP ADDRESS:</td><td>";
-// echo $getInfo->geoplugin_request;
-// echo "</td></tr><tr><td>COUNTRY CODE:</td><td>";
-// echo $getInfo->geoplugin_countryCode;
-// echo "</td></tr><tr><td>LATITUTE:</td><td>";
-// echo $getInfo->geoplugin_latitude;
-// echo "</td></tr><tr><td>LONGITUDE:</td><td>";
-// echo $getInfo->geoplugin_longitude;
-// echo "</td></tr><tr><td>TIMEZONE:</td><td>";
-// echo $getInfo->geoplugin_timezone;
-// echo "</td></tr><tr></table>";
-
 
 
 ?>
@@ -111,7 +89,9 @@ include './components/header.php';
               <div class="col mr-2">
                   <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                       Your Longitude</div>
-                  <div class="h5 mb-0 font-weight-bold text-gray-800"><?php  echo $getInfo->geoplugin_longitude;?> </div>
+                      <!-- <input type="text" id="js-longitude" value="10"> -->
+
+                  <div class="h5 mb-0 font-weight-bold text-gray-800" id="js-longitude"> </div>
               </div>
               <div class="col-auto">
                   <i class="fa-solid fa-location-crosshairs fa-2x text-gray-300" style="color:#007bff"></i>
@@ -130,7 +110,8 @@ include './components/header.php';
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                         Your Latitude</div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $getInfo->geoplugin_latitude; ?></div>
+                        <!-- <input type="text" id="js-latitude" value="10"> -->
+                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="js-latitude"></div>
                 </div>
                 <div class="col-auto">
                     <i class="fa-solid fa-location-dot fa-2x text-gray-300" style="color:#ffaa00"></i>
@@ -146,8 +127,8 @@ include './components/header.php';
 
 <!--Request Help Section-->
 <div class="row">
-  <div class="col-sm-4"></div>
-  <div class="col-sm-4 text-center">
+  <div class="col-sm-3"></div>
+  <div class="col-sm-6 text-center">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Do you need Help?</h5>
@@ -224,7 +205,7 @@ include './components/header.php';
       </div>
     </div>
   </div>
-  <div class="col-sm-4 mb-5"></div>
+  <div class="col-sm-3 mb-5"></div>
 </div>
 <!-- Footer -->
 <?php
