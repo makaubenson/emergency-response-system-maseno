@@ -3,7 +3,9 @@ let userLocation = {
   lng: 0,
   lat: 0,
 };
-
+function openModal() {
+  $("#exampleModal").modal();
+}
 function getCurrentLocationHandler(e) {
   if (navigator && navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
@@ -71,19 +73,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
   const helpBtn = document.getElementById("help-btn");
   // console.log(helpBtn);
   helpBtn.addEventListener("click", function (e) {
-    e.preventDefault();
     let longitude = document.querySelector(".student-longitude").value;
     let latitude = document.querySelector(".student-latitude").value;
+
     console.log(longitude, latitude);
     if (longitude == 0 && latitude == 0) {
-      Toastify({
-        text: "⚠ Failed to fetch your location. Please reload the page and try again.",
-        duration: 6000,
-        className: "warning",
-        style: {
-          background: "#ffc107",
-        },
-      }).showToast();
+      e.preventDefault();
+      openModal();
+    } else {
     }
   });
 });

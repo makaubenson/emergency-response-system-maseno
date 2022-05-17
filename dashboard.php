@@ -203,7 +203,49 @@ include './components/header.php';
  <?php
   }
  ?>
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button> -->
 
+
+<div class="modal fade mt-3" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="alert alert-danger" role="alert">
+  We are unable to fetch your location. Please reload your page and try again. If the problem persists, you will be needed to manually describe your location. <strong style="color:red">NOTE:</strong> Using manual directions gives the <span style='color:red;'>Lowest Priority</span> for emergency response. 
+</div>
+    </div>
+  </div>
+      <div class="modal-header">
+
+        <h5 class="modal-title" id="exampleModalLabel">
+        Fill and Submit the form below for manual directions. </h5>
+  
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method='POST'>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label" style="text-align: left !important;">Manual Directions:</label>
+            <!-- <input type="text" required class="form-control" id="student-direction" placeholder="Type your directions here as clearly and precisely as possible."> -->
+            <textarea class="form-control" id="student-direction" rows="3" placeholder="Type your directions here as clearly and precisely as possible." required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Description:</label>
+            <textarea class="form-control" id="message-text" placeholder='Briefly explain what happened! '></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+          </div>
+        </form>
+      </div>
+     
+    </div>
+  </div>
+</div>
       </div>
     </div>
   </div>
@@ -214,18 +256,7 @@ include './components/header.php';
 include './components/footer.php';
 ?>
 <!-- Footer -->
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/6210deff1ffac05b1d7aaea6/1fs8ue637';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
+
 
 <!--End of Tawk.to Script-->
 <?php include 'components/scripts.php';?>
