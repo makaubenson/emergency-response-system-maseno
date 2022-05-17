@@ -140,19 +140,19 @@ include './components/header.php';
   <div class="row">
   
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control" hidden name="ipaddress" value="<?php echo $ip ; ?>">
+      <input type="text" class="form-control"  name="ipaddress" value="<?php echo $ip ; ?>">
     </div>
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control student-longitude" hidden  name="longitude" value="0">
+      <input type="text" class="form-control student-longitude"   name="longitude" value="0">
     </div>
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control student-latitude"  hidden name="latitude" value="0">
+      <input type="text" class="form-control student-latitude"   name="latitude" value="0">
     </div>
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control" hidden  name="username" value="<?php echo $username;  ?>">
+      <input type="text" class="form-control"   name="username" value="<?php echo $username;  ?>">
     </div>
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control"  hidden name="helpcode" value="<?php echo $request_helpcode;  ?>">
+      <input type="text" class="form-control"   name="helpcode" value="<?php echo $request_helpcode;  ?>">
     </div>
 
 
@@ -229,16 +229,16 @@ include './components/header.php';
         <form method='POST'>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label" style="text-align: left !important;">Manual Directions:</label>
-            <!-- <input type="text" required class="form-control" id="student-direction" placeholder="Type your directions here as clearly and precisely as possible."> -->
-            <textarea class="form-control" id="student-direction" rows="3" placeholder="Type your directions here as clearly and precisely as possible." required></textarea>
+            
+            <textarea class="form-control" id="student-direction" name='student_manual_direction' rows="4" placeholder="Type your directions here as clearly and precisely as possible." required></textarea>
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">Description:</label>
-            <textarea class="form-control" id="message-text" placeholder='Briefly explain what happened! '></textarea>
+            <textarea class="form-control" name='student_emergency_description' id="message-text" placeholder='Briefly explain what happened! '></textarea>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary">Send Message</button>
+            <button type="submit" name='manual-direction-btn'class="btn btn-primary">Send Message</button>
           </div>
         </form>
       </div>
