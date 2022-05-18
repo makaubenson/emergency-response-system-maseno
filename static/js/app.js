@@ -1,24 +1,28 @@
 document.getElementById("year").innerHTML = new Date().getFullYear();
-let userLocation = {};
+let longitude = 0;
+let latitude = 0;
+
 function getCurrentLocationHandler(e) {
   if (navigator && navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         const coords = pos.coords;
 
-        userLocation = {
+        let userLocation = {
           present: true,
           lat: coords.latitude,
           lng: coords.longitude,
         };
         console.log(userLocation);
+
         //Update Longitude Values on Student Dashboard
         document.getElementById("js-longitude").innerHTML = userLocation.lng;
         document.getElementById("js-latitude").innerHTML = userLocation.lat;
-
+        // console.log(typeof document.getElementById("js-longitude").innerHTML);
         //Update Lat and Long on Form
         document.querySelector(".student-longitude").value = userLocation.lng;
         document.querySelector(".student-latitude").value = userLocation.lat;
+
         return;
       },
       (error) => {

@@ -93,7 +93,7 @@ include './components/header.php';
                       Your Longitude</div>
                       <!-- <input type="text" id="js-longitude" value="10"> -->
 
-                  <div class="h5 mb-0 font-weight-bold text-gray-800" id="js-longitude"> </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800" id="js-longitude">0 </div>
               </div>
               <div class="col-auto">
                   <i class="fa-solid fa-location-crosshairs fa-2x text-gray-300" style="color:#007bff"></i>
@@ -113,7 +113,7 @@ include './components/header.php';
                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                         Your Latitude</div>
                         <!-- <input type="text" id="js-latitude" value="10"> -->
-                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="js-latitude"></div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800" id="js-latitude">0</div>
                 </div>
                 <div class="col-auto">
                     <i class="fa-solid fa-location-dot fa-2x text-gray-300" style="color:#ffaa00"></i>
@@ -140,19 +140,19 @@ include './components/header.php';
   <div class="row">
   
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control" readonly hidden name="ipaddress" value="<?php echo $ip ; ?>">
+      <input type="text" class="form-control" required readonly hidden name="ipaddress" value="<?php echo $ip ; ?>">
     </div>
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control student-longitude" readonly hidden  name="longitude" value="0">
+      <input type="text" class="form-control student-longitude" required readonly hidden  name="longitude" value="0">
     </div>
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control student-latitude"  readonly hidden name="latitude" value="0">
+      <input type="text" class="form-control student-latitude"  required readonly hidden name="latitude" value="0">
     </div>
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control"   name="username"readonly hidden value="<?php echo $username;  ?>">
+      <input type="text" class="form-control"   name="username" readonly  required hidden value="<?php echo $username;  ?>">
     </div>
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control"   name="helpcode"readonly hidden value="<?php echo $request_helpcode;  ?>">
+      <input type="text" class="form-control"   name="helpcode"readonly  required hidden value="<?php echo $request_helpcode;  ?>">
     </div>
 
 
