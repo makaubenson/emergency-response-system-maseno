@@ -140,19 +140,19 @@ include './components/header.php';
   <div class="row">
   
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control"  name="ipaddress" value="<?php echo $ip ; ?>">
+      <input type="text" class="form-control" readonly hidden name="ipaddress" value="<?php echo $ip ; ?>">
     </div>
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control student-longitude"   name="longitude" value="0">
+      <input type="text" class="form-control student-longitude" readonly hidden  name="longitude" value="0">
     </div>
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control student-latitude"   name="latitude" value="0">
+      <input type="text" class="form-control student-latitude"  readonly hidden name="latitude" value="0">
     </div>
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control"   name="username" value="<?php echo $username;  ?>">
+      <input type="text" class="form-control"   name="username"readonly hidden value="<?php echo $username;  ?>">
     </div>
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control"   name="helpcode" value="<?php echo $request_helpcode;  ?>">
+      <input type="text" class="form-control"   name="helpcode"readonly hidden value="<?php echo $request_helpcode;  ?>">
     </div>
 
 
