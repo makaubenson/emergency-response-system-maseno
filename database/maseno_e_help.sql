@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 15, 2022 at 06:06 AM
+-- Generation Time: May 18, 2022 at 09:52 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -88,6 +88,7 @@ INSERT INTO `request_status` (`id`, `helpID`, `ip_address`, `request_latitude`, 
 (11, 'J2DM4Y', '197.156.137.185', '-1.2841', '36.8155', 'Failed', 'other', 'I am not feeling well, i guess i have malaria', 'APS/00410/019', '2022-04-19 21:20:35'),
 (4, 'K73CWE', '196.108.146.82', '1', '38', 'Responding', 'other', 'Am Getting Panick Attacks', 'CIT/00064/020', '2022-04-19 18:57:21'),
 (38, 'KFTQM7', '165.105.70.4', '37.751', '-97.822', 'Pending', 'accident', NULL, 'CCT/00046/020', '2022-05-08 14:45:56'),
+(40, 'N82XKH', '165.105.70.4', '-1.2582912', '36.8705536', 'Pending', 'sickness', 'I have fever', 'CIT/00046/019', '2022-05-17 11:11:38'),
 (23, 'OFVPFE', '102.23.98.20', '10', '8', 'Failed', 'sickness', NULL, 'CIM/00193/019', '2022-04-21 08:56:02'),
 (31, 'P1QLPJ', '165.105.70.4', '37.751', '-97.822', 'Pending', 'sickness', 'I am vomiting', 'CIT/00047/019', '2022-05-08 12:31:58'),
 (5, 'QE8KWM', '41.90.216.250', '-1.2841', '36.8155', 'Successful', 'fire', 'My Gas cylinder exploded on my face', 'ALI/00278/019', '2022-04-19 18:58:12'),
@@ -95,7 +96,8 @@ INSERT INTO `request_status` (`id`, `helpID`, `ip_address`, `request_latitude`, 
 (15, 'RYUL9X', '154.122.73.6', '1', '38', 'Pending', 'sickness', NULL, 'HHR/00135/019', '2022-04-20 15:19:42'),
 (39, 'TRP1P6', '165.105.70.4', '37.751', '-97.822', 'Pending', 'fire', NULL, 'CCS/00100/019', '2022-05-08 14:46:51'),
 (13, 'WR4Z8Y', '105.161.154.97', '1', '38', 'Successful', 'accident', 'I fell with a motor bike', 'ESC/00018/020', '2022-04-20 06:58:10'),
-(14, 'WZT3RU', '105.160.12.176', '-1.2841', '36.8155', 'Responding', 'sickness', NULL, 'SBH/00543/023', '2022-04-20 15:12:54');
+(14, 'WZT3RU', '105.160.12.176', '-1.2841', '36.8155', 'Responding', 'sickness', NULL, 'SBH/00543/023', '2022-04-20 15:12:54'),
+(41, 'Y7HGQK', '165.105.70.4', '-0.007684', '34.6065696', 'Assigned', 'accident', 'Got an injury while playing football', 'CIT/00046/019', '2022-05-18 11:49:02');
 
 -- --------------------------------------------------------
 
@@ -195,7 +197,8 @@ INSERT INTO `rescue_team_tasks` (`id`, `task_help_code`, `rescue_team_id`, `assi
 (14, 'HXZCEH', 'TM01', 'MSU/00050/022', 'Successful', '2022-05-02 06:23:43', '0.0.0.0', '0.0', '0.0'),
 (15, 'J2DM4Y', 'TM03', 'MSU/00050/022', 'Failed', '2022-05-02 06:23:47', '0.0.0.0', '0.0', '0.0'),
 (16, 'WR4Z8Y', 'TM02', 'MSU/00050/022', 'Successful', '2022-05-02 06:23:53', '0.0.0.0', '0.0', '0.0'),
-(17, 'WZT3RU', 'TM01', 'MSU/00050/022', 'Responding', '2022-05-02 06:27:45', '0.0.0.0', '0.0', '0.0');
+(17, 'WZT3RU', 'TM01', 'MSU/00050/022', 'Responding', '2022-05-02 06:27:45', '0.0.0.0', '0.0', '0.0'),
+(18, 'Y7HGQK', 'TM01', 'MSU/00046/022', 'Assigned', '2022-05-18 12:21:41', '0.0.0.0', '0.0', '0.0');
 
 -- --------------------------------------------------------
 
@@ -276,7 +279,7 @@ INSERT INTO `student_details` (`id`, `regNum`, `firstname`, `lastname`, `emailad
 (31, 'CIT/00005/019', 'Faith', 'Chepkoech', 'daktari76@gmail.com', '0768024466', 'ce046d35155801bdf544e6dbd0de10ad', NULL, '2022-04-19 18:57:39'),
 (28, 'CIT/00006/019', 'Obonyo', 'Odhiambo', 'n.obonyo@yahoo.com', '0722488828', '1c67de5e4c059c9374062f0f3950c26c', NULL, '2022-04-19 18:51:06'),
 (35, 'CIT/00012/019', 'Lisper', 'Ndegwa', 'lisperndegwa03@gmail.com', '0752337676', '3d69708ee30384a14d0e1d7ffa1a104a', NULL, '2022-04-19 19:29:41'),
-(7, 'CIT/00046/019', 'Benson', 'Makau', 'bensonmakau2000@gmail.com', '0758413462', 'ebcfd5a11d7cf5ba89f838fc766be7a4', 'ec3744f1a700e08b77e5a7e0f0c3653a', '2022-04-19 12:19:40'),
+(7, 'CIT/00046/019', 'Benson', 'Makau', 'bensonmakau2000@gmail.com', '0758413462', 'ebcfd5a11d7cf5ba89f838fc766be7a4', 'd381784c7ddd40f51ff80b97446f4770e61c93c2', '2022-04-19 12:19:40'),
 (8, 'CIT/00047/019', 'Charles', 'Kariuko', 'kariukicharles@gmail.com', '0769879425', 'ebcfd5a11d7cf5ba89f838fc766be7a4', NULL, '2022-04-19 17:15:49'),
 (9, 'CIT/00048/019', 'Grace', 'Kimanthi', 'kimanthigrace02@gmail.com', '0745986589', 'ebcfd5a11d7cf5ba89f838fc766be7a4', NULL, '2022-04-19 17:17:15'),
 (10, 'CIT/00049/019', 'Lydia', 'Odongo', 'odongolydia23@gmail.com', '0749898952', 'ebcfd5a11d7cf5ba89f838fc766be7a4', NULL, '2022-04-19 17:18:41'),
@@ -366,7 +369,7 @@ ALTER TABLE `admin_details`
 -- AUTO_INCREMENT for table `request_status`
 --
 ALTER TABLE `request_status`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `rescue_team`
@@ -384,7 +387,7 @@ ALTER TABLE `rescue_team_members`
 -- AUTO_INCREMENT for table `rescue_team_tasks`
 --
 ALTER TABLE `rescue_team_tasks`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `role_details`
