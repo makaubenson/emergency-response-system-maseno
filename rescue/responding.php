@@ -74,9 +74,9 @@ include './components/header.php';
             <input  type='text' hidden  name='rescue_latitude' value='$rescue_Lat'>
             <input  type='text' hidden  name='r_timestamp' value='$time'>
     
-            <input type='submit' value='View Task' name='view-task-btn' class='btn btn-warning'>
-            <input type='submit' value='Successful' id='success-Button' name='success-task-btn' class='btn btn-success'>
-            <input type='submit' value='Failed' name='failed-task-btn' class='btn btn-danger'>
+            <input type='submit' value='View Task' name='view-task-btn' class='btn btn-warning m-1'>
+            <input type='button' value='Successful' id='success-Button' name='success-task-btn' class='btn btn-success m-1'>
+            <input type='button' value='Failed' id='failed-Button' name='failed-task-btn' class='btn btn-danger m-1'>
          
             </form>
             </td> </tr>";
@@ -117,6 +117,37 @@ include './components/header.php';
           <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
         <button type="submit" name='success-task-btn' class="btn btn-success">Send and Exit</button>
+      </div>
+        </form>
+      </div>
+   
+    </div>
+  </div>
+</div>
+<!--End of Modal-->
+
+  <!--Failed Modal -->
+  <div class="modal fade" id="failedModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Oh no! You Failed 😢</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="server.php">
+     
+          <div class="form-group">
+          <label for="recipient-name" hidden class="col-form-label">Help Code </label>
+            <input type="text" name='task_code' readonly required class="form-control" id="recipient-name" value="<?php echo  $_SESSION['HELPCODE']; ?>">
+            <label for="recipient-name" class="col-form-label">Please tell us what happened: </label>
+            <textarea class="form-control"name='incident_desc' required id="message-text"></textarea>
+          </div>
+          <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="submit" name='failed-task-btn' class="btn btn-success">Send and Exit</button>
       </div>
         </form>
       </div>

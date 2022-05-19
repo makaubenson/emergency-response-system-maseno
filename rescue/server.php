@@ -210,9 +210,13 @@ $incident_description = $_POST['incident_desc'];
 // Updating Failed Requests
 if (isset($_POST['failed-task-btn'])) {
   $help_code = $_POST['task_code'];
+  $incident_description = $_POST['incident_desc'];
   
     if (empty($help_code)) {
       array_push($errors, "Help Code is required");
+    }
+    if (empty($incident_description)) {
+      array_push($errors, "Description is missing");
     }
     if (count($errors) == 0) {
   
@@ -221,7 +225,10 @@ if (isset($_POST['failed-task-btn'])) {
   
       $failed_query ="UPDATE `rescue_team_tasks` SET `team_status`='Failed' WHERE `task_help_code`='$help_code'";
       $failed_result = mysqli_query($db, $failed_query);
-  
+
+      $failed_list_query ="INSERT INTO `failed-list`(`student_helpcode`, `incident_description`) VALUES ('$help_code','$incident_description')";
+      $failed_list_update = mysqli_query($db, $failed_list_query);
+
         header('location: dashboard.php');
       }else{
         array_push($errors, "Unable to Push Updates");

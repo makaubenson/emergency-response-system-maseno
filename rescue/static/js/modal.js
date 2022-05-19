@@ -8,3 +8,13 @@ document
     e.preventDefault();
     openSuccessModal();
   });
+
+function openFailedModal() {
+  $("#failedModal").modal("show");
+}
+document
+  .getElementById("failed-Button")
+  .addEventListener("click", function (e) {
+    e.preventDefault();
+    openFailedModal();
+  });

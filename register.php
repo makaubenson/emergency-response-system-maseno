@@ -317,11 +317,12 @@ include './components/header.php';
   }
 
 document.getElementById('regBtn').addEventListener('click',function(e){
-  e.preventDefault();
+ 
 let pass1 = document.getElementById('txtPassword').value;
 let pass2 = document.getElementById('txtPassword2').value;
 
 if(pass1 !== pass2){
+  e.preventDefault();
   Toastify({
   text: "Passwords Do Not Match! ⚠ ",
   className: "warning",
@@ -330,9 +331,9 @@ if(pass1 !== pass2){
     color: 'black',
   }
 }).showToast();
-}if (pass1 === pass2) {
+}else if (pass1 === pass2) {
   Toastify({
-  text: "Passwords Matched ",
+  text: "Passwords Matched",
   className: "success",
   style: {
     background: "#28a745",

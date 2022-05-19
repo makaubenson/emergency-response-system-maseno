@@ -63,14 +63,15 @@ function getCurrentLocationHandler(e) {
 
 getCurrentLocationHandler();
 // //fetch Locations after assigning them to divs
-let Latitude = document.querySelector(".student-latitude").value;
-let Longitude = document.querySelector(".student-longitude").value;
-console.log(Latitude, Longitude);
 
 document.getElementById("help-btn").addEventListener("click", function (e) {
-  e.preventDefault();
+  let Latitude = document.querySelector(".student-latitude").value;
+  let Longitude = document.querySelector(".student-longitude").value;
+
   if (Latitude == "0" && Longitude == "0") {
+    e.preventDefault();
     //Revoke Function
     openModal();
+  } else {
   }
 });
