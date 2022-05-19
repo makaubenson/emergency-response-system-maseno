@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 19, 2022 at 03:55 AM
+-- Generation Time: May 19, 2022 at 12:15 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -51,6 +51,25 @@ INSERT INTO `admin_details` (`id`, `admin_id`, `admin_firstname`, `admin_lastnam
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `failed-list`
+--
+
+CREATE TABLE `failed-list` (
+  `id` int(20) NOT NULL,
+  `student_helpcode` varchar(50) NOT NULL,
+  `incident_description` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `failed-list`
+--
+
+INSERT INTO `failed-list` (`id`, `student_helpcode`, `incident_description`) VALUES
+(1, 'Z3P85U', 'Unfortunately,by the time we arrived, the student had sought other medical options and went to a private hospital');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `request_status`
 --
 
@@ -72,7 +91,8 @@ CREATE TABLE `request_status` (
 --
 
 INSERT INTO `request_status` (`id`, `helpID`, `ip_address`, `request_latitude`, `request_longitude`, `status`, `emergency_type`, `emergency_description`, `admNo`, `timestamp`) VALUES
-(1, 'Y7HGQK', '165.105.70.4', '-0.007684', '34.6065696', 'Assigned', 'accident', 'Got an injury while playing football', 'CIT/00046/019', '2022-05-18 11:49:02');
+(1, 'Y7HGQK', '165.105.70.4', '-0.007684', '34.6065696', 'Successful', 'accident', 'Got an injury while playing football', 'CIT/00046/019', '2022-05-18 11:49:02'),
+(2, 'Z3P85U', '165.105.70.4', '-0.002114166666666667', '34.6117515', 'Failed', 'sickness', 'I am having fever, headache and joint pains', 'CIT/00047/019', '2022-05-19 14:42:55');
 
 -- --------------------------------------------------------
 
@@ -145,18 +165,16 @@ CREATE TABLE `rescue_team_tasks` (
   `rescue_team_id` varchar(50) NOT NULL,
   `assigning_admin_id` varchar(50) NOT NULL,
   `team_status` varchar(255) NOT NULL DEFAULT 'Unassigned',
-  `assignment_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `rescue_ip_address` varchar(50) NOT NULL DEFAULT '0.0.0.0',
-  `rescue_team_latitude` varchar(20) NOT NULL DEFAULT '0.0',
-  `rescue_team_longitude` varchar(20) NOT NULL DEFAULT '0.0'
+  `assignment_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data for table `rescue_team_tasks`
 --
 
-INSERT INTO `rescue_team_tasks` (`id`, `task_help_code`, `rescue_team_id`, `assigning_admin_id`, `team_status`, `assignment_time`, `rescue_ip_address`, `rescue_team_latitude`, `rescue_team_longitude`) VALUES
-(1, 'Y7HGQK', 'TM01', 'MSU/00046/022', 'Assigned', '2022-05-18 12:21:41', '0.0.0.0', '0.0', '0.0');
+INSERT INTO `rescue_team_tasks` (`id`, `task_help_code`, `rescue_team_id`, `assigning_admin_id`, `team_status`, `assignment_time`) VALUES
+(1, 'Y7HGQK', 'TM02', 'MSU/00046/022', 'Successful', '2022-05-18 12:21:41'),
+(2, 'Z3P85U', 'TM01', 'MSU/00046/022', 'Failed', '2022-05-19 14:43:44');
 
 -- --------------------------------------------------------
 
@@ -203,7 +221,27 @@ CREATE TABLE `student_details` (
 --
 
 INSERT INTO `student_details` (`id`, `regNum`, `firstname`, `lastname`, `emailaddress`, `phonenumber`, `password`, `password_reset_token`, `date`) VALUES
-(1, 'CIT/00046/019', 'Benson', 'Makau', 'bensonmakau2000@gmail.com', '0758413462', 'ebcfd5a11d7cf5ba89f838fc766be7a4', 'd381784c7ddd40f51ff80b97446f4770e61c93c2', '2022-04-19 12:19:40');
+(1, 'CIT/00046/019', 'Benson', 'Makau', 'bensonmakau2000@gmail.com', '0758413462', 'ebcfd5a11d7cf5ba89f838fc766be7a4', 'd381784c7ddd40f51ff80b97446f4770e61c93c2', '2022-04-19 12:19:40'),
+(2, 'CIT/00047/019', 'James', 'Mwanzia', 'mwanziajames23@gmail.com', '0785948568', '8821fe54f8b9828c97081d56666b6cc9', NULL, '2022-05-19 14:24:33');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `success-list`
+--
+
+CREATE TABLE `success-list` (
+  `id` int(20) NOT NULL,
+  `student_helpcode` varchar(50) NOT NULL,
+  `incident_description` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `success-list`
+--
+
+INSERT INTO `success-list` (`id`, `student_helpcode`, `incident_description`) VALUES
+(2, 'Y7HGQK', 'We found that the student has twisted his leg while playing football. Our paramedics helped him on the spot.');
 
 --
 -- Indexes for dumped tables
@@ -215,6 +253,13 @@ INSERT INTO `student_details` (`id`, `regNum`, `firstname`, `lastname`, `emailad
 ALTER TABLE `admin_details`
   ADD PRIMARY KEY (`admin_id`),
   ADD UNIQUE KEY `uniq` (`id`);
+
+--
+-- Indexes for table `failed-list`
+--
+ALTER TABLE `failed-list`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `helpcode` (`student_helpcode`);
 
 --
 -- Indexes for table `request_status`
@@ -264,6 +309,13 @@ ALTER TABLE `student_details`
   ADD KEY `id` (`id`);
 
 --
+-- Indexes for table `success-list`
+--
+ALTER TABLE `success-list`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `helpid` (`student_helpcode`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -274,10 +326,16 @@ ALTER TABLE `admin_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `failed-list`
+--
+ALTER TABLE `failed-list`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `request_status`
 --
 ALTER TABLE `request_status`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `rescue_team`
@@ -295,7 +353,7 @@ ALTER TABLE `rescue_team_members`
 -- AUTO_INCREMENT for table `rescue_team_tasks`
 --
 ALTER TABLE `rescue_team_tasks`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `role_details`
@@ -307,11 +365,23 @@ ALTER TABLE `role_details`
 -- AUTO_INCREMENT for table `student_details`
 --
 ALTER TABLE `student_details`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `success-list`
+--
+ALTER TABLE `success-list`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `failed-list`
+--
+ALTER TABLE `failed-list`
+  ADD CONSTRAINT `failed_list` FOREIGN KEY (`student_helpcode`) REFERENCES `request_status` (`helpID`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `request_status`
@@ -333,6 +403,12 @@ ALTER TABLE `rescue_team_tasks`
   ADD CONSTRAINT `adminid` FOREIGN KEY (`assigning_admin_id`) REFERENCES `admin_details` (`admin_id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `helpid` FOREIGN KEY (`task_help_code`) REFERENCES `request_status` (`helpID`) ON UPDATE CASCADE,
   ADD CONSTRAINT `teamid` FOREIGN KEY (`rescue_team_id`) REFERENCES `rescue_team` (`team_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `success-list`
+--
+ALTER TABLE `success-list`
+  ADD CONSTRAINT `success_list` FOREIGN KEY (`student_helpcode`) REFERENCES `request_status` (`helpID`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
