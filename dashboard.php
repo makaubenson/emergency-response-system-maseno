@@ -93,7 +93,7 @@ include './components/header.php';
                       Your Longitude</div>
                       <!-- <input type="text" id="js-longitude" value="10"> -->
 
-                  <div class="h5 mb-0 font-weight-bold text-gray-800" id="js-longitude">0 </div>
+                  <div class="h5 mb-0 font-weight-bold text-gray-800" id="js-longitude">0</div>
               </div>
               <div class="col-auto">
                   <i class="fa-solid fa-location-crosshairs fa-2x text-gray-300" style="color:#007bff"></i>
@@ -143,10 +143,10 @@ include './components/header.php';
       <input type="text" class="form-control" required readonly hidden name="ipaddress" value="<?php echo $ip ; ?>">
     </div>
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control student-longitude" required readonly hidden  name="longitude" value="0">
+      <input type="text" class="form-control student-longitude" required readonly   name="longitude" value="0">
     </div>
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control student-latitude"  required readonly hidden name="latitude" value="0">
+      <input type="text" class="form-control student-latitude"  required readonly  name="latitude" value="0">
     </div>
     <div class="col-sm-12 pb-1">
       <input type="text" class="form-control"   name="username" readonly  required hidden value="<?php echo $username;  ?>">
@@ -206,7 +206,7 @@ include './components/header.php';
 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button> -->
 
 
-<div class="modal fade mt-3" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade mt-3" id="manualLocationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
     <div class="row">

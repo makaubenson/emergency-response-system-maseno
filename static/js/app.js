@@ -1,7 +1,9 @@
 document.getElementById("year").innerHTML = new Date().getFullYear();
 // let longitude = 10;
 // let latitude = 10;
-
+function openModal() {
+  $("#manualLocationModal").modal("show");
+}
 function getCurrentLocationHandler(e) {
   if (navigator && navigator.geolocation) {
     // let location_timeout = setTimeout("geolocFail()", 10000);
@@ -14,7 +16,7 @@ function getCurrentLocationHandler(e) {
           lat: coords.latitude,
           lng: coords.longitude,
         };
-        console.log(userLocation);
+        // console.log(userLocation);
 
         //Update Longitude Values on Student Dashboard
         document.getElementById("js-longitude").innerHTML = userLocation.lng;
@@ -56,3 +58,15 @@ function getCurrentLocationHandler(e) {
 }
 
 getCurrentLocationHandler();
+// //fetch Locations after assigning them to divs
+let Latitude = document.querySelector(".student-latitude").value;
+let Longitude = document.querySelector(".student-longitude").value;
+console.log(Latitude, Longitude);
+
+document.getElementById("help-btn").addEventListener("click", function (e) {
+  e.preventDefault();
+  if (Latitude == "0" && Longitude == "0") {
+    //Revoke Function
+    openModal();
+  }
+});
