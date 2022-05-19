@@ -1,9 +1,10 @@
 document.getElementById("year").innerHTML = new Date().getFullYear();
-let longitude = 0;
-let latitude = 0;
+// let longitude = 10;
+// let latitude = 10;
 
 function getCurrentLocationHandler(e) {
   if (navigator && navigator.geolocation) {
+    // let location_timeout = setTimeout("geolocFail()", 10000);
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         const coords = pos.coords;

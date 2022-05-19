@@ -1,4 +1,4 @@
-<script src="./static/js/app.js"></script>
+
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script
