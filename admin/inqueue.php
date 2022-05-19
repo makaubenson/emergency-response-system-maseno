@@ -8,12 +8,13 @@ include 'server.php';
     <?php include './includes/navbar.php'; ?>
 
   <div class="row m-3">
-    <div class="col-md-7">
+<div class="col-md-2"></div>
+    <div class="col-md-8">
 <div class="table-responsive-lg">
     <table class="table" style='color:black'>
         <thead>
-          <p  style='color:blue; font-weight:normal'>
-          Requests not assigned a response team
+          <p  style='color:blue; font-weight:bold'>
+          Requests In Queue
 </p>
             <tr >
               <!-- <th scope="col" class="table-primary">S.NO</th> -->
@@ -68,68 +69,7 @@ include 'server.php';
   </div>
     
   </div>
-  <div class="col-md-5">
-    <div class="table-responsive-lg">
-        <table class="table" style='color:black'>
-            <thead>
-              <p style='color:black; font-weight:normal'>
-              Requests assigned response team but not being attended to.
-      </p>
-                <tr >
-                  <!-- <th scope="col" class="table-info">S.NO</th> -->
-                  <th scope="col" class="table-danger">Student Name</th>
-                  <th scope="col" class="table-danger">Help Code</th>
-                  <th scope="col" class="table-danger">Team Assigned</th>
-                  <th scope="col" class="table-danger">Time of Assignment</th>
-                  <th scope="col" class="table-danger">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-            
-        <?php
-        if($_SESSION['admin_id']){
-          $data_fetch_query = "SELECT request_status.id, request_status.helpID,request_status.status,
-          request_status.admNo,request_status.timestamp,student_details.regNum,student_details.regNum,
-          student_details.firstname,student_details.lastname,student_details.phonenumber, rescue_team_tasks.*
-          FROM request_status
-          INNER JOIN student_details ON request_status.admNo = student_details.regNum
-          INNER JOIN rescue_team_tasks ON request_status.helpID = rescue_team_tasks.task_help_code
-          WHERE request_status.status ='Assigned' order by request_status.timestamp DESC;";
-            $data_result = mysqli_query($db, $data_fetch_query);
-            if ($data_result->num_rows > 0){
-                while($row = $data_result->fetch_assoc()) {
-    
-                $help_code=$row["helpID"];
-                $request_status=$row["status"];
-    
-          
-            echo "<tr style='font-weight:normal'> <td>" .$row["firstname"]. " ".$row["lastname"]. "</td>";
-            echo "<td>" .$row["helpID"]."</td>";
-            echo "<td>" .$row["rescue_team_id"]."</td>";
-            echo "<td>" .$row["assignment_time"]."</td>";
-            echo "<td>
-            
-            <form method ='POST' action='server.php'>
-            <input hidden type='text' name='help_code_2' value='$help_code'>
-            <input type='submit' name='reassign-btn' value='Change Team' class='btn btn-success'>
-            </form>
-            </td> </tr>";
-            }
-            
-            }else{
-            echo "<td>"."No Data is available"."</td>";
-            }
-            
-            } else{
-                echo "<td>"."No Data Found"."</td>";
-            }
-    
-    ?>
-              </tbody>
-        </table>
-      </div>
-        
-      </div>
+  <div class="col-md-2"></div>
 </div>
 
 

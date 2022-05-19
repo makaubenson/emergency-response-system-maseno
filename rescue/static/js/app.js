@@ -50,4 +50,4 @@ function getCurrentLocationHandler(e) {
   });
 }
 
-getCurrentLocationHandler();
+

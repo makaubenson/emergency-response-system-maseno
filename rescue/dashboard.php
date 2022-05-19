@@ -1,6 +1,7 @@
 <?php
 include 'server.php';
 $team_name = $_SESSION['team_name'];
+$helpCode = $_SESSION['task_help_code'];
 // Get Location from IP Address using PHP
 // Use the IP Geolocation API to get the user’s location from IP using PHP.
 
@@ -46,9 +47,14 @@ $getInfo = json_decode($url);
 
 <!DOCTYPE html>
 <html lang="en">
-<?php
+  <head>
+  <?php
 include './components/header.php';
 ?>
+  <title>Assigned Tasks</title>
+  </head>
+
+
   <body>
     <?php
     include './components/navbar.php';
@@ -90,6 +96,7 @@ include './components/header.php';
                 while($row = $data_result->fetch_assoc()) {
                   $student_reg = $row["regNum"];
                   $task_code = $row["helpID"];
+                  $_SESSION['task_help_code'] = $task_code;
              
             echo "<tr> <td>" .$row["helpID"].  "</td>";
             echo "<td>" .$row["regNum"]."</td>";
@@ -98,9 +105,9 @@ include './components/header.php';
             echo "<td>" .$row["timestamp"]."</td>";    
             echo "<td>
             <form method ='POST' action='server.php'>
-            <input  type='text' hidden name='task_code' value='$task_code'>        
+            <input  type='text' hidden  name='task_code' value='$task_code'>        
             <input  type='text'  hidden name='student_reg' value='$student_reg'>
-            <input type='submit' value='View Task' name='view-task-btn' class='btn btn-success'>
+            <input type='submit' id='task-view-button' value='View Task' name='view-task-btn' class='btn btn-success'>
          
             </form>
             </td> </tr>";
@@ -118,9 +125,16 @@ include './components/header.php';
               </tbody>
 </table>
 </div>
+
 </div>
 
+<!-- script to run modals -->
+<script>
+
+</script>
+
+<script src="./static/js/modal.js"></script>
 <script src="./static/js/app.js"></script>
-<?php include 'scripts.php';?>
+<?php include './components/scripts.php';?>
   </body>
 </html>

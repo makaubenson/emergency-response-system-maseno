@@ -125,7 +125,7 @@ include './components/header.php';
 <!--end of one Card -->
 <!--end of Cards-->
 </div>
-</div>
+
 
 <!--Request Help Section-->
 <div class="row">
@@ -250,6 +250,7 @@ include './components/header.php';
     </div>
   </div>
   <div class="col-sm-3 mb-5"></div>
+</div>
 </div>
 <!-- Footer -->
 <?php

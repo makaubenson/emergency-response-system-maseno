@@ -15,6 +15,9 @@
      <li class="nav-item">
         <a class="nav-link active" href="inqueue.php">In-Queue</a>
       </li>
+     <li class="nav-item">
+        <a class="nav-link active" href="assigned.php">Assigned</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link active" href="successful.php">Successful</a>
       </li>

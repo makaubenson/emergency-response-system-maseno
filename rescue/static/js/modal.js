@@ -18,3 +18,4 @@ document
     e.preventDefault();
     openFailedModal();
   });
+
