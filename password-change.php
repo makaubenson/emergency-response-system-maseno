@@ -1,10 +1,5 @@
 <?php
 include 'server.php';
-$url = $_SERVER["QUERY_STRING"];
-// $secret_key = '140f93a730af6b87a1a413b61ca01213';//md5(masenouniversity);
-$token_value= htmlspecialchars($_GET["token"]);
-
-$tk = $_SESSION['toke_val'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,14 +17,14 @@ include './components/header.php';
             <div class="col-md-3"></div>
             <div class="col-md-6 mt-5 login-page">
                 <?php
-                    if(isset($_SESSION['status']))
+                    if(isset($_SESSION['email_status']))
                         {
                             ?>
                                 <div class="alert alert-success">
-                                    <h5><?= $_SESSION['status']; ?></h5>
+                                    <h5><?= $_SESSION['email_status']; ?></h5>
                                 </div>
                             <?php
-                                unset($_SESSION['status']);
+                                unset($_SESSION['email_status']);
                         }
                 ?>
                 <div class="col-md-12 mb-2 login-page-header">
@@ -84,21 +79,8 @@ include './components/header.php';
                             
                         </div>
                     </div>
-                    <hr>
-           
-             <!-- <div class="row">
-             <div class="col-sm-12 register-col">
-               <p class="lead">Don't have an account yet? <a href="./register.php" class="btn btn-success">Register Here</a></p>
-             </div>
-            </div> -->
-                    <!-- <hr> -->
-                    <!--Register-->
-                    <!-- <div class="row">
-                        <div class="col-sm-12 register-col">
-                            <p class="lead"> <a href="./rescue/index.php" class="btn btn-success">Rescue Team Login</a>
-                            </p>
-                        </div>
-                    </div> -->
+                
+
                 </form>
             </div>
         </div>
