@@ -49,25 +49,25 @@ include './components/header.php';
                 <?php
             include 'errors.php';
             ?>
-                <!-- <div class="form-group row">
-                        <label for="inputEmail3" hidden class="col-sm-4 col-form-label">Reset Token</label>
+                 <div class="form-group row">
+                        <!-- <label for="inputEmail3" hidden class="col-sm-4 col-form-label">Reset Token</label> -->
                         <div class="col-sm-8">
-                            <input type="text" hidden value="" class="form-control" id="inputEmail3" placeholder="Email Address" name="reset_token"
+                            <input type="text" hidden value="<?php if(isset($_GET['token'])){echo $_GET['token'];}?>" class="form-control" id="inputEmail3" placeholder="Token" name="reset_token"
                                 readonly required />
                         </div>
-                    </div> -->
+                    </div> 
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-4 col-form-label">New Password</label>
                         <div class="col-sm-8">
                             <input type="password" class="form-control" id="inputEmail3" placeholder="New Password" name="student_pass1"
-                                required />
+                               required />
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="inputPassword3" class="col-sm-4 col-form-label">Confirm Password</label>
                         <div class="col-sm-8">
                             <input type="password" class="form-control" id="inputPassword3" placeholder="Confirm Password"
-                                name="student_pass2" required />
+                                name="student_pass2"  required/>
                         </div>
                     </div>
 

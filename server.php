@@ -17,7 +17,7 @@ require 'vendor/autoload.php';
 // connect to the database
 try{
    $db = mysqli_connect('localhost', 'benson', 'benson', 'maseno_e_help');
-  //  $db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
+    //$db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
 //echo 'Database Connected Successfully';
 }
 catch(Exception $e) {
@@ -232,7 +232,7 @@ $email_template = "
 <body style='background:rgb(216, 210, 210);'>
 <h2 style='color:black;'>Hello, $student_name </h2>
 <h3> You are receiving this email because we received a password reset request for your account.</h3>
-<h3>If you are the one who initiated this process please <a href='http://localhost/maseno-E-help/password-change.php?token=$token' style='font-weight:bold;'>Click Here</a> to RESET your password, else IGNORE this Email.</h3>
+<h3>If you are the one who initiated this process please <a href='https://health.blinx.co.ke/password-change.php?token=$token' style='font-weight:bold;'>Click Here</a> to RESET your password, else IGNORE this Email.</h3>
 
 <br>
 <img src='https://www.maseno.ac.ke/sites/default/files/Maseno-logo_v5.png' alt=''>
@@ -293,6 +293,7 @@ exit(0);
 if(isset($_POST['update_password_btn'])){
   $password1 = $_POST['student_pass1'];
   $password2 = $_POST['student_pass2'];
+  $token = $_POST['reset_token'];
 
   if (empty($password1)) { array_push($errors, "Password is required"); }
   if (empty($password2)) { array_push($errors, "Confirm Password is required"); }
@@ -306,7 +307,18 @@ if(isset($_POST['update_password_btn'])){
     header("Location: index.php");
   }else{
     echo '<script>
-   alert("Unable to Change Password. Please Contact the System Administrator!");
+   Toastify({
+    text: "Unable to Change Password. Please Contact the System Administrator!",
+    duration: 4000,
+    className: "warning",
+    close: true,
+    gravity: "top", 
+    position: "right", 
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    style: {
+      background: "#ffc107",
+    },
+  }).showToast();
     </script>';
     header('Location: forgot-password.php');
   }

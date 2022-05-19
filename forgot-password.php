@@ -12,34 +12,27 @@ include './components/header.php';
 
 <body style="background-color: #d2d6de;">
     <div class="container">
-    <div class="row">
-       <div class="col-md-3"></div>
-       <div class="col-md-6">
-       <!-- <div class="alert alert-warning mt-3" role="alert" style="text-align: center;">
-  ⚠ Please fill in the credentials required correctly.
-</div> -->
-<div class="alert alert-warning alert-dismissible fade show  mt-3" role="alert" style="text-align: center;">
-  <strong>⚠</strong>  Please fill in the credentials required correctly.
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-       </div>
-       <div class="col-md-3"></div>
-   </div>
+
   
-        <div class="row mt-1 login-page-row"> 
-        <?php
-if(isset($_SESSION['status']))
+        <div class="row mt-5 login-page-row"> 
+<div class="col-md-3"></div>
+<div class="col-md-6">
+<?php
+if(isset($_SESSION['email_status']))
 {
     ?>
-    <div class="alert alert-success">
-        <h5><?= $_SESSION['status']; ?></h5>
+ <div class="alert alert-warning alert-dismissible fade show  mt-3" role="alert" style="text-align: center;">
+        <h5><?= $_SESSION['email_status']; ?></h5>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
     </div>
     <?php
-    unset($_SESSION['status']);
+    unset($_SESSION['email_status']);
 }
 ?>
+</div>
+<div class="col-md-3"></div>
             <div class="col-md-3"></div>
             <div class="col-md-6 mt-1 login-page">
        
