@@ -143,10 +143,10 @@ include './components/header.php';
       <input type="text" class="form-control" required readonly hidden name="ipaddress" value="<?php echo $ip ; ?>">
     </div>
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control student-longitude" required readonly   name="longitude" value="0">
+      <input type="text" class="form-control student-longitude" required readonly hidden  name="longitude" value="0">
     </div>
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control student-latitude"  required readonly  name="latitude" value="0">
+      <input type="text" class="form-control student-latitude"  required readonly hidden name="latitude" value="0">
     </div>
     <div class="col-sm-12 pb-1">
       <input type="text" class="form-control"   name="username" readonly  required hidden value="<?php echo $username;  ?>">

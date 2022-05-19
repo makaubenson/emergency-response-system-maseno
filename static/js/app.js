@@ -1,9 +1,13 @@
 document.getElementById("year").innerHTML = new Date().getFullYear();
 // let longitude = 10;
 // let latitude = 10;
+
+//Function To Open Modal
 function openModal() {
   $("#manualLocationModal").modal("show");
 }
+
+//Function to Fetch User Location
 function getCurrentLocationHandler(e) {
   if (navigator && navigator.geolocation) {
     // let location_timeout = setTimeout("geolocFail()", 10000);
