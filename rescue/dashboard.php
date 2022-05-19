@@ -100,8 +100,8 @@ include './components/header.php';
             <form method ='POST' action='server.php'>
             <input  type='text' hidden name='task_code' value='$task_code'>
             <input  type='text' hidden name='rescue_ip' value='$getInfo->geoplugin_request'>
-            <input  type='text' hidden id='rescue_latitude' name='rescue_latitude' value='0'>
-            <input  type='text'hidden id='rescue_longitude' name='rescue_longitude' value='0'>
+            <input  type='text'  id='rescue_latitude' name='rescue_latitude' value='0'>
+            <input  type='text'  id='rescue_longitude' name='rescue_longitude' value='0'>
             <input  type='text'  hidden name='student_reg' value='$student_reg'>
             <input type='submit' value='View Task' name='view-task-btn' class='btn btn-success'>
          
