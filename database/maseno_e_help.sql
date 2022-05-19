@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 18, 2022 at 07:25 PM
+-- Generation Time: May 19, 2022 at 03:55 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -146,16 +146,16 @@ CREATE TABLE `rescue_team_tasks` (
   `assigning_admin_id` varchar(50) NOT NULL,
   `team_status` varchar(255) NOT NULL DEFAULT 'Unassigned',
   `assignment_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `ip_address` varchar(50) NOT NULL DEFAULT '0.0.0.0',
-  `latitude` varchar(20) NOT NULL DEFAULT '0.0',
-  `longitude` varchar(20) NOT NULL DEFAULT '0.0'
+  `rescue_ip_address` varchar(50) NOT NULL DEFAULT '0.0.0.0',
+  `rescue_team_latitude` varchar(20) NOT NULL DEFAULT '0.0',
+  `rescue_team_longitude` varchar(20) NOT NULL DEFAULT '0.0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data for table `rescue_team_tasks`
 --
 
-INSERT INTO `rescue_team_tasks` (`id`, `task_help_code`, `rescue_team_id`, `assigning_admin_id`, `team_status`, `assignment_time`, `ip_address`, `latitude`, `longitude`) VALUES
+INSERT INTO `rescue_team_tasks` (`id`, `task_help_code`, `rescue_team_id`, `assigning_admin_id`, `team_status`, `assignment_time`, `rescue_ip_address`, `rescue_team_latitude`, `rescue_team_longitude`) VALUES
 (1, 'Y7HGQK', 'TM01', 'MSU/00046/022', 'Assigned', '2022-05-18 12:21:41', '0.0.0.0', '0.0', '0.0');
 
 -- --------------------------------------------------------
