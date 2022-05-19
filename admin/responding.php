@@ -13,7 +13,7 @@ include 'errors.php';
 ?>
     <div class="row">
         <div class="col-md-12">
-            <h3 style='text-align:center;'>Request Response Details.</h3>
+            <h3 style='text-align:center;'>Request Details.</h3>
         </div>
       <div class="col">
         <label for="student_name">Student Name</label>
@@ -48,6 +48,18 @@ include 'errors.php';
 </div>
 <br>
     <div class="row">
+      
+      <div class="col">
+        <label for="student_name">Team ID</label>
+        <input type="text" class="form-control" name='team_name' readonly placeholder="status"  value='<?php echo $_SESSION['teamID'];?>'>
+      </div>
+      <div class="col">
+        <label for="student_name">Team Name</label>
+        <input type="text" class="form-control" name='time_of_request'readonly placeholder="Time of request" value='<?php echo $_SESSION['request_time'];?>'>
+      </div>
+    </div>
+    <br>
+    <div class="row">
       <div class="col">
         <label for="student_name">Time of Request</label>
         <input type="text" class="form-control" name='time_of_request'readonly placeholder="Time of request" value='<?php echo $_SESSION['request_time'];?>'>
@@ -67,7 +79,6 @@ include 'errors.php';
   </div>
   </form>
 </div>
-
 
 
     <!--Bootstrap 4 scripts-->
