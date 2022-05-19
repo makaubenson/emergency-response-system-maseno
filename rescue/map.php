@@ -10,7 +10,7 @@ include 'server.php';
 <div class="container mt-5">
 <iframe width='100%' height='500' src='https://maps.google.com/maps?q=<?php echo  $_SESSION['request_latitude'];?>, <?php echo $_SESSION['request_longitude'];?>&output=embed'></iframe>
 </div>
-
-    <script src='./static/js/app.js'></script>
+<?php include 'components/scripts.php';?>
+    <!-- <script src='./static/js/app.js'></script> -->
   </body>
 </html>
