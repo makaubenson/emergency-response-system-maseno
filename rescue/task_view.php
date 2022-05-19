@@ -15,7 +15,7 @@ $rescue_Long=   $_SESSION['rescue_long'];
   <body>
     <?php include './components/navbar.php'; ?>
 <div class="container mt-4">
-  <form method="post" action="server.php" class="border border-info p-5" style='color:black; font-weight:normal'>
+  <form method="post" action="server.php" class="border border-info rounded p-4" style='color:black; font-weight:normal'>
 <?php
 include 'errors.php';
 ?>
@@ -58,17 +58,7 @@ include 'errors.php';
         <input type="text" readonly class="form-control" name='reg_num' readonly placeholder="Username" value='<?php echo $student_Adm; ?>'>
       </div>
 </div>
-<br>
-<div class="row">
-  <div class="col">
-    <label  hidden for="student_name">Rescue Team Longitude</label>
-    <input  hidden type="text" class="form-control " id='rescue_Lng' name='rescue_long' readonly placeholder="Rescue Longitude"  value='<?php echo $rescue_Long;?>'>
-  </div>
-  <div class="col">
-        <label   hidden for="student_reg">Rescue Team Latitude</label>
-        <input  hidden type="text" readonly class="form-control " id='rescue_Lat'name='rescue_lat' readonly placeholder="Rescue Latitude" value='<?php echo $rescue_Lat;?>'>
-      </div>
-</div>
+
 <br>
     <div class="row">
     <div class="col-md-3"></div>
@@ -77,7 +67,7 @@ include 'errors.php';
       if($_SESSION['active']){
         echo '<button type="submit" disabled name="request_respond_btn" class="btn btn-primary btn-block">Responding...</button>';
       }else{
-        echo '<button type="submit" name="request_respond_btn" class="btn btn-success btn-block">Respond To Task </button>';
+        echo '<button type="submit" name="request_respond_btn" class="btn btn-primary btn-block">Respond To Task </button>';
       }
       ?>
      

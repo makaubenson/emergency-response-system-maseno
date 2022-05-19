@@ -3,6 +3,7 @@ include 'server.php';
 $rescue_Lat =  $_SESSION['rescue_lat'];
 $rescue_Long=   $_SESSION['rescue_long'];
 $rescue_ip  = $_SESSION['ipaddress'];
+$team_name = $_SESSION['team_name'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,12 +14,14 @@ include './components/header.php';
     <?php
     include './components/navbar.php';
     ?>
+
+
 <div class="container mt-4">
 <table class="table">
   <?php
   include 'errors.php';
   ?>
-  <caption>Tasks that <?php  echo  $_SESSION['team_name']; ?> is Responding to.</caption>
+  <caption>Tasks that <?php echo $team_name; ?> is Responding to.</caption>
   <thead>
       <h3>Responding</h3>
     <tr class='bg-primary'>
@@ -52,7 +55,7 @@ include './components/header.php';
                   $lname = $row["lastname"];
                   $rstatus = $row["status"];
                   $time = $row["timestamp"];
-                 
+                 $_SESSION['HELPCODE'] =  $task_code;
              
             echo "<tr> <td>" .$row["helpID"].  "</td>";
             echo "<td>" .$row["regNum"]."</td>";
@@ -72,7 +75,7 @@ include './components/header.php';
             <input  type='text' hidden  name='r_timestamp' value='$time'>
     
             <input type='submit' value='View Task' name='view-task-btn' class='btn btn-warning'>
-            <input type='submit' value='Successful' name='success-task-btn' class='btn btn-success'>
+            <input type='submit' value='Successful' id='success-Button' name='success-task-btn' class='btn btn-success'>
             <input type='submit' value='Failed' name='failed-task-btn' class='btn btn-danger'>
          
             </form>
@@ -92,8 +95,37 @@ include './components/header.php';
               </tbody>
 </table>
 </div>
-
-
+    <!--Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Great! You Succeeded 😃</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="server.php">
+     
+          <div class="form-group">
+          <label for="recipient-name" hidden class="col-form-label">Help Code </label>
+            <input type="text" name='task_code'readonly required class="form-control" id="recipient-name" value="<?php echo  $_SESSION['HELPCODE']; ?>">
+            <label for="recipient-name" class="col-form-label">Please tell us what happened: </label>
+            <textarea class="form-control"name='incident_desc' required id="message-text"></textarea>
+          </div>
+          <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="submit" name='success-task-btn' class="btn btn-success">Send and Exit</button>
+      </div>
+        </form>
+      </div>
+   
+    </div>
+  </div>
+</div>
+<!--End of Modal-->
+<script src="./static/js/modal.js"></script>
 <?php include 'components/scripts.php';?>
   </body>
 </html>

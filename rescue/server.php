@@ -62,9 +62,7 @@ if (isset($_POST['rescue_login_btn'])) {
 if (isset($_POST['view-task-btn'])) {
   $task_code = $_POST['task_code'];
   $student_reg = $_POST['student_reg'];
-  $ip_add= $_POST['rescue_ip'];
-  $long = $_POST['rescue_longitude'];
-  $lat = $_POST['rescue_latitude'];
+ 
 
   if (empty($task_code)) {
   	array_push($errors, "Help ID is required");
@@ -72,22 +70,9 @@ if (isset($_POST['view-task-btn'])) {
   if (empty($student_reg)) {
   	array_push($errors, "Student ADM No. is required");
   }
-  if (empty($ip_add)) {
-  	array_push($errors, "Ip address is required");
-  }
-  if (empty($long)) {
-  	array_push($errors, "Longitude is required");
-  }
-  if (empty($lat)) {
-  	array_push($errors, "Latitude is required");
-  }
+
 
   if (count($errors) == 0) {
-//Rescue Team Location Update
-$rescue_location_update_query = "UPDATE `rescue_team_tasks` SET `rescue_ip_address`='$ip_add',`rescue_team_latitude`='$lat',`rescue_team_longitude`='$long' WHERE `task_help_code`='$task_code' ";
-$location_results = mysqli_query($db,$rescue_location_update_query);
-
-
 $rescue_select_query = "SELECT * FROM `request_status` WHERE helpID ='$task_code' AND admNo='$student_reg' ";
 $select_results = mysqli_query($db, $rescue_select_query);
 if (mysqli_num_rows($select_results) == 1) {
@@ -121,23 +106,14 @@ $row = mysqli_fetch_assoc($select_results);
  $task_select_query = "SELECT * FROM `rescue_team_tasks` WHERE task_help_code ='$task_code'";
 $task_select_results = mysqli_query($db, $task_select_query);
 if (mysqli_num_rows($task_select_results) == 1) {
-$rw = mysqli_fetch_assoc($task_select_results);
-  
-    // end generate random alphanumeric character
-      $ipAddress=$rw['rescue_ip_address'];
-      $lat=$rw['rescue_team_latitude'];
-      $long=$rw['rescue_team_longitude'];
-    
-      //sessions
-      $_SESSION['ipaddress'] =$ipAddress;
-      $_SESSION['rescue_lat'] = $lat;
-      $_SESSION['rescue_long'] =$long;
- 
+// $rw = mysqli_fetch_assoc($task_select_results);
+
   	  header('location: task_view.php');
+      exit(0);
   	}else{
-  		array_push($errors, "Unable to make updates");
+  		array_push($errors, "Something Went Wrong!");
       header('location: dashboard.php');
-  	
+      exit(0);
   }
   }
 }
@@ -149,8 +125,7 @@ if (isset($_POST['request_respond_btn'])) {
  $request_Longitude = $_POST['task_longitude'];
  $request_status = $_POST['task_status'];
  $student_adm = $_POST['reg_num'];
- $rescue_team_longitude = $_POST['rescue_long'];
- $rescue_team_latitude = $_POST['rescue_lat'];
+
 
   if (empty($request_code)) {
   	array_push($errors, "Help Code is required");
@@ -170,28 +145,19 @@ if (isset($_POST['request_respond_btn'])) {
   if (empty($student_adm)) {
   	array_push($errors, "Student ADM is required");
   }
-  if (empty($rescue_team_longitude)) {
-  	array_push($errors, "Rescue Team Longitude is required");
-  }
-  if (empty($rescue_team_latitude)) {
-  	array_push($errors, "Rescue Team Latitude is required");
-  }
+
 
   if (count($errors) == 0) {
   	$status_update_query = "UPDATE `rescue_team_tasks` SET `team_status`='Responding' WHERE task_help_code ='$request_code' ";
   	$results = mysqli_query($db,$status_update_query);
+    //update second table
     $update_status_query = "UPDATE `request_status` SET `status`='Responding' WHERE helpID='$request_code'";
       $update_results = mysqli_query($db,$update_status_query);
-  	if (mysqli_num_rows($results) == 1) {
-    $row = mysqli_fetch_assoc($results);
-//update second table
-      
 
-  	  header('location: task_view.php');
-  	}else{
+  	  header('Location: responding.php');
+  	}	else {
   		array_push($errors, "Unable to make updates");
-      header('location: task_view.php');
-  	}
+      header('Location: task_view.php');
   }
 }
 // Viewing Map
@@ -213,31 +179,17 @@ if (isset($_POST['view-map-btn'])) {
       header('location: task_view.php');
   }
   }
-// if (isset($_POST['view-map-btn'])) {
-//   $lat = $_POST['task_latitude'];
-//   $long = $_POST['task_longitude'];
-
-//   if (empty($lat)) {
-//   	array_push($errors, "Latitude is required");
-//   }
-//   if (empty($long)) {
-//   	array_push($errors, "Longitude is required");
-//   }
-
-//   if (count($errors) == 0) {
-//   	  header('location: map.php');
-//   	}else{
-//   		array_push($errors, "Unable to view map");
-//       header('location: task_view.php');
-//   }
-//   }
 
 // Updating Successful Requests.
 if (isset($_POST['success-task-btn'])) {
 $help_code = $_POST['task_code'];
+$incident_description = $_POST['incident_desc'];
 
   if (empty($help_code)) {
   	array_push($errors, "Help Code is required");
+  }
+  if (empty($incident_description)) {
+  	array_push($errors, "Incident Description is missing");
   }
   if (count($errors) == 0) {
 
@@ -247,6 +199,8 @@ $help_code = $_POST['task_code'];
     $update_query ="UPDATE `rescue_team_tasks` SET `team_status`='Successful' WHERE `task_help_code`='$help_code'";
     $results_update = mysqli_query($db, $update_query);
 
+    $success_list_query ="INSERT INTO `success-list`(`student_helpcode`, `incident_description`) VALUES ('$help_code','$incident_description')";
+    $success_list_update = mysqli_query($db, $success_list_query);
   	  header('location: dashboard.php');
   	}else{
   		array_push($errors, "Unable to Push Updates");
