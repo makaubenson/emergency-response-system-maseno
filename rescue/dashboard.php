@@ -1,5 +1,6 @@
 <?php
 include 'server.php';
+$team_name = $_SESSION['team_name'];
 // Get Location from IP Address using PHP
 // Use the IP Geolocation API to get the user’s location from IP using PHP.
 
@@ -58,7 +59,7 @@ include './components/header.php';
   <?php
   include 'errors.php';
   ?>
-  <caption>List of Tasks assigned to <?php  echo  $_SESSION['team_name']; ?></caption>
+  <caption>List of Tasks assigned to <?php  echo  $team_name; ?></caption>
   <thead>
       <h3>Assigned Tasks</h3>
     <tr class='bg-primary'>
@@ -97,11 +98,11 @@ include './components/header.php';
             echo "<td>" .$row["timestamp"]."</td>";    
             echo "<td>
             <form method ='POST' action='server.php'>
-            <input  type='text'  name='task_code' value='$task_code'>
-            <input  type='text'  name='rescue_ip' value='$getInfo->geoplugin_request'>
-            <input  type='text'  id='rescue_latitude' name='rescue_latitude' value='0'>
-            <input  type='text' id='rescue_longitude' name='rescue_longitude' value='0'>
-            <input  type='text'   name='student_reg' value='$student_reg'>
+            <input  type='text' hidden name='task_code' value='$task_code'>
+            <input  type='text' hidden name='rescue_ip' value='$getInfo->geoplugin_request'>
+            <input  type='text' hidden id='rescue_latitude' name='rescue_latitude' value='0'>
+            <input  type='text'hidden id='rescue_longitude' name='rescue_longitude' value='0'>
+            <input  type='text'  hidden name='student_reg' value='$student_reg'>
             <input type='submit' value='View Task' name='view-task-btn' class='btn btn-success'>
          
             </form>
@@ -122,13 +123,7 @@ include './components/header.php';
 </div>
 </div>
 
-
-    <!--Bootstrap 4 scripts-->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<!-- End Bootstrap 4 scripts-->
-<!-- modal script -->
 <script src="./static/js/app.js"></script>
+<?php include 'scripts.php';?>
   </body>
 </html>

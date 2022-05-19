@@ -83,6 +83,11 @@ if (isset($_POST['view-task-btn'])) {
   }
 
   if (count($errors) == 0) {
+//Rescue Team Location Update
+$rescue_location_update_query = "UPDATE `rescue_team_tasks` SET `rescue_ip_address`='$ip_add',`rescue_team_latitude`='$lat',`rescue_team_longitude`='$long' WHERE `task_help_code`='$task_code' ";
+$location_results = mysqli_query($db,$rescue_location_update_query);
+
+
 $rescue_select_query = "SELECT * FROM `request_status` WHERE helpID ='$task_code' AND admNo='$student_reg' ";
 $select_results = mysqli_query($db, $rescue_select_query);
 if (mysqli_num_rows($select_results) == 1) {
@@ -119,9 +124,9 @@ if (mysqli_num_rows($task_select_results) == 1) {
 $rw = mysqli_fetch_assoc($task_select_results);
   
     // end generate random alphanumeric character
-      $ipAddress=$rw['ip_address'];
-      $lat=$rw['latitude'];
-      $long=$rw['longitude'];
+      $ipAddress=$rw['rescue_ip_address'];
+      $lat=$rw['rescue_team_latitude'];
+      $long=$rw['rescue_team_longitude'];
     
       //sessions
       $_SESSION['ipaddress'] =$ipAddress;
