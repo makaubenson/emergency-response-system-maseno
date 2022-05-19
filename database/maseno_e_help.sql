@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 19, 2022 at 12:15 PM
+-- Generation Time: May 19, 2022 at 07:11 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -91,6 +91,8 @@ CREATE TABLE `request_status` (
 --
 
 INSERT INTO `request_status` (`id`, `helpID`, `ip_address`, `request_latitude`, `request_longitude`, `status`, `emergency_type`, `emergency_description`, `admNo`, `timestamp`) VALUES
+(3, '1H2553', '165.105.70.4', '-1.2550144', '36.8541696', 'Responding', 'sickness', 'I have shortness of breath, please come to my rescue', 'APS/00111/019', '2022-05-19 19:14:34'),
+(4, 'T8F18M', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', '', 'CIT/00111/019', '2022-05-19 21:40:27'),
 (1, 'Y7HGQK', '165.105.70.4', '-0.007684', '34.6065696', 'Successful', 'accident', 'Got an injury while playing football', 'CIT/00046/019', '2022-05-18 11:49:02'),
 (2, 'Z3P85U', '165.105.70.4', '-0.002114166666666667', '34.6117515', 'Failed', 'sickness', 'I am having fever, headache and joint pains', 'CIT/00047/019', '2022-05-19 14:42:55');
 
@@ -174,7 +176,9 @@ CREATE TABLE `rescue_team_tasks` (
 
 INSERT INTO `rescue_team_tasks` (`id`, `task_help_code`, `rescue_team_id`, `assigning_admin_id`, `team_status`, `assignment_time`) VALUES
 (1, 'Y7HGQK', 'TM02', 'MSU/00046/022', 'Successful', '2022-05-18 12:21:41'),
-(2, 'Z3P85U', 'TM01', 'MSU/00046/022', 'Failed', '2022-05-19 14:43:44');
+(2, 'Z3P85U', 'TM01', 'MSU/00046/022', 'Failed', '2022-05-19 14:43:44'),
+(3, '1H2553', 'TM03', 'MSU/00046/022', 'Responding', '2022-05-19 19:21:08'),
+(4, 'T8F18M', 'TM03', 'MSU/00046/022', 'Assigned', '2022-05-19 21:40:37');
 
 -- --------------------------------------------------------
 
@@ -221,8 +225,10 @@ CREATE TABLE `student_details` (
 --
 
 INSERT INTO `student_details` (`id`, `regNum`, `firstname`, `lastname`, `emailaddress`, `phonenumber`, `password`, `password_reset_token`, `date`) VALUES
+(3, 'APS/00111/019', 'Angela', 'Mutheu', 'mutheuangie42@gmail.com', '0746825789', '8821fe54f8b9828c97081d56666b6cc9', NULL, '2022-05-19 19:11:30'),
 (1, 'CIT/00046/019', 'Benson', 'Makau', 'bensonmakau2000@gmail.com', '0758413462', 'ebcfd5a11d7cf5ba89f838fc766be7a4', 'd381784c7ddd40f51ff80b97446f4770e61c93c2', '2022-04-19 12:19:40'),
-(2, 'CIT/00047/019', 'James', 'Mwanzia', 'mwanziajames23@gmail.com', '0785948568', '8821fe54f8b9828c97081d56666b6cc9', NULL, '2022-05-19 14:24:33');
+(2, 'CIT/00047/019', 'James', 'Mwanzia', 'mwanziajames23@gmail.com', '0785948568', '8821fe54f8b9828c97081d56666b6cc9', NULL, '2022-05-19 14:24:33'),
+(4, 'CIT/00111/019', 'Caleb', 'Kositany', 'kositanycaleb54@gmail.com', '0745859885', '8821fe54f8b9828c97081d56666b6cc9', NULL, '2022-05-19 21:40:02');
 
 -- --------------------------------------------------------
 
@@ -335,7 +341,7 @@ ALTER TABLE `failed-list`
 -- AUTO_INCREMENT for table `request_status`
 --
 ALTER TABLE `request_status`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `rescue_team`
@@ -353,7 +359,7 @@ ALTER TABLE `rescue_team_members`
 -- AUTO_INCREMENT for table `rescue_team_tasks`
 --
 ALTER TABLE `rescue_team_tasks`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `role_details`
@@ -365,7 +371,7 @@ ALTER TABLE `role_details`
 -- AUTO_INCREMENT for table `student_details`
 --
 ALTER TABLE `student_details`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `success-list`
