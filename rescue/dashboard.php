@@ -8,10 +8,10 @@ include 'server.php';
 // Retrieve IP data from API response.
 // IP address 
 //static ip address
-//$ip = "165.105.70.4"; 
+$ip = "165.105.70.4"; 
 
 //Get IP Address of User in PHP
- $ip = $_SERVER['REMOTE_ADDR']; 
+ //$ip = $_SERVER['REMOTE_ADDR']; 
 
  // Convert API JSON response to array using json_decode() function.
 $url = file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip);
@@ -53,6 +53,7 @@ include './components/header.php';
     include './components/navbar.php';
     ?>
 <div class="container mt-4">
+<div class="table-responsive-md">
 <table class="table">
   <?php
   include 'errors.php';
@@ -96,11 +97,11 @@ include './components/header.php';
             echo "<td>" .$row["timestamp"]."</td>";    
             echo "<td>
             <form method ='POST' action='server.php'>
-            <input  type='text' hidden name='task_code' value='$task_code'>
-            <input  type='text' hidden name='rescue_ip' value='$getInfo->geoplugin_request'>
-            <input  type='text' hidden  name='rescue_latitude' value='$getInfo->geoplugin_latitude'>
-            <input  type='text' hidden  name='rescue_longitude' value='$getInfo->geoplugin_longitude'>
-            <input  type='text'  hidden name='student_reg' value='$student_reg'>
+            <input  type='text'  name='task_code' value='$task_code'>
+            <input  type='text'  name='rescue_ip' value='$getInfo->geoplugin_request'>
+            <input  type='text'  id='rescue_latitude' name='rescue_latitude' value='0'>
+            <input  type='text' id='rescue_longitude' name='rescue_longitude' value='0'>
+            <input  type='text'   name='student_reg' value='$student_reg'>
             <input type='submit' value='View Task' name='view-task-btn' class='btn btn-success'>
          
             </form>
@@ -118,6 +119,7 @@ include './components/header.php';
     ?>
               </tbody>
 </table>
+</div>
 </div>
 
 
