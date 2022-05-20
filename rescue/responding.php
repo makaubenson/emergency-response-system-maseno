@@ -76,8 +76,8 @@ include './components/header.php';
             <input  type='text' hidden  name='r_timestamp' value='$time'>
     
             <input type='submit' value='View Task' name='view-task-btn' class='btn btn-warning m-1'>
-            <input type='button' data-id='$task_code' value='Successful' id='success-Button' name='success-task-btn' class='btn btn-success m-1  success-button'>
-            <input type='button' value='Failed' id='failed-Button' name='failed-task-btn' class='btn btn-danger m-1'>
+            <input type='button' data-id='$task_code' value='Successful' id='success-Button' name='success-task-btn' class='btn btn-success m-1 success-button'>
+            <input type='button' data-val='$task_code' value='Failed' id='failed-Button' name='failed-task-btn' class='btn btn-danger m-1 failure-button'>
          
             </form>
             </td> </tr>";
@@ -142,7 +142,7 @@ include './components/header.php';
      
           <div class="form-group">
           <label for="recipient-name" hidden class="col-form-label">Help Code </label>
-            <input type="text" name='task_code' readonly required class="form-control" id="recipient-name" value="<?php echo  $_SESSION['HELPCODE']; ?>">
+            <input type="text" name='task_code' readonly required class="form-control" id="helpCode" value="">
             <label for="recipient-name" class="col-form-label">Please tell us what happened: </label>
             <textarea class="form-control"name='incident_desc' required id="message-text"></textarea>
           </div>
