@@ -29,7 +29,8 @@ include './components/header.php';
       <th scope="col">Help Code</th>
       <th scope="col">Registration Number</th>
       <th scope="col">Student Name</th>
-      <th scope="col">Request Status</th>
+      <th scope="col">Description</th>
+      <!-- <th scope="col">Request Status</th> -->
       <th scope="col">Time of Request</th>
       <th scope="col">Action</th>
     </tr>
@@ -38,7 +39,7 @@ include './components/header.php';
         
         <?php
         if( $_SESSION['team_id']){
-            $data_fetch_query = "SELECT request_status.helpID, request_status.ip_address, request_status.request_latitude, 
+            $data_fetch_query = "SELECT request_status.helpID, request_status.ip_address,request_status.emergency_description, request_status.request_latitude, 
             request_status.request_longitude, request_status.status, request_status.admNo, request_status.timestamp,
             student_details.firstname,student_details.lastname,student_details.regNum,
             rescue_team_tasks.task_help_code, rescue_team_tasks.rescue_team_id, rescue_team_tasks.team_status
@@ -61,7 +62,8 @@ include './components/header.php';
             echo "<tr> <td>" .$row["helpID"].  "</td>";
             echo "<td>" .$row["regNum"]."</td>";
             echo "<td>" .$row["firstname"]." ".$row["lastname"]."</td>";
-            echo "<td>" .$row["status"]."</td>";
+            echo "<td>" .$row["emergency_description"]."</td>";
+            // echo "<td>" .$row["status"]."</td>";
             echo "<td>" .$row["timestamp"]."</td>";
             echo "<td>
             
