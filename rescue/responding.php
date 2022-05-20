@@ -4,6 +4,7 @@ $rescue_Lat =  $_SESSION['rescue_lat'];
 $rescue_Long=   $_SESSION['rescue_long'];
 $rescue_ip  = $_SESSION['ipaddress'];
 $team_name = $_SESSION['team_name'];
+$code = $_SESSION['HELPCODE'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +45,7 @@ include './components/header.php';
              FROM ((request_status
              INNER JOIN student_details ON request_status.admNo = student_details.regNum)
              INNER JOIN  rescue_team_tasks ON request_status.helpID =  rescue_team_tasks.task_help_code)
-             WHERE rescue_team_tasks.rescue_team_id = '".$_SESSION['team_id']."' AND rescue_team_tasks.team_status ='Responding' ORDER BY timestamp ASC ";
+             WHERE rescue_team_tasks.rescue_team_id = '".$_SESSION['team_id']."' AND rescue_team_tasks.team_status ='Responding' ORDER BY timestamp DESC ";
              
             $data_result = mysqli_query($db, $data_fetch_query);
             if ($data_result->num_rows > 0){
@@ -75,7 +76,7 @@ include './components/header.php';
             <input  type='text' hidden  name='r_timestamp' value='$time'>
     
             <input type='submit' value='View Task' name='view-task-btn' class='btn btn-warning m-1'>
-            <input type='button' value='Successful' id='success-Button' name='success-task-btn' class='btn btn-success m-1'>
+            <input type='button' data-id='$task_code' value='Successful' id='success-Button' name='success-task-btn' class='btn btn-success m-1  success-button'>
             <input type='button' value='Failed' id='failed-Button' name='failed-task-btn' class='btn btn-danger m-1'>
          
             </form>
@@ -96,7 +97,7 @@ include './components/header.php';
 </table>
 </div>
     <!--Modal -->
-    <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade successModalClass"  id="successModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -109,8 +110,8 @@ include './components/header.php';
         <form method="POST" action="server.php">
      
           <div class="form-group">
-          <label for="recipient-name" hidden class="col-form-label">Help Code </label>
-            <input type="text" name='task_code'readonly required class="form-control" id="recipient-name" value="<?php echo  $_SESSION['HELPCODE']; ?>">
+          <label for="recipient-name"  class="col-form-label">Help Code </label>
+            <input type="text" name='task_code' readonly required class="form-control" id="code-value" >
             <label for="recipient-name" class="col-form-label">Please tell us what happened: </label>
             <textarea class="form-control"name='incident_desc' required id="message-text"></textarea>
           </div>

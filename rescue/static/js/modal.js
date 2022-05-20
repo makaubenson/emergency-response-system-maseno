@@ -1,14 +1,3 @@
-function openSuccessModal() {
-  $("#successModal").modal("show");
-}
-
-document
-  .getElementById("success-Button")
-  .addEventListener("click", function (e) {
-    e.preventDefault();
-    openSuccessModal();
-  });
-
 function openFailedModal() {
   $("#failedModal").modal("show");
 }
@@ -19,3 +8,16 @@ document
     openFailedModal();
   });
 
+function openSuccessModal() {
+  $("#successModal").modal("show");
+}
+let elements = document.querySelectorAll(".success-button");
+elements.forEach(function (element) {
+  element.addEventListener("click", function (e) {
+    e.preventDefault();
+    let button_id = element.dataset.id;
+    console.log(button_id);
+    document.getElementById("code-value").value = button_id;
+    openSuccessModal();
+  });
+});
