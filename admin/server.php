@@ -67,7 +67,7 @@ if (isset($_POST['admin_login_btn'])) {
     
       if (count($errors) == 0) {
         $fetch_query = "SELECT request_status.helpID,request_status.status,
-        request_status.admNo,request_status.timestamp,
+        request_status.admNo,request_status.timestamp,request_status.emergency_description,
         student_details.regNum,student_details.firstname,student_details.lastname,student_details.phonenumber
         FROM request_status
         INNER JOIN student_details ON request_status.admNo = student_details.regNum
@@ -85,6 +85,7 @@ if (isset($_POST['admin_login_btn'])) {
           $request_helpcode=$row['helpID'];
           $request_status=$row['status'];
           $request_time=$row['timestamp'];
+          $description=$row['emergency_description'];
 
           //sessions
           $_SESSION['firstname'] = $student_fname;
@@ -93,6 +94,7 @@ if (isset($_POST['admin_login_btn'])) {
           $_SESSION['request_helpcode'] =$request_helpcode;
           $_SESSION['request_status'] =$request_status;
           $_SESSION['request_time'] =$request_time;
+          $_SESSION['incident_desc'] = $description;
 
           header('location: view.php');
         }else{

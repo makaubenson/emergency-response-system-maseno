@@ -10,16 +10,18 @@ include 'server.php';
   <div class="row m-3">
   <div class="col-md-1"></div>
     <div class="col-md-10">
-<div class="table-responsive-lg">
-    <table class="table" style='color:black; font-weight:normal'>
+<div class="table-responsive-lg p-3">
+    <table class="table p-3" style='color:black; font-weight:normal'>
         <thead>
-          <h6  style='color:blue; font-weight:normal'>
-          Successful Responses</h6>
+          <h5  style='color:blue; font-weight:normal'>
+          Successful Tasks</h5>
             <tr >
               <!-- <th scope="col" class="table-primary">S.NO</th> -->
               <th scope="col" class="table-primary">Student Name</th>
               <th scope="col" class="table-primary">Phone</th>
               <th scope="col" class="table-primary">Help Code</th>
+              <th scope="col" class="table-primary">Task Description</th>
+              <th scope="col" class="table-primary">Resolution</th>
               <th scope="col" class="table-primary">Action</th>
             </tr>
           </thead>
@@ -27,11 +29,14 @@ include 'server.php';
         
     <?php
     if($_SESSION['admin_id']){
-        $data_fetch_query = "SELECT request_status.id, request_status.helpID,request_status.status,
+        $data_fetch_query = "SELECT request_status.id, request_status.helpID,request_status.status,request_status.emergency_description, 		
         request_status.admNo,request_status.timestamp,student_details.regNum,student_details.regNum,
-        student_details.firstname,student_details.lastname,student_details.phonenumber
-        FROM request_status
-        INNER JOIN student_details ON request_status.admNo = student_details.regNum  WHERE request_status.status ='Successful' order by request_status.timestamp DESC;";
+        student_details.firstname,student_details.lastname,student_details.phonenumber,success_list.student_helpcode, success_list.incident_description
+        FROM ((request_status
+        INNER JOIN student_details ON request_status.admNo = student_details.regNum)
+        INNER JOIN success_list ON request_status.helpID = success_list.student_helpcode)
+        
+        WHERE request_status.status ='Successful' order by request_status.timestamp DESC;";
         $data_result = mysqli_query($db, $data_fetch_query);
         if ($data_result->num_rows > 0){
             while($row = $data_result->fetch_assoc()) {
@@ -42,12 +47,15 @@ include 'server.php';
        
         echo "<tr> <td>" .$row["firstname"]. " ".$row["lastname"]. "</td>";
         echo "<td>" .$row["phonenumber"]."</td>";
+     
         echo "<td>" .$row["helpID"]."</td>";
+        echo "<td>" .$row["emergency_description"]."</td>";
+        echo "<td>" .$row["incident_description"]."</td>";
         echo "<td>
         
         <form method ='POST' action='server.php'>
         <input  type='text' hidden name='help_code' value='$help_code'>
-        <input type='submit' value='View' name='view-requests-being-attended-btn' class='btn btn-primary'>
+        <input type='submit' value='View Task' name='view-requests-being-attended-btn' class='btn btn-info'>
         </form>
         </td> </tr>";
         }

@@ -1,5 +1,6 @@
 <?php
 include 'server.php';
+$request_description =  $_SESSION['incident_desc'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +29,7 @@ include 'errors.php';
         <input type="text" class="form-control" name='student_helpcode' placeholder="help code" readonly value='<?php echo  $_SESSION['request_helpcode'];?>'>
       </div>
       <div class="col">
-        <label for="student_name">Status</label>
+        <label for="student_name">Request Status</label>
         <input type="text" class="form-control" name='student_status' placeholder="status" readonly value='<?php echo $_SESSION['request_status'] ;?>'>
       </div>
     </div>
@@ -46,8 +47,8 @@ include 'errors.php';
 <br>
     <div class="row">
       <div class="col">
-        <label for="student_name">Time of Request</label>
-        <input type="text" class="form-control" name='time_of_request'readonly placeholder="Time of request" value='<?php echo $_SESSION['request_time'];?>'>
+        <label for="student_name">Description</label>
+        <input type="text" class="form-control" name='time_of_request'readonly placeholder="No Description" value='<?php echo $request_description ;?>'>
       </div>
       <div class="col">
         <label for="student_name">Rescue Team</label>
