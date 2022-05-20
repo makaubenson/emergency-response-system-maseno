@@ -143,7 +143,7 @@ include './components/header.php';
         <form method="POST" action="server.php">
      
           <div class="form-group">
-          <label for="recipient-name" hidden class="col-form-label">Help Code </label>
+          <label for="recipient-name" class="col-form-label">Help Code </label>
             <input type="text" name='task_code' readonly required class="form-control" id="helpCode" value="">
             <label for="recipient-name" class="col-form-label">Please tell us what happened: </label>
             <textarea class="form-control"name='incident_desc' required id="message-text"></textarea>

@@ -237,12 +237,13 @@ if (isset($_POST['reassign-team-btn'])) {
       }
     
       if (count($errors) == 0) {
-        $fetch_query = "SELECT request_status.helpID,request_status.status,
-        request_status.admNo,request_status.timestamp,
+        $fetch_query = "SELECT request_status.helpID,request_status.status,failed_list.student_helpcode, failed_list.incident_description,
+        request_status.admNo,request_status.timestamp,request_status.emergency_description,
         student_details.regNum,student_details.firstname,student_details.lastname,student_details.phonenumber, rescue_team_tasks.task_help_code,rescue_team_tasks.rescue_team_id
-        FROM request_status
-        INNER JOIN student_details ON request_status.admNo = student_details.regNum
-        INNER JOIN rescue_team_tasks ON request_status.helpID = rescue_team_tasks.task_help_code
+        FROM (((request_status
+        INNER JOIN student_details ON request_status.admNo = student_details.regNum)
+        INNER JOIN rescue_team_tasks ON request_status.helpID = rescue_team_tasks.task_help_code)
+        INNER JOIN failed_list ON request_status.helpID = failed_list.student_helpcode)
         WHERE request_status.helpID = '$request_helpcode'";
         
     
@@ -258,6 +259,8 @@ if (isset($_POST['reassign-team-btn'])) {
           $request_status=$row['status'];
           $team_id = $row['rescue_team_id'];
           $request_time=$row['timestamp'];
+          $emergency_desc=$row['emergency_description'];
+          $report=$row['incident_description'];
 
           //sessions
           $_SESSION['firstname'] = $student_fname;
@@ -266,7 +269,8 @@ if (isset($_POST['reassign-team-btn'])) {
           $_SESSION['request_helpcode'] =$request_helpcode;
           $_SESSION['teamID'] = $team_id;
           $_SESSION['request_status'] =$request_status;
-          $_SESSION['request_time'] =$request_time;
+          $_SESSION['description'] =$emergency_desc;
+          $_SESSION['incident_report'] =$report;
 
           header('location: responding.php');
         }else{

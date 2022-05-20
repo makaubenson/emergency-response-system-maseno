@@ -6,7 +6,7 @@ include 'server.php';
 <?php include './includes/header.php'; ?>
   <body>
     <?php include './includes/navbar.php'; ?>
-<div class="container mt-4">
+<div class="container mt-4 mb-4 p-1">
   <form method="post" action="server.php" class="border border-info p-5" style='color:black; font-weight:normal'>
 <?php
 include 'errors.php';
@@ -31,7 +31,7 @@ include 'errors.php';
         <input type="text" class="form-control" name='student_helpcode' placeholder="help code" readonly value='<?php echo  $_SESSION['request_helpcode'];?>'>
       </div>
       <div class="col">
-        <label for="student_name">Status</label>
+        <label for="student_name">Request Status</label>
         <input type="text" class="form-control" name='student_status' placeholder="status" readonly value='<?php echo $_SESSION['request_status'] ;?>'>
       </div>
     </div>
@@ -68,6 +68,22 @@ include 'errors.php';
         <label for="student_name">Team ID</label>
         <input type="text" class="form-control" name='team_name' readonly placeholder="status"  value='<?php echo $_SESSION['teamID'];?>'>
       </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col">
+        <label for="student_name">Task Description</label>
+        <input type="text" class="form-control" name='time_of_request'readonly placeholder="Time of request" value='<?php echo $_SESSION['description'];?>'>
+      </div>
+     
+    </div>
+    <br>
+    <div class="row">
+      <div class="col">
+        <label for="student_name">Rescue Team Report</label>
+        <input type="text" class="form-control" name='time_of_request'readonly placeholder="Time of request" value='<?php echo $_SESSION['incident_report'];?>'>
+      </div>
+     
     </div>
     <br>
     <div class="row">
