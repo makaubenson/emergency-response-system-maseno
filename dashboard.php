@@ -159,7 +159,7 @@ include './components/header.php';
    <div class="col-md-12">
    <div class="form-row">
    <div class="form-group col-md-12">
-      <label for="inputEmergency">Type of Emergency</label>
+      <label for="inputEmergency">Choose the Type of Emergency</label>
       <select id="inputState" name="emergency_type" required class="form-control">
         <option value="">Choose...</option>
         <option value="sickness">Sickness</option>
@@ -169,7 +169,7 @@ include './components/header.php';
       </select>
     </div>
    <div class="form-group col-md-12">
-   <label for="inputAddress2">Description</label>
+   <label for="inputAddress2">Description (Note: Requests <strong>WITHOUT</strong> a description have the <strong style="color: red;">Lowest Priority</strong>)</label>
     <textarea type="text"  name="emergency_description"class="form-control" id="inputAddress2" placeholder="Optional: A Short Description of What Happened"></textarea>
     
     </div>

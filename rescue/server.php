@@ -85,6 +85,8 @@ $row = mysqli_fetch_assoc($select_results);
       $latitude=$row['request_latitude'];
       $longitude=$row['request_longitude'];
       $request_status=$row['status'];
+      $task_Desc = $row['emergency_description'];
+
        if($request_status == 'Responding'){
         $_SESSION['active'] = true;
       }else{
@@ -98,6 +100,7 @@ $row = mysqli_fetch_assoc($select_results);
       $_SESSION['request_latitude'] = $latitude;
       $_SESSION['request_longitude'] =$longitude;
       $_SESSION['status'] =$request_status;
+      $_SESSION['taskDescription'] =$task_Desc;
       $_SESSION['admNo'] =$student_adm;
       $_SESSION['timestamp'] =$time_of_request;
      

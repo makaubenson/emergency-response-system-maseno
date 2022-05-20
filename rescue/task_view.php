@@ -8,6 +8,7 @@ $request_Status = $_SESSION['status'];
 $student_Adm = $_SESSION['admNo'];
 $rescue_Lat =  $_SESSION['rescue_lat'];
 $rescue_Long=   $_SESSION['rescue_long'];
+$description = $_SESSION['taskDescription'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +59,14 @@ include 'errors.php';
         <input type="text" readonly class="form-control" name='reg_num' readonly placeholder="Username" value='<?php echo $student_Adm; ?>'>
       </div>
 </div>
-
+<br>
+<div class="row">
+  <div class="col">
+    <label for="task_description">Description</label>
+    <input type="text" class="form-control" name='task_description' readonly placeholder="Description"  value='<?php echo $description; ?>'>
+    
+  </div>
+</div>
 <br>
     <div class="row">
     <div class="col-md-3"></div>
