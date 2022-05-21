@@ -57,7 +57,7 @@ $admin_name = $admin_fname. " ".$admin_lname;
         
         <form method ='POST' action='server.php'>
         <input  type='text' hidden name='help_code' value='$help_code'>
-        <input type='submit' data-description ='$description' data-adminname='$admin_name' data-adminid='$admin_id' data-helpcode='$help_code' data-name='$name' data-phone='$phone' data-status='$request_status' value='View Task' id='view_task_button' name='view-btn' class='btn btn-info taskViewButton'>
+        <input type='submit' data-description ='$description' data-adminname='$admin_name' data-adminid='$admin_id' data-helpcode='$help_code' data-name='$name' data-phone='$phone' data-status='$request_status' value='View Task' id='view_task_button' class='btn btn-info taskViewButton'>
         </form>
         </td> </tr>";
         }
@@ -139,7 +139,7 @@ while ($row=mysqli_fetch_array($sql)) {
           </div>
           <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        <button type="submit" name='failed-task-btn' class="btn btn-success">Send and Exit</button>
+        <button type="submit" name='update-team-btn' class="btn btn-success">Send and Exit</button>
       </div>
         </form>
       </div>
