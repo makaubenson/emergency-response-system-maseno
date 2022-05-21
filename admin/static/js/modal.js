@@ -133,16 +133,16 @@ function editRescueTeam() {
   $("#editRescueTeam").modal("show");
 }
 let editButtons = document.querySelectorAll(".team-edit-btn");
-editButtons.forEach(function (deleteButton) {
-  deleteButton.addEventListener("click", function (e) {
+editButtons.forEach(function (editButton) {
+  editButton.addEventListener("click", function (e) {
     e.preventDefault();
-    let teamid = deleteButton.dataset.team;
+    let teamid = editButton.dataset.team;
     document.getElementById("teamid").value = teamid;
 
-    let teamname = deleteButton.dataset.tname;
+    let teamname = editButton.dataset.tname;
     document.getElementById("teamname").value = teamname;
 
-    let teamusername = deleteButton.dataset.username;
+    let teamusername = editButton.dataset.username;
     document.getElementById("teamusername").value = teamusername;
 
     let teamtel = editButton.dataset.teamphone;
