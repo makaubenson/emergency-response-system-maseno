@@ -112,12 +112,12 @@ $admin_name = $admin_fname. " ".$admin_lname;
             <input type="text" name='studentRequestStatus' readonly required class="form-control" id="sRequestStatus" value="">
           </div>
           <div class="form-group">
-          <label for="recipient-name" class="col-form-label">Moderator ID</label>
-            <input type="text" name='moderatorID' readonly required class="form-control" id="adminID" value="">
+          <label for="recipient-name"hidden class="col-form-label">Moderator ID</label>
+            <input type="text"hidden name='moderatorID' readonly required class="form-control" id="adminID" value="">
           </div>
           <div class="form-group">
-          <label for="recipient-name" class="col-form-label">Moderator Name</label>
-            <input type="text" name='moderatorName' readonly required class="form-control" id="adminName" value="">
+          <label for="recipient-name" hidden class="col-form-label">Moderator Name</label>
+            <input type="text" hidden name='moderatorName' readonly required class="form-control" id="adminName" value="">
           </div>
           <div class="form-group">
           <label for="recipient-name" class="col-form-label">Description</label>
@@ -139,7 +139,7 @@ while ($row=mysqli_fetch_array($sql)) {
           </div>
           <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        <button type="submit" name='update-team-btn' class="btn btn-success">Send and Exit</button>
+        <button type="submit" name='update-team-btn' class="btn btn-success">Update and Exit</button>
       </div>
         </form>
       </div>
