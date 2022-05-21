@@ -1,5 +1,9 @@
 <?php
 include 'server.php';
+$admin_id = $_SESSION['admin_id'];
+$admin_fname = $_SESSION['admin_firstname'];
+$admin_lname = $_SESSION['admin_lastname'];
+$admin_name = $admin_fname. " ".$admin_lname;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,8 +32,8 @@ include 'server.php';
           <tbody>
         
     <?php
-    if($_SESSION['admin_id']){
-        $data_fetch_query = "SELECT request_status.id, request_status.helpID,request_status.status,
+    if($admin_id){
+        $data_fetch_query = "SELECT request_status.id, request_status.helpID,request_status.status,request_status.emergency_description,
         request_status.admNo,request_status.timestamp,student_details.regNum,student_details.regNum,
         student_details.firstname,student_details.lastname,student_details.phonenumber
         FROM request_status
@@ -42,6 +46,7 @@ include 'server.php';
             $request_status=$row["status"];
             $name=$row["firstname"] ." ".$row["lastname"];
             $phone=$row["phonenumber"];
+            $description=$row["emergency_description"];
 
        
         echo "<tr style='font-weight:normal'> <td>" .$row["firstname"]." ".$row["lastname"]. "</td>";
@@ -52,7 +57,7 @@ include 'server.php';
         
         <form method ='POST' action='server.php'>
         <input  type='text' hidden name='help_code' value='$help_code'>
-        <input type='submit'  data-adminid='$help_code' data-helpcode='$help_code' data-name='$name' data-phone='$phone' data-status='$request_status' value='View Task' id='view_task_button' name='view-btn' class='btn btn-info taskViewButton'>
+        <input type='submit' data-description ='$description' data-adminname='$admin_name' data-adminid='$admin_id' data-helpcode='$help_code' data-name='$name' data-phone='$phone' data-status='$request_status' value='View Task' id='view_task_button' name='view-btn' class='btn btn-info taskViewButton'>
         </form>
         </td> </tr>";
         }
