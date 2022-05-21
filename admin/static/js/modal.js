@@ -1,5 +1,3 @@
-
-
 function openTaskViewModal() {
   $("#taskViewModal").modal("show");
 }
@@ -30,7 +28,6 @@ buttons.forEach(function (button) {
 function changeTeamModal() {
   $("#teamUpdateModal").modal("show");
 }
-
 let elements = document.querySelectorAll(".team_change_button");
 elements.forEach(function (element) {
   element.addEventListener("click", function (e) {
@@ -44,5 +41,34 @@ elements.forEach(function (element) {
     document.getElementById("admin_identity_no").value = adminId;
 
     changeTeamModal();
+  });
+});
+
+function successTaskDetails() {
+  $("#successModal").modal("show");
+}
+let btns = document.querySelectorAll(".successful_task_view");
+btns.forEach(function (btn) {
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+    let helpid = btn.dataset.helpcode;
+    document.getElementById("student_HelpId").value = helpid;
+
+    let sname = btn.dataset.name;
+    document.getElementById("student-name").value = sname;
+
+    let sphone = btn.dataset.phonenumber;
+    document.getElementById("student-phone").value = sphone;
+
+    let request_Status = btn.dataset.status;
+    document.getElementById("request-status").value = request_Status;
+
+    let request_info = btn.dataset.info;
+    document.getElementById("request_details").value = request_info;
+
+    let request_report = btn.dataset.report;
+    document.getElementById("incident-report").value = request_report;
+
+    successTaskDetails();
   });
 });
