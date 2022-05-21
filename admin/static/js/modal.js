@@ -133,16 +133,16 @@ function editRescueTeam() {
   $("#editRescueTeam").modal("show");
 }
 let editButtons = document.querySelectorAll(".team-edit-btn");
-editButtons.forEach(function (editButton) {
-  editButton.addEventListener("click", function (e) {
+editButtons.forEach(function (deleteButton) {
+  deleteButton.addEventListener("click", function (e) {
     e.preventDefault();
-    let teamid = editButton.dataset.team;
+    let teamid = deleteButton.dataset.team;
     document.getElementById("teamid").value = teamid;
 
-    let teamname = editButton.dataset.tname;
+    let teamname = deleteButton.dataset.tname;
     document.getElementById("teamname").value = teamname;
 
-    let teamusername = editButton.dataset.username;
+    let teamusername = deleteButton.dataset.username;
     document.getElementById("teamusername").value = teamusername;
 
     let teamtel = editButton.dataset.teamphone;
@@ -152,5 +152,20 @@ editButtons.forEach(function (editButton) {
     document.getElementById("teammail").value = teammail;
 
     editRescueTeam();
+  });
+});
+
+function deleteTeamModal() {
+  $("#deleteConfirmModal").modal("show");
+}
+let deleteButtons = document.querySelectorAll(".team_delete-btn");
+deleteButtons.forEach(function (deleteButton) {
+  deleteButton.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    let rescueteamid = deleteButton.dataset.rescueteamid;
+    document.getElementById("teamIdentityNumber").value = rescueteamid;
+
+    deleteTeamModal();
   });
 });

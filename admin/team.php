@@ -62,7 +62,7 @@ $teamName = $_SESSION['team_name'];
         
         <form method ='POST' action='server.php'>
         <input type='submit' value='Edit' data-password='$team_password ' data-teammail='$team_mail' data-teamphone='$team_phone' data-username='$team_username' data-tname='$team_name' data-team='$team_ID' name='edit-team-btn' class='btn btn-success team-edit-btn'>
-        <input type='submit' value='Delete' name='delete-team-btn' class='btn btn-danger'>
+        <input type='button' id='team_delete_btn' data-rescueteamid='$team_ID' value='Delete' name='delete-team-btn' class='btn btn-danger team_delete-btn'>
 
         <button class='btn btn-outline-info team_member_button' data-teamid='$team_ID' >Add Team Member</button>
         </form>
@@ -128,7 +128,7 @@ $teamName = $_SESSION['team_name'];
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Confirm Password:</label>
-            <input type="text" class="form-control" name='team_password2' id="team-confirm-password" placeholder="Confirm Password" required>
+            <input type="password" class="form-control" name='team_password2' id="team-confirm-password" placeholder="Confirm Password" required>
           </div>
           <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -255,6 +255,43 @@ while ($rw=mysqli_fetch_array($sql)) {
         </form>
       </div>
     
+    </div>
+  </div>
+</div>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+ 
+  <div class="modal" id='deleteConfirmModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" style="color:red">⚠ Warning!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       
+        <div class="modal-body">
+        <p>Are you sure you want to delete this team?</p>
+        <form method="POST" action="server.php">
+        <div class="form-group">
+            <input type="text" hidden class="form-control" id="teamIdentityNumber" required readonly name='teamID'>
+          </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No Cancel</button>
+        <button type="submit" name='delete-team-btn' class="btn btn-danger">Yes Delete!</button>
+      </div>
+        </form>
+      </div>
+      
+      </div>
+     
     </div>
   </div>
 </div>
