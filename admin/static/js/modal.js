@@ -128,3 +128,29 @@ butons.forEach(function (Buton) {
     teamMemberRegistration();
   });
 });
+
+function editRescueTeam() {
+  $("#editRescueTeam").modal("show");
+}
+let editButtons = document.querySelectorAll(".team-edit-btn");
+editButtons.forEach(function (editButton) {
+  editButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    let teamid = editButton.dataset.team;
+    document.getElementById("teamid").value = teamid;
+
+    let teamname = editButton.dataset.tname;
+    document.getElementById("teamname").value = teamname;
+
+    let teamusername = editButton.dataset.username;
+    document.getElementById("teamusername").value = teamusername;
+
+    let teamtel = editButton.dataset.teamphone;
+    document.getElementById("teamphone").value = teamtel;
+
+    let teammail = editButton.dataset.teammail;
+    document.getElementById("teammail").value = teammail;
+
+    editRescueTeam();
+  });
+});

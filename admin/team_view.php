@@ -48,7 +48,7 @@ include 'errors.php';
     <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
-      <button type="submit" name='update-team-details'class="btn btn-warning btn-block">Update team details</button>
+      <button type="submit" name='update-team-details' class="btn btn-warning btn-block">Update team details</button>
     </div>
     <div class="col-md-4"></div>
   </div>
