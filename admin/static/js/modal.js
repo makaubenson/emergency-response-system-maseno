@@ -1,3 +1,5 @@
+
+
 function openTaskViewModal() {
   $("#taskViewModal").modal("show");
 }
@@ -22,5 +24,25 @@ buttons.forEach(function (button) {
     document.getElementById("adminName").value = adminName;
     document.getElementById("rDescription").value = adminDescription;
     openTaskViewModal();
+  });
+});
+
+function changeTeamModal() {
+  $("#teamUpdateModal").modal("show");
+}
+
+let elements = document.querySelectorAll(".team_change_button");
+elements.forEach(function (element) {
+  element.addEventListener("click", function (e) {
+    e.preventDefault();
+    let helpid = element.dataset.helpcode;
+    let previousTeam = element.dataset.previous_team;
+    let adminId = element.dataset.adminidentity;
+
+    document.getElementById("request_helpcode").value = helpid;
+    document.getElementById("previous_team").value = previousTeam;
+    document.getElementById("admin_identity_no").value = adminId;
+
+    changeTeamModal();
   });
 });
