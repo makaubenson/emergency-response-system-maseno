@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 20, 2022 at 11:03 AM
+-- Generation Time: May 21, 2022 at 09:52 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -98,7 +98,7 @@ INSERT INTO `request_status` (`id`, `helpID`, `ip_address`, `request_latitude`, 
 (17, '4X064O', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', 'Having back pain', 'MIT/00660/019', '2022-05-20 09:49:05'),
 (19, '5J3LD6', '165.105.70.4', '-1.2550144', '36.8541696', 'Responding', 'fire', 'My gas exploded, i have severe burns', 'MIT/00035/019', '2022-05-20 09:49:57'),
 (20, '5VAP0L', '165.105.70.4', '-1.2550144', '36.8541696', 'Successful', 'other', 'My friend is not waking up, i think he is not breathing, please help him', 'MIT/00045/019', '2022-05-20 09:50:43'),
-(22, '615EKP', '165.105.70.4', '-1.2550144', '36.8541696', 'Pending', 'sickness', 'No Description', 'CIT/00047/019', '2022-05-20 12:30:12'),
+(22, '615EKP', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', 'No Description', 'CIT/00047/019', '2022-05-20 12:30:12'),
 (14, '9GQB5R', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', 'No Description', 'CCT/00333/019', '2022-05-20 09:46:35'),
 (6, 'C95XMI', '165.105.70.4', '-1.2550144', '36.8541696', 'Pending', 'accident', 'I hurt my knee', 'CIT/00222/019', '2022-05-20 09:41:43'),
 (21, 'F7GZTY', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', 'My eye got hurt, am bleeding', 'CIS/00075/019', '2022-05-20 09:51:20'),
@@ -141,7 +141,8 @@ CREATE TABLE `rescue_team` (
 INSERT INTO `rescue_team` (`id`, `team_id`, `team_username`, `team_name`, `team_phone`, `team_email`, `team_password`, `registration_timestamp`) VALUES
 (1, 'TM01', 'HYDRO/022', 'Team Hydro', 786378542, 'letsgo@gmail.com', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-04 11:21:26'),
 (2, 'TM02', 'CUTY/022', 'Team Cuty', 742975635, 'cuty@gmail.com', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-04 11:21:26'),
-(3, 'TM03', 'SHIFTY/022', 'Team Shifty', 759753362, 'shifty@gmail.com', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-04 11:22:37');
+(3, 'TM03', 'SHIFTY/022', 'Team Shifty', 759753362, 'shifty@gmail.com', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-04 11:22:37'),
+(4, 'TM04', 'LIONS/022', 'The Lions', 785415289, 'masenolions@gmail.com', '86aa71c6832f46e2d79134fe3d5080b7', '2022-05-21 23:08:41');
 
 -- --------------------------------------------------------
 
@@ -174,7 +175,8 @@ INSERT INTO `rescue_team_members` (`id`, `member_id`, `fname`, `lname`, `email`,
 (6, 'MB06', 'Caroline', 'Murathe', 'murathercarol@gmail.com', 766879853, 'MSU/001B/022', 'TM01', '2022-04-08 16:06:59'),
 (7, 'MB07', 'Jane', 'Odongo', 'odongojane25@gmail.com', 745783258, 'MSU/001B/022', 'TM03', '2022-04-08 16:07:53'),
 (8, 'MB08', 'Mutia', 'Kioko', 'mutiakioko@gmai.com', 798959863, 'MSU/001C/022', 'TM01', '2022-04-08 16:09:32'),
-(9, 'MB09', 'Angela', 'Mutuku', 'mutukuangie@gmail.com', 725627894, 'MSU/001C/022', 'TM02', '2022-04-08 16:10:31');
+(9, 'MB09', 'Angela', 'Mutuku', 'mutukuangie@gmail.com', 725627894, 'MSU/001C/022', 'TM02', '2022-04-08 16:10:31'),
+(10, 'MB10', 'Justus', 'Kasai', 'kasijustus67@gmail.com', 712359745, 'MSU/001A/022', 'TM04', '2022-05-21 23:35:15');
 
 -- --------------------------------------------------------
 
@@ -188,7 +190,7 @@ CREATE TABLE `rescue_team_tasks` (
   `rescue_team_id` varchar(50) NOT NULL,
   `assigning_admin_id` varchar(50) NOT NULL,
   `team_status` varchar(255) NOT NULL DEFAULT 'Unassigned',
-  `assignment_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `assignment_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
 
 --
@@ -196,26 +198,27 @@ CREATE TABLE `rescue_team_tasks` (
 --
 
 INSERT INTO `rescue_team_tasks` (`id`, `task_help_code`, `rescue_team_id`, `assigning_admin_id`, `team_status`, `assignment_time`) VALUES
-(1, 'Y7HGQK', 'TM02', 'MSU/00046/022', 'Successful', '2022-05-18 12:21:41'),
-(2, 'Z3P85U', 'TM01', 'MSU/00046/022', 'Failed', '2022-05-19 14:43:44'),
-(3, '1H2553', 'TM03', 'MSU/00046/022', 'Successful', '2022-05-19 19:21:08'),
-(4, 'T8F18M', 'TM03', 'MSU/00046/022', 'Failed', '2022-05-19 21:40:37'),
-(5, 'F7GZTY', 'TM02', 'MSU/00046/022', 'Assigned', '2022-05-20 09:51:48'),
-(6, '5VAP0L', 'TM01', 'MSU/00046/022', 'Successful', '2022-05-20 09:52:04'),
-(7, '5J3LD6', 'TM03', 'MSU/00046/022', 'Responding', '2022-05-20 09:52:17'),
-(8, 'LSRZ5J', 'TM03', 'MSU/00046/022', 'Assigned', '2022-05-20 09:52:24'),
-(9, 'ORXUMI', 'TM02', 'MSU/00046/022', 'Failed', '2022-05-20 09:52:42'),
-(10, 'H7DEW2', 'TM02', 'MSU/00046/022', 'Assigned', '2022-05-20 09:52:46'),
-(11, 'JWDXGN', 'TM02', 'MSU/00046/022', 'Successful', '2022-05-20 09:52:49'),
-(12, '4X064O', 'TM01', 'MSU/00046/022', 'Assigned', '2022-05-20 09:52:58'),
-(13, '9GQB5R', 'TM01', 'MSU/00046/022', 'Assigned', '2022-05-20 09:53:02'),
-(14, 'LK855W', 'TM01', 'MSU/00046/022', 'Responding', '2022-05-20 09:53:05'),
-(15, 'KW1NJA', 'TM02', 'MSU/00046/022', 'Responding', '2022-05-20 09:54:12'),
-(16, 'VX9YNY', 'TM01', 'MSU/00046/022', 'Responding', '2022-05-20 09:55:41'),
-(17, 'XB1K4W', 'TM03', 'MSU/00046/022', 'Assigned', '2022-05-20 09:57:47'),
-(18, 'OFSHUH', 'TM03', 'MSU/00046/022', 'Responding', '2022-05-20 09:57:51'),
-(19, 'S7V9L9', 'TM03', 'MSU/00046/022', 'Assigned', '2022-05-20 09:59:08'),
-(20, '0IC4JI', 'TM01', 'MSU/00046/022', 'Assigned', '2022-05-20 12:42:17');
+(1, 'Y7HGQK', 'TM02', 'MSU/00046/022', 'Successful', '2022-05-18 09:21:41'),
+(2, 'Z3P85U', 'TM01', 'MSU/00046/022', 'Failed', '2022-05-19 11:43:44'),
+(3, '1H2553', 'TM03', 'MSU/00046/022', 'Successful', '2022-05-19 16:21:08'),
+(4, 'T8F18M', 'TM03', 'MSU/00046/022', 'Failed', '2022-05-19 18:40:37'),
+(5, 'F7GZTY', 'TM01', 'MSU/00050/022', 'Assigned', '2022-05-20 06:51:48'),
+(6, '5VAP0L', 'TM01', 'MSU/00046/022', 'Successful', '2022-05-20 06:52:04'),
+(7, '5J3LD6', 'TM03', 'MSU/00046/022', 'Responding', '2022-05-20 06:52:17'),
+(8, 'LSRZ5J', 'TM02', 'MSU/00050/022', 'Assigned', '2022-05-21 15:06:30'),
+(9, 'ORXUMI', 'TM02', 'MSU/00046/022', 'Failed', '2022-05-20 06:52:42'),
+(10, 'H7DEW2', 'TM02', 'MSU/00046/022', 'Assigned', '2022-05-20 06:52:46'),
+(11, 'JWDXGN', 'TM02', 'MSU/00046/022', 'Successful', '2022-05-20 06:52:49'),
+(12, '4X064O', 'TM02', 'MSU/00050/022', 'Assigned', '2022-05-20 06:52:58'),
+(13, '9GQB5R', 'TM03', 'MSU/00050/022', 'Assigned', '2022-05-21 15:09:37'),
+(14, 'LK855W', 'TM01', 'MSU/00046/022', 'Responding', '2022-05-20 06:53:05'),
+(15, 'KW1NJA', 'TM02', 'MSU/00046/022', 'Responding', '2022-05-20 06:54:12'),
+(16, 'VX9YNY', 'TM01', 'MSU/00046/022', 'Responding', '2022-05-20 06:55:41'),
+(17, 'XB1K4W', 'TM03', 'MSU/00046/022', 'Assigned', '2022-05-20 06:57:47'),
+(18, 'OFSHUH', 'TM03', 'MSU/00046/022', 'Responding', '2022-05-20 06:57:51'),
+(19, 'S7V9L9', 'TM01', 'MSU/00050/022', 'Assigned', '2022-05-21 15:09:03'),
+(20, '0IC4JI', 'TM03', 'MSU/00050/022', 'Assigned', '2022-05-20 09:42:17'),
+(22, '615EKP', 'TM02', 'MSU/00050/022', 'Assigned', '2022-05-21 15:03:07');
 
 -- --------------------------------------------------------
 
@@ -302,8 +305,8 @@ CREATE TABLE `success_list` (
 
 INSERT INTO `success_list` (`id`, `student_helpcode`, `incident_description`) VALUES
 (1, 'Y7HGQK', 'We found that the student has twisted his leg while playing football. Our paramedics helped him on the spot.'),
-(2, '5VAP0L', 'We saved her life'),
-(3, '1H2553', 'We saved Her,'),
+(2, '5VAP0L', 'We saved his life, he was having panick attacks'),
+(3, '1H2553', 'We were able to take the student to the university hospital'),
 (4, 'JWDXGN', 'Our paramedics were able to give Syombua some medicines which proved effective.');
 
 --
@@ -404,19 +407,19 @@ ALTER TABLE `request_status`
 -- AUTO_INCREMENT for table `rescue_team`
 --
 ALTER TABLE `rescue_team`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `rescue_team_members`
 --
 ALTER TABLE `rescue_team_members`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `rescue_team_tasks`
 --
 ALTER TABLE `rescue_team_tasks`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `role_details`
