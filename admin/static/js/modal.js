@@ -72,3 +72,33 @@ btns.forEach(function (btn) {
     successTaskDetails();
   });
 });
+
+function failedTaskDetails() {
+  $("#failureModal").modal("show");
+}
+let Buttons = document.querySelectorAll(".view-failed-tasks-btn");
+Buttons.forEach(function (Button) {
+  Button.addEventListener("click", function (e) {
+    e.preventDefault();
+    
+    let helpid = Button.dataset.helpcode;
+    document.getElementById("student_HelpId").value = helpid;
+
+    let sname = Button.dataset.name;
+    document.getElementById("student-name").value = sname;
+
+    let sphone = Button.dataset.phonenumber;
+    document.getElementById("student-phone").value = sphone;
+
+    let request_Status = Button.dataset.status;
+    document.getElementById("request-status").value = request_Status;
+
+    let request_info = Button.dataset.info;
+    document.getElementById("request_details").value = request_info;
+
+    let request_report = Button.dataset.report;
+    document.getElementById("incident-report").value = request_report;
+
+    failedTaskDetails();
+  });
+});

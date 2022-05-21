@@ -50,6 +50,7 @@ $admin_id = $_SESSION['admin_id'];
             $lname=$row["lastname"];
             $tel=$row["phonenumber"];
             $name = $fname." ".$lname;
+            
             echo "<tr> <td>" .$row["helpID"]."</td>";
             echo " <td>" .$row["firstname"]. " ".$row["lastname"]. "</td>";
 

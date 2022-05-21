@@ -17,11 +17,10 @@ include 'server.php';
          Failed Responses </h6>
             <tr >
               <!-- <th scope="col" class="table-primary">S.NO</th> -->
-              <th scope="col" class="table-primary">Student Name</th>
-              <th scope="col" class="table-primary">Phone</th>
               <th scope="col" class="table-primary">Help Code</th>
-              <th scope="col" class="table-primary">Task Description</th>
-              <th scope="col" class="table-primary">Resolution</th>
+              <th scope="col" class="table-primary">Student Name</th>
+
+              <th scope="col" class="table-primary">Time of Request</th>
               <th scope="col" class="table-primary">Action</th>
             </tr>
           </thead>
@@ -44,18 +43,23 @@ include 'server.php';
             $request_status=$row["status"];
             $incident_info=$row["incident_description"];
             $request_status=$row["status"];
+            $fname=$row["firstname"];
+            $lname=$row["lastname"];
+            $name = $fname." ".$lname;
+            $tel=$row["phonenumber"];
+            $request_info=$row["emergency_description"];
+            $request_report=$row["incident_description"];
 
        
-        echo "<tr> <td>" .$row["firstname"]. " ".$row["lastname"]. "</td>";
-        echo "<td>" .$row["phonenumber"]."</td>";
-        echo "<td>" .$help_code."</td>";
-        echo "<td>" .$row["emergency_description"]."</td>";
-        echo "<td>" .$incident_info."</td>";
+            echo "<tr> <td>" .$row["helpID"]."</td>";
+            echo " <td>" .$row["firstname"]. " ".$row["lastname"]. "</td>";
+
+            echo "<td>" .$row["timestamp"]."</td>";
         echo "<td>
         
         <form method ='POST' action='server.php'>
         <input  type='text' hidden name='help_code' value='$help_code'>
-        <input type='submit' value='View Task' name='view-requests-being-attended-btn' class='btn btn-primary'>
+        <input type='submit' data-report='$request_report' data-info='$request_info' data-status ='$request_status' data-phonenumber='$tel' data-name='$name' data-helpcode='$help_code' value='View Task' name='view-requests-being-attended-btn' class='btn btn-primary view-failed-tasks-btn'>
         </form>
         </td> </tr>";
         }
@@ -77,7 +81,61 @@ include 'server.php';
   <div class="col-md-1"></div>
 </div>
 
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
 
+<div class="modal fade" id="failureModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color:black;font-weight:normal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Failed Task Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Help Code:</label>
+            <input type="text" class="form-control" readonly id="student_HelpId">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Student Name:</label>
+            <input type="text" class="form-control"readonly id="student-name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Phone Number:</label>
+            <input type="text" class="form-control" readonly id="student-phone">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Request Status:</label>
+            <input type="text" class="form-control" readonly id="request-status">
+          </div>
+     
+         
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Task Description:</label>
+            <textarea class="form-control" id="request_details" readonly ></textarea>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Rescue Report:</label>
+            <textarea class="form-control" id="incident-report" readonly></textarea>
+          </div>
+          <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-success">Send message</button> -->
+      </div>
+        </form>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+  </div>
+  <div class="col-md-3"></div>
+</div>
 
     <!--Bootstrap 4 scripts-->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -86,5 +144,6 @@ include 'server.php';
 <!-- End Bootstrap 4 scripts-->
 <!-- modal script -->
 <script src="./static/js/app.js"></script>
+<script src="./static/js/modal.js"></script>
   </body>
 </html>
