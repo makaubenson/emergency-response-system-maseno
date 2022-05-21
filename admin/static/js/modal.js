@@ -80,7 +80,7 @@ let Buttons = document.querySelectorAll(".view-failed-tasks-btn");
 Buttons.forEach(function (Button) {
   Button.addEventListener("click", function (e) {
     e.preventDefault();
-    
+
     let helpid = Button.dataset.helpcode;
     document.getElementById("student_HelpId").value = helpid;
 
@@ -100,5 +100,31 @@ Buttons.forEach(function (Button) {
     document.getElementById("incident-report").value = request_report;
 
     failedTaskDetails();
+  });
+});
+
+function teamRegistration() {
+  $("#teamRegistration").modal("show");
+}
+let teamBtn = document.querySelector(".addNewTeam");
+
+teamBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  teamRegistration();
+});
+
+function teamMemberRegistration() {
+  $("#addTeamMember").modal("show");
+}
+let butons = document.querySelectorAll(".team_member_button");
+butons.forEach(function (Buton) {
+  Buton.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    let teamid = Buton.dataset.teamid;
+    document.getElementById("member-teamid").value = teamid;
+
+    teamMemberRegistration();
   });
 });

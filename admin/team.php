@@ -6,19 +6,20 @@ include 'server.php';
 <?php include './includes/header.php'; ?>
   <body>
     <?php include './includes/navbar.php'; ?>
-
+<div class="container-fluid">
   <div class="row m-3">
     <div class="col-md-12">
 <div class="table-responsive-lg">
 <div class="row">
   <div class="col-md-4">
-  <button class='btn btn-primary' onclick="window.location.href='add_team.php'">Add New Team</button>
+  <button type="type" class='btn btn-primary addNewTeam'>Add New Team</button>
+  </div>
+  <div class="col-md-4">
   </div>
   <div class="col-md-4">
   <button class='btn btn-success' onclick="window.location.href='add_member.php'">Add Team Member</button>
   </div>
-  <div class="col-md-4">
-  </div>
+  
 </div>
 
     <table class="table" style='color:black; font-weight:normal'>
@@ -57,6 +58,8 @@ include 'server.php';
         <input  type='text' hidden name='teamID' value='$team_ID'>
         <input type='submit' value='Edit' name='edit-team-btn' class='btn btn-success'>
         <input type='submit' value='Delete' name='delete-team-btn' class='btn btn-danger'>
+
+        <button class='btn btn-outline-info team_member_button' data-teamid='$team_ID' >Add Team Member</button>
         </form>
         </td> </tr>";
         }
@@ -80,8 +83,130 @@ include 'server.php';
 
 </div>
 
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+<div class="modal fade" id="teamRegistration" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color:black;font-weight:normal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Rescue Team Registration</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="server.php">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Team ID:</label>
+            <input type="text" class="form-control" name='team_id' id="team-id" placeholder="Team ID" required>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Team Name:</label>
+            <input type="text" class="form-control" name='team_name' id="team-name"placeholder="Team Name" required>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Team Username:</label>
+            <input type="text" class="form-control" name='team_username' id="team-username" placeholder="Team Username" required>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Email Address:</label>
+            <input type="email" class="form-control" name='team_email' id="team-email" placeholder="Email Address" required>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Phone Number:</label>
+            <input type="text" class="form-control" name='team_phone' id="team-phone" placeholder="0700000000" required>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Password:</label>
+            <input type="password" class="form-control" name='team_password1' id="team-password" placeholder="Password" required>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Confirm Password:</label>
+            <input type="text" class="form-control" name='team_password2' id="team-confirm-password" placeholder="Confirm Password" required>
+          </div>
+          <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit"  class="btn btn-success" name="register_team_btn">Register Team</button>
+      </div>
+        </form>
+      </div>
+    
+    </div>
+  </div>
+</div>
 
+  </div>
+  <div class="col-md-3"></div>
+</div>
 
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+ 
+
+<div class="modal fade" id="addTeamMember" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color:black;font-weight:normal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Team Member Registration</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="server.php">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Team ID:</label>
+            <input type="text" class="form-control" readonly name="member_team" id='member-teamid' required placeholder="First Name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">First Name:</label>
+            <input type="text" class="form-control" id='member-fname' name="member_fname" required placeholder="First Name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Last Name:</label>
+            <input type="text" class="form-control" id='member-lname' name="member_lname" required placeholder="Last Name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Email Address:</label>
+            <input type="email" class="form-control" id='member-email' name="member_email" required placeholder="Email Address">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Phone Number:</label>
+            <input type="number" class="form-control" id='member-phone'name="member_phone" required placeholder="0700000000">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Member ID:</label>
+            <input type="text" class="form-control" id='member-id' name="member_id" required placeholder="Member ID">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Member Role:</label>
+            <select name="member_role" class="form-control form-control-sm" required="required">
+<option value="">Select Role</option>
+<?php $sql=mysqli_query($db,"select * from role_details ");
+while ($rw=mysqli_fetch_array($sql)) {
+  ?>
+  <option value="<?php echo htmlentities($rw['role_id']);?>"><?php echo htmlentities($rw['role_name']);?></option>
+<?php
+}
+?>
+</select>
+          </div>
+          <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="submit" name="register_team_member" class="btn btn-success">Register Team Member</button>
+      </div>
+        </form>
+      </div>
+   
+    </div>
+  </div>
+</div>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+</div><!--Container-->
     <!--Bootstrap 4 scripts-->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -89,5 +214,6 @@ include 'server.php';
 <!-- End Bootstrap 4 scripts-->
 <!-- modal script -->
 <script src="./static/js/app.js"></script>
+<script src="./static/js/modal.js"></script>
   </body>
 </html>
