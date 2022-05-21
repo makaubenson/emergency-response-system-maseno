@@ -12,9 +12,9 @@ include 'server.php';
 <div class="table-responsive-lg">
     <table class="table" style='color:black; font-weight:normal'>
         <thead>
-          <h6  style='color:blue; font-weight:normal'>
+          <h4  style='color:blue; font-weight:normal'>
           Moderators (Admins)
-</h6>
+</h4>
             <tr >
               <th scope="col" class="table-primary">S.NO</th>
               <th scope="col" class="table-primary">Admin ID</th>
