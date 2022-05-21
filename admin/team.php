@@ -61,10 +61,10 @@ $teamName = $_SESSION['team_name'];
         echo "<td>
         
         <form method ='POST' action='server.php'>
-        <input type='submit' value='Edit' data-password='$team_password ' data-teammail='$team_mail' data-teamphone='$team_phone' data-username='$team_username' data-tname='$team_name' data-team='$team_ID' name='edit-team-btn' class='btn btn-success team-edit-btn'>
-        <input type='button' id='team_delete_btn' data-rescueteamid='$team_ID' value='Delete' name='delete-team-btn' class='btn btn-danger team_delete-btn'>
+        <input type='submit' value='Edit' data-password='$team_password ' data-teammail='$team_mail' data-teamphone='$team_phone' data-username='$team_username' data-tname='$team_name' data-team='$team_ID' name='edit-team-btn' class='btn btn-success team-edit-btn m-2'>
+        <input type='button' id='team_delete_btn' data-rescueteamid='$team_ID' value='Delete' name='delete-team-btn' class='btn btn-danger team_delete-btn m-2'>
 
-        <button class='btn btn-outline-info team_member_button' data-teamid='$team_ID' >Add Team Member</button>
+        <button class='btn btn-outline-info m-2 team_member_button' data-teamid='$team_ID' >Add Team Member</button>
         </form>
         </td> </tr>";
         }
