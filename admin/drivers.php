@@ -63,7 +63,7 @@ include 'server.php';
       <form method ='POST' action='server.php'>
       <input  type='text' hidden name='driver_member_id' value='$driver_member_id'>
       <input type='submit' data-id= '$driver_member_id' data-phone='$driverPhone' data-fname='$driverFname' data-lname='$driverLname' data-mail='$driverMail' value='Edit' name='edit-driver-btn' class='btn btn-success editDriverButton'>
-      <input type='submit' value='Delete' name='delete-driver-btn' class='btn btn-danger'>
+      <input type='submit' data-id= '$driver_member_id' value='Delete'  class='btn btn-danger deleteDriveBtn'>
       </form>
       </td> </tr>";
       }
@@ -88,9 +88,7 @@ include 'server.php';
 <div class="row">
   <div class="col-md-3"></div>
   <div class="col-md-6">
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editDriverModal" data-whatever="@mdo">Open modal for @mdo</button>
-
-<div class="modal fade" id="editDriverModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color:black;font-weight:normal">
+ <div class="modal fade" id="editDriverModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color:black;font-weight:normal">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -147,8 +145,45 @@ while ($rw=mysqli_fetch_array($sql)) {
     </div>
   </div>
 </div>
+  
+  <div class="col-md-3"></div>
+  </div>
+  <div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+ 
+  <div class="modal" id='deleteDriverModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" style="color:red">⚠ Warning!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       
+        <div class="modal-body">
+        <p>Are you sure you want to delete this user?</p>
+        <form method="POST" action="server.php">
+        <div class="form-group">
+            <input type="text"  hidden class="form-control" id="driverID" required readonly name='driver_member_id'>
+          </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No Cancel</button>
+        <button type="submit" name='delete-driver-btn' class="btn btn-danger">Yes Delete!</button>
+      </div>
+        </form>
+      </div>
+      
+      </div>
+     
+    </div>
+  </div>
+</div>
   </div>
   <div class="col-md-3"></div>
+</div>
 </div>
 </div><!--end of container-->
  <!--Bootstrap 4 scripts-->
@@ -183,6 +218,22 @@ editButtons.forEach(function (editButton) {
   });
 });
 
+function deleteDriverModal() {
+  $("#deleteDriverModal").modal("show");
+}
+let deleteBtns = document.querySelectorAll(".deleteDriveBtn");
+deleteBtns.forEach(function (deleteBtn) {
+  deleteBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    let driverid = deleteBtn.dataset.id;
+
+    document.getElementById("driverID").value = driverid;
+ 
+
+    deleteDriverModal();
+  });
+});
 </script>
   </body>
 </html>
