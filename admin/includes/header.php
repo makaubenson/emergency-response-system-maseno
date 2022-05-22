@@ -13,4 +13,5 @@
     <!--Style Css-->
     <link rel="stylesheet" href="./static/css/style.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+ 
   </head>
