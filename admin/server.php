@@ -414,35 +414,11 @@ if (isset($_POST['edit-admin-btn'])) {
   // Deleting Admin Details
   if (isset($_POST['delete-admin-btn'])) {
     $moderator_ID = $_POST['admin_unique_id'];
-    $moderator_fname = $_POST['admin_unique_fname'];
-    $moderator_lname = $_POST['admin_unique_lname'];
-    $moderator_emailAdd= $_POST['admin_unique_mail'];
-    $moderator_phone= $_POST['admin_unique_phone'];
-    $moderator_rank= $_POST['admin_unique_rank'];
-    // $moderator_password= $_POST['adminPass'];
   
     if (empty($moderator_ID)) {
       array_push($errors, "Moderator ID is required");
     }
-    if (empty($moderator_fname)) {
-      array_push($errors, "Moderator First Name is required");
-    }
-    if (empty($moderator_lname)) {
-      array_push($errors, "Moderator Last Name is required");
-    }
-    if (empty($moderator_emailAdd)) {
-      array_push($errors, "Moderator Email Address is required");
-    }
-    if (empty($moderator_phone)) {
-      array_push($errors, "Moderator Phone Number is required");
-    }
-    if (empty($moderator_rank)) {
-      array_push($errors, "Moderator Rank is required");
-    }   
-    // if (empty($moderator_password)) {
-    // 	array_push($errors, "Moderator Password is required");
-    // }
-  
+     
     if (count($errors) == 0) {
   
       $admin_data_delete_query = "DELETE FROM `admin_details` WHERE admin_id='$moderator_ID' ";

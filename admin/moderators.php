@@ -62,8 +62,8 @@ include 'server.php';
         echo "<td>
         <form method='POST' action='server.php'>
         <input  type='text'  hidden name='admin_unique_id' value='$admin_ID'>
-        <input type='submit'data-rank='$admin_power' data-value='$admin_ID' data-fname='$admin_fname' data-lname='$admin_lname' data-mail='$admin_mail' data-number='$admin_number' value='Edit'  class='btn btn-success update_admin_btn'>
-        <input type='submit' value='Delete' name='delete-admin-btn' class='btn btn-danger'>
+        <input type='submit'data-rank='$admin_power' data-value='$admin_ID' data-fname='$admin_fname' data-lname='$admin_lname' data-mail='$admin_mail' data-number='$admin_number' value='Edit'  class='btn btn-success m-2 update_admin_btn'>
+        <input type='submit' value='Delete' data-delid='$admin_ID'   class='btn btn-danger m-2 adminDeleteBtn'>
  </form>
         </td> </tr>";
         }
@@ -156,6 +156,43 @@ include 'server.php';
   </div>
   <div class="col-md-3"></div>
 </div>
+
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+ 
+  <div class="modal" id='deleteAdminModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" style="color:red">⚠ Warning!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       
+        <div class="modal-body">
+        <p>Are you sure you want to delete this team?</p>
+        <form method="POST" action="server.php">
+        <div class="form-group">
+            <input type="text"  class="form-control" id="adminIdentityNumber" required readonly name='admin_unique_id'>
+          </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No Cancel</button>
+        <button type="submit" name='delete-admin-btn' class="btn btn-danger">Yes Delete!</button>
+      </div>
+        </form>
+      </div>
+      
+      </div>
+     
+    </div>
+  </div>
+</div>
+  </div>
+  <div class="col-md-3"></div>
+</div>
 </div><!--End of container-->
 
 
@@ -193,8 +230,24 @@ updateButtons.forEach(function (updateButton) {
   });
 });
 
+function deleteAdminModal() {
+  $("#deleteAdminModal").modal("show");
+}
+let deleteBtns = document.querySelectorAll(".adminDeleteBtn");
+deleteBtns.forEach(function (deleteBtn) {
+  deleteBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    let adminval = deleteBtn.dataset.delid;
+  console.log(adminval);
+
+    document.getElementById("adminIdentityNumber").value = adminval;
+
+    deleteAdminModal();
+  });
+});
 </script>
 <!-- <script defer src="./static/js/app.js"></script> -->
-<script src="./static/js/modal.js"></script>
+<!-- <script src="./static/js/modal.js"></script> -->
   </body>
 </html>
