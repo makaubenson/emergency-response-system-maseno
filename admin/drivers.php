@@ -7,6 +7,8 @@ include 'server.php';
   <body>
     <?php include './includes/navbar.php'; ?>
 
+<div class="container-fluid">
+
 
 
 <div class="row m-3">
@@ -22,7 +24,7 @@ include 'server.php';
             <th scope="col" class="table-primary">Last Name</th>
             <th scope="col" class="table-primary">Email Address</th>
             <th scope="col" class="table-primary">Phone Number</th>
-            <th scope="col" class="table-primary">Team ID</th>
+            <th scope="col" class="table-primary">Team Name</th>
             <th scope="col" class="table-primary">Action</th>
            
           </tr>
@@ -37,18 +39,30 @@ include 'server.php';
           while($row = $data_result->fetch_assoc()) {
               $role_id = $row['role_id'];
               $driver_member_id = $row['member_id'];
+              $driverFname= $row["fname"];
+              $driverLname= $row["lname"];
+              $driverMail= $row["email"];
+              $driverPhone= $row["phone"];
+              $teamid= $row["rescue_team_id"];
+
+              $data_fetch = "SELECT * FROM `rescue_team` WHERE `team_id` ='$teamid'";
+              $result = mysqli_query($db, $data_fetch);
+              if ($result->num_rows > 0){
+                while($rw = $result->fetch_assoc()) {
+                  $teamname= $rw["team_name"];
+                }}
 
       echo "<tr> <td>" .$row["member_id"].  "</td>";
-      echo "<td>" .$row["fname"]."</td>";
-      echo "<td>" .$row["lname"]."</td>";
-      echo "<td>" .$row["email"]."</td>";
-      echo "<td>" .$row["phone"]."</td>";
-      echo "<td>" .$row["rescue_team_id"]."</td>";
+      echo "<td>" .$driverFname."</td>";
+      echo "<td>" .$driverLname."</td>";
+      echo "<td>" .$driverMail."</td>";
+      echo "<td>" .$driverPhone."</td>";
+      echo "<td>" .$teamname."</td>";
       echo "<td>
         
       <form method ='POST' action='server.php'>
       <input  type='text' hidden name='driver_member_id' value='$driver_member_id'>
-      <input type='submit' value='Edit' name='edit-driver-btn' class='btn btn-success'>
+      <input type='submit' data-id= '$driver_member_id' data-phone='$driverPhone' data-fname='$driverFname' data-lname='$driverLname' data-mail='$driverMail' value='Edit' name='edit-driver-btn' class='btn btn-success editDriverButton'>
       <input type='submit' value='Delete' name='delete-driver-btn' class='btn btn-danger'>
       </form>
       </td> </tr>";
@@ -71,14 +85,104 @@ include 'server.php';
 <div class="col-md-1"></div>
 </div>
 
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editDriverModal" data-whatever="@mdo">Open modal for @mdo</button>
 
-
-    <!--Bootstrap 4 scripts-->
+<div class="modal fade" id="editDriverModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color:black;font-weight:normal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Driver Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="server.php">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Member ID:</label>
+            <input type="text" class="form-control" readonly id="driver-id" name="driver_member_id" placeholder="Member ID">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">First Name:</label>
+            <input type="text" class="form-control" id="driver-fname" name="driver_fname" placeholder="First Name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Last Name:</label>
+            <input type="text" class="form-control" id="driver-lname" name="driver_lname" placeholder="Last Name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Email Address:</label>
+            <input type="email" class="form-control" id="driver-email" name="driver_email" placeholder="Email Address">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Phone Number:</label>
+            <input type="number" class="form-control" id="driver-phone" name="driver_phone" placeholder="07000......">
+          </div>
+        
+            <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Team Name:</label>
+            <select name="driver_team_id" class="form-control form-control-sm" required="required">
+<option selected value="">Select Team</option>
+<?php $sql=mysqli_query($db,"select * from rescue_team ");
+while ($rw=mysqli_fetch_array($sql)) {
+  ?>
+  <option value="<?php echo htmlentities($rw['team_id']);?>"><?php echo htmlentities($rw['team_name']);?></option>
+<?php
+}
+?>
+</select>
+          </div>
+          </div>
+          <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" name='update-driver-details' class="btn btn-primary">Update Driver Details</button>
+      </div>
+         
+        </form>
+      </div>
+    
+    </div>
+  </div>
+</div>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+</div><!--end of container-->
+ <!--Bootstrap 4 scripts-->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <!-- End Bootstrap 4 scripts-->
 <!-- modal script -->
 <script src="./static/js/app.js"></script>
+<script>
+  function editDriverModal() {
+  $("#editDriverModal").modal("show");
+}
+let editButtons = document.querySelectorAll(".editDriverButton");
+editButtons.forEach(function (editButton) {
+  editButton.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    let driverid = editButton.dataset.id;
+    let driverfname = editButton.dataset.fname;
+    let driverlname = editButton.dataset.lname;
+    let drivermail = editButton.dataset.mail;
+    let driverphone = editButton.dataset.phone;
+    document.getElementById("driver-id").value = driverid;
+    document.getElementById("driver-fname").value = driverfname;
+    document.getElementById("driver-lname").value = driverlname;
+
+    document.getElementById("driver-phone").value = driverphone;
+    document.getElementById("driver-email").value = drivermail;
+
+    editDriverModal();
+  });
+});
+
+</script>
   </body>
 </html>

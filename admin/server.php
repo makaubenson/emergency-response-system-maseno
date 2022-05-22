@@ -760,7 +760,7 @@ $row = mysqli_fetch_assoc($result);
   }
 }
 
-// Update Nurse Details
+// Update Driver Details
 if (isset($_POST['update-driver-details'])) {
 
   $driver_fname = $_POST['driver_fname'];

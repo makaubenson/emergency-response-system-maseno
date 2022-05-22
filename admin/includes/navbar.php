@@ -25,7 +25,7 @@
         <a class="nav-link active" href="failed.php">Failed</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" href="team.php">Rescue Team</a>
+        <a class="nav-link active" href="team.php">Rescue Teams</a>
       </li>
       <li class="nav-item">
         <a class="nav-link active" href="moderators.php">Moderators</a>
