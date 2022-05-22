@@ -8,8 +8,8 @@ include 'server.php';
     <?php include './includes/navbar.php'; ?>
 <div class="container-fluid">
   <div class="row m-3">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
       <!--Modal-->
       <button type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#moderatorRegistration" data-whatever="@mdo">Add Moderator</button>
 
@@ -126,6 +126,7 @@ include 'server.php';
         <input  type='text'  hidden name='admin_unique_id' value='$admin_ID'>
         <input type='submit'data-rank='$admin_power' data-value='$admin_ID' data-fname='$admin_fname' data-lname='$admin_lname' data-mail='$admin_mail' data-number='$admin_number' value='Edit'  class='btn btn-success m-2 update_admin_btn'>
         <input type='submit' value='Delete' data-delid='$admin_ID'   class='btn btn-danger m-2 adminDeleteBtn'>
+        <input type='submit' value='Change Password' data-data='$admin_ID'   class='btn btn-info m-2 adminChangePass'>
  </form>
         </td> </tr>";
         }
@@ -162,9 +163,56 @@ include 'server.php';
   </div>
     
   </div>
-  <div class="col-md-2"></div>
+  <div class="col-md-1"></div>
 </div>
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#passwordChange">
+  Launch demo modal
+</button>
 
+<!-- Modal -->
+<div class="modal fade" id="passwordChange" tabindex="-1" role="dialog" aria-labelledby="passwordChangeTitle" aria-hidden="true" style="color:black;font-weight:normal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Change Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form method="POST" action="server.php">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Moderator ID:</label>
+            <input type="text" readonly class="form-control" id="moderator_data" name="admin_identity">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">New Password:</label>
+            <input type="password" class="form-control" id="new-password" name="admin_password">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Confirm Password:</label>
+            <input type="password" class="form-control" id="confirm-password" name="admin_confirm_password">
+          </div>
+         
+          <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" name='admin_password_update_btn' class="btn btn-success">Update and Exit</button>
+      </div>
+        </form>
+      </div>
+     
+      </div>
+  
+    </div>
+  </div>
+</div>
+  </div>
+  <div class="col-md-3"></div>
+</div>
 <div class="row">
   <div class="col-md-3"></div>
   <div class="col-md-6">
@@ -306,6 +354,22 @@ deleteBtns.forEach(function (deleteBtn) {
     document.getElementById("adminIdentityNumber").value = adminval;
 
     deleteAdminModal();
+  });
+});
+function updateAdminPassword() {
+  $("#passwordChange").modal("show");
+}
+let updatePassBtns = document.querySelectorAll(".adminChangePass");
+updatePassBtns.forEach(function (updatePassBtn) {
+  updatePassBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    let adminData = updatePassBtn.dataset.data;
+  // console.log(adminData);
+
+    document.getElementById("moderator_data").value = adminData;
+
+    updateAdminPassword();
   });
 });
 </script>

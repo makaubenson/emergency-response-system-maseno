@@ -887,5 +887,35 @@ if (isset($_POST['update-driver-details'])) {
     }
 
     }
+
+
+  if(isset($_POST['admin_password_update_btn'])){
+    $moderatorid = $_POST['admin_identity'];
+    $password = $_POST['admin_password'];
+    $confirmpass = $_POST['admin_confirm_password'];
+
+    if (empty($moderatorid)) {
+      array_push($errors, "Moderator ID is required");
+    }
+    if (empty($password)) {
+      array_push($errors, "Password is required");
+    }
+    if (empty($confirmpass)) {
+      array_push($errors, "Confirm Password is required");
+    }
+    if ($password != $confirmpass) {
+      array_push($errors, "Password Mismatch, Please try again");
+    }
+    if (count($errors) == 0) {
+    $password = md5($confirmpass);
+    $password_update = "UPDATE `admin_details` SET `admin_password`='$password' WHERE `admin_id`='$moderatorid'";
+    mysqli_query($db,$password_update);
+
+    header('location: moderators.php');
+    }else{
+      header('location: moderators.php');
+    }
+
+  }
     ob_end_flush();
 ?>
