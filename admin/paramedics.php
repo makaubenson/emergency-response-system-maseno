@@ -239,10 +239,10 @@ include 'server.php';
       <div class="modal-body">
        
         <div class="modal-body">
-        <p>Are you sure you want to delete this team?</p>
+        <p>Are you sure you want to delete this user?</p>
         <form method="POST" action="server.php">
         <div class="form-group">
-            <input type="text"  class="form-control" id="IdentityNumber" required readonly name='member_id'>
+            <input type="text"  hidden class="form-control" id="IdentityNumber" required readonly name='member_id'>
           </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">No Cancel</button>

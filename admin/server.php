@@ -624,101 +624,101 @@ if (count($errors) == 0) {
   	}
 }
 
-// Edit Nurse Details
-if (isset($_POST['edit-nurse-btn'])) {
-  // receive all input values from the form
-  $nurse_member_ID=$_POST['nurse_member_id'];
+// // Edit Nurse Details
+// if (isset($_POST['edit-nurse-btn'])) {
+//   // receive all input values from the form
+//   $nurse_member_ID=$_POST['nurse_member_id'];
   
-  // form validation: ensure that the form is correctly filled ...
-// by adding (array_push()) corresponding error unto $errors array
-if (empty($nurse_member_ID)) { array_push($errors, "Member ID is required"); }
+//   // form validation: ensure that the form is correctly filled ...
+// // by adding (array_push()) corresponding error unto $errors array
+// if (empty($nurse_member_ID)) { array_push($errors, "Member ID is required"); }
 
-if (count($errors) == 0) {
+// if (count($errors) == 0) {
 
-$nurse_check_query = "SELECT * FROM `rescue_team_members` WHERE member_id='$nurse_member_ID'  LIMIT 1";
-$result = mysqli_query($db, $nurse_check_query);
-$row = mysqli_fetch_assoc($result);
+// $nurse_check_query = "SELECT * FROM `rescue_team_members` WHERE member_id='$nurse_member_ID'  LIMIT 1";
+// $result = mysqli_query($db, $nurse_check_query);
+// $row = mysqli_fetch_assoc($result);
 
-  //row data
-  $nurse_member_id=$row['member_id'];
-  $nurse_fname=$row['fname'];
-  $nurse_lname=$row['lname'];
-  $nurse_mail=$row['email'];
-  $nurse_phone=$row['phone'];
-  $nurse_role_id=$row['role_id'];
-  $nurse_team_id=$row['rescue_team_id'];
+//   //row data
+//   $nurse_member_id=$row['member_id'];
+//   $nurse_fname=$row['fname'];
+//   $nurse_lname=$row['lname'];
+//   $nurse_mail=$row['email'];
+//   $nurse_phone=$row['phone'];
+//   $nurse_role_id=$row['role_id'];
+//   $nurse_team_id=$row['rescue_team_id'];
 
-  //Create Sessions
-  $_SESSION['nurse_member_id'] = $nurse_member_id;
-  $_SESSION['nurse_fname'] = $nurse_fname;
-  $_SESSION['nurse_lname'] =$nurse_lname;
-  $_SESSION['nurse_email'] = $nurse_mail;
-  $_SESSION['nurse_phone'] =$nurse_phone;
-  $_SESSION['nurse_role_id'] =$nurse_role_id;
-  $_SESSION['nurse_rescue_team_id'] =$nurse_team_id;
+//   //Create Sessions
+//   $_SESSION['nurse_member_id'] = $nurse_member_id;
+//   $_SESSION['nurse_fname'] = $nurse_fname;
+//   $_SESSION['nurse_lname'] =$nurse_lname;
+//   $_SESSION['nurse_email'] = $nurse_mail;
+//   $_SESSION['nurse_phone'] =$nurse_phone;
+//   $_SESSION['nurse_role_id'] =$nurse_role_id;
+//   $_SESSION['nurse_rescue_team_id'] =$nurse_team_id;
  
-  header('location: nurse_view.php');
-  }else{
-    header('location: paramedics.php');
-  }
-}
+//   header('location: nurse_view.php');
+//   }else{
+//     header('location: paramedics.php');
+//   }
+// }
 
-// Update Nurse Details
-if (isset($_POST['update-nurse-details'])) {
+// // Update Nurse Details
+// if (isset($_POST['update-nurse-details'])) {
 
-  $nurse_fname = $_POST['nurse_fname'];
-  $nurse_lname = $_POST['nurse_lname'];
-  $nurse_emailAddress = $_POST['nurse_email'];
-  $nurse_phoneNum= $_POST['nurse_phone'];
-  $nurse_member_id= $_POST['nurse_member_id'];
-  $nurse_team_id= $_POST['nurse_team_id'];
+//   $nurse_fname = $_POST['nurse_fname'];
+//   $nurse_lname = $_POST['nurse_lname'];
+//   $nurse_emailAddress = $_POST['nurse_email'];
+//   $nurse_phoneNum= $_POST['nurse_phone'];
+//   $nurse_member_id= $_POST['nurse_member_id'];
+//   $nurse_team_id= $_POST['nurse_team_id'];
 
-  if (empty($nurse_fname)) {
-  	array_push($errors, "Nurse First Name is required");
-  }
-  if (empty($nurse_lname)) {
-  	array_push($errors, "Nurse Last Name is required");
-  }
-  if (empty($nurse_emailAddress)) {
-  	array_push($errors, "Nurse Email is required");
-  }
-  if (empty($nurse_phoneNum)) {
-  	array_push($errors, "Nurse phone number is required");
-  }
-  if (empty($nurse_member_id)) {
-  	array_push($errors, "Nurse role ID is required");
-  }
-  if (empty($nurse_team_id)) {
-  	array_push($errors, "Nurse team ID is required");
-  }
+//   if (empty($nurse_fname)) {
+//   	array_push($errors, "Nurse First Name is required");
+//   }
+//   if (empty($nurse_lname)) {
+//   	array_push($errors, "Nurse Last Name is required");
+//   }
+//   if (empty($nurse_emailAddress)) {
+//   	array_push($errors, "Nurse Email is required");
+//   }
+//   if (empty($nurse_phoneNum)) {
+//   	array_push($errors, "Nurse phone number is required");
+//   }
+//   if (empty($nurse_member_id)) {
+//   	array_push($errors, "Nurse role ID is required");
+//   }
+//   if (empty($nurse_team_id)) {
+//   	array_push($errors, "Nurse team ID is required");
+//   }
 
-  if (count($errors) == 0) {
+//   if (count($errors) == 0) {
 
-  	$nurse_data_update_query = "UPDATE `rescue_team_members` SET `fname`='$nurse_fname',`lname`='$nurse_lname',`email`='$nurse_emailAddress',`phone`='$nurse_phoneNum',`rescue_team_id`='$nurse_team_id'
-    WHERE member_id= '$nurse_member_id' ";
-  	$results = mysqli_query($db, $nurse_data_update_query);
-  	  header('location: paramedics.php');
-  	}else{
-  		array_push($errors, "Unable to push updates");
-      header('location: nurse_view.php');
-  	}
-  }
-  // Delete Nurse Details
-  if (isset($_POST['delete-nurse-btn'])) {
-    $nurse_member_id = $_POST['nurse_member_id'];
+//   	$nurse_data_update_query = "UPDATE `rescue_team_members` SET `fname`='$nurse_fname',`lname`='$nurse_lname',`email`='$nurse_emailAddress',`phone`='$nurse_phoneNum',`rescue_team_id`='$nurse_team_id'
+//     WHERE member_id= '$nurse_member_id' ";
+//   	$results = mysqli_query($db, $nurse_data_update_query);
+//   	  header('location: paramedics.php');
+//   	}else{
+//   		array_push($errors, "Unable to push updates");
+//       header('location: nurse_view.php');
+//   	}
+//   }
+//   // Delete Nurse Details
+//   if (isset($_POST['delete-nurse-btn'])) {
+//     $nurse_member_id = $_POST['nurse_member_id'];
     
-    if (empty($nurse_member_id)) {
-      array_push($errors, "Nurse Member ID is required");
-    }
-    if (count($errors) == 0) {
-        $nurse_data_delete_query = "DELETE FROM `rescue_team_members` WHERE member_id='$nurse_member_id' ";
-        $results = mysqli_query($db, $nurse_data_delete_query);
-          header('location: paramedics.php');
-        }else{
-          array_push($errors, "Unable to delete record");
-          header('location: paramedics.php');
-        }
-    }
+//     if (empty($nurse_member_id)) {
+//       array_push($errors, "Nurse Member ID is required");
+//     }
+//     if (count($errors) == 0) {
+//         $nurse_data_delete_query = "DELETE FROM `rescue_team_members` WHERE member_id='$nurse_member_id' ";
+//         $results = mysqli_query($db, $nurse_data_delete_query);
+//           header('location: paramedics.php');
+//         }else{
+//           array_push($errors, "Unable to delete record");
+//           header('location: paramedics.php');
+//         }
+//     }
 
 
 // Edit Driver Details
