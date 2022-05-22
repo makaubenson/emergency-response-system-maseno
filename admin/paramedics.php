@@ -6,7 +6,7 @@ include 'server.php';
 <?php include './includes/header.php'; ?>
   <body>
     <?php include './includes/navbar.php'; ?>
-
+<div class="container-fluid">
   <div class="row m-3">
     <div class="col-md-1"></div>
     <div class="col-md-10">
@@ -20,7 +20,7 @@ include 'server.php';
               <th scope="col" class="table-primary">Last Name</th>
               <th scope="col" class="table-primary">Email Address</th>
               <th scope="col" class="table-primary">Phone Number</th>
-              <th scope="col" class="table-primary">Team ID</th>
+              <th scope="col" class="table-primary">Team Name</th>
               <th scope="col" class="table-primary">Action</th>
              
             </tr>
@@ -32,22 +32,35 @@ include 'server.php';
         $data_fetch_query = "SELECT * FROM `rescue_team_members` WHERE role_id='MSU/001B/022'";
         $data_result = mysqli_query($db, $data_fetch_query);
         if ($data_result->num_rows > 0){
-            while($row = $data_result->fetch_assoc()) {
-                $role_id = $row['role_id'];
-                $user_email = $row["email"];
-                $member_id = $row["member_id"];
+          while($row = $data_result->fetch_assoc()) {
+            $role_id = $row['role_id'];
+            $user_email = $row["email"];
+            $member_id = $row["member_id"];
+            $member_fname = $row["fname"];
+            $member_lname = $row["lname"];
+            $member_phone = $row["phone"];
+            $member_team_id = $row["rescue_team_id"];
 
-        echo "<tr> <td>" .$row["member_id"].  "</td>";
-        echo "<td>" .$row["fname"]."</td>";
-        echo "<td>" .$row["lname"]."</td>";
-        echo "<td>" .$row["email"]."</td>";
-        echo "<td>" .$row["phone"]."</td>";
-        echo "<td>" .$row["rescue_team_id"]."</td>";
+            $data_fetch = "SELECT * FROM `rescue_team` WHERE team_id='$member_team_id'";
+            $result = mysqli_query($db, $data_fetch);
+            if ($result->num_rows > 0){
+              while($row = $result->fetch_assoc()) {
+                $team_id = $row['team_id'];
+                $teamName = $row["team_name"];
+              }
+            }
+
+      echo "<tr> <td>" .$member_id.  "</td>";
+      echo "<td>" .$member_fname."</td>";
+      echo "<td>" .$member_lname."</td>";
+      echo "<td>" .$user_email."</td>";
+      echo "<td>" .$member_phone."</td>";
+      echo "<td>" .$teamName."</td>";
         echo "<td>
         
         <form method ='POST' action='server.php'>
         <input  type='text' hidden name='member_id' value='$member_id'>
-        <input type='submit' value='Edit' name='edit-paramedic-btn' class='btn btn-success'>
+        <input type='submit'data-prevteam='$teamName' data-fname='$member_fname' data-lname='$member_lname' data-tel='$member_phone' data-teamid = '$member_team_id' data-mail ='$user_email' data-memberid ='$member_id' value='Edit' name='edit-paramedic-btn' class='btn btn-success paramedicEdit'>
         <input type='submit' value='Delete' name='delete-paramedic-btn' class='btn btn-danger'>
         </form>
         </td> </tr>";
@@ -83,7 +96,7 @@ include 'server.php';
             <th scope="col" class="table-primary">Last Name</th>
             <th scope="col" class="table-primary">Email Address</th>
             <th scope="col" class="table-primary">Phone Number</th>
-            <th scope="col" class="table-primary">Team ID</th>
+            <th scope="col" class="table-primary">Team Name</th>
             <th scope="col" class="table-primary">Action</th>
            
           </tr>
@@ -96,21 +109,34 @@ include 'server.php';
       $data_result = mysqli_query($db, $data_fetch_query);
       if ($data_result->num_rows > 0){
           while($row = $data_result->fetch_assoc()) {
-              $role_id = $row['role_id'];
-              $user_email = $row["email"];
-              $member_id = $row["member_id"];
+            $role_id = $row['role_id'];
+            $user_email = $row["email"];
+            $member_id = $row["member_id"];
+            $member_fname = $row["fname"];
+            $member_lname = $row["lname"];
+            $member_phone = $row["phone"];
+            $member_team_id = $row["rescue_team_id"];
 
-      echo "<tr> <td>" .$row["member_id"].  "</td>";
-      echo "<td>" .$row["fname"]."</td>";
-      echo "<td>" .$row["lname"]."</td>";
-      echo "<td>" .$row["email"]."</td>";
-      echo "<td>" .$row["phone"]."</td>";
-      echo "<td>" .$row["rescue_team_id"]."</td>";
+            $data_fetch = "SELECT * FROM `rescue_team` WHERE team_id='$member_team_id'";
+            $result = mysqli_query($db, $data_fetch);
+            if ($result->num_rows > 0){
+              while($row = $result->fetch_assoc()) {
+                $team_id = $row['team_id'];
+                $teamName = $row["team_name"];
+              }
+            }
+
+      echo "<tr> <td>" .$member_id.  "</td>";
+      echo "<td>" .$member_fname."</td>";
+      echo "<td>" .$member_lname."</td>";
+      echo "<td>" .$user_email."</td>";
+      echo "<td>" .$member_phone."</td>";
+      echo "<td>" .$teamName."</td>";
       echo "<td>
         
         <form method ='POST' action='server.php'>
         <input  type='text' hidden name='nurse_member_id' value='$member_id'>
-        <input type='submit' value='Edit' name='edit-nurse-btn' class='btn btn-success'>
+        <input type='submit' data-prevteam='$teamName' data-fname='$member_fname' data-lname='$member_lname' data-tel='$member_phone' data-teamid = '$member_team_id' data-mail ='$user_email' data-memberid ='$member_id' value='Edit' name='edit-nurse-btn' class='btn btn-success paramedicEdit'>
         <input type='submit' value='Delete' name='delete-nurse-btn' class='btn btn-danger'>
         </form>
         </td> </tr>";
@@ -132,7 +158,71 @@ include 'server.php';
 </div>
 <div class="col-md-1"></div>
 </div>
-
+<!--edit paramedic modal-->
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+<div class="modal fade" id="paramedicEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color:black;font-weight:normal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update User Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="server.php">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Member ID:</label>
+            <input type="text" class="form-control" readonly id="member-id" name='paramedic_member_id'  placeholder="Member ID" required>
+          </div>
+         
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">First Name:</label>
+            <input type="text" class="form-control" id="member-fname" name='paramedic_fname' placeholder="Member First Name"required>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Last Name:</label>
+            <input type="text" class="form-control" id="member-lname" name='paramedic_lname' placeholder="Member Last Name"required>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Email Address:</label>
+            <input type="email" class="form-control" id="member-email" name='paramedic_email' placeholder="Member Email"required>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Phone Number:</label>
+            <input type="number" class="form-control" id="member-phone" name='paramedic_phone' placeholder="0700........"required>
+          </div>
+         
+         
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Team Name:</label>
+            <select name='paramedic_team_id' class="form-control form-control-sm" required="required">
+              <option selected value="">Select Team</option>
+              <?php $sql=mysqli_query($db,"select * from rescue_team");
+              while ($rw=mysqli_fetch_array($sql)) {
+                ?>
+                <option value="<?php echo htmlentities($rw['team_id']);?>"><?php echo htmlentities($rw['team_name']);?></option>
+              <?php
+              }
+              ?>
+              </select>
+                        </div>
+                        <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="submit" name='update-paramedic-details' class="btn btn-success">Update Details</button>
+      </div>        
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+</div><!--Ensd of container-->
 
 
     <!--Bootstrap 4 scripts-->
@@ -142,5 +232,33 @@ include 'server.php';
 <!-- End Bootstrap 4 scripts-->
 <!-- modal script -->
 <script src="./static/js/app.js"></script>
+<script>
+function openParamedicModal() {
+  $("#paramedicEditModal").modal("show");
+}
+let openButtons = document.querySelectorAll(".paramedicEdit");
+openButtons.forEach(function (openButton) {
+  openButton.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    let memberid = openButton.dataset.memberid;
+    let memberfname = openButton.dataset.fname;
+    let memberlname = openButton.dataset.lname;
+    let membermail = openButton.dataset.mail;
+    let memberphone = openButton.dataset.tel;
+
+
+    document.getElementById("member-id").value = memberid;
+    document.getElementById("member-fname").value = memberfname;
+    document.getElementById("member-lname").value = memberlname;
+    document.getElementById("member-email").value = membermail;
+    document.getElementById("member-phone").value = memberphone;
+
+
+    openParamedicModal();
+  });
+});
+
+</script>
   </body>
 </html>

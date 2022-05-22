@@ -168,11 +168,6 @@ include 'server.php';
 <div class="row">
   <div class="col-md-3"></div>
   <div class="col-md-6">
-    <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#passwordChange">
-  Launch demo modal
-</button>
-
 <!-- Modal -->
 <div class="modal fade" id="passwordChange" tabindex="-1" role="dialog" aria-labelledby="passwordChangeTitle" aria-hidden="true" style="color:black;font-weight:normal">
   <div class="modal-dialog modal-dialog-centered" role="document">
