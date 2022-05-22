@@ -816,5 +816,76 @@ if (isset($_POST['update-driver-details'])) {
           header('location: drivers.php');
         }
     }
+
+
+    if(isset($_POST['moderator-reg-btn'])){
+      $moderatorId = $_POST['moderator_id'];
+      $moderatorFname = $_POST['moderator_fname'];
+      $moderatorLname = $_POST['moderator_lname'];
+      $moderatorMail = $_POST['moderator_email'];
+      $moderatortel = $_POST['moderator_phonenumber'];
+      $moderatorRank = $_POST['adminrank'];
+      $moderatorPassword = $_POST['moderator_password'];
+      $moderatorConfirmPassword = $_POST['moderator_confirm_password'];
+
+      if (empty($moderatorId)) {
+        array_push($errors, "Moderator ID si required");
+      }
+      if (empty($moderatorFname)) {
+        array_push($errors, "Moderator First Name is required");
+      }
+      if (empty($moderatorLname)) {
+        array_push($errors, "Moderator Last Name is required");
+      }
+      if (empty($moderatorMail)) {
+        array_push($errors, "Moderator Email is required");
+      }
+      if (empty($moderatortel)) {
+        array_push($errors, "Moderator Phone is required");
+      }
+    
+      if (empty($moderatorRank)) {
+        array_push($errors, "Moderator Rank is required");
+      }
+      if (empty($moderatorPassword)) {
+        array_push($errors, "Moderator Password is required");
+      }
+      if (empty($moderatorConfirmPassword)) {
+        array_push($errors, "Confirm is required");
+      }
+    if($moderatorPassword != $moderatorConfirmPassword){
+      array_push($errors, "Passwords do not match!");
+    }
+
+ // first check the database to make sure
+  // a user does not already exist with the same username and/or email
+  $user_check_query = "SELECT * FROM `admin_details` WHERE `admin_id` ='$moderatorId'  OR `admin_email` = '$moderatorMail' LIMIT 1";
+  $result = mysqli_query($db, $user_check_query);
+  $user = mysqli_fetch_assoc($result);
+
+  if ($user) { // if user exists
+    if ($user['admin_id'] === $moderatorId) {
+      array_push($errors, "Moderator ID already exists");
+    }
+    if ($user['admin_email'] === $moderatorMail) {
+      array_push($errors, "Moderator Email already exists");
+    }
+  }
+
+  // Finally, register user if there are no errors in the form
+  if (count($errors) == 0) {
+    $password = md5($moderatorConfirmPassword);//encrypt the password before saving in the database
+
+    $register_query = "INSERT INTO `admin_details`(`admin_id`, `admin_firstname`, `admin_lastname`, `admin_email`, `admin_phone`, `admin_rank`, `admin_password`)
+     VALUES ('$moderatorId','$moderatorFname','$moderatorLname','$moderatorMail','$moderatortel','$moderatorRank','$password')";
+    mysqli_query($db, $register_query);
+     echo "<script>alert('Moderator Registered Successfully')</script>";
+    header('location: moderators.php');
+    }else{
+      echo "<script>alert('User failed to register')</script>";
+      header('location: moderators.php');
+    }
+
+    }
     ob_end_flush();
 ?>

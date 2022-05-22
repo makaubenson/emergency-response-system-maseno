@@ -10,6 +10,68 @@ include 'server.php';
   <div class="row m-3">
     <div class="col-md-2"></div>
     <div class="col-md-8">
+      <!--Modal-->
+      <button type="button" class="btn btn-primary m-2" data-toggle="modal" data-target="#moderatorRegistration" data-whatever="@mdo">Add Moderator</button>
+
+
+<div class="modal fade" id="moderatorRegistration" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="color:black;font-weight:normal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Moderator Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="server.php">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Moderator ID:</label>
+            <input type="text" class="form-control" id="moderator-id" name="moderator_id" placeholder="Moderator ID">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">First Name:</label>
+            <input type="text" class="form-control" id="moderator-fname" name="moderator_fname" placeholder="First Name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Last Name:</label>
+            <input type="text" class="form-control" id="moderator-lname" name="moderator_lname" placeholder="Last Name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Email Address:</label>
+            <input type="email" class="form-control" id="moderator-email" name="moderator_email" placeholder="Email Address">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Phone Number:</label>
+            <input type="number" class="form-control" id="moderator-phonenumber" name="moderator_phonenumber" placeholder="0700.......">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Rank:</label>
+            <select class="form-control" name='adminrank' required>
+            <option selected value=''>Select Rank</option>
+            <option value="admin">Admin</option>
+            <option value="super_admin">Super Admin</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Password:</label>
+            <input type="password" class="form-control" id="moderator-password" name="moderator_password" placeholder="Password">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Confirm Password:</label>
+            <input type="password" class="form-control" id="moderator-confirm-password" name="moderator_confirm_password" placeholder="Confirm Password">
+          </div>
+          <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        <button type="submit" name="moderator-reg-btn" class="btn btn-success">Register User</button>
+      </div>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+      <!--End of Modal-->
 <div class="table-responsive-lg">
     <table class="table" style='color:black; font-weight:normal'>
         <thead>
@@ -173,10 +235,10 @@ include 'server.php';
       <div class="modal-body">
        
         <div class="modal-body">
-        <p>Are you sure you want to delete this team?</p>
+        <p>Are you sure you want to delete this user?</p>
         <form method="POST" action="server.php">
         <div class="form-group">
-            <input type="text"  class="form-control" id="adminIdentityNumber" required readonly name='admin_unique_id'>
+            <input type="text" hidden class="form-control" id="adminIdentityNumber" required readonly name='admin_unique_id'>
           </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">No Cancel</button>
