@@ -61,7 +61,7 @@ include 'server.php';
         <form method ='POST' action='server.php'>
         <input  type='text' hidden name='member_id' value='$member_id'>
         <input type='submit'data-prevteam='$teamName' data-fname='$member_fname' data-lname='$member_lname' data-tel='$member_phone' data-teamid = '$member_team_id' data-mail ='$user_email' data-memberid ='$member_id' value='Edit' name='edit-paramedic-btn' class='btn btn-success paramedicEdit'>
-        <input type='submit' value='Delete' name='delete-paramedic-btn' class='btn btn-danger'>
+        <input type='submit' data-id= '$member_id' value='Delete' name='delete-paramedic-btn' class='btn btn-danger deleteParamedic'>
         </form>
         </td> </tr>";
         }
@@ -137,7 +137,7 @@ include 'server.php';
         <form method ='POST' action='server.php'>
         <input  type='text' hidden name='nurse_member_id' value='$member_id'>
         <input type='submit' data-prevteam='$teamName' data-fname='$member_fname' data-lname='$member_lname' data-tel='$member_phone' data-teamid = '$member_team_id' data-mail ='$user_email' data-memberid ='$member_id' value='Edit' name='edit-nurse-btn' class='btn btn-success paramedicEdit'>
-        <input type='submit' value='Delete' name='delete-nurse-btn' class='btn btn-danger'>
+        <input type='submit' data-id= '$member_id' value='Delete'  class='btn btn-danger deleteParamedic'>
         </form>
         </td> </tr>";
       }
@@ -222,8 +222,49 @@ include 'server.php';
   </div>
   <div class="col-md-3"></div>
 </div>
+
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+ 
+  <div class="modal" id='deleteParamedicModal' tabindex="-1" role="dialog" style="color:black;font-weight:normal;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" style="color:red">⚠ Warning!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       
+        <div class="modal-body">
+        <p>Are you sure you want to delete this team?</p>
+        <form method="POST" action="server.php">
+        <div class="form-group">
+            <input type="text"  class="form-control" id="IdentityNumber" required readonly name='member_id'>
+          </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">No Cancel</button>
+        <button type="submit" name='delete-paramedic-btn' class="btn btn-danger">Yes Delete!</button>
+      </div>
+        </form>
+      </div>
+      
+      </div>
+     
+    </div>
+  </div>
+</div>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+
 </div><!--Ensd of container-->
 
+
+<!--Footer-->
+<?php include './includes/footer.php';?>
 
     <!--Bootstrap 4 scripts-->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -247,15 +288,26 @@ openButtons.forEach(function (openButton) {
     let membermail = openButton.dataset.mail;
     let memberphone = openButton.dataset.tel;
 
-
     document.getElementById("member-id").value = memberid;
     document.getElementById("member-fname").value = memberfname;
     document.getElementById("member-lname").value = memberlname;
     document.getElementById("member-email").value = membermail;
     document.getElementById("member-phone").value = memberphone;
-
-
     openParamedicModal();
+  });
+});
+
+function paramedicDeleteConfirmation() {
+  $("#deleteParamedicModal").modal("show");
+}
+let deleteButtons = document.querySelectorAll(".deleteParamedic");
+deleteButtons.forEach(function (deleteButton) {
+  deleteButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    let memberid = deleteButton.dataset.id;
+
+    document.getElementById("IdentityNumber").value = memberid;
+    paramedicDeleteConfirmation();
   });
 });
 
