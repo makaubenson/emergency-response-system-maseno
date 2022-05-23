@@ -1,4 +1,5 @@
 <?php 
+ob_start();
 session_start();
 // // Report all PHP errors
 // ini_set('display_errors', '1');
@@ -14,7 +15,7 @@ require 'vendor/autoload.php';
 //##############################///
 // connect to the database
 try{
-// $db = mysqli_connect('localhost', 'benson', 'benson', 'maseno_e_help');
+ //$db = mysqli_connect('localhost', 'benson', 'benson', 'maseno_e_help');
 $db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
 
 
@@ -300,7 +301,7 @@ $email_template = "
 if(isset($_POST['password_reset_btn'])){
   $rescue_email = strtolower($_POST['rescue_email']);
 
-$token = sha1($rescue_email);//generating token
+$token = sha1(rand());//generating token
 
 // $_SESSION['toke_val'] = $token;// storing the generated token on session
 // $token_value = $_SESSION['toke_val'];
@@ -357,21 +358,12 @@ if(isset($_POST['update_password_btn'])){
     header("Location: index.php");
   }else{
     echo '<script>
-   Toastify({
-    text: "Unable to Change Password. Please Contact the System Administrator!",
-    duration: 4000,
-    className: "warning",
-    close: true,
-    gravity: "top", 
-    position: "right", 
-    stopOnFocus: true, // Prevents dismissing of toast on hover
-    style: {
-      background: "#ffc107",
-    },
-  }).showToast();
+ alert("Unable to Change Password. Please Contact the System Administrator!");
     </script>';
     header('Location: forgot-password.php');
   }
 
 }
+
+ob_end_flush();
 ?>
