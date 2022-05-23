@@ -35,6 +35,21 @@
 - Import the `.sql` file in the `database folder` found on the `project directory`.
 - Find `server.php` file in `rescue`,`admin` and `project directory` and change the database connection credentials.
 - Save the project, and run it.
+
+## Admin Test Credentials
+
+- To open the admin login, visit `http://localhost/maseno-E-health/admin/`
+- Use `username`: MSU/00046/022 and `Password`: benson
+
+## Rescue Team Test Credentials
+
+- To open the rescue login, visit `http://localhost/maseno-E-health/rescue/`
+- Use `username`: CUTY/022 and `Password`: benson
+- OR
+- Use `username`: HYDRO/022 and `Password`: benson
+- OR
+- Use `username`: SHIFTY/022 and `Password`: benson
+
 - `Congratulations, you have fully setup this project.`
 
 - This project is open source.
