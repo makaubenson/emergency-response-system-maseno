@@ -232,7 +232,7 @@ $email_template = "
 <body style='background:rgb(216, 210, 210);'>
 <h2 style='color:black;'>Hello, $student_name </h2>
 <h3> You are receiving this email because we received a password reset request for your account.</h3>
-<h3>If you are the one who initiated this process please <a href='https://health.blinx.co.ke/password-change.php?token=$token' style='font-weight:bold;'>Click Here</a> to RESET your password, else IGNORE this Email.</h3>
+<h3>If you are the one who initiated this process please <a href='https://emergency-maseno.blinx.co.ke/password-change.php?token=$token' style='font-weight:bold;'>Click Here</a> to RESET your password, else IGNORE this Email.</h3>
 
 <br>
 <img src='https://www.maseno.ac.ke/sites/default/files/Maseno-logo_v5.png' alt=''>

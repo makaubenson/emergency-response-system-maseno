@@ -59,4 +59,3 @@
 
 - This projects should be used under the `GNU General Public License ` guidelines.
 - Thank You for taking your time to explore this project.
-
