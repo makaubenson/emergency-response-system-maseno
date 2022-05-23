@@ -31,7 +31,7 @@
 ![db](https://user-images.githubusercontent.com/59168713/161571173-9e570fe2-5e09-4602-98c5-9288ee04204b.png)
 
 - Write `maseno-E-help` as the database name.
-- image.png
+- ![image](https://user-images.githubusercontent.com/59168713/169878683-355d2abe-9e73-4389-b2bc-a456a889fc80.png)
 - Import the `.sql` file in the `database folder` found on the `project directory`.
 - Find `server.php` file in `rescue`,`admin` and `project directory` and change the database connection credentials.
 - Save the project, and run it.
