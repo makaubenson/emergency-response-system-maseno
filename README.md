@@ -53,7 +53,7 @@
 ## Student Test Credentials
 
 - For students, visit `http://localhost/maseno-E-health/register.php`
-- image.png
+- ![image](https://user-images.githubusercontent.com/59168713/169881214-40c993df-eb9f-48b8-8a1d-06859e77dee9.png)
 - Register your students from here. `NOTE`: The username filled above is what will be required to log in.
 - `Congratulations, you have fully setup this project.`
 
