@@ -59,3 +59,7 @@
 
 - This projects should be used under the `GNU General Public License ` guidelines.
 - Thank You for taking your time to explore this project.
+# Note: This project was taken to production and hosted. The project was hosted under the following `URLS`
+-  [Student Url] (https://emergency-maseno.blinx.co.ke/`
+- [Admin Url]  (https://emergency-maseno.blinx.co.ke/admin/)
+- [Rescue Team Url] (https://rescueteam-maseno.blinx.co.ke/)
