@@ -58,7 +58,7 @@
 - `Congratulations, you have fully setup this project.`
 
 # Note: This project was taken to production and hosted.
-- The student url is `https://emergency-maseno.blinx.co.ke/`
+- The student url is `(https://emergency-maseno.blinx.co.ke/)`
 - The admin url is `https://emergency-maseno.blinx.co.ke/admin/`
 - The rescue team url is `https://rescueteam-maseno.blinx.co.ke/`
 - This projects should be used under the `GNU General Public License ` guidelines.
