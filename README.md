@@ -33,3 +33,10 @@
 - Write `maseno-E-help` as the database name.
 - image.png
 - Import the `.sql` file in the `database folder` found on the `project directory`.
+- Find `server.php` file in `rescue`,`admin` and `project directory` and change the database connection credentials.
+- Save the project, and run it.
+- `Congratulations, you have fully setup this project.`
+
+- This project is open source.
+- This projects should be used under the `MIT LICENSE` guidelines.
+- Thank You for taking your time.
