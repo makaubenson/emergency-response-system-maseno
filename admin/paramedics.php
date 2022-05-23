@@ -3,7 +3,10 @@ include 'server.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <title>Paramedics</title>
 <?php include './includes/header.php'; ?>
+</head>
   <body>
     <?php include './includes/navbar.php'; ?>
 <div class="container-fluid">

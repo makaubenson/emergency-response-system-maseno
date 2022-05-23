@@ -7,7 +7,10 @@ $admin_name = $admin_fname. " ".$admin_lname;
 ?>
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <title>Tasks In-Queue</title>
 <?php include './includes/header.php'; ?>
+</head>
   <body>
     <?php include './includes/navbar.php'; ?>
 

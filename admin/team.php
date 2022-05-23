@@ -4,7 +4,10 @@ $teamName = $_SESSION['team_name'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <title>Rescue Teams</title>
 <?php include './includes/header.php'; ?>
+</head>
   <body>
     <?php include './includes/navbar.php'; ?>
 <div class="container-fluid">

@@ -4,7 +4,10 @@ $admin_id = $_SESSION['admin_id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <title>Successful Tasks</title>
 <?php include './includes/header.php'; ?>
+</head>
   <body>
     <?php include './includes/navbar.php'; ?>
 <div class="container-fluid">

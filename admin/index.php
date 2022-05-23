@@ -3,7 +3,10 @@ include 'server.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <title>Admin Login</title>
 <?php include './includes/header.php'; ?>
+</head>
 
 <body style="background-color: #d2d6de;">
     <div class="container">

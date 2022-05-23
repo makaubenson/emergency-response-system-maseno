@@ -3,7 +3,10 @@ include 'server.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <title>Failed Tasks</title>
 <?php include './includes/header.php'; ?>
+</head>
   <body>
     <?php include './includes/navbar.php'; ?>
 

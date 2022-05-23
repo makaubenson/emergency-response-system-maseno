@@ -4,7 +4,10 @@ include 'server.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <?php include './includes/header.php'; ?>
+<head>
+    <title>Admin Dashboard</title>
+<?php include './includes/header.php'; ?>
+</head>
   <body>
   <?php include './includes/navbar.php'; ?>
 
