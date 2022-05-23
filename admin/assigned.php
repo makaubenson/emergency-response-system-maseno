@@ -22,7 +22,7 @@ $admin_identity = $_SESSION['admin_id'];
       </p>
                 <tr >
                   <!-- <th scope="col" class="table-info">S.NO</th> -->
-                  <th scope="col" class="table-danger">S.No</th>
+               
                   <th scope="col" class="table-danger">Student Name</th>
                   <th scope="col" class="table-danger">Help Code</th>
                   <th scope="col" class="table-danger">Team Assigned</th>
@@ -63,7 +63,7 @@ $admin_identity = $_SESSION['admin_id'];
     
           
             echo "<tr style='font-weight:normal'> <td>" .$fName. " ".$lName. "</td>";
-            echo "<td>" .$fName. " ".$lName."</td>";
+       
             echo "<td>" .$help_code."</td>";
             echo "<td>" .$team_name."</td>";
             echo "<td>" .$request_time."</td>";
