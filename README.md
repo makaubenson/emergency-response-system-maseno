@@ -58,4 +58,5 @@
 - `Congratulations, you have fully setup this project.`
 
 - This projects should be used under the `GNU General Public License ` guidelines.
-- Thank You for taking your time.
+- Thank You for taking your time to explore this project.
+
