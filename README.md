@@ -50,6 +50,11 @@
 - OR
 - Use `username`: SHIFTY/022 and `Password`: benson
 
+## Student Test Credentials
+
+- For students, visit `http://localhost/maseno-E-health/register.php`
+- image.png
+- Register your students from here. `NOTE`: The username filled above is what will be required to log in.
 - `Congratulations, you have fully setup this project.`
 
 - This project is open source.
