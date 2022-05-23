@@ -64,7 +64,15 @@ include './components/header.php';
             </div>
 
             <div class="form-group row">
-              <div class="col-sm-12">
+
+            <div class="col-sm-4 mb-2">
+                            <a name="forgot_password_btn" class="btn-block p-2 text-success" href="forgot-password.php" style="text-decoration:none ;">
+                               Forgot Password ?
+                            </a>
+                        </div>
+          
+            <div class="col-sm-4"></div>
+              <div class="col-sm-4">
                 <button
                   type="submit"
                   name="rescue_login_btn"

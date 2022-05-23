@@ -4,11 +4,18 @@ session_start();
 // ini_set('display_errors', '1');
 // ini_set('display_startup_errors', '1');
 // error_reporting(E_ALL);
+//############## MAILING ################///
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
+//Load Composer's autoloader
+require 'vendor/autoload.php';
+//##############################///
 // connect to the database
 try{
- $db = mysqli_connect('localhost', 'benson', 'benson', 'maseno_e_help');
-//$db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
+// $db = mysqli_connect('localhost', 'benson', 'benson', 'maseno_e_help');
+$db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
 
 
 }
@@ -238,5 +245,133 @@ if (isset($_POST['failed-task-btn'])) {
         header('location: responding.php');
     }
     }
-    
+
+    //function to reset password
+function send_password_reset($rescue_name,$rescue_email,$token){
+
+  //Create an instance; passing `true` enables exceptions
+  $mail = new PHPMailer(true);
+  //Server settings
+  $mail->SMTPDebug = 1;                                //Enable verbose debug output SMTP::DEBUG_SERVER
+  $mail->isSMTP();                                    //Send using SMTP
+  $mail->Host       = 'mail.blinx.co.ke';            //Set the SMTP server to send through
+  $mail->SMTPAuth   = true;                         //Enable SMTP authentication
+  $mail->Username   = 'test@blinx.co.ke';          //SMTP username
+  $mail->Password   = 'blinx@2022';              //SMTP password
+  $mail->SMTPSecure = 'ssl';                     //Enable implicit TLS encryption
+  $mail->Port       = 465;  //465               //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+
+  //Recipients
+  $mail->setFrom('info@maseno.co.ke');
+  $mail->FromName = 'Maseno University';
+
+  $mail->addAddress($rescue_email);               //Name is optional
+  // $mail->addReplyTo('info@example.com', 'Information');
+  // $mail->addCC('cc@example.com');
+  // $mail->addBCC('bcc@example.com');
+
+
+  //Content
+  $mail->isHTML(true);                                  //Set email format to HTML
+  $mail->Subject = 'Reset Password Notification';
+
+  // <h3>If you are the one who initiated this process please <a href='http://localhost/maseno-E-help/password-change.php?token=$token' style='font-weight:bold;'>Click Here</a> to RESET your password, else IGNORE this Email.</h3>
+$email_template = "
+<html>
+<body style='background:rgb(216, 210, 210);'>
+<h2 style='color:black;'>Hello, $rescue_name </h2>
+<h3> You are receiving this email because we received a password reset request for your account.</h3>
+<h3>If you are the one who initiated this process please <a href='https://health.blinx.co.ke/rescue/password-change.php?token=$token' style='font-weight:bold;'>Click Here</a> to RESET your password, else IGNORE this Email.</h3>
+
+<br>
+<img src='https://www.maseno.ac.ke/sites/default/files/Maseno-logo_v5.png' alt=''>
+</body>
+</html>
+
+";
+  $mail->Body    = $email_template;
+    // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+  $mail->send();
+
+}
+
+//Password Reset for Rescue Team
+if(isset($_POST['password_reset_btn'])){
+  $rescue_email = strtolower($_POST['rescue_email']);
+
+$token = sha1($rescue_email);//generating token
+
+// $_SESSION['toke_val'] = $token;// storing the generated token on session
+// $token_value = $_SESSION['toke_val'];
+
+//check if  email already exists
+$check_email = "SELECT * FROM `rescue_team` WHERE `team_email`='$rescue_email' LIMIT 1 ";
+$mail_results = mysqli_query($db, $check_email);
+
+if(mysqli_num_rows($mail_results) > 0){
+$row = mysqli_fetch_array($mail_results);
+
+$rescue_email = $row['team_email'];
+$rescue_username = $row['team_username'];
+$rescue_name = $row['team_name'];
+
+
+//Update Password Reset Token
+$update_token = "UPDATE rescue_team SET password_reset_token = '$token' WHERE team_email ='$rescue_email' LIMIT 1";
+$token_update_result = mysqli_query($db,$update_token);
+
+if($token_update_result == true){
+send_password_reset($rescue_name,$rescue_email,$token);
+$_SESSION['email_status'] = 'A password reset link has been emailed to you.';
+header("Location: forgot-password.php");
+exit(0);
+}else{
+  $_SESSION['email_status'] = 'Something Went Wrong. Try Again!';
+  header("Location: forgot-password.php");
+  exit(0);
+}
+
+}else{
+  $_SESSION['email_status'] = 'The credentials you entered are invalid!';
+  header("Location: forgot-password.php");
+  exit(0);
+}
+
+}
+//Update Password After Reset
+if(isset($_POST['update_password_btn'])){
+  $password1 = $_POST['student_pass1'];
+  $password2 = $_POST['student_pass2'];
+  $token = $_POST['reset_token'];
+
+  if (empty($password1)) { array_push($errors, "Password is required"); }
+  if (empty($password2)) { array_push($errors, "Confirm Password is required"); }
+  if ($password1 != $password2) {
+	array_push($errors, "The two passwords do not match");
+  }
+  if (count($errors) == 0) {
+    $password = md5($password2);//encrypt the password before saving in the database
+    $password_update = "UPDATE `rescue_team` SET `team_password`='$password' WHERE password_reset_token = '$token' ";
+    $results = mysqli_query($db, $password_update);
+    header("Location: index.php");
+  }else{
+    echo '<script>
+   Toastify({
+    text: "Unable to Change Password. Please Contact the System Administrator!",
+    duration: 4000,
+    className: "warning",
+    close: true,
+    gravity: "top", 
+    position: "right", 
+    stopOnFocus: true, // Prevents dismissing of toast on hover
+    style: {
+      background: "#ffc107",
+    },
+  }).showToast();
+    </script>';
+    header('Location: forgot-password.php');
+  }
+
+}
 ?>

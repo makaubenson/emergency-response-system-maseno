@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 21, 2022 at 09:52 PM
+-- Generation Time: May 23, 2022 at 06:40 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -45,8 +45,10 @@ CREATE TABLE `admin_details` (
 --
 
 INSERT INTO `admin_details` (`id`, `admin_id`, `admin_firstname`, `admin_lastname`, `admin_email`, `admin_phone`, `admin_rank`, `admin_password`, `registration_timestamp`) VALUES
-(1, 'MSU/00046/022', 'Richard', 'Simiyu', 'simiyurichard@gmail.com', '0785469782', 'super_admin', '17c4520f6cfd1ab53d8745e84681eb49', '2022-04-03 19:43:10'),
-(2, 'MSU/00050/022', 'Caroline', 'Mwihoko', 'carolinem23@gmail.com', '0745973325', 'admin', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-03 19:43:10');
+(1, 'MSU/00046/022', 'Richard', 'Simuyu', 'simiyurichard@gmail.com', '0758413462', 'super_admin', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-03 19:43:10'),
+(2, 'MSU/00050/022', 'Caroline', 'Mwihoko', 'carolinem23@gmail.com', '0745973325', 'admin', 'e1c565c5b1da2a3b81712427d06f5b34', '2022-04-03 19:43:10'),
+(3, 'MSU/00065/022', 'Martin', 'Mwai', 'mwaimartin@gmail.com', '0752658578', 'super_admin', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-05-22 07:56:05'),
+(4, 'MSU/00082/022', 'Grace', 'Kimanthi', 'kimathigrace2001@gmail.com', '0712547885', 'admin', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-05-22 07:57:26');
 
 -- --------------------------------------------------------
 
@@ -131,6 +133,7 @@ CREATE TABLE `rescue_team` (
   `team_phone` int(15) NOT NULL,
   `team_email` varchar(50) NOT NULL,
   `team_password` varchar(255) NOT NULL,
+  `password_reset_token` varchar(255) DEFAULT NULL,
   `registration_timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -138,11 +141,11 @@ CREATE TABLE `rescue_team` (
 -- Dumping data for table `rescue_team`
 --
 
-INSERT INTO `rescue_team` (`id`, `team_id`, `team_username`, `team_name`, `team_phone`, `team_email`, `team_password`, `registration_timestamp`) VALUES
-(1, 'TM01', 'HYDRO/022', 'Team Hydro', 786378542, 'letsgo@gmail.com', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-04 11:21:26'),
-(2, 'TM02', 'CUTY/022', 'Team Cuty', 742975635, 'cuty@gmail.com', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-04 11:21:26'),
-(3, 'TM03', 'SHIFTY/022', 'Team Shifty', 759753362, 'shifty@gmail.com', 'ebcfd5a11d7cf5ba89f838fc766be7a4', '2022-04-04 11:22:37'),
-(4, 'TM04', 'LIONS/022', 'The Lions', 785415289, 'masenolions@gmail.com', '86aa71c6832f46e2d79134fe3d5080b7', '2022-05-21 23:08:41');
+INSERT INTO `rescue_team` (`id`, `team_id`, `team_username`, `team_name`, `team_phone`, `team_email`, `team_password`, `password_reset_token`, `registration_timestamp`) VALUES
+(1, 'TM01', 'HYDRO/022', 'Team Hydro', 786378542, 'letsgo@gmail.com', 'ebcfd5a11d7cf5ba89f838fc766be7a4', NULL, '2022-04-04 11:21:26'),
+(2, 'TM02', 'CUTY/022', 'Team Cuty', 742975635, 'blinxcorporation@gmail.com', 'ebcfd5a11d7cf5ba89f838fc766be7a4', NULL, '2022-04-04 11:21:26'),
+(3, 'TM03', 'SHIFTY/022', 'Team Shifty', 759753362, 'shifty@gmail.com', 'ebcfd5a11d7cf5ba89f838fc766be7a4', NULL, '2022-04-04 11:22:37'),
+(4, 'TM04', 'LIONS/022', 'The Lions', 785415289, 'masenolions@gmail.com', '86aa71c6832f46e2d79134fe3d5080b7', NULL, '2022-05-21 23:08:41');
 
 -- --------------------------------------------------------
 
@@ -175,8 +178,7 @@ INSERT INTO `rescue_team_members` (`id`, `member_id`, `fname`, `lname`, `email`,
 (6, 'MB06', 'Caroline', 'Murathe', 'murathercarol@gmail.com', 766879853, 'MSU/001B/022', 'TM01', '2022-04-08 16:06:59'),
 (7, 'MB07', 'Jane', 'Odongo', 'odongojane25@gmail.com', 745783258, 'MSU/001B/022', 'TM03', '2022-04-08 16:07:53'),
 (8, 'MB08', 'Mutia', 'Kioko', 'mutiakioko@gmai.com', 798959863, 'MSU/001C/022', 'TM01', '2022-04-08 16:09:32'),
-(9, 'MB09', 'Angela', 'Mutuku', 'mutukuangie@gmail.com', 725627894, 'MSU/001C/022', 'TM02', '2022-04-08 16:10:31'),
-(10, 'MB10', 'Justus', 'Kasai', 'kasijustus67@gmail.com', 712359745, 'MSU/001A/022', 'TM04', '2022-05-21 23:35:15');
+(9, 'MB09', 'Angela', 'Mutuku', 'mutukuangie@gmail.com', 725627894, 'MSU/001C/022', 'TM02', '2022-04-08 16:10:31');
 
 -- --------------------------------------------------------
 
@@ -318,7 +320,8 @@ INSERT INTO `success_list` (`id`, `student_helpcode`, `incident_description`) VA
 --
 ALTER TABLE `admin_details`
   ADD PRIMARY KEY (`admin_id`),
-  ADD UNIQUE KEY `uniq` (`id`);
+  ADD UNIQUE KEY `uniq` (`id`),
+  ADD UNIQUE KEY `admin_email` (`admin_email`);
 
 --
 -- Indexes for table `failed_list`
@@ -389,7 +392,7 @@ ALTER TABLE `success_list`
 -- AUTO_INCREMENT for table `admin_details`
 --
 ALTER TABLE `admin_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `failed_list`
@@ -407,13 +410,13 @@ ALTER TABLE `request_status`
 -- AUTO_INCREMENT for table `rescue_team`
 --
 ALTER TABLE `rescue_team`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `rescue_team_members`
 --
 ALTER TABLE `rescue_team_members`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `rescue_team_tasks`
