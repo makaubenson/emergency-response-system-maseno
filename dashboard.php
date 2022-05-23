@@ -203,7 +203,17 @@ include './components/header.php';
  <?php
   }
  ?>
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button> -->
+
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3 mb-5"></div>
+</div>
+
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button> -->
 
 
 <div class="modal fade mt-3" id="manualLocationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -227,14 +237,15 @@ include './components/header.php';
       </div>
       <div class="modal-body">
         <form method='POST'>
+         
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Briefly describe what happened:</label>
+            <textarea class="form-control" name='student_emergency_description' id="message-text" placeholder='Briefly explain what happened! '></textarea>
+          </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label" style="text-align: left !important;">Manual Directions:</label>
             
             <textarea class="form-control" id="student-direction" name='student_manual_direction' rows="4" placeholder="Type your directions here as clearly and precisely as possible." required></textarea>
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Description:</label>
-            <textarea class="form-control" name='student_emergency_description' id="message-text" placeholder='Briefly explain what happened! '></textarea>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -246,10 +257,8 @@ include './components/header.php';
     </div>
   </div>
 </div>
-      </div>
-    </div>
   </div>
-  <div class="col-sm-3 mb-5"></div>
+  <div class="col-md-3"></div>
 </div>
 </div>
 <!-- Footer -->
