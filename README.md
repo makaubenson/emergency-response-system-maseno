@@ -58,5 +58,5 @@
 - `Congratulations, you have fully setup this project.`
 
 - This project is open source.
-- This projects should be used under the `MIT LICENSE` guidelines.
+- This projects should be used under the `GNU General Public License ` guidelines.
 - Thank You for taking your time.
