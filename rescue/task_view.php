@@ -69,7 +69,7 @@ include 'errors.php';
   </div>
   <div class="col">
     <label for="task_description">Manual Directions</label>
-    <input type="text" class="form-control" name='task_description' readonly placeholder="Manual Directions"  value='<?php echo $locationDetails; ?>'>
+    <input type="text" class="form-control" name='task_directions' readonly placeholder="Manual Directions"  value='<?php echo $locationDetails; ?>'>
     
   </div>
 </div>
