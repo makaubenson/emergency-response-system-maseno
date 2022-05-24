@@ -2,6 +2,7 @@
 include 'server.php';
 $username = $_SESSION['username'];
 $request_helpcode = $_SESSION['helpcode'];
+$studentAdm = $_SESSION['username'];
 // Get Location from IP Address using PHP
 // Use the IP Geolocation API to get the user’s location from IP using PHP.
 
@@ -152,7 +153,7 @@ include './components/header.php';
       <input type="text" class="form-control"   name="username" readonly  required hidden value="<?php echo $username;  ?>">
     </div>
     <div class="col-sm-12 pb-1">
-      <input type="text" class="form-control"   name="helpcode"readonly  required hidden value="<?php echo $request_helpcode;  ?>">
+      <input type="text" class="form-control"   name="helpcode" readonly  required hidden value="<?php echo $request_helpcode;  ?>">
     </div>
 
 
@@ -183,7 +184,80 @@ include './components/header.php';
 
 
 </form>
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button> -->
 
+
+<div class="modal fade mt-3" id="manualLocationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="row">
+    <div class="col-md-12">
+    <div class="alert alert-danger" role="alert">
+  We are unable to fetch your location. Turn on location services on your devices and reload the page. If the problem persists, you will be needed to manually describe your location. <strong style="color:red">NOTE:</strong> Using manual directions gives the <span style='color:red;'>Lowest Priority</span> for emergency response. 
+</div>
+    </div>
+  </div>
+      <div class="modal-header">
+
+        <h5 class="modal-title" id="exampleModalLabel">
+        Fill and Submit the form below for manual directions. </h5>
+  
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method='POST' action="server.php">
+          <div class="form-group">
+            <input type="text" name="adm" hidden required readonly class="form-control" readonly id="student_adm" value="<?php echo $studentAdm; ?>">
+          </div>
+          <div class="form-group">
+            <input type="text" name="code" hidden required readonly class="form-control" readonly id="help-code" value="<?php echo $request_helpcode; ?>">
+          </div>
+          <div class="form-group">
+            <input type="text" name="ip" hidden required readonly class="form-control" readonly  value="<?php echo $ip ; ?>">
+          </div>
+          <div class="form-group">
+            <input type="text" name="lat" hidden required readonly class="form-control" readonly  value="0">
+          </div>
+          <div class="form-group">
+            <input type="text" name="lng" hidden  required readonly class="form-control" readonly  value="0">
+          </div>
+          <div class="form-group">
+          <label for="inputEmergency">Choose the Type of Emergency</label>
+      <select id="inputState" name="emergency_type" required class="form-control">
+        <option value="">Choose...</option>
+        <option value="sickness">Sickness</option>
+        <option value="accident">Accident / Injury</option>
+        <option value="fire">Fire</option>
+        <option value="other">Other</option>
+      </select>
+          </div>
+          <div class="form-group">
+          <label for="inputAddress2">Description (Note: Requests <strong>WITHOUT</strong> a description have the <strong style="color: red;">Lowest Priority</strong>)</label>
+            <textarea class="form-control"  name='student_emergency_description' id="message-text" placeholder='Optional: Briefly explain what happened! '></textarea>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label" style="text-align: left !important;">Manual Directions:</label>
+            
+            <textarea class="form-control" required id="student-direction" name='student_manual_direction' rows="4" placeholder="Type your directions here as clearly and precisely as possible." required></textarea>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            <button type="submit" name='manual-direction-btn' class="btn btn-primary">Send and Exit</button>
+          </div>
+        </form>
+      </div>
+     
+    </div>
+  </div>
+</div>
+  </div>
+  <div class="col-md-3"></div>
+</div>
 <?php
 
      if($_SESSION['user']){ ?>
@@ -192,7 +266,7 @@ include './components/header.php';
       <div class="card">
   <div class="card-body">
   <div class="alert alert-success" role="alert">
-   <span style="color:#e83e8c;font-weight:bold">Help Is On The Way.</span> <br><span class="btn btn-warning">Note: </span> Please Do not move away from this location. A team has been dispatched to help you. Keep Calm!!!
+   <span style="color:#e83e8c;font-weight:bold">Help Is On The Way.</span> <br><span class="btn btn-warning">Note: </span> Please Do not move away from this location. A team will be dispatched to help you. Keep Calm!!!
 </div>
   <p><?php echo "Your Help Code is  ". "<strong style='color:blue;'>". $_SESSION['helpcode']."</strong>  <br>";  ?> </a></p>
   
@@ -210,56 +284,7 @@ include './components/header.php';
   <div class="col-sm-3 mb-5"></div>
 </div>
 
-<div class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-6">
-    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button> -->
 
-
-<div class="modal fade mt-3" id="manualLocationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-    <div class="row">
-    <div class="col-md-12">
-    <div class="alert alert-danger" role="alert">
-  We are unable to fetch your location. Please reload your page and try again. If the problem persists, you will be needed to manually describe your location. <strong style="color:red">NOTE:</strong> Using manual directions gives the <span style='color:red;'>Lowest Priority</span> for emergency response. 
-</div>
-    </div>
-  </div>
-      <div class="modal-header">
-
-        <h5 class="modal-title" id="exampleModalLabel">
-        Fill and Submit the form below for manual directions. </h5>
-  
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form method='POST'>
-         
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Briefly describe what happened:</label>
-            <textarea class="form-control" name='student_emergency_description' id="message-text" placeholder='Briefly explain what happened! '></textarea>
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label" style="text-align: left !important;">Manual Directions:</label>
-            
-            <textarea class="form-control" id="student-direction" name='student_manual_direction' rows="4" placeholder="Type your directions here as clearly and precisely as possible." required></textarea>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-            <button type="submit" name='manual-direction-btn'class="btn btn-primary">Send Message</button>
-          </div>
-        </form>
-      </div>
-     
-    </div>
-  </div>
-</div>
-  </div>
-  <div class="col-md-3"></div>
-</div>
 </div>
 <!-- Footer -->
 <?php

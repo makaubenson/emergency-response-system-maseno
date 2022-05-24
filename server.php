@@ -100,7 +100,7 @@ if (isset($_POST['register_btn'])) {
       }
       return $key;
   }
- $helpCode= strtoupper(random_string(6));
+ $helpCode= strtoupper(random_string(7));
     // LOGIN USER
 if (isset($_POST['login_btn'])) {
   $username = strtoupper($_POST['regno']);
@@ -324,6 +324,51 @@ if(isset($_POST['update_password_btn'])){
   }
 
 }
-// 15
+//Manual Directions Update
+if(isset($_POST['manual-direction-btn'])){
+  $adm= $_POST['adm'];
+  $helpcode= $_POST['code'];
+  $lat= 0;
+  $long= 0;
+  $ip= $_POST['ip'];
+  $emergencyType= $_POST['emergency_type'];
+  $incident_directions= $_POST['student_manual_direction'];
+  $incident_description= $_POST['student_emergency_description'];
+
+
+  if (empty($adm)) { array_push($errors, "Reg Number is missing"); }
+  if (empty($helpcode)) { array_push($errors, "Helpcode is required"); }
+  // if (empty($lat)) { array_push($errors, "Latitude is needed"); }
+  // if (empty($long)) { array_push($errors, "Longitude is required"); }
+  if (empty($ip)) { array_push($errors, "IP Address is needed"); }
+  if (empty($emergencyType)) { array_push($errors, "Emergency Type is needed"); }
+  if (empty($incident_directions)) { array_push($errors, "Directions are needed"); }
+
+  if (count($errors) == 0) {
+    $data_update= "INSERT INTO `request_status`(`helpID`, `ip_address`, `request_latitude`, `request_longitude`, `emergency_type`, `manual_directions`, `emergency_description`, `admNo`)
+     VALUES ('$helpcode','$ip','$lat','$long','$emergencyType','$incident_directions','$incident_description','$adm')";
+    $result = mysqli_query($db, $data_update);
+//Select data from location table
+$location_Select_query = "SELECT * FROM request_status WHERE `helpID`='$helpcode' ";
+$results = mysqli_query($db, $location_Select_query);
+if (mysqli_num_rows($results) == 1) {
+  $row = mysqli_fetch_assoc($results);
+  //row data
+  $regNumber=$row['admNo'];
+
+  //sessions
+  $_SESSION['user'] = $regNumber;
+
+  header("Location: dashboard.php");
+}else{
+  array_push($errors, "Unable to process your request. Contact The System Administrator");
+  header("Location: dashboard.php");
+}
+    header("Location: dashboard.php");
+  }else{
+    echo '<script>alert("Unable to submit this request, Contact the System Administrator!")</script>';
+    header("Location: dashboard.php");
+  }
+}
 ob_end_flush();
 ?>

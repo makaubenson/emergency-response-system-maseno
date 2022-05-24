@@ -89,7 +89,7 @@ include './components/header.php';
              FROM ((request_status
              INNER JOIN student_details ON request_status.admNo = student_details.regNum)
              INNER JOIN  rescue_team_tasks ON request_status.helpID =  rescue_team_tasks.task_help_code)
-             WHERE rescue_team_tasks.rescue_team_id = '".$_SESSION['team_id']."' AND rescue_team_tasks.team_status ='Assigned' ORDER BY timestamp ASC ";
+             WHERE rescue_team_tasks.rescue_team_id = '".$_SESSION['team_id']."' AND rescue_team_tasks.team_status ='Assigned' ORDER BY timestamp DESC ";
              
             $data_result = mysqli_query($db, $data_fetch_query);
             if ($data_result->num_rows > 0){
