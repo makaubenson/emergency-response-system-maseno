@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 23, 2022 at 08:31 PM
+-- Generation Time: May 24, 2022 at 02:00 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -81,10 +81,11 @@ CREATE TABLE `request_status` (
   `id` int(20) NOT NULL,
   `helpID` varchar(50) NOT NULL,
   `ip_address` varchar(100) NOT NULL,
-  `request_latitude` varchar(50) NOT NULL,
-  `request_longitude` varchar(50) NOT NULL,
+  `request_latitude` varchar(50) NOT NULL DEFAULT '0',
+  `request_longitude` varchar(50) NOT NULL DEFAULT '0',
   `status` varchar(50) DEFAULT 'Pending',
   `emergency_type` varchar(50) NOT NULL,
+  `manual_directions` varchar(500) DEFAULT 'N/A',
   `emergency_description` varchar(255) DEFAULT 'No Description',
   `admNo` varchar(255) NOT NULL,
   `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -94,30 +95,34 @@ CREATE TABLE `request_status` (
 -- Dumping data for table `request_status`
 --
 
-INSERT INTO `request_status` (`id`, `helpID`, `ip_address`, `request_latitude`, `request_longitude`, `status`, `emergency_type`, `emergency_description`, `admNo`, `timestamp`) VALUES
-(23, '0IC4JI', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', '', 'APS/00111/019', '2022-05-20 12:37:58'),
-(3, '1H2553', '165.105.70.4', '-1.2550144', '36.8541696', 'Successful', 'sickness', 'I have shortness of breath, please come to my rescue', 'APS/00111/019', '2022-05-19 19:14:34'),
-(17, '4X064O', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', 'Having back pain', 'MIT/00660/019', '2022-05-20 09:49:05'),
-(19, '5J3LD6', '165.105.70.4', '-1.2550144', '36.8541696', 'Responding', 'fire', 'My gas exploded, i have severe burns', 'MIT/00035/019', '2022-05-20 09:49:57'),
-(20, '5VAP0L', '165.105.70.4', '-1.2550144', '36.8541696', 'Successful', 'other', 'My friend is not waking up, i think he is not breathing, please help him', 'MIT/00045/019', '2022-05-20 09:50:43'),
-(22, '615EKP', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', 'No Description', 'CIT/00047/019', '2022-05-20 12:30:12'),
-(14, '9GQB5R', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', 'No Description', 'CCT/00333/019', '2022-05-20 09:46:35'),
-(6, 'C95XMI', '165.105.70.4', '-1.2550144', '36.8541696', 'Pending', 'accident', 'I hurt my knee', 'CIT/00222/019', '2022-05-20 09:41:43'),
-(21, 'F7GZTY', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', 'My eye got hurt, am bleeding', 'CIS/00075/019', '2022-05-20 09:51:20'),
-(15, 'H7DEW2', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'accident', 'I fell with a motorbike', 'CCT/00955/019', '2022-05-20 09:47:16'),
-(8, 'HPITTF', '165.105.70.4', '-1.2550144', '36.8541696', 'Pending', 'fire', 'My house got on fire and i my hand got burnt', 'MIT/00361/019', '2022-05-20 09:44:03'),
-(12, 'JWDXGN', '165.105.70.4', '-1.2550144', '36.8541696', 'Successful', 'sickness', 'my stomach is so painful', 'CIS/00049/019', '2022-05-20 09:45:49'),
-(7, 'KW1NJA', '165.105.70.4', '-1.2550144', '36.8541696', 'Responding', 'sickness', 'Not Feeling Okay', 'MIT/00120/019', '2022-05-20 09:43:27'),
-(10, 'LK855W', '165.105.70.4', '-1.2550144', '36.8541696', 'Responding', 'accident', 'Got hurt playing football', 'CIM/00920/019', '2022-05-20 09:44:54'),
-(16, 'LSRZ5J', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', 'Have been feeling dizzy for almost 7 hours now', 'CIS/00780/019', '2022-05-20 09:48:32'),
-(5, 'OFSHUH', '165.105.70.4', '-1.2550144', '36.8541696', 'Responding', 'sickness', 'I am not feeling well', 'CIT/00078/019', '2022-05-20 09:41:17'),
-(18, 'ORXUMI', '165.105.70.4', '-1.2550144', '36.8541696', 'Failed', 'sickness', 'Broken my arm', 'CIT/00001/019', '2022-05-20 09:49:27'),
-(11, 'S7V9L9', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', 'Having severe headache', 'CIS/00240/019', '2022-05-20 09:45:20'),
-(4, 'T8F18M', '165.105.70.4', '-1.2550144', '36.8541696', 'Failed', 'sickness', 'No Description', 'CIT/00111/019', '2022-05-19 21:40:27'),
-(13, 'VX9YNY', '165.105.70.4', '-1.2550144', '36.8541696', 'Responding', 'sickness', 'I cant breath i am asthamatic', 'CCT/00078/019', '2022-05-20 09:46:14'),
-(9, 'XB1K4W', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', 'No Description', 'CIM/00046/019', '2022-05-20 09:44:20'),
-(1, 'Y7HGQK', '165.105.70.4', '-0.007684', '34.6065696', 'Successful', 'accident', 'Got an injury while playing football', 'CIT/00046/019', '2022-05-18 11:49:02'),
-(2, 'Z3P85U', '165.105.70.4', '-0.002114166666666667', '34.6117515', 'Failed', 'sickness', 'I am having fever, headache and joint pains', 'CIT/00047/019', '2022-05-19 14:42:55');
+INSERT INTO `request_status` (`id`, `helpID`, `ip_address`, `request_latitude`, `request_longitude`, `status`, `emergency_type`, `manual_directions`, `emergency_description`, `admNo`, `timestamp`) VALUES
+(23, '0IC4JI', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', 'N/A', '', 'APS/00111/019', '2022-05-20 12:37:58'),
+(3, '1H2553', '165.105.70.4', '-1.2550144', '36.8541696', 'Successful', 'sickness', 'N/A', 'I have shortness of breath, please come to my rescue', 'APS/00111/019', '2022-05-19 19:14:34'),
+(25, '34OU9R', '165.105.70.4', '0', '0', 'Assigned', 'sickness', 'Nyawita Market, 30 meters from Orange House', 'Having sever chest pains', 'CIM/00046/019', '2022-05-24 16:13:28'),
+(17, '4X064O', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', 'N/A', 'Having back pain', 'MIT/00660/019', '2022-05-20 09:49:05'),
+(19, '5J3LD6', '165.105.70.4', '-1.2550144', '36.8541696', 'Responding', 'fire', 'N/A', 'My gas exploded, i have severe burns', 'MIT/00035/019', '2022-05-20 09:49:57'),
+(20, '5VAP0L', '165.105.70.4', '-1.2550144', '36.8541696', 'Successful', 'other', 'N/A', 'My friend is not waking up, i think he is not breathing, please help him', 'MIT/00045/019', '2022-05-20 09:50:43'),
+(22, '615EKP', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', 'N/A', 'No Description', 'CIT/00047/019', '2022-05-20 12:30:12'),
+(14, '9GQB5R', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', 'N/A', 'No Description', 'CCT/00333/019', '2022-05-20 09:46:35'),
+(30, '9NAGCRM', '165.105.70.4', '0', '0', 'Pending', 'fire', 'Silwal Hostels, First floor, room 36', 'fire', 'CCT/00955/019', '2022-05-24 16:32:55'),
+(6, 'C95XMI', '165.105.70.4', '-1.2550144', '36.8541696', 'Pending', 'accident', 'N/A', 'I hurt my knee', 'CIT/00222/019', '2022-05-20 09:41:43'),
+(21, 'F7GZTY', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', 'N/A', 'My eye got hurt, am bleeding', 'CIS/00075/019', '2022-05-20 09:51:20'),
+(15, 'H7DEW2', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'accident', 'N/A', 'I fell with a motorbike', 'CCT/00955/019', '2022-05-20 09:47:16'),
+(8, 'HPITTF', '165.105.70.4', '-1.2550144', '36.8541696', 'Pending', 'fire', 'N/A', 'My house got on fire and i my hand got burnt', 'MIT/00361/019', '2022-05-20 09:44:03'),
+(24, 'HZALBM', '165.105.70.4', '0', '0', 'Pending', 'accident', 'Maseno University. Old Tuition Block, First Floor, Lab II', 'Electric shock', 'CIM/00046/019', '2022-05-24 16:09:41'),
+(28, 'JJDAFK0', '165.105.70.4', '0', '0', 'Pending', 'fire', 'Silwal Hostel', 'Gas Exploded and I was burnt', 'APS/00111/019', '2022-05-24 16:23:03'),
+(12, 'JWDXGN', '165.105.70.4', '-1.2550144', '36.8541696', 'Successful', 'sickness', 'N/A', 'my stomach is so painful', 'CIS/00049/019', '2022-05-20 09:45:49'),
+(7, 'KW1NJA', '165.105.70.4', '-1.2550144', '36.8541696', 'Responding', 'sickness', 'N/A', 'Not Feeling Okay', 'MIT/00120/019', '2022-05-20 09:43:27'),
+(10, 'LK855W', '165.105.70.4', '-1.2550144', '36.8541696', 'Responding', 'accident', 'N/A', 'Got hurt playing football', 'CIM/00920/019', '2022-05-20 09:44:54'),
+(16, 'LSRZ5J', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', 'N/A', 'Have been feeling dizzy for almost 7 hours now', 'CIS/00780/019', '2022-05-20 09:48:32'),
+(5, 'OFSHUH', '165.105.70.4', '-1.2550144', '36.8541696', 'Responding', 'sickness', 'N/A', 'I am not feeling well', 'CIT/00078/019', '2022-05-20 09:41:17'),
+(18, 'ORXUMI', '165.105.70.4', '-1.2550144', '36.8541696', 'Failed', 'sickness', 'N/A', 'Broken my arm', 'CIT/00001/019', '2022-05-20 09:49:27'),
+(11, 'S7V9L9', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', 'N/A', 'Having severe headache', 'CIS/00240/019', '2022-05-20 09:45:20'),
+(4, 'T8F18M', '165.105.70.4', '-1.2550144', '36.8541696', 'Failed', 'sickness', 'N/A', 'No Description', 'CIT/00111/019', '2022-05-19 21:40:27'),
+(13, 'VX9YNY', '165.105.70.4', '-1.2550144', '36.8541696', 'Responding', 'sickness', 'N/A', 'I cant breath i am asthamatic', 'CCT/00078/019', '2022-05-20 09:46:14'),
+(9, 'XB1K4W', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', 'N/A', 'No Description', 'CIM/00046/019', '2022-05-20 09:44:20'),
+(1, 'Y7HGQK', '165.105.70.4', '-0.007684', '34.6065696', 'Successful', 'accident', 'N/A', 'Got an injury while playing football', 'CIT/00046/019', '2022-05-18 11:49:02'),
+(2, 'Z3P85U', '165.105.70.4', '-0.002114166666666667', '34.6117515', 'Failed', 'sickness', 'N/A', 'I am having fever, headache and joint pains', 'CIT/00047/019', '2022-05-19 14:42:55');
 
 -- --------------------------------------------------------
 
@@ -220,7 +225,8 @@ INSERT INTO `rescue_team_tasks` (`id`, `task_help_code`, `rescue_team_id`, `assi
 (18, 'OFSHUH', 'TM03', 'MSU/00046/022', 'Responding', '2022-05-20 06:57:51'),
 (19, 'S7V9L9', 'TM01', 'MSU/00050/022', 'Assigned', '2022-05-21 15:09:03'),
 (20, '0IC4JI', 'TM03', 'MSU/00050/022', 'Assigned', '2022-05-20 09:42:17'),
-(22, '615EKP', 'TM02', 'MSU/00050/022', 'Assigned', '2022-05-21 15:03:07');
+(22, '615EKP', 'TM02', 'MSU/00050/022', 'Assigned', '2022-05-21 15:03:07'),
+(23, '34OU9R', 'TM02', 'MSU/00046/022', 'Assigned', '2022-05-24 13:55:08');
 
 -- --------------------------------------------------------
 
@@ -404,7 +410,7 @@ ALTER TABLE `failed_list`
 -- AUTO_INCREMENT for table `request_status`
 --
 ALTER TABLE `request_status`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `rescue_team`
@@ -422,7 +428,7 @@ ALTER TABLE `rescue_team_members`
 -- AUTO_INCREMENT for table `rescue_team_tasks`
 --
 ALTER TABLE `rescue_team_tasks`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `role_details`
