@@ -12,7 +12,7 @@ buttons.forEach(function (button) {
     let request_status = button.dataset.status;
     let adminID = button.dataset.adminid;
     let adminName = button.dataset.adminname;
-    let adminDescription = button.dataset.description;
+    let requestDescription = button.dataset.description;
 
     document.getElementById("sHelpCode").value = helpcode;
     document.getElementById("sName").value = student_name;
@@ -20,7 +20,7 @@ buttons.forEach(function (button) {
     document.getElementById("sRequestStatus").value = request_status;
     document.getElementById("adminID").value = adminID;
     document.getElementById("adminName").value = adminName;
-    document.getElementById("rDescription").value = adminDescription;
+    document.getElementById("rDescription").value = requestDescription;
     openTaskViewModal();
   });
 });

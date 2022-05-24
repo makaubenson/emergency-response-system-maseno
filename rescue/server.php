@@ -94,6 +94,7 @@ $row = mysqli_fetch_assoc($select_results);
       $longitude=$row['request_longitude'];
       $request_status=$row['status'];
       $task_Desc = $row['emergency_description'];
+      $directions = $row['manual_directions'];
 
        if($request_status == 'Responding'){
         $_SESSION['active'] = true;
@@ -111,6 +112,7 @@ $row = mysqli_fetch_assoc($select_results);
       $_SESSION['taskDescription'] =$task_Desc;
       $_SESSION['admNo'] =$student_adm;
       $_SESSION['timestamp'] =$time_of_request;
+      $_SESSION['directions'] = $directions;
      
 }
 

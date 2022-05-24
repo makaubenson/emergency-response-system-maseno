@@ -9,6 +9,7 @@ $student_Adm = $_SESSION['admNo'];
 $rescue_Lat =  $_SESSION['rescue_lat'];
 $rescue_Long=   $_SESSION['rescue_long'];
 $description = $_SESSION['taskDescription'];
+$locationDetails= $_SESSION['directions'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,6 +65,11 @@ include 'errors.php';
   <div class="col">
     <label for="task_description">Description</label>
     <input type="text" class="form-control" name='task_description' readonly placeholder="Description"  value='<?php echo $description; ?>'>
+    
+  </div>
+  <div class="col">
+    <label for="task_description">Manual Directions</label>
+    <input type="text" class="form-control" name='task_description' readonly placeholder="Manual Directions"  value='<?php echo $locationDetails; ?>'>
     
   </div>
 </div>
