@@ -16,8 +16,8 @@ require 'vendor/autoload.php';
 //##############################///
 // connect to the database
 try{
- $db = mysqli_connect('localhost', 'benson', 'benson', 'maseno_e_help');
-  // $db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
+ //$db = mysqli_connect('localhost', 'benson', 'benson', 'maseno_e_help');
+  $db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
 //echo 'Database Connected Successfully';
 }
 catch(Exception $e) {
@@ -167,7 +167,7 @@ function  send_notification_email($helpCode,$adminName,$adminMail){
   $mail->setFrom('info@maseno.co.ke');
   $mail->FromName = 'Maseno University';
 
-  $mail->addAddress($adminMail);               //Name is optional
+  $mail->addAddress('bensonmakau2000@gmail.com');               //Name is optional
   // $mail->addReplyTo('info@example.com', 'Information');
   // $mail->addCC('cc@example.com');
   // $mail->addBCC('bcc@example.com');
@@ -180,11 +180,11 @@ function  send_notification_email($helpCode,$adminName,$adminMail){
   // <h3>If you are the one who initiated this process please <a href='http://localhost/maseno-E-help/password-change.php?token=$token' style='font-weight:bold;'>Click Here</a> to RESET your password, else IGNORE this Email.</h3>
 $email_template = "
 <html>
-<body style='background:rgb(216, 210, 210);'>
-<h2 style='color:black;'>Hello, $adminName </h2>
-<h3>A new emergency request has been submitted. Please log into your portal and handle the request.</h3>
-<h3>The Request Help Code is $helpCode.</h3>
-
+<body style='background:rgb(216, 210, 210);padding:2%'>
+<h2 style='color:black;'>Hello, Admin </h2>
+<h2>A new emergency request has been submitted. Please log into your portal and handle the request.</h3>
+<h2>The Request Help Code is <strong style='color:red'>$helpCode</strong>.</h3>
+<h3>Please Log into your portal immediately, <a href='https://emergency-maseno.blinx.co.ke/admin/'><strong style='color:blue'>Log into the Admin Portal</strong></a></h3>
 <br>
 <img src='https://www.maseno.ac.ke/sites/default/files/Maseno-logo_v5.png' alt=''>
 </body>
@@ -234,11 +234,11 @@ if (count($errors) == 0) {
                     //Get Admin Emails
                     $admin_email = "SELECT * FROM SELECT * FROM `admin_details`";
                     $admin_mail_results = mysqli_query($db, $admin_email);
-                    if (mysqli_num_rows($admin_mail_results) >= 1) {
+                    if (mysqli_num_rows($admin_mail_results) == 1) {
                       $row = mysqli_fetch_assoc($admin_mail_results);
                       $adminName=$row['admin_firstname']. " ".$row['admin_lastname'];
                       $adminMail=$row['admin_email'];
-                   
+                      
                     }
                     send_notification_email($helpCode,$adminName,$adminMail);
                     header('location: dashboard.php');
@@ -416,7 +416,7 @@ if (mysqli_num_rows($results) == 1) {
 
   //sessions
   $_SESSION['user'] = $regNumber;
-
+  send_notification_email($helpcode,$adminName,$adminMail);
   header("Location: dashboard.php");
 }else{
   array_push($errors, "Unable to process your request. Contact The System Administrator");
