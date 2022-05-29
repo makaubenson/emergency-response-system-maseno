@@ -10,10 +10,10 @@ $helpCode = $_SESSION['task_help_code'];
 // Retrieve IP data from API response.
 // IP address 
 //static ip address
-$ip = "165.105.70.4"; 
+//$ip = "165.105.70.4"; 
 
 //Get IP Address of User in PHP
- //$ip = $_SERVER['REMOTE_ADDR']; 
+ $ip = $_SERVER['REMOTE_ADDR']; 
 
  // Convert API JSON response to array using json_decode() function.
 $url = file_get_contents("http://www.geoplugin.net/json.gp?ip=" . $ip);

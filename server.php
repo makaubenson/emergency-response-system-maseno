@@ -147,7 +147,55 @@ if (isset($_POST['login_btn'])) {
   }
 }
 
+//function to reset password
+function  send_notification_email($helpCode,$adminName,$adminMail){
+  // $token_key = 'token';
+  // $encrypted_token_key = sha1($token_key);
+  //Create an instance; passing `true` enables exceptions
+  $mail = new PHPMailer(true);
+  //Server settings
+  $mail->SMTPDebug = 1;                                //Enable verbose debug output SMTP::DEBUG_SERVER
+  $mail->isSMTP();                                    //Send using SMTP
+  $mail->Host       = 'mail.blinx.co.ke';            //Set the SMTP server to send through
+  $mail->SMTPAuth   = true;                         //Enable SMTP authentication
+  $mail->Username   = 'test@blinx.co.ke';          //SMTP username
+  $mail->Password   = 'blinx@2022';              //SMTP password
+  $mail->SMTPSecure = 'ssl';                     //Enable implicit TLS encryption
+  $mail->Port       = 465;  //465               //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
+  //Recipients
+  $mail->setFrom('info@maseno.co.ke');
+  $mail->FromName = 'Maseno University';
+
+  $mail->addAddress($adminMail);               //Name is optional
+  // $mail->addReplyTo('info@example.com', 'Information');
+  // $mail->addCC('cc@example.com');
+  // $mail->addBCC('bcc@example.com');
+
+
+  //Content
+  $mail->isHTML(true);                                  //Set email format to HTML
+  $mail->Subject = 'New Emergency Request!!';
+
+  // <h3>If you are the one who initiated this process please <a href='http://localhost/maseno-E-help/password-change.php?token=$token' style='font-weight:bold;'>Click Here</a> to RESET your password, else IGNORE this Email.</h3>
+$email_template = "
+<html>
+<body style='background:rgb(216, 210, 210);'>
+<h2 style='color:black;'>Hello, $adminName </h2>
+<h3>A new emergency request has been submitted. Please log into your portal and handle the request.</h3>
+<h3>The Request Help Code is $helpCode.</h3>
+
+<br>
+<img src='https://www.maseno.ac.ke/sites/default/files/Maseno-logo_v5.png' alt=''>
+</body>
+</html>
+
+";
+  $mail->Body    = $email_template;
+    // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+  $mail->send();
+
+}
 // Update Location Details
 if (isset($_POST['help-btn'])) {
   // receive all input values from the form
@@ -183,6 +231,16 @@ if (count($errors) == 0) {
                     $_SESSION['user'] = $regNumber;
                     $_SESSION['longitude'] = $long;
 
+                    //Get Admin Emails
+                    $admin_email = "SELECT * FROM SELECT * FROM `admin_details`";
+                    $admin_mail_results = mysqli_query($db, $admin_email);
+                    if (mysqli_num_rows($admin_mail_results) >= 1) {
+                      $row = mysqli_fetch_assoc($admin_mail_results);
+                      $adminName=$row['admin_firstname']. " ".$row['admin_lastname'];
+                      $adminMail=$row['admin_email'];
+                   
+                    }
+                    send_notification_email($helpCode,$adminName,$adminMail);
                     header('location: dashboard.php');
                   }else{
                     array_push($errors, "Unable to process your request. Contact The System Administrator");

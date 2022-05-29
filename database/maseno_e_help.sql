@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 24, 2022 at 02:00 PM
+-- Generation Time: May 27, 2022 at 04:32 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -104,10 +104,10 @@ INSERT INTO `request_status` (`id`, `helpID`, `ip_address`, `request_latitude`, 
 (20, '5VAP0L', '165.105.70.4', '-1.2550144', '36.8541696', 'Successful', 'other', 'N/A', 'My friend is not waking up, i think he is not breathing, please help him', 'MIT/00045/019', '2022-05-20 09:50:43'),
 (22, '615EKP', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', 'N/A', 'No Description', 'CIT/00047/019', '2022-05-20 12:30:12'),
 (14, '9GQB5R', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', 'N/A', 'No Description', 'CCT/00333/019', '2022-05-20 09:46:35'),
-(30, '9NAGCRM', '165.105.70.4', '0', '0', 'Pending', 'fire', 'Silwal Hostels, First floor, room 36', 'fire', 'CCT/00955/019', '2022-05-24 16:32:55'),
+(30, '9NAGCRM', '165.105.70.4', '0', '0', 'Assigned', 'fire', 'Silwal Hostels, First floor, room 36', 'fire', 'CCT/00955/019', '2022-05-24 16:32:55'),
 (6, 'C95XMI', '165.105.70.4', '-1.2550144', '36.8541696', 'Pending', 'accident', 'N/A', 'I hurt my knee', 'CIT/00222/019', '2022-05-20 09:41:43'),
 (21, 'F7GZTY', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', 'N/A', 'My eye got hurt, am bleeding', 'CIS/00075/019', '2022-05-20 09:51:20'),
-(15, 'H7DEW2', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'accident', 'N/A', 'I fell with a motorbike', 'CCT/00955/019', '2022-05-20 09:47:16'),
+(15, 'H7DEW2', '165.105.70.4', '-1.2550144', '36.8541696', 'Responding', 'accident', 'N/A', 'I fell with a motorbike', 'CCT/00955/019', '2022-05-20 09:47:16'),
 (8, 'HPITTF', '165.105.70.4', '-1.2550144', '36.8541696', 'Pending', 'fire', 'N/A', 'My house got on fire and i my hand got burnt', 'MIT/00361/019', '2022-05-20 09:44:03'),
 (24, 'HZALBM', '165.105.70.4', '0', '0', 'Pending', 'accident', 'Maseno University. Old Tuition Block, First Floor, Lab II', 'Electric shock', 'CIM/00046/019', '2022-05-24 16:09:41'),
 (28, 'JJDAFK0', '165.105.70.4', '0', '0', 'Pending', 'fire', 'Silwal Hostel', 'Gas Exploded and I was burnt', 'APS/00111/019', '2022-05-24 16:23:03'),
@@ -214,7 +214,7 @@ INSERT INTO `rescue_team_tasks` (`id`, `task_help_code`, `rescue_team_id`, `assi
 (7, '5J3LD6', 'TM03', 'MSU/00046/022', 'Responding', '2022-05-20 06:52:17'),
 (8, 'LSRZ5J', 'TM02', 'MSU/00050/022', 'Assigned', '2022-05-21 15:06:30'),
 (9, 'ORXUMI', 'TM02', 'MSU/00046/022', 'Failed', '2022-05-20 06:52:42'),
-(10, 'H7DEW2', 'TM02', 'MSU/00046/022', 'Assigned', '2022-05-20 06:52:46'),
+(10, 'H7DEW2', 'TM02', 'MSU/00046/022', 'Responding', '2022-05-25 12:40:19'),
 (11, 'JWDXGN', 'TM02', 'MSU/00046/022', 'Successful', '2022-05-20 06:52:49'),
 (12, '4X064O', 'TM02', 'MSU/00050/022', 'Assigned', '2022-05-20 06:52:58'),
 (13, '9GQB5R', 'TM03', 'MSU/00050/022', 'Assigned', '2022-05-21 15:09:37'),
@@ -226,7 +226,8 @@ INSERT INTO `rescue_team_tasks` (`id`, `task_help_code`, `rescue_team_id`, `assi
 (19, 'S7V9L9', 'TM01', 'MSU/00050/022', 'Assigned', '2022-05-21 15:09:03'),
 (20, '0IC4JI', 'TM03', 'MSU/00050/022', 'Assigned', '2022-05-20 09:42:17'),
 (22, '615EKP', 'TM02', 'MSU/00050/022', 'Assigned', '2022-05-21 15:03:07'),
-(23, '34OU9R', 'TM02', 'MSU/00046/022', 'Assigned', '2022-05-24 13:55:08');
+(23, '34OU9R', 'TM02', 'MSU/00046/022', 'Assigned', '2022-05-24 13:55:08'),
+(24, '9NAGCRM', 'TM01', 'MSU/00046/022', 'Assigned', '2022-05-25 12:38:18');
 
 -- --------------------------------------------------------
 
@@ -428,7 +429,7 @@ ALTER TABLE `rescue_team_members`
 -- AUTO_INCREMENT for table `rescue_team_tasks`
 --
 ALTER TABLE `rescue_team_tasks`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `role_details`
