@@ -147,7 +147,7 @@ if (isset($_POST['login_btn'])) {
   }
 }
 
-//function to reset password
+//function to send notifications
 function  send_notification_email($helpCode,$adminName,$adminMail){
   // $token_key = 'token';
   // $encrypted_token_key = sha1($token_key);
