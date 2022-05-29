@@ -5,11 +5,18 @@ session_start();
 // ini_set('display_errors', '1');
 // ini_set('display_startup_errors', '1');
 // error_reporting(E_ALL);
+//############## MAILING ################///
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 
+//Load Composer's autoloader
+require 'vendor/autoload.php';
+//##############################///
 // connect to the database
 try{
- $db = mysqli_connect('localhost', 'benson', 'benson', 'maseno_e_help');
-// $db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
+ //$db = mysqli_connect('localhost', 'benson', 'benson', 'maseno_e_help');
+ $db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
 //echo 'Database Connected Successfully';
 }
 catch(Exception $e) {
@@ -105,6 +112,56 @@ if (isset($_POST['admin_login_btn'])) {
     //   }
     // }
 
+    
+//function to send notifications
+function  send_notification_email($request_helpcode,$teamId,$teamName,$teamMail){
+  // $token_key = 'token';
+  // $encrypted_token_key = sha1($token_key);
+  //Create an instance; passing `true` enables exceptions
+  $mail = new PHPMailer(true);
+  //Server settings
+  $mail->SMTPDebug = 1;                                //Enable verbose debug output SMTP::DEBUG_SERVER
+  $mail->isSMTP();                                    //Send using SMTP
+  $mail->Host       = 'mail.blinx.co.ke';            //Set the SMTP server to send through
+  $mail->SMTPAuth   = true;                         //Enable SMTP authentication
+  $mail->Username   = 'test@blinx.co.ke';          //SMTP username
+  $mail->Password   = 'blinx@2022';              //SMTP password
+  $mail->SMTPSecure = 'ssl';                     //Enable implicit TLS encryption
+  $mail->Port       = 465;  //465               //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+  //Recipients
+  $mail->setFrom('info@maseno.co.ke');
+  $mail->FromName = 'Maseno University';
+
+  $mail->addAddress($teamMail);               //Name is optional
+  // $mail->addReplyTo('info@example.com', 'Information');
+  // $mail->addCC('cc@example.com');
+  // $mail->addBCC('bcc@example.com');
+
+
+  //Content
+  $mail->isHTML(true);                                  //Set email format to HTML
+  $mail->Subject = 'New Emergency Assignment.!!';
+
+  // <h3>If you are the one who initiated this process please <a href='http://localhost/maseno-E-help/password-change.php?token=$token' style='font-weight:bold;'>Click Here</a> to RESET your password, else IGNORE this Email.</h3>
+$email_template = "
+<html>
+<body style='background:rgb(216, 210, 210);padding:2%'>
+<h2 style='color:black;'>Hello, $teamName ($teamId)</h2>
+<h2>A new emergency response task has been assigned to you. </h3>
+<h2>The Request Help Code is <strong style='color:red'>$request_helpcode</strong>.</h3>
+<h3>Please Log into your portal immediately, <a href='https://rescueteam-maseno.blinx.co.ke/'><strong style='color:blue'>Rescue Team Portal</strong></a></h3>
+<br>
+<img src='https://www.maseno.ac.ke/sites/default/files/Maseno-logo_v5.png' alt=''>
+</body>
+</html>
+
+";
+  $mail->Body    = $email_template;
+    // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+  $mail->send();
+
+}
     // Rescue Team Assignment
     if (isset($_POST['update-team-btn'])) {
       $request_helpcode = $_POST['studentHelpCode'];
@@ -130,6 +187,16 @@ if (isset($_POST['admin_login_btn'])) {
 
         $status_update_query ="UPDATE `request_status` SET `status`='Assigned' WHERE `helpID` = '$request_helpcode'  ";
         $request_update_results = mysqli_query($db, $status_update_query);
+
+        $team_data_fetch = "SELECT * from rescue_team WHERE `team_id` = '$selected_team_id' ";
+        $team_results = mysqli_query($db, $team_data_fetch);
+        if (mysqli_num_rows($team_results) == 1) {
+          $row = mysqli_fetch_assoc($team_results);
+          $teamId= $row['team_id'];
+          $teamName= $row['team_name'];
+          $teamMail= $row['team_email'];
+        }
+        send_notification_email($request_helpcode,$teamId,$teamName,$teamMail);
           header('location: assigned.php');
         }else{
           array_push($errors, "Unable to fetch data");
