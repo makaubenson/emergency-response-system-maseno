@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 27, 2022 at 04:32 AM
+-- Generation Time: May 29, 2022 at 07:02 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -118,7 +118,9 @@ INSERT INTO `request_status` (`id`, `helpID`, `ip_address`, `request_latitude`, 
 (5, 'OFSHUH', '165.105.70.4', '-1.2550144', '36.8541696', 'Responding', 'sickness', 'N/A', 'I am not feeling well', 'CIT/00078/019', '2022-05-20 09:41:17'),
 (18, 'ORXUMI', '165.105.70.4', '-1.2550144', '36.8541696', 'Failed', 'sickness', 'N/A', 'Broken my arm', 'CIT/00001/019', '2022-05-20 09:49:27'),
 (11, 'S7V9L9', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', 'N/A', 'Having severe headache', 'CIS/00240/019', '2022-05-20 09:45:20'),
+(31, 'S8K4VQO', '165.105.70.4', '-1.277952', '36.8279552', 'Pending', 'accident', 'N/A', '', 'CIM/00046/019', '2022-05-29 08:51:12'),
 (4, 'T8F18M', '165.105.70.4', '-1.2550144', '36.8541696', 'Failed', 'sickness', 'N/A', 'No Description', 'CIT/00111/019', '2022-05-19 21:40:27'),
+(32, 'U3MH3WR', '165.105.70.4', '-1.277952', '36.8279552', 'Pending', 'fire', 'N/A', '', 'APS/00111/019', '2022-05-29 08:53:40'),
 (13, 'VX9YNY', '165.105.70.4', '-1.2550144', '36.8541696', 'Responding', 'sickness', 'N/A', 'I cant breath i am asthamatic', 'CCT/00078/019', '2022-05-20 09:46:14'),
 (9, 'XB1K4W', '165.105.70.4', '-1.2550144', '36.8541696', 'Assigned', 'sickness', 'N/A', 'No Description', 'CIM/00046/019', '2022-05-20 09:44:20'),
 (1, 'Y7HGQK', '165.105.70.4', '-0.007684', '34.6065696', 'Successful', 'accident', 'N/A', 'Got an injury while playing football', 'CIT/00046/019', '2022-05-18 11:49:02'),
@@ -411,7 +413,7 @@ ALTER TABLE `failed_list`
 -- AUTO_INCREMENT for table `request_status`
 --
 ALTER TABLE `request_status`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `rescue_team`
