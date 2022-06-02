@@ -148,7 +148,27 @@ $email_template = "
           $teamId= $row['team_id'];
           $teamName= $row['team_name'];
           $teamMail= $row['team_email'];
+          $teamTel= $row['team_phone'];
         }
+        //send sms
+        $message ='Hello, '.$teamName. ','.'a new task has been assigned to you.Please log in and respond to it immediately';
+        $sender_id = '22136'; //Your Default senderId
+        $phone = $teamTel; //for multiple concatinate with comma(,)
+        $apikey = 'NDZmZjczZTBjOWRmY2Y4OTA5MWZiYm'; // Check under Settings->API Keys in vsoft.co.ke
+        $username= 'makaubenson'; // Your sms.vsoft.co.ke Username
+        $api_url="https://sms.vsoft.co.ke/api/send_sms";
+        $post_data = 'username='.$username.'&api_key='.$apikey.'&message='.$message.'&phone='.$phone.'&sender_id='.$sender_id;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $api_url);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        $result = curl_exec($ch);
+        // echo $result;
+
         send_notification_email($request_helpcode,$teamName,$teamMail);
           header('location: assigned.php');
         }else{
