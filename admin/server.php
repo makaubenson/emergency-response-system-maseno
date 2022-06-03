@@ -152,7 +152,7 @@ $email_template = "
         }
         //send sms
         $message ='Hello, '.$teamName. ','.'a new task has been assigned to you.Please log in and respond to it immediately';
-        $sender_id = '22136'; //Your Default senderId
+        $sender_id = '23107'; //Your Default senderId
         $phone = $teamTel; //for multiple concatinate with comma(,)
         $apikey = 'NDZmZjczZTBjOWRmY2Y4OTA5MWZiYm'; // Check under Settings->API Keys in vsoft.co.ke
         $username= 'makaubenson'; // Your sms.vsoft.co.ke Username
