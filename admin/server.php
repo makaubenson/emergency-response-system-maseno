@@ -15,8 +15,8 @@ require 'vendor/autoload.php';
 //##############################///
 // connect to the database
 try{
- //$db = mysqli_connect('localhost', 'benson', 'benson', 'maseno_e_help');
- $db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
+ $db = mysqli_connect('localhost', 'benson', 'benson', 'maseno_e_help');
+// $db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
 //echo 'Database Connected Successfully';
 }
 catch(Exception $e) {
@@ -152,7 +152,7 @@ $email_template = "
         }
         //send sms
         $message ='Hello, '.$teamName. ','.'a new task has been assigned to you.Please log in and respond to it immediately';
-        $sender_id = '23107'; //Your Default senderId
+        $sender_id = 'UNICOMM'; //Your Default senderId
         $phone = $teamTel; //for multiple concatinate with comma(,)
         $apikey = 'NDZmZjczZTBjOWRmY2Y4OTA5MWZiYm'; // Check under Settings->API Keys in vsoft.co.ke
         $username= 'makaubenson'; // Your sms.vsoft.co.ke Username
