@@ -151,7 +151,7 @@ $email_template = "
           $teamTel= $row['team_phone'];
         }
         //send sms
-        $message ='Hello, '.$teamName. ','.'a new task has been assigned to you.Please log in and respond to it immediately';
+        $message ='Hello, '.$teamName. ','.'a new task has been assigned to you.Please log in and respond to it immediately.';
         $sender_id = 'UNICOMM'; //Your Default senderId
         $phone = $teamTel; //for multiple concatinate with comma(,)
         $apikey = 'NDZmZjczZTBjOWRmY2Y4OTA5MWZiYm'; // Check under Settings->API Keys in vsoft.co.ke
