@@ -63,3 +63,4 @@
 -  [Student Url] (https://emergency-maseno.blinx.co.ke/`
 - [Admin Url]  (https://emergency-maseno.blinx.co.ke/admin/)
 - [Rescue Team Url] (https://rescueteam-maseno.blinx.co.ke/)
+- Use the same test credentials defined above.
