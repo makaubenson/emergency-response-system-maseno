@@ -25,7 +25,26 @@ catch(Exception $e) {
   echo 'Database Connection Failed.';
 }
 
-
+function send_sms_toadmin(){
+  //send sms notification to rescue team
+  $message ='Hello, a new emergency request has been submitted.Please log in and moderate to it immediately.';
+  $sender_id = 'UNICOMM'; //Your Default senderId
+  $phone = '254758413462, 254790333257'; //for multiple concatinate with comma(,)
+  $apikey = 'NDZmZjczZTBjOWRmY2Y4OTA5MWZiYm'; // Check under Settings->API Keys in vsoft.co.ke
+  $username= 'makaubenson'; // Your sms.vsoft.co.ke Username
+  $api_url="https://sms.vsoft.co.ke/api/send_sms";
+  $post_data = 'username='.$username.'&api_key='.$apikey.'&message='.$message.'&phone='.$phone.'&sender_id='.$sender_id;
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL, $api_url);
+  curl_setopt($ch, CURLOPT_POST, 1);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+  $result = curl_exec($ch);
+  // echo $result;
+}
 
 //Register User
 // initializing variables
@@ -242,7 +261,7 @@ if (count($errors) == 0) {
                       $adminTel=$row['admin_phone'];
                       
                     }
-   
+                    send_sms_toadmin();
                     send_notification_email($helpCode,$adminName,$adminMail);
                     header('location: dashboard.php');
                   }else{
@@ -419,6 +438,7 @@ if (mysqli_num_rows($results) == 1) {
 
   //sessions
   $_SESSION['user'] = $regNumber;
+  send_sms_toadmin();
   send_notification_email($helpcode,$adminName,$adminMail);
   header("Location: dashboard.php");
 }else{
