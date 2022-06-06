@@ -150,7 +150,7 @@ $email_template = "
           $teamMail= $row['team_email'];
           $teamTel= $row['team_phone'];
         }
-        //send sms
+        //send sms notification to rescue team
         $message ='Hello, '.$teamName. ','.'a new task has been assigned to you.Please log in and respond to it immediately.';
         $sender_id = 'UNICOMM'; //Your Default senderId
         $phone = $teamTel; //for multiple concatinate with comma(,)

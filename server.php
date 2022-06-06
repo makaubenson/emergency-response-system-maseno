@@ -16,14 +16,15 @@ require 'vendor/autoload.php';
 //##############################///
 // connect to the database
 try{
- $db = mysqli_connect('localhost', 'benson', 'benson', 'maseno_e_help');
- // $db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
+// $db = mysqli_connect('localhost', 'benson', 'benson', 'maseno_e_help');
+$db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
 //echo 'Database Connected Successfully';
 }
 catch(Exception $e) {
   // echo 'Message: ' .$e->getMessage();
   echo 'Database Connection Failed.';
 }
+
 
 
 //Register User
@@ -238,8 +239,10 @@ if (count($errors) == 0) {
                       $row = mysqli_fetch_assoc($admin_mail_results);
                       $adminName=$row['admin_firstname']. " ".$row['admin_lastname'];
                       $adminMail=$row['admin_email'];
+                      $adminTel=$row['admin_phone'];
                       
                     }
+   
                     send_notification_email($helpCode,$adminName,$adminMail);
                     header('location: dashboard.php');
                   }else{
