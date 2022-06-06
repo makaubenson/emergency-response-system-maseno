@@ -29,7 +29,7 @@ function send_sms_toadmin(){
   //send sms notification to rescue team
   $message ='Hello, a new emergency request has been submitted.Please log in and moderate to it immediately.';
   $sender_id = 'UNICOMM'; //Your Default senderId
-  $phone = '254758413462, 254790333257'; //for multiple concatinate with comma(,)
+  $phone = '254758413462,254790333257'; //for multiple concatinate with comma(,)
   $apikey = 'NDZmZjczZTBjOWRmY2Y4OTA5MWZiYm'; // Check under Settings->API Keys in vsoft.co.ke
   $username= 'makaubenson'; // Your sms.vsoft.co.ke Username
   $api_url="https://sms.vsoft.co.ke/api/send_sms";
