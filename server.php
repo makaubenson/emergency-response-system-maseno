@@ -16,8 +16,8 @@ require 'vendor/autoload.php';
 //##############################///
 // connect to the database
 try{
-// $db = mysqli_connect('localhost', 'benson', 'benson', 'maseno_e_help');
-$db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
+$db = mysqli_connect('localhost', 'benson', 'benson', 'maseno_e_help');
+//$db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
 //echo 'Database Connected Successfully';
 }
 catch(Exception $e) {
@@ -261,8 +261,8 @@ if (count($errors) == 0) {
                       $adminTel=$row['admin_phone'];
                       
                     }
-                    send_sms_toadmin();
-                    send_notification_email($helpCode,$adminName,$adminMail);
+                    // send_sms_toadmin();
+                    // send_notification_email($helpCode,$adminName,$adminMail);
                     header('location: dashboard.php');
                   }else{
                     array_push($errors, "Unable to process your request. Contact The System Administrator");
@@ -438,8 +438,8 @@ if (mysqli_num_rows($results) == 1) {
 
   //sessions
   $_SESSION['user'] = $regNumber;
-  send_sms_toadmin();
-  send_notification_email($helpcode,$adminName,$adminMail);
+  // send_sms_toadmin();
+  // send_notification_email($helpcode,$adminName,$adminMail);
   header("Location: dashboard.php");
 }else{
   array_push($errors, "Unable to process your request. Contact The System Administrator");

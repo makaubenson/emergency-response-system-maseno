@@ -15,8 +15,8 @@ require 'vendor/autoload.php';
 //##############################///
 // connect to the database
 try{
-// $db = mysqli_connect('localhost', 'benson', 'benson', 'maseno_e_help');
-$db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
+$db = mysqli_connect('localhost', 'benson', 'benson', 'maseno_e_help');
+//$db = mysqli_connect('localhost', 'blinxcok_benson', 'aFek]Np@ZVPZ', 'blinxcok_maseno_e_help');
 //echo 'Database Connected Successfully';
 }
 catch(Exception $e) {
@@ -169,7 +169,7 @@ $email_template = "
         $result = curl_exec($ch);
         // echo $result;
 
-        send_notification_email($request_helpcode,$teamName,$teamMail);
+        // send_notification_email($request_helpcode,$teamName,$teamMail);
           header('location: assigned.php');
         }else{
           array_push($errors, "Unable to fetch data");
