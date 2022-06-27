@@ -39,7 +39,7 @@
 ## Admin Test Credentials
 
 - To open the admin login, visit `http://localhost/maseno-E-health/admin/`
-- Use `username`: MSU/00046/022 and `Password`: benson
+
 
 ## Rescue Team Test Credentials
 
