@@ -332,8 +332,11 @@ if(isset($_POST['password_reset_btn'])){
   $student_email = strtolower($_POST['student_email']);
 
 $token = sha1($student_email);//generating token
+
 $_SESSION['toke_val'] = $token;
+
 $token_value = $_SESSION['toke_val'];
+
 //check if Student email already exists
 $check_email = "SELECT * FROM student_details WHERE emailaddress = '$student_email' AND regNum ='$student_username' LIMIT 1 ";
 $mail_results = mysqli_query($db, $check_email);
