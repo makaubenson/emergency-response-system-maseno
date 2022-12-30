@@ -8,7 +8,7 @@
 
 - link `https://git-scm.com/download/win`
 
-## Navigate to `htdocs folder` inside MAMP'S installed files
+## Navigate to `htdocs folder` inside MAMP'S/Xammp's installed files
 
 ## Clone this project repository
 
@@ -40,7 +40,6 @@
 
 - To open the admin login, visit `http://localhost/maseno-E-health/admin/`
 
-
 ## Rescue Team Test Credentials
 
 - To open the rescue login, visit `http://localhost/maseno-E-health/rescue/`
@@ -59,8 +58,10 @@
 
 - This projects should be used under the `GNU General Public License ` guidelines.
 - Thank You for taking your time to explore this project.
+
 # Note: This project was taken to production and hosted. The project was hosted under the following `URLS`
--  [Student Url] (https://emergency-maseno.blinx.co.ke/`
-- [Admin Url]  (https://emergency-maseno.blinx.co.ke/admin/)
+
+- [Student Url] (https://emergency-maseno.blinx.co.ke/`
+- [Admin Url] (https://emergency-maseno.blinx.co.ke/admin/)
 - [Rescue Team Url] (https://rescueteam-maseno.blinx.co.ke/)
 - Use the same test credentials defined above.
