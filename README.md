@@ -43,11 +43,6 @@
 ## Rescue Team Test Credentials
 
 - To open the rescue login, visit `http://localhost/maseno-E-health/rescue/`
-- Use `username`: CUTY/022 and `Password`: benson
-- OR
-- Use `username`: HYDRO/022 and `Password`: benson
-- OR
-- Use `username`: SHIFTY/022 and `Password`: benson
 
 ## Student Test Credentials
 
