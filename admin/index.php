@@ -4,25 +4,25 @@ include 'server.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Admin Login</title>
+    <title>Admin Login Page</title>
 <?php include './includes/header.php'; ?>
 </head>
 
 <body style="background-color: #d2d6de;">
     <div class="container">
         <div class="row mt-5 login-page-row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6 mt-5 login-page">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 mt-5 login-page">
 
                 <div class="col-md-12 mb-2 login-page-header">
-                    <h2 class="text-center" style="color: #fff">Admin Login</h2>
+                    <h2 class="text-center" style="color: #fff">Admin Login Page</h2>
 
                     <div class="row">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-6 text-center">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 text-center">
                             <img src="./static/img/logo.png" class="img-fluid" height="100" width="100" />
                         </div>
-                        <div class="col-md-3"></div>
+                        <div class="col-md-4"></div>
                     </div>
                 </div>
 
@@ -32,7 +32,7 @@ include 'server.php';
                     <?php
             include 'errors.php';
             ?>
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">User ID</label>
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">UserID</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="inputEmail3" placeholder="Username"
                                 name="admin_id" required />
