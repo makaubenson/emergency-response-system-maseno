@@ -14,18 +14,18 @@ include './components/header.php';
     <div class="container">
 
         <div class="row mt-5 login-page-row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6 mt-5 login-page">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 mt-5 login-page">
 
                 <div class="col-md-12 mb-2 login-page-header">
                     <h2 class="text-center" style="color: #fff">Maseno University Emergency System</h2>
 
                     <div class="row">
-                        <div class="col-md-3"></div>
-                        <div class="col-md-6 text-center">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4 text-center">
                             <img src="./static/img/logo.png" class="img-fluid" height="100" width="100" />
                         </div>
-                        <div class="col-md-3"></div>
+                        <div class="col-md-4"></div>
                     </div>
                 </div>
 
@@ -50,13 +50,13 @@ include './components/header.php';
                     </div>
 
                     <div class="form-group row">
-                    <div class="col-sm-4 mb-2">
-                            <a name="forgot_password_btn" class="btn-block p-2 text-success" href="forgot-password.php" style="text-decoration:none ;">
+                    <div class="col-sm-6 mb-2">
+                            <a name="forgot_password_btn" class=" p-2 text-success" href="forgot-password.php" style="text-decoration:none ;">
                                Forgot Password ?
                             </a>
                         </div>
-                        <div class="col-sm-4"></div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-3">
                             <button type="submit" name="login_btn" class="btn btn-primary btn-block p-2">
                               <strong>  Sign In</strong>
                             </button>
@@ -64,19 +64,7 @@ include './components/header.php';
                     </div>
                  
            
-             <!-- <div class="row">
-             <div class="col-sm-12 register-col">
-               <p class="lead">Don't have an account yet? <a href="./register.php" class="btn btn-success">Register Here</a></p>
-             </div>
-            </div> -->
-                    <!-- <hr> -->
-                    <!--Register-->
-                    <!-- <div class="row">
-                        <div class="col-sm-12 register-col">
-                            <p class="lead"> <a href="./rescue/index.php" class="btn btn-success">Rescue Team Login</a>
-                            </p>
-                        </div>
-                    </div> -->
+        
                 </form>
             </div>
         </div>
