@@ -9,15 +9,15 @@ include './components/header.php';
   <body style="background-color: #d2d6de;">
     <div class="container">
       <div class="row mt-5 login-page-row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6 mt-5 login-page">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 mt-5 login-page">
           
         <div class="col-md-12 mb-2 login-page-header" >
             <h2 class="text-center" style="color: #fff">Rescue Team Login</h2>
 
             <div class="row">
-              <div class="col-md-3"></div>
-              <div class="col-md-6 text-center">
+              <div class="col-md-4"></div>
+              <div class="col-md-4 text-center">
                 <img
                   src="./static/img/logo.png"
                   class="img-fluid"
@@ -25,7 +25,7 @@ include './components/header.php';
                   width="100"
                 />
               </div>
-              <div class="col-md-3"></div>
+              <div class="col-md-4"></div>
             </div>
           </div>
 
@@ -36,7 +36,7 @@ include './components/header.php';
             include 'errors.php';
             ?>
               <label for="inputEmail3" class="col-sm-2 col-form-label"
-                >User ID</label
+                >UserID</label
               >
               <div class="col-sm-10">
                 <input
@@ -65,14 +65,14 @@ include './components/header.php';
 
             <div class="form-group row">
 
-            <div class="col-sm-4 mb-2">
+            <div class="col-sm-6 mb-2">
                             <a name="forgot_password_btn" class="btn-block p-2 text-success" href="forgot-password.php" style="text-decoration:none ;">
                                Forgot Password ?
                             </a>
                         </div>
           
-            <div class="col-sm-4"></div>
-              <div class="col-sm-4">
+            <div class="col-sm-3"></div>
+              <div class="col-sm-3">
                 <button
                   type="submit"
                   name="rescue_login_btn"
