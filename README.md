@@ -56,7 +56,6 @@
 
 # Note: This project was taken to production and hosted. The project was hosted under the following `URLS`
 
-- [Student Url] (https://emergency-maseno.blinx.co.ke/`
-- [Admin Url] (https://emergency-maseno.blinx.co.ke/admin/)
-- [Rescue Team Url] (https://rescueteam-maseno.blinx.co.ke/)
-- Use the same test credentials defined above.
+- [Url] (`https://emergency-response.blinx.co.ke/`
+
+- Demo logins to be provided.
