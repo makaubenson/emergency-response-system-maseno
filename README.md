@@ -35,6 +35,7 @@
 - Import the `.sql` file in the `database folder` found on the `project directory`.
 - Find `server.php` file in `rescue`,`admin` and `project directory` and change the database connection credentials.
 - Save the project, and run it.
+<!--
 
 ## Admin Test Credentials
 
@@ -52,7 +53,7 @@
 - `Congratulations, you have fully setup this project.`
 
 - This projects should be used under the `GNU General Public License ` guidelines.
-- Thank You for taking your time to explore this project.
+- Thank You for taking your time to explore this project. -->
 
 # Note: This project was taken to production and hosted. The project was hosted under the following `URLS`
 
